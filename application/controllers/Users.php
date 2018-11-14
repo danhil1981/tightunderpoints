@@ -18,6 +18,8 @@
                 $this->index("<div class='error'>User/password incorrect</div><br/>");
             }
             else {
+                $this->load->model('model_players');                 
+                $data['players_list'] = $this->model_players->get_all();
                 $data['view_name'] = 'admin_panel';
                 $data['msg'] = "<div class='success'>Welcome, ".$this->session->username." !</div><br/>";
                 $this->load->view('template', $data);
