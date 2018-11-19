@@ -11,3 +11,8 @@ application/logs/*
 ## Database Script
 
 database.sql
+
+## Config files
+
+/application/config/config.php
+/application/config/database.php
