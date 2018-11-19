@@ -18,6 +18,7 @@
             $this->load->view('template', $data);
         }
 
+        
         public function show_insert() {
 
             if ($this->check_login()) {
