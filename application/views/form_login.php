@@ -20,10 +20,11 @@
                         Password<br/>
                     </div>
                     <?php echo form_password('password','','class="form-control"')?><br/>
-                    <?php echo form_submit('submit', 'Submit', 'class="btn btn-primary form-control"');?>
+                    <div class="text-center">
+                    <?php echo form_submit('submit', 'Submit', 'class="btn btn-primary"');?>
+                    </div>
                 </div>
-                <div class="text-center">
-                    <?php echo form_close();?>
+                <?php echo form_close();?>
             </div>
         </div> 
     </div>
