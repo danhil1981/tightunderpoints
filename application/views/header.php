@@ -11,7 +11,7 @@
     <body class="bg-dark">
         <div class="container-fluid">
         <div class="row">
-            <div class="col-4 offset-4">
+            <div class="mx-auto">
                 <img src="<?php echo base_url()?>\assets\img\logo.PNG" class="rounded" alt="Responsive Logo">
             </div>
         </div>
