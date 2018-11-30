@@ -1,35 +1,3 @@
-#players {
-    display: block;
-}
-
-#items {
-    display: none;
-}
-
-#encounters {
-    display: none;
-}
-
-#raids {
-    display: none;
-}
-
-#button_players, #button_raids, #button_items, #button_encounters {
-    margin-left: 5px;
-    padding: 3px;
-}
-
-#button_players {
-    border: 2px solid green;
-    color: white;
-    background-color: green;
-}
-
-#button_raids, #button_items, #button_encounters {
-    border: 2px solid grey;
-    background-color: white;
-}
-
 .logout, .refresh {
     margin-left: 8.35em;
     padding: 3px;
