@@ -33,5 +33,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
             return $users;
         }
+
+        public function get($id) {
+            $query = $this->db->query("SELECT * FROM users WHERE id = $id;");
+            $user = $query->result_array()[0];
+    
+            return $user;
+        }
+    
+        public function delete($id) {
+    
+            $this->db->query("DELETE FROM users WHERE id = $id ;");
+    
+            return $this->db->affected_rows();            
+        }
+    
+    
+        public function insert() {
+            $name = $this->input->post('name');
+    
+            $this->db->query("INSERT INTO users (name) VALUES ('$name');");
+    
+            return $this->db->affected_rows(); 
+        }
+    
+        public function modify() {
+            $id = $this->input->post('id');
+            $name = $this->input->post('name');
+    
+            $this->db->query("UPDATE users SET name = '$name' WHERE id = $id;");
+    
+            return $this->db->affected_rows();
+        }
     }
 ?>
