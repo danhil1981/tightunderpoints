@@ -9,10 +9,7 @@
         }
 
         public function load_view($data = NULL) {
-            $data['players_list'] = $this->model_players->get_all();
-            //  $data['raids_list'] = $this->model_raids->get_all();
-            //  $data['items_list'] = $this->model_items->get_all();
-            //  $data['encounters_list'] = $this->model_encounters->get_all();
+            $data['players_list'] = $this->model_players->get_all(); 
             $data['view_name'] = 'admin_panel';
             $data["table_to_show"] = "players";
             $this->load->view('template', $data);
