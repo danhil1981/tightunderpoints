@@ -37,7 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         public function get($id) {
             $query = $this->db->query("SELECT * FROM users WHERE id = $id;");
             $user = $query->result_array()[0];
-    
+        
             return $user;
         }
     
@@ -51,8 +51,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     
         public function insert() {
             $name = $this->input->post('name');
+            $password = $this->input->post('password');
+            $type = $this->input->post('type');
     
-            $this->db->query("INSERT INTO users (name) VALUES ('$name');");
+            $this->db->query("INSERT INTO users (name, password, type) VALUES ('$name', '$password', '$type');");
     
             return $this->db->affected_rows(); 
         }
@@ -60,8 +62,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         public function modify() {
             $id = $this->input->post('id');
             $name = $this->input->post('name');
+            $password = $this->input->post('password');
+            $type = $this->input->post('type');
     
-            $this->db->query("UPDATE users SET name = '$name' WHERE id = $id;");
+            $this->db->query("UPDATE users SET name = '$name', password = '$password', type = '$type' WHERE id = $id;");
     
             return $this->db->affected_rows();
         }
