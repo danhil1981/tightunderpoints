@@ -22,5 +22,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         return $validated;
         }
+
+        public function get_all() {
+            $query = $this->db->query("SELECT * FROM users;");
+            $users = array();
+            if ($query->num_rows() > 0) {
+                foreach ($query->result_array() as $row) {
+                    $users[] = $row;
+                }
+            }
+            return $users;
+        }
     }
 ?>
