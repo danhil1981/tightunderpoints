@@ -27,7 +27,9 @@
         }
 
         public function admin_panel() {
+            $this->load->model('model_players'); 
             $data['view_name'] = 'admin_panel';
+            $data['players_list'] = $this->model_players->get_all();
             $this->load->view('template', $data);
         }
     }
