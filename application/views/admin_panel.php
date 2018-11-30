@@ -29,6 +29,7 @@
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
+                        <th>Type</th>
                         <th>&nbsp;</th>
                         <th>&nbsp;</th>
                     </tr>
@@ -39,6 +40,7 @@
                 
                         echo "<tr><td>".$user['id']."</td>";
                         echo "<td>".$user['name']."</td>";
+                        echo "<td>".$user['type']."</td>";
                         echo "<td><a href='".site_url()."/users/delete/".$user['id']."' class='btn btn-danger btn-sm'>Delete</a></td>";
                         echo "<td><a href='".site_url()."/users/show_modify/".$user['id']."' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
                     }
