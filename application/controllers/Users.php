@@ -18,8 +18,10 @@
                 $this->index("<div class='error'>User/password incorrect</div><br/>");
             }
             else {
-                $this->load->model('model_players');                 
+                $this->load->model('model_players'); 
+                $this->load->model('model_users');                
                 $data['players_list'] = $this->model_players->get_all();
+                $data['users_list'] = $this->model_users->get_all();
                 $data['view_name'] = 'admin_panel';
                 $data['msg'] = "<div class='success'>Welcome, ".$this->session->username." !</div><br/>";
                 $this->load->view('template', $data);
@@ -27,8 +29,10 @@
         }
 
         public function admin_panel() {
-            $this->load->model('model_players'); 
+            $this->load->model('model_users');
+            $this->load->model('model_players');
             $data['view_name'] = 'admin_panel';
+            $data['users_list'] = $this->model_users->get_all();
             $data['players_list'] = $this->model_players->get_all();
             $this->load->view('template', $data);
         }
