@@ -34,7 +34,7 @@
         public function insert() {
             $name = $this->input->post('name');
     
-            $this->db->query("INSERT INTO players (name, last_raid, last_loot, points) VALUES ('$name', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0);");
+            $this->db->query("INSERT INTO players (name) VALUES ('$name');");
     
             return $this->db->affected_rows(); 
         }
