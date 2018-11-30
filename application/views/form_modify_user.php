@@ -25,7 +25,7 @@
                             <div class="text-white">
                                 Type<br/><br/>
                             </div>
-                            <?php echo form_dropdown('type', $options, 'required class="form-control"');?>
+                            <?php echo form_dropdown('type', $options, $user['type'], 'required class="form-control"');?>
                         </div>
                         <?php echo form_hidden('id',$user['id']);?>
                         <?php echo form_submit('submit', 'Submit', 'class="btn btn-primary btn-small"');?>
