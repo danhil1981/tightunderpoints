@@ -4,11 +4,13 @@
     Class Players extends Security {
 
         public function __construct() {
-        parent::__construct();
-        $this->load->model('model_players');
+            parent::__construct();
+            $this->load->model('model_players');
+            $this->load->model('model_users');
         }
 
         public function load_view($data = NULL) {
+            $data['users_list'] = $this->model_users->get_all();
             $data['players_list'] = $this->model_players->get_all(); 
             $data['view_name'] = 'admin_panel';
             $data["table_to_show"] = "players";
@@ -34,13 +36,13 @@
     
                     if ($result_insert == 0) {
     
-                        $data['msg'] = "<div class='error'>Error on insertion</div><br/>";
+                        $data['msg'] = "<div class='badge badge-danger'>Error on insertion</div><br/>";
                     
                     }
     
                     else {
     
-                        $data['msg'] = "<div class='success'>Player successfully inserted</div><br/>";
+                        $data['msg'] = "<div class='badge badge-success'>Player successfully inserted</div><br/>";
     
                     }    
     
@@ -57,13 +59,13 @@
     
                 if ($result == 0) {
     
-                    $data['msg'] = "<div class='error'>Error on deletion</div><br/>";
+                    $data['msg'] = "<div class='badge badge-danger'>Error on deletion</div><br/>";
     
                 }
                 
                 else {
     
-                    $data['msg'] = "<div class='success'>Player successfully deleted</div><br/>";
+                    $data['msg'] = "<div class='badge badge-success'>Player successfully deleted</div><br/>";
                 
                 }
     
@@ -91,12 +93,12 @@
     
                 if ($result == 0) {
     
-                    $data['msg'] = "<div class='error'>Error on modification</div><br/>";
+                    $data['msg'] = "<div class='badge badge-danger'>Error on modification</div><br/>";
     
                 }
                 else {
     
-                    $data['msg'] = "<div class='success'>Player modified successfully</div><br/>";
+                    $data['msg'] = "<div class='badge badge-success'>Player successfully modified</div><br/>";
     
                 }
                 
