@@ -45,7 +45,7 @@
         public function modify() {
             $id = $this->input->post('id');
             $name = $this->input->post('name');
-            $level = $this->input->post('level');
+            $level = $this->input->post('level')+1;
             $type = $this->input->post('type');
             $id_player = $this->input->post('id_player');
     
