@@ -47,6 +47,17 @@
     
             return $this->db->affected_rows();
         }
+
+        public function get_list() {
+            $query = $this->db->query("SELECT id AS id_player, name AS name_player FROM players;");
+            $players = array();
+            if ($query->num_rows() > 0) {
+                foreach ($query->result_array() as $row) {
+                    $players[] = $row;
+                }
+            }
+            return array_column($players, 'name_player', 'id_player');
+        }
     }
 
 ?>
