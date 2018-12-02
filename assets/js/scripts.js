@@ -1,4 +1,4 @@
-tables = ['users','players'/*,'characters','raids','events','bosses','items','drops','attendence','loots'*/];
+tables = ['users','players','characters'/*,'raids','events','bosses','items','drops','attendence','loots'*/];
 
 function show(table) {
     for (i=0; i<tables.length;i++) {
