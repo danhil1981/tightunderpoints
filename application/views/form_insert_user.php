@@ -20,7 +20,7 @@
                             </div>
                             <?php echo form_password('password','','required class="form-control"')?>
                         </div>
-                        <?php $options = array('1' => 'Admin','2' => 'Officer','3' => 'Member');?>
+                        <?php $options = array('Admin' => 'Admin','Officer' => 'Officer','Member' => 'Member');?>
                         <div class="form-group">
                             <div class="text-white">
                                 Type<br/><br/>
