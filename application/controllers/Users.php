@@ -7,11 +7,13 @@
             parent::__construct();
             $this->load->model('model_players');
             $this->load->model('model_users');
+            $this->load->model('model_characters');
         }
 
         public function load_view($data = NULL) {
             $data['users_list'] = $this->model_users->get_all();
-            $data['players_list'] = $this->model_players->get_all(); 
+            $data['players_list'] = $this->model_players->get_all();
+            $data['characters_list'] = $this->model_characters->get_all(); 
             $data['view_name'] = 'admin_panel';
             $data["table_to_show"] = "users";
             $this->load->view('template', $data);
@@ -34,6 +36,7 @@
             else {               
                 $data['players_list'] = $this->model_players->get_all();
                 $data['users_list'] = $this->model_users->get_all();
+                $data['characters_list'] = $this->model_characters->get_all(); 
                 $data['view_name'] = 'admin_panel';
                 $data['msg'] = "<div class='badge badge-success'>Welcome, ".$this->session->username." !</div><br/>";
                 $this->load->view('template', $data);
@@ -46,6 +49,7 @@
             $data['view_name'] = 'admin_panel';
             $data['users_list'] = $this->model_users->get_all();
             $data['players_list'] = $this->model_players->get_all();
+            $data['characters_list'] = $this->model_characters->get_all(); 
             $this->load->view('template', $data);
         }
 
