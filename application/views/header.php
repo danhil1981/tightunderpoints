@@ -11,6 +11,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="mx-auto">
+                    <br/>
                     <img src="<?php echo base_url()?>\assets\img\logo.PNG" alt="Responsive Logo">
                 </div>
             </div>
