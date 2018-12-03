@@ -119,8 +119,7 @@
     </div>
 </div>
 
-<?php 
-    var_dump($table_to_show);
+<?php
     if (isset($table_to_show)) {
         echo "<script>show('".$table_to_show."');</script>";
     }
