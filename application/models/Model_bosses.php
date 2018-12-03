@@ -32,7 +32,7 @@
     
     
         public function insert() {
-            $name = $this->input->post('name');
+            $name = quotes_to_entities($this->input->post('name'));
             $respawn = $this->input->post('respawn');
             $variance = $this->input->post('variance');
             $value = $this->input->post('value')+1;
@@ -44,7 +44,7 @@
     
         public function modify() {
             $id = $this->input->post('id');
-            $name = $this->input->post('name');
+            $name = quotes_to_entities($this->input->post('name'));
             $respawn = $this->input->post('respawn');
             $variance = $this->input->post('variance');
             $value = $this->input->post('value')+1;

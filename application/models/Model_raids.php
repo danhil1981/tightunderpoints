@@ -32,7 +32,7 @@
     
     
         public function insert() {
-            $description = $this->input->post('description');
+            $description = quotes_to_entities($this->input->post('description'));
             $date = $this->input->post("date");
             
     
@@ -43,7 +43,7 @@
     
         public function modify() {
             $id = $this->input->post('id');
-            $description = $this->input->post('description');
+            $description = quotes_to_entities($this->input->post('description'));
             $date = $this->input->post('date');
     
             $this->db->query("UPDATE raids SET description = '$description', date = '$date' WHERE id = $id;");
