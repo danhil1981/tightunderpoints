@@ -1,37 +1,34 @@
-    
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-6 offset-3">
-                        <h1 class="text-center text-white">New User</h1>
+            <div class="row">
+                <div class="col-6 offset-3">
+                    <h1 class="text-center text-white">New User</h1>
 
-                        <br/><br/>
-            
-                        <?php echo form_open_multipart('users/insert');?>
+                    <br/><br/>
+        
+                    <?php echo form_open_multipart('users/insert');?>
 
-                        <div class="form-group">
-                            <div class="text-white">
-                                Name<br/><br/>
-                            </div>
-                            <?php echo form_input('name','','required class="form-control"')?>
+                    <div class="form-group">
+                        <div class="text-white">
+                            Name<br/><br/>
                         </div>
-                        <div class="form-group">
-                            <div class="text-white">
-                                Password<br/><br/>
-                            </div>
-                            <?php echo form_password('password','','required class="form-control"')?>
-                        </div>
-                        <?php $options = array('Admin' => 'Admin','Officer' => 'Officer','Member' => 'Member');?>
-                        <div class="form-group">
-                            <div class="text-white">
-                                Type<br/><br/>
-                            </div>
-                            <?php echo form_dropdown('type', $options, 'required class="form-control"');?>
-                        </div>
-                        <?php 
-                            echo form_submit('submit', 'Submit', 'class="btn btn-primary btn-small"');
-                            echo anchor('users/admin_panel', 'Cancel', 'class="btn btn-danger btn-small"');
-                            echo form_close();
-                        ?>
+                        <?php echo form_input('name','','required class="form-control"')?>
                     </div>
+                    <div class="form-group">
+                        <div class="text-white">
+                            Password<br/><br/>
+                        </div>
+                        <?php echo form_password('password','','required class="form-control"')?>
+                    </div>
+                    <?php $options = array('Admin' => 'Admin','Officer' => 'Officer','Member' => 'Member');?>
+                    <div class="form-group">
+                        <div class="text-white">
+                            Type<br/><br/>
+                        </div>
+                        <?php echo form_dropdown('type', $options, 'required class="form-control"');?>
+                    </div>
+                    <?php 
+                        echo form_submit('submit', 'Submit', 'class="btn btn-primary btn-small"');
+                        echo anchor('users/admin_panel', 'Cancel', 'class="btn btn-danger btn-small"');
+                        echo form_close();
+                    ?>
                 </div>
             </div>
