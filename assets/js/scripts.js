@@ -9,9 +9,9 @@ $(document).ready(function () {
 
 function show(table) {
     for (i=0; i<tables.length;i++) {
-        document.getElementById("button_" + tables[i]).className = "btn btn-light";
+        document.getElementById("button_" + tables[i]).className = "btn btn-light btn-small";
         document.getElementById(tables[i]).style.display = "none";
     }
-    document.getElementById("button_"+table).className = "btn btn-primary";
+    document.getElementById("button_"+table).className = "btn btn-primary btn-small";
     document.getElementById(table).style.display = "block";
 }
