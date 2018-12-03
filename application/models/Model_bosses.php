@@ -35,7 +35,7 @@
             $name = quotes_to_entities($this->input->post('name'));
             $respawn = $this->input->post('respawn');
             $variance = $this->input->post('variance');
-            $value = $this->input->post('value')+1;
+            $value = $this->input->post('value');
     
             $this->db->query("INSERT INTO bosses (name, respawn, variance, value) VALUES ('$name', '$respawn', '$variance', '$value');");
     
@@ -47,7 +47,7 @@
             $name = quotes_to_entities($this->input->post('name'));
             $respawn = $this->input->post('respawn');
             $variance = $this->input->post('variance');
-            $value = $this->input->post('value')+1;
+            $value = $this->input->post('value');
     
             $this->db->query("UPDATE bosses SET name = '$name', respawn = '$respawn', variance = '$variance', value = '$value' WHERE id = $id;");
     

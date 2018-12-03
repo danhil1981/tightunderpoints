@@ -32,7 +32,7 @@
                         <br/>
                     </div>
 
-                    <?php $options = range(0,10);?>
+                    <?php $options = array('0' => '0', '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5');?>
                     <div class="form-group">
                         <div class="text-white">
                             Points<br/><br/>
