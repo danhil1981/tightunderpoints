@@ -13,10 +13,10 @@
                     <button onclick='show("users")' id='button_users' class="btn btn-primary btn-sm">Users</button>
                     <button onclick='show("players")' id='button_players' class="btn btn-light btn-sm">Players</button>
                     <button onclick='show("characters")' id='button_characters' class="btn btn-light btn-sm">Characters</button>
-                    <button onclick='show("raids")' id='button_raids' class="btn btn-light btn-sm">Raids</button>
-                    <button onclick='show("events")' id='button_events' class="btn btn-light btn-sm">Events</button>
                     <button onclick='show("bosses")' id='button_bosses' class="btn btn-light btn-sm">Bosses</button>
                     <button onclick='show("items")' id='button_items' class="btn btn-light btn-sm">Items</button>
+                    <button onclick='show("raids")' id='button_raids' class="btn btn-light btn-sm">Raids</button>
+                    <button onclick='show("events")' id='button_events' class="btn btn-light btn-sm">Events</button>
                     <button onclick='show("drops")' id='button_drops' class="btn btn-light btn-sm">Drops</button>
                     <button onclick='show("attendance")' id='button_attendance' class="btn btn-light btn-sm">Attendence</button>
                     <button onclick='show("loots")' id='button_loots' class="btn btn-light btn-sm">Loots</button>
@@ -121,6 +121,72 @@
                         <a href='<?php echo site_url()?>/characters/show_insert/' class='btn btn-success btn-sm'>New</a>
                         <br/><br/>
                     </div>
+                    
+                    <div id='bosses' style='display: none;'>
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_bosses">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Respawn Time</th>
+                                    <th scope="col">Variance</th>
+                                    <th scope="col">Points</th>
+                                    <th scope="col">&nbsp;</th>
+                                    <th scope="col">&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    for ($i = 0; $i < count($bosses_list); $i++) {
+                                        $boss = $bosses_list[$i];
+                                
+                                        echo "<tr><th scope='row'>".$boss['id']."</th>";
+                                        echo "<td>".$boss['name']."</td>";
+                                        echo "<td>".$boss['respawn']."</td>";
+                                        echo "<td>".$boss['variance']."</td>";
+                                        echo "<td>".$boss['value']."</td>";
+                                        echo "<td><a href='".site_url()."/bosses/delete/".$boss['id']."' class='btn btn-danger btn-sm'>Delete</a></td>";
+                                        echo "<td><a href='".site_url()."/bosses/show_modify/".$boss['id']."' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <a href='<?php echo site_url()?>/bosses/show_insert/' class='btn btn-success btn-sm'>New</a>
+                        <br/><br/>
+                    </div>
+
+                    <div id='raids' style='display: none;'>
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_raids">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">&nbsp;</th>
+                                    <th scope="col">&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    for ($i = 0; $i < count($raids_list); $i++) {
+                                        $raid = $raids_list[$i];
+                                
+                                        echo "<tr><th scope='row'>".$raid['id']."</th>";
+                                        echo "<td>".$raid['date']."</td>";
+                                        echo "<td>".$raid['description']."</td>";
+                                        echo "<td><a href='".site_url()."/raids/delete/".$raid['id']."' class='btn btn-danger btn-sm'>Delete</a></td>";
+                                        echo "<td><a href='".site_url()."/raids/show_modify/".$raid['id']."' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <a href='<?php echo site_url()?>/raids/show_insert/' class='btn btn-success btn-sm'>New</a>
+                        <br/><br/>
+                    </div>
+
+
                 </div>
             </div>
 
