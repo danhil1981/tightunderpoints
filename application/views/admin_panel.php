@@ -34,17 +34,19 @@
                         <th scope="col">&nbsp;</th>
                     </tr>
                 </thead>
-                <?php
-                    for ($i = 0; $i < count($users_list); $i++) {
-                        $user = $users_list[$i];
-                
-                        echo "<tr><th scope='row'>".$user['id']."</th>";
-                        echo "<td>".$user['name']."</td>";
-                        echo "<td>".$user['type']."</td>";
-                        echo "<td><a href='".site_url()."/users/delete/".$user['id']."' class='btn btn-danger btn-sm'>Delete</a></td>";
-                        echo "<td><a href='".site_url()."/users/show_modify/".$user['id']."' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
-                    }
-                ?>
+                <tbody>
+                    <?php
+                        for ($i = 0; $i < count($users_list); $i++) {
+                            $user = $users_list[$i];
+                    
+                            echo "<tr><th scope='row'>".$user['id']."</th>";
+                            echo "<td>".$user['name']."</td>";
+                            echo "<td>".$user['type']."</td>";
+                            echo "<td><a href='".site_url()."/users/delete/".$user['id']."' class='btn btn-danger btn-sm'>Delete</a></td>";
+                            echo "<td><a href='".site_url()."/users/show_modify/".$user['id']."' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
+                        }
+                    ?>
+                </tbody>
             </table>
             <br/>
             <a href='<?php echo site_url()?>/users/show_insert/' class='btn btn-success btn-sm'>New</a>
@@ -61,16 +63,18 @@
                         <th scope="col">&nbsp;</th>
                     </tr>
                 </thead>
-                <?php
-                    for ($i = 0; $i < count($players_list); $i++) {
-                        $player = $players_list[$i];
-                
-                        echo "<tr><th scope='row'>".$player['id']."</th>";
-                        echo "<td>".$player['name']."</td>";
-                        echo "<td><a href='".site_url()."/players/delete/".$player['id']."' class='btn btn-danger btn-sm'>Delete</a></td>";
-                        echo "<td><a href='".site_url()."/players/show_modify/".$player['id']."' class='btn btn-warning btn-sm''>Modify</a></td></tr>";
-                    }
-                ?>
+                <tbody>
+                    <?php
+                        for ($i = 0; $i < count($players_list); $i++) {
+                            $player = $players_list[$i];
+                    
+                            echo "<tr><th scope='row'>".$player['id']."</th>";
+                            echo "<td>".$player['name']."</td>";
+                            echo "<td><a href='".site_url()."/players/delete/".$player['id']."' class='btn btn-danger btn-sm'>Delete</a></td>";
+                            echo "<td><a href='".site_url()."/players/show_modify/".$player['id']."' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
+                        }
+                    ?>
+                </tbody>
             </table>
             <br/>
             <a href='<?php echo site_url()?>/players/show_insert/' class='btn btn-success btn-sm'>New</a>
@@ -91,20 +95,22 @@
                         <th scope="col">&nbsp;</th>
                     </tr>
                 </thead>
-                <?php
-                    for ($i = 0; $i < count($characters_list); $i++) {
-                        $character = $characters_list[$i];
-                
-                        echo "<tr><th scope='row'>".$character['id']."</th>";
-                        echo "<td>".$character['name']."</td>";
-                        echo "<td>".$character['level']."</td>";
-                        echo "<td>".$character['class']."</td>";
-                        echo "<td>".$character['type']."</td>";
-                        echo "<td>".$character['name_player']."</td>";
-                        echo "<td><a href='".site_url()."/characters/delete/".$character['id']."' class='btn btn-danger btn-sm'>Delete</a></td>";
-                        echo "<td><a href='".site_url()."/characters/show_modify/".$character['id']."' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
-                    }
-                ?>
+                <tbody>
+                    <?php
+                        for ($i = 0; $i < count($characters_list); $i++) {
+                            $character = $characters_list[$i];
+                    
+                            echo "<tr><th scope='row'>".$character['id']."</th>";
+                            echo "<td>".$character['name']."</td>";
+                            echo "<td>".$character['level']."</td>";
+                            echo "<td>".$character['class']."</td>";
+                            echo "<td>".$character['type']."</td>";
+                            echo "<td>".$character['name_player']."</td>";
+                            echo "<td><a href='".site_url()."/characters/delete/".$character['id']."' class='btn btn-danger btn-sm'>Delete</a></td>";
+                            echo "<td><a href='".site_url()."/characters/show_modify/".$character['id']."' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
+                        }
+                    ?>
+                </tbody>
             </table>
             <br/>
             <a href='<?php echo site_url()?>/characters/show_insert/' class='btn btn-success btn-sm'>New</a>
@@ -114,6 +120,7 @@
 </div>
 
 <?php 
+    var_dump($table_to_show);
     if (isset($table_to_show)) {
         echo "<script>show('".$table_to_show."');</script>";
     }
