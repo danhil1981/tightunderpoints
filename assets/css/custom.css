@@ -40,6 +40,7 @@ label input, label select {
     border-radius: .2rem;
     background-color: white;
     color: black;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
 .paginate_button:focus {
