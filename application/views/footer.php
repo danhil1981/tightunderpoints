@@ -1,7 +1,7 @@
             <br/>
             <br/>
             <div class="text-center">
-                <a href="#" class="badge badge-primary">&copy; Lance Monance 2018</a>
+                <a href="https://github.com/danhil1981/tightunderpoints" class="badge badge-primary">&copy; Daniel Hilbrand 2018</a>
             </div>
         </div>
     </body>
