@@ -1,3 +1,8 @@
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/custom.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script src="<?php echo base_url()?>assets/js/scripts.js"></script>
+
 <h1 class='text-center text-white'>Admin Panel</h1>
 <br/><br/>
 
@@ -5,18 +10,18 @@
     <div class="col-10 offset-1 text-center">
         <?php if(isset($msg)) echo $msg ?>
         <br/><br/>
-        <button onclick='show("users")' id='button_users' class="btn btn-primary">Users</button>
-        <button onclick='show("players")' id='button_players' class="btn">Players</button>
-        <button onclick='show("characters")' id='button_characters' class="btn">Characters</button>
-        <button onclick='show("raids")' id='button_raids' class="btn">Raids</button>
-        <button onclick='show("events")' id='button_events' class="btn">Events</button>
-        <button onclick='show("bosses")' id='button_bosses' class="btn">Bosses</button>
-        <button onclick='show("items")' id='button_items' class="btn">Items</button>
-        <button onclick='show("drops")' id='button_drops' class="btn">Drops</button>
-        <button onclick='show("attendance")' id='button_attendance' class="btn">Attendence</button>
-        <button onclick='show("loots")' id='button_loots' class="btn">Loots</button>
-        <?php echo anchor('users/admin_panel', 'Refresh', 'class="btn btn-success"');?>
-        <a href='<?php echo site_url()?>' class='btn btn-danger'>Logout</a>
+        <button onclick='show("users")' id='button_users' class="btn btn-primary btn-sm">Users</button>
+        <button onclick='show("players")' id='button_players' class="btn btn-light btn-sm">Players</button>
+        <button onclick='show("characters")' id='button_characters' class="btn btn-light btn-sm">Characters</button>
+        <button onclick='show("raids")' id='button_raids' class="btn btn-light btn-sm">Raids</button>
+        <button onclick='show("events")' id='button_events' class="btn btn-light btn-sm">Events</button>
+        <button onclick='show("bosses")' id='button_bosses' class="btn btn-light btn-sm">Bosses</button>
+        <button onclick='show("items")' id='button_items' class="btn btn-light btn-sm">Items</button>
+        <button onclick='show("drops")' id='button_drops' class="btn btn-light btn-sm">Drops</button>
+        <button onclick='show("attendance")' id='button_attendance' class="btn btn-light btn-sm">Attendence</button>
+        <button onclick='show("loots")' id='button_loots' class="btn btn-light btn-sm">Loots</button>
+        <?php echo anchor('users/admin_panel', 'Refresh', 'class="btn btn-success btn-sm"');?>
+        <a href='<?php echo site_url()?>' class='btn btn-danger btn-sm'>Logout</a>
         <br/><br/>
     </div>
 </div>
@@ -24,7 +29,7 @@
 <div class="row">
     <div class="col-8 offset-2">
         <div id='users'>
-            <table class='table table-dark table-striped table-bordered table-hover table-sm text-center'>
+            <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_users">
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
@@ -54,7 +59,7 @@
         </div>
 
         <div id='players' style='display: none;'>
-            <table class='table table-dark table-striped table-bordered table-hover table-sm text-center'>
+            <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_players">
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
@@ -82,7 +87,7 @@
         </div>
 
         <div id='characters' style='display: none;'>
-            <table class='table table-dark table-striped table-bordered table-hover table-sm text-center'>
+            <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_characters">
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
