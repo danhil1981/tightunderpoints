@@ -10,6 +10,7 @@
             $this->load->model('model_characters');
             $this->load->model('model_bosses');
             $this->load->model('model_raids');
+            $this->load->model('model_items');
         }
 
         public function load_view($data = NULL) {
@@ -17,8 +18,8 @@
             $data['players_list'] = $this->model_players->get_all();
             $data['characters_list'] = $this->model_characters->get_all();
             $data['bosses_list'] = $this->model_bosses->get_all();
-            $data['raids_list'] = $this->model_raids->get_all(); 
-            $data['view_name'] = 'admin_panel';
+            $data['raids_list'] = $this->model_raids->get_all();
+            $data['items_list'] = $this->model_items->get_all();
             $data["table_to_show"] = "users";
             $this->load->view('template', $data);
         }
@@ -43,6 +44,7 @@
                 $data['characters_list'] = $this->model_characters->get_all();
                 $data['bosses_list'] = $this->model_bosses->get_all();
                 $data['raids_list'] = $this->model_raids->get_all();
+                $data['items_list'] = $this->model_items->get_all();
                 $data['view_name'] = 'admin_panel';
                 $data['msg'] = "<div class='badge badge-success'>Welcome, ".$this->session->username." !</div><br/>";
                 $this->load->view('template', $data);
@@ -55,6 +57,7 @@
             $data['characters_list'] = $this->model_characters->get_all();
             $data['bosses_list'] = $this->model_bosses->get_all();
             $data['raids_list'] = $this->model_raids->get_all();
+            $data['items_list'] = $this->model_items->get_all();
             $data['view_name'] = 'admin_panel';
             $this->load->view('template', $data);
         }
