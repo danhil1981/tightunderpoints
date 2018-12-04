@@ -155,6 +155,40 @@
                         <a href='<?php echo site_url()?>/bosses/show_insert/' class='btn btn-success btn-sm'>New</a>
                         <br/><br/>
                     </div>
+                    
+                    <div id='items' style='display: none;'>
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_items">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Drops From</th>
+                                    <th scope="col">Points</th>
+                                    <th scope="col">&nbsp;</th>
+                                    <th scope="col">&nbsp;</th>
+                                    <th scope="col">&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    for ($i = 0; $i < count($items_list); $i++) {
+                                        $item = $items_list[$i];
+                                
+                                        echo "<tr><th scope='row'>".$item['id']."</th>";
+                                        echo "<td>".$item['name']."</td>";
+                                        echo "<td>".$item['name_boss']."</td>";
+                                        echo "<td>".$item['value']."</td>";
+                                        echo "<td><a href='http://allaclone.p2002.com/item.php?id=".$item['id']."' target='_blank' class='btn btn-primary btn-sm'>Allaclone</a></td>";
+                                        echo "<td><a href='".site_url()."/items/delete/".$item['id']."' class='btn btn-danger btn-sm'>Delete</a></td>";
+                                        echo "<td><a href='".site_url()."/items/show_modify/".$item['id']."' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <a href='<?php echo site_url()?>/items/show_insert/' class='btn btn-success btn-sm'>New</a>
+                        <br/><br/>
+                    </div>
 
                     <div id='raids' style='display: none;'>
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_raids">
