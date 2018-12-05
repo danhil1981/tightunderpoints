@@ -3,7 +3,7 @@ tables = ['users', 'players', 'characters', 'raids', 'bosses', 'items'/*,'events
 
 $(document).ready(function () {
     for (i = 0; i < tables.length; i++) {
-        $('#table_'+tables[i]).DataTable();
+        $('#table_' + tables[i]).DataTable({"order": [[1, "asc"]]});
     }
 });
 
