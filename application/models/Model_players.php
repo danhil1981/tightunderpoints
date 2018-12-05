@@ -49,7 +49,7 @@
         }
 
         public function get_list() {
-            $query = $this->db->query("SELECT id AS id_player, name AS name_player FROM players;");
+            $query = $this->db->query("SELECT id AS id_player, name AS name_player FROM players ORDER BY name ASC;");
             $players = array();
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {

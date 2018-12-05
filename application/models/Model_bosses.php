@@ -55,7 +55,7 @@
         }
 
         public function get_list() {
-            $query = $this->db->query("SELECT id AS id_boss, name AS name_boss FROM bosses;");
+            $query = $this->db->query("SELECT id AS id_boss, name AS name_boss FROM bosses ORDER BY name_boss ASC;");
             $bosses = array();
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
