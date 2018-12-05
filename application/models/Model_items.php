@@ -52,28 +52,6 @@
     
             return $this->db->affected_rows();
         }
-
-        public function get_list_items() {
-            $query = $this->db->query("SELECT id AS id_item, name AS name_item FROM items;");
-            $items = array();
-            if ($query->num_rows() > 0) {
-                foreach ($query->result_array() as $row) {
-                    $items[] = $row;
-                }
-            }
-            return array_column($items, 'name_item', 'id_item');
-        }
-
-        public function get_list_bosses() {
-            $query = $this->db->query("SELECT id AS id_item, id_boss FROM items;");
-            $items = array();
-            if ($query->num_rows() > 0) {
-                foreach ($query->result_array() as $row) {
-                    $items[] = $row;
-                }
-            }
-            return array_column($items, 'id_boss', 'id_item');
-        }
     }
 
 ?>
