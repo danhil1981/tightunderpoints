@@ -3,17 +3,6 @@
 
     Class Users extends Security {
 
-        public function __construct() {
-            parent::__construct();
-            $this->load->model('model_players');
-            $this->load->model('model_users');
-            $this->load->model('model_characters');
-            $this->load->model('model_bosses');
-            $this->load->model('model_raids');
-            $this->load->model('model_items');
-            $this->load->model('model_events');
-        }
-
         public function load_view($data = NULL) {
             $data['users_list'] = $this->model_users->get_all();
             $data['players_list'] = $this->model_players->get_all();
