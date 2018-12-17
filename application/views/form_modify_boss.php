@@ -1,4 +1,4 @@
-<div class="row">
+            <div class="row">
                 <div class="col-6 offset-3">
                     <h1 class="text-center text-white">New Boss</h1>
 
