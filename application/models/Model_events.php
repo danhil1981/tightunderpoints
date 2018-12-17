@@ -38,7 +38,7 @@
             $timestamp = $date." ".$time;
             
             $id_boss = $this->input->post("id_boss");
-            $id_raid = $this->input->post("id_raid")+1;
+            $id_raid = $this->input->post("id_raid");
             
     
             $this->db->query("INSERT INTO events (timestamp, id_boss, id_raid) VALUES ('$timestamp', '$id_boss', '$id_raid');");
