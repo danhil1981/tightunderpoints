@@ -11,6 +11,7 @@
             $this->load->model('model_bosses');
             $this->load->model('model_raids');
             $this->load->model('model_items');
+            $this->load->model('model_events');
         }
 
         public function load_view($data = NULL) {
@@ -20,6 +21,7 @@
             $data['bosses_list'] = $this->model_bosses->get_all();
             $data['raids_list'] = $this->model_raids->get_all();
             $data['items_list'] = $this->model_items->get_all();
+            $data['events_list'] = $this->model_events->get_all();
             $data['view_name'] = 'admin_panel';
             $data["table_to_show"] = "bosses";
             $this->load->view('template', $data);
