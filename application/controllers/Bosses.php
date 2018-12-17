@@ -3,6 +3,7 @@
 
     Class Bosses extends Security {
 
+<<<<<<< HEAD
   
 
         public function load_view($data = NULL) {
@@ -13,6 +14,9 @@
             $data['raids_list'] = $this->model_raids->get_all();
             $data['items_list'] = $this->model_items->get_all();
             $data['events_list'] = $this->model_events->get_all();
+=======
+        public function load_view($data = NULL) {
+>>>>>>> 63be1d54bc31d4e7761077c5cd8efb7580057357
             $data['view_name'] = 'admin_panel';
             $data["table_to_show"] = "bosses";
             $this->load->view('template', $data);
