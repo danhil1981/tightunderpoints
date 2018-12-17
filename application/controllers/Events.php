@@ -4,7 +4,6 @@
     Class Events extends Security {
 
         public function load_view($data = NULL) {
-<<<<<<< HEAD
             $data['users_list'] = $this->model_users->get_all();
             $data['players_list'] = $this->model_players->get_all();
             $data['characters_list'] = $this->model_characters->get_all();
@@ -12,8 +11,6 @@
             $data['raids_list'] = $this->model_raids->get_all();
             $data['items_list'] = $this->model_items->get_all();
             $data['events_list'] = $this->model_events->get_all();
-=======
->>>>>>> 63be1d54bc31d4e7761077c5cd8efb7580057357
             $data['view_name'] = 'admin_panel';
             $data["table_to_show"] = "events";
             $this->load->view('template', $data);
