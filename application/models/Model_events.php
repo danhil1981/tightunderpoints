@@ -37,7 +37,7 @@
             $date = $this->input->post("date");
             $timestamp = $date." ".$time;
             
-            $id_boss = $this->input->post("id_boss");
+            $id_boss = $this->input->post("id_boss")+1;
             $id_raid = $this->input->post("id_raid");
             
     
