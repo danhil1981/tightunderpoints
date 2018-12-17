@@ -22,7 +22,7 @@
             if ($this->check_login()) {
     
                 $data['view_name'] = 'form_insert_event';
-                $data['raid_descriptions'] = $this->model_raids->get_list_latest_first();
+                $data['raid_descriptions'] = $this->model_raids->get_list();
                 $data['boss_names'] = $this->model_bosses->get_list();
                 $this->load->view('template', $data);
     
