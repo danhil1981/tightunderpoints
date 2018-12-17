@@ -28,14 +28,14 @@
                         <div class="text-white">
                             Time<br/><br/>
                         </div>
-                        <?php echo form_time('time',date("H:i", time()), 'required class="form-control"')?>
+                        <?php $timezone  = +1; echo form_time('time',gmdate("H:i", time()+ 3600*($timezone+date("I"))), 'required class="form-control"')?>
                     </div>
 
                     <div class="form-group">
                         <div class="text-white">
                             Date<br/><br/>
                         </div>
-                        <?php echo form_date('date',date('Y-m-d'), 'required class="form-control"')?>
+                        <?php echo form_date('date',gmdate('Y-m-d'), 'required class="form-control"')?>
                     </div>
 
 
