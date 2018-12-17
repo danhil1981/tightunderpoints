@@ -52,14 +52,25 @@
         }
 
         public function get_list() {
-            $query = $this->db->query("SELECT id AS id_raid, date AS date_raid FROM raids;");
+            $query = $this->db->query("SELECT id AS id_raid, description AS description_raid FROM raids;");
             $raids = array();
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $raids[] = $row;
                 }
             }
-            return array_column($raids, 'date_raid', 'id_raid');
+            return array_column($raids, 'description_raid', 'id_raid');
+        }
+
+        public function get_list_latest_first() {
+            $query = $this->db->query("SELECT id AS id_raid, description AS description_raid, date FROM raids ORDER BY date DESC;");
+            $raids = array();
+            if ($query->num_rows() > 0) {
+                foreach ($query->result_array() as $row) {
+                    $raids[] = $row;
+                }
+            }
+            return array_column($raids, 'description_raid', 'id_raid');
         }
     }
 
