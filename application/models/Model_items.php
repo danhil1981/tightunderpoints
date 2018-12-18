@@ -52,6 +52,17 @@
     
             return $this->db->affected_rows();
         }
+
+        public function get_list() {
+            $query = $this->db->query("SELECT id AS id_item, name AS name_item FROM items;");
+            $items = array();
+            if ($query->num_rows() > 0) {
+                foreach ($query->result_array() as $row) {
+                    $items[] = $row;
+                }
+            }
+            return array_column($items, 'name_item', 'id_item');
+        }
     }
 
 ?>
