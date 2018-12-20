@@ -14,15 +14,14 @@
 
         public function process_login() {
 
-            $this->load->model('model_users');
             $result = $this->model_users->validate();            
             if(!$result) {
                 $this->index("<div class='badge badge-danger'>User/password incorrect</div><br/>");
             }
-            else {               
+            else {         
                 $data["table_to_show"] = "users";
                 $data['msg'] = "<div class='badge badge-success'>Welcome, ".$this->session->username." !</div><br/>";
-                $this->load_view('template', $data);
+                $this->load_view($data);
             }
 
         }
@@ -30,7 +29,7 @@
         public function admin_panel() {
 
             $data["table_to_show"] = "users";
-            $this->load_view('template', $data);
+            $this->load_view($data);
 
         }
 
