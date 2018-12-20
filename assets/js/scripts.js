@@ -1,4 +1,4 @@
-tables = ['users', 'players', 'characters', 'raids', 'bosses', 'items', 'events', 'drops'/*,'attendence','loots'*/];
+tables = ['users', 'players', 'characters', 'raids', 'bosses', 'items', 'events', 'drops', 'attendance','loot'];
 
 
 $(document).ready(function () {
