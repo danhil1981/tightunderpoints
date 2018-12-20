@@ -53,6 +53,17 @@
     
             return $this->db->affected_rows();
         }
+
+        public function get_list() {
+            $query = $this->db->query("SELECT id AS id_character, name AS name_character FROM characters;");
+            $characters = array();
+            if ($query->num_rows() > 0) {
+                foreach ($query->result_array() as $row) {
+                    $characters[] = $row;
+                }
+            }
+            return array_column($characters, 'name_character', 'id_character');
+        }
     }
 
 ?>
