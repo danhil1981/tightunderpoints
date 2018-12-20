@@ -18,8 +18,8 @@
                     <button onclick='show("raids")' id='button_raids' class="btn btn-light btn-sm">Raids</button>
                     <button onclick='show("events")' id='button_events' class="btn btn-light btn-sm">Events</button>
                     <button onclick='show("drops")' id='button_drops' class="btn btn-light btn-sm">Drops</button>
-                    <button onclick='show("attendance")' id='button_attendance' class="btn btn-light btn-sm">Attendence</button>
-                    <button onclick='show("loots")' id='button_loots' class="btn btn-light btn-sm">Loots</button>
+                    <button onclick='show("attendance")' id='button_attendance' class="btn btn-light btn-sm">Attendance</button>
+                    <button onclick='show("loot")' id='button_loot' class="btn btn-light btn-sm">Loot</button>
                     <?php echo anchor('users/admin_panel', 'Refresh', 'class="btn btn-success btn-sm"');?>
                     <a href='<?php echo site_url()?>' class='btn btn-danger btn-sm'>Logout</a>
                     <br/><br/>
@@ -279,6 +279,66 @@
                         </table>
                         <br/>
                         <a href='<?php echo site_url()?>/drops/show_insert/' class='btn btn-success btn-sm'>New</a>
+                        <br/><br/>
+                    </div>
+
+                    <div id='attendance' style='display: none;'>
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_attendance">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Event</th>
+                                    <th scope="col">Character</th>
+                                    <th scope="col">&nbsp;</th>
+                                    <th scope="col">&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    for ($i = 0; $i < count($attendance_list); $i++) {
+                                        $attendance_entry = $attendance_list[$i];
+                                
+                                        echo "<tr><th scope='row'>".$attendance_entry['id']."</th>";
+                                        echo "<td>".$attendance_entry['name_event']."</td>";
+                                        echo "<td>".$attendance_entry['name_character']."</td>";
+                                        echo "<td><a href='".site_url()."/attendance/delete/".$attendance_entry['id']."' class='btn btn-danger btn-sm'>Delete</a></td>";
+                                        echo "<td><a href='".site_url()."/attendance/show_modify/".$attendance_entry['id']."' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <a href='<?php echo site_url()?>/attendance/show_insert/' class='btn btn-success btn-sm'>New</a>
+                        <br/><br/>
+                    </div>
+
+                    <div id='loot' style='display: none;'>
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_loot">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Drop</th>
+                                    <th scope="col">Character</th>
+                                    <th scope="col">&nbsp;</th>
+                                    <th scope="col">&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    for ($i = 0; $i < count($loot_list); $i++) {
+                                        $loot_entry = $loot_list[$i];
+                                
+                                        echo "<tr><th scope='row'>".$loot_entry['id']."</th>";
+                                        echo "<td>".$loot_entry['name_drop']."</td>";
+                                        echo "<td>".$loot_entry['name_character']."</td>";
+                                        echo "<td><a href='".site_url()."/loot/delete/".$loot_entry['id']."' class='btn btn-danger btn-sm'>Delete</a></td>";
+                                        echo "<td><a href='".site_url()."/loot/show_modify/".$loot_entry['id']."' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <a href='<?php echo site_url()?>/loot/show_insert/' class='btn btn-success btn-sm'>New</a>
                         <br/><br/>
                     </div>
 
