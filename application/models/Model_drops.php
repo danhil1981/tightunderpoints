@@ -49,6 +49,23 @@
             return $this->db->affected_rows();
         }
 
+        public function get_list() {
+            $query = $this->db->query("SELECT 
+            drops.id AS id_drop, 
+            CONCAT(events.timestamp,' - ', items.name) AS name_drop 
+            FROM drops
+            INNER JOIN events ON drops.id_event = events.id
+            INNER JOIN items ON drops.id_item = items.id
+            ;");
+            $drops = array();
+            if ($query->num_rows() > 0) {
+                foreach ($query->result_array() as $row) {
+                    $drops[] = $row;
+                }
+            }
+            return array_column($drops, 'name_drop', 'id_drop');
+        }
+
     }
 
 ?>
