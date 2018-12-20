@@ -13,8 +13,8 @@
             $this->load->model('model_items');
             $this->load->model('model_events');
             $this->load->model('model_drops');
-            //$this->load->model('model_attendance');
-            //$this->load->model('model_loot');
+            $this->load->model('model_attendance');
+            $this->load->model('model_loot');
             
         }
 
@@ -27,8 +27,8 @@
             $data['items_list'] = $this->model_items->get_all();
             $data['events_list'] = $this->model_events->get_all();
             $data['drops_list'] = $this->model_drops->get_all();
-            //$data['attendance_list'] = $this->model_attendance->get_all();
-            //$data['loot_list'] = $this->model_loot->get_all();
+            $data['attendance_list'] = $this->model_attendance->get_all();
+            $data['loot_list'] = $this->model_loot->get_all();
             $data['view_name'] = 'admin_panel';
             $this->load->view('template', $data);
 
