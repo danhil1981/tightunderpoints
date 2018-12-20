@@ -22,6 +22,7 @@
                     <button onclick='show("loot")' id='button_loot' class="btn btn-light btn-sm">Loot</button>
                     <?php echo anchor('users/admin_panel', 'Refresh', 'class="btn btn-success btn-sm"');?>
                     <a href='<?php echo site_url()?>' class='btn btn-danger btn-sm'>Logout</a>
+                    <?php echo anchor('officers', 'Officer Panel', 'class="btn btn-success btn-sm"');?>
                     <br/><br/>
                 </div>
             </div>
