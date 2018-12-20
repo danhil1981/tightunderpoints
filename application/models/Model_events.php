@@ -59,6 +59,17 @@
             return $this->db->affected_rows();
         }
 
+        public function get_list() {
+            $query = $this->db->query("SELECT events.id AS id_event, CONCAT(events.timestamp,' - ', bosses.name) AS name_event FROM bosses INNER JOIN events ON events.id_boss = bosses.id;");
+            $bosses = array();
+            if ($query->num_rows() > 0) {
+                foreach ($query->result_array() as $row) {
+                    $bosses[] = $row;
+                }
+            }
+            return array_column($bosses, 'name_event', 'id_event');
+        }
+
     }
 
 ?>
