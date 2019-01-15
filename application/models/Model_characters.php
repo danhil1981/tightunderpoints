@@ -64,6 +64,127 @@
             }
             return array_column($characters, 'name_character', 'id_character');
         }
+
+        public function get_list_total_earned() {
+            $query = $this->db->query("SELECT
+                characters.id AS id_character, IFNULL(SUM(bosses.value),0) AS total_earned
+                FROM characters
+                LEFT JOIN attendance ON characters.id = attendance.id_character 
+                LEFT JOIN events ON attendance.id_event = events.id
+                LEFT JOIN bosses ON events.id_boss = bosses.id
+                GROUP BY characters.id;
+            ");
+            $list_total_earned = array();
+            if ($query->num_rows() > 0) {
+                foreach ($query->result_array() as $row) {
+                    $list_total_earned[] = $row;
+                }
+            }
+            return array_column($list_total_earned, 'total_earned', 'id_character');
+        }
+
+        public function get_list_last50_earned() {
+            $query = $this->db->query("SELECT
+	            characters.id AS id_character, 0 AS last50_earned
+                FROM characters
+                ORDER BY id;
+            ");
+            $characters = array();
+            if ($query->num_rows() > 0) {
+                foreach ($query->result_array() as $row) {
+                    $characters[] = $row;
+                }
+            }
+            $characters = array_column($characters, 'last50_earned', 'id_character');
+
+            $query = $this->db->query("SELECT
+                characters.id AS character_id, IFNULL(SUM(bosses.value),0) AS last50_earned
+                FROM characters
+                LEFT JOIN attendance ON characters.id = attendance.id_character 
+                LEFT JOIN events ON attendance.id_event = events.id
+                LEFT JOIN bosses ON events.id_boss = bosses.id
+                WHERE events.timestamp >= DATE_SUB(NOW(), INTERVAL 50 DAY)
+                GROUP BY characters.id;
+            ");
+            $characters_with_points = array();
+            if ($query->num_rows() > 0) {
+                foreach ($query->result_array() as $row) {
+                    $characters_with_points[] = $row;
+                }
+            }
+            $characters_with_points = array_column($characters_with_points, 'last50_earned', 'id_character');
+            $list_last50_earned = array();
+            foreach ($characters as $i => $id[0]) {
+                if(isset($characters_with_points[$i])) {
+                    $list_last50_earned[$i] = $characters[$i] + $characters_with_points[$i];
+                }
+                else {
+                    $list_last50_earned[$i] = 0;
+                }
+            }
+            return $list_last50_earned;
+        }
+
+        public function get_list_total_spent() {
+            $query = $this->db->query("SELECT
+                characters.id AS id_character, IFNULL(SUM(items.value),0) AS total_spent
+                FROM characters
+                LEFT JOIN loot ON characters.id = loot.id_character 
+                LEFT JOIN drops ON loot.id_drop = drops.id
+                LEFT JOIN items ON drops.id_item = items.id
+                GROUP BY characters.id;
+            ");
+            $characters = array();
+            if ($query->num_rows() > 0) {
+                foreach ($query->result_array() as $row) {
+                    $characters[] = $row;
+                }
+            }
+            return array_column($characters, 'total_spent', 'id_character');
+        }
+
+        public function get_list_last50_spent() {
+            $query = $this->db->query("SELECT
+	            characters.id as id_character, 0 AS last50_spent
+                FROM characters
+                ORDER BY id;
+            ");
+            $characters = array();
+            if ($query->num_rows() > 0) {
+                foreach ($query->result_array() as $row) {
+                    $characters[] = $row;
+                }
+            }
+            $characters = array_column($characters, 'last50_spent', 'id_character');
+            $query = $this->db->query("SELECT 
+                characters.id AS id_character, IFNULL(SUM(items.value),0) AS last50_spent
+                FROM characters
+                LEFT JOIN loot ON characters.id = loot.id_character 
+                LEFT JOIN drops ON loot.id_drop = drops.id
+                LEFT JOIN items ON drops.id_item = items.id
+                INNER JOIN events on drops.id_event = events.id
+                WHERE events.timestamp >= DATE_SUB(NOW(), INTERVAL 50 DAY)
+                GROUP BY characters.id;
+            ");
+            $characters_with_points = array();
+            if ($query->num_rows() > 0) {
+                foreach ($query->result_array() as $row) {
+                    $characters_with_points[] = $row;
+                }
+            }
+            $characters_with_points = array_column($characters_with_points, 'last50_spent', 'id_character');
+            $list_last50_spent = array();
+            foreach ($characters as $i => $id[0]) {
+                if(isset($characters_with_points[$i])) {
+                    $list_last50_spent[$i] = $characters[$i] + $characters_with_points[$i];
+                }
+                else {
+                    $list_last50_spent[$i] = 0;
+                }
+            }
+            return $list_last50_spent;
+        }
+
     }
 
 ?>
