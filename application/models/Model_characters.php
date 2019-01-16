@@ -100,9 +100,9 @@
             $query = $this->db->query("SELECT
                 characters.id AS character_id, IFNULL(SUM(bosses.value),0) AS last50_earned
                 FROM characters
-                LEFT JOIN attendance ON characters.id = attendance.id_character 
-                LEFT JOIN events ON attendance.id_event = events.id
-                LEFT JOIN bosses ON events.id_boss = bosses.id
+                INNER JOIN attendance ON characters.id = attendance.id_character 
+                INNER JOIN events ON attendance.id_event = events.id
+                INNER JOIN bosses ON events.id_boss = bosses.id
                 WHERE events.timestamp >= DATE_SUB(NOW(), INTERVAL 50 DAY)
                 GROUP BY characters.id;
             ");
@@ -159,9 +159,9 @@
             $query = $this->db->query("SELECT 
                 characters.id AS id_character, IFNULL(SUM(items.value),0) AS last50_spent
                 FROM characters
-                LEFT JOIN loot ON characters.id = loot.id_character 
-                LEFT JOIN drops ON loot.id_drop = drops.id
-                LEFT JOIN items ON drops.id_item = items.id
+                INNER JOIN loot ON characters.id = loot.id_character 
+                INNER JOIN drops ON loot.id_drop = drops.id
+                INNER JOIN items ON drops.id_item = items.id
                 INNER JOIN events on drops.id_event = events.id
                 WHERE events.timestamp >= DATE_SUB(NOW(), INTERVAL 50 DAY)
                 GROUP BY characters.id;
