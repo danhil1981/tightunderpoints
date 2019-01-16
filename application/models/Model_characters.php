@@ -96,9 +96,8 @@
                 }
             }
             $characters = array_column($characters, 'last50_earned', 'id_character');
-
             $query = $this->db->query("SELECT
-                characters.id AS character_id, IFNULL(SUM(bosses.value),0) AS last50_earned
+                characters.id AS id_character, IFNULL(SUM(bosses.value),0) AS last50_earned
                 FROM characters
                 INNER JOIN attendance ON characters.id = attendance.id_character 
                 INNER JOIN events ON attendance.id_event = events.id
