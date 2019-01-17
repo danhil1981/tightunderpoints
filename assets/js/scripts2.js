@@ -1,17 +1,28 @@
-tables = ['points'/*,'timer'*/];
-
-
 $(document).ready(function () {
-    for (i = 0; i < tables.length; i++) {
-        $('#table_' + tables[i]).DataTable({"order": [[1, "asc"]]});
-    }
-});
+    $("[id^='datatable']").DataTable({"order": [[1, "asc"]]});
 
-function show(table) {
-    for (i=0; i<tables.length;i++) {
-        document.getElementById("button_" + tables[i]).className = "btn btn-light btn-sm";
-        document.getElementById(tables[i]).style.display = "none";
-    }
-    document.getElementById("button_"+table).className = "btn btn-primary btn-sm";
-    document.getElementById(table).style.display = "block";
-}
+    $('#points').on('click', "button", function () {
+        $("#compare").css("display", "block");
+        var id = (this.id.slice(8));
+        $("#compare_tbody").append("<tr id='row_" + id + "'><td>" + $("#name_" + id).html() + "</td><td>" + $("#points_" + id).html()
+            + "</td><td><button class='btn btn-sm btn-warning' id='remove_" + id + "'>Remove</button></td></tr>");
+    });
+
+    $('#compare').on('click', "button", function () {
+        var id = (this.id.slice(7));
+        $('#row_'+id).remove();
+        if ($('#compare tr').length <= 1) {
+            $('#compare').css("display", "none");
+        }
+    });
+
+    $('#menu_buttons').on('click', "button", function () {
+        $('#menu_buttons button').removeClass('btn-primary');
+        $('#menu_buttons button').addClass('btn-light');
+        $(this).removeClass('btn-light');
+        $(this).addClass('btn-primary');
+        $('#tables').children().css("display", "none");
+        $('#'+this.id.slice(7)).css("display", "block");
+    });
+
+});
