@@ -5,41 +5,57 @@
             
             <h1 class='text-center text-white'>Officer Panel</h1>
 
-            <div class="row">
+            <div class="row" id="menu_buttons">
                 <div class="col-10 offset-1 text-center">
                     <?php if(isset($msg)) echo $msg ?>
                     <br/><br/>
-                    <button onclick='show("point")' id='button_point_list' class="btn btn-primary btn-sm">Points</button>
-                    <button onclick='show("timers")' id='button_respawn_timers' class="btn btn-light btn-sm">Timers</button>
+                    <button id='button_points' class="btn btn-primary btn-sm">Points</button>
+                    <button id='button_timers' class="btn btn-light btn-sm">Timers</button>
                     <br/><br/>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-8 offset-2">
-                    <div id='points'>
-                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_points">
+                <div class="col-4 offset-4">
+                    <div id='compare' style='display: none'>
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_compare">
                             <thead>
                                 <tr>
-                                    <th scope="col"></th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Available Points</th>
+                                    <th scope="col">&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody id="compare_tbody">
+                            </tbody>
+                        </table>
+                        <br/><br/>
+                    </div>
+                </div>
+                <div class="col-8 offset-2" id="tables">
+                    <div id='points'>
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_points">
+                            <thead>
+                                <tr>
                                     <th scope="col">Name</th>
                                     <th scope="col">All Time Earned</th>
                                     <th scope="col">All Time Spent</th>
                                     <th scope="col">Earned last 50 days</th>
                                     <th scope="col">Spent last 50 days</th>
                                     <th scope="col">Available Points</th>
+                                    <th scope="col">&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                     foreach ($character_names as $i => $value) {
-                                        echo "<tr><th scope='row'><input id='checkbox_".$value."' type='checkbox'/></th>";                                                                                                   
-                                        echo "<td>".$value."</td>";
+                                        echo "<tr><td id='name_$i'>".$value."</td>";
                                         echo "<td>".$list_total_earned[$i]."</td>";
                                         echo "<td>".$list_total_spent[$i]."</td>";
                                         echo "<td>".$list_last50_earned[$i]."</td>";
                                         echo "<td>".$list_last50_spent[$i]."</td>";
-                                        echo "<td>".($list_last50_earned[$i]-$list_last50_spent[$i])."</td></tr>";
+                                        echo "<td id='points_$i'>".($list_last50_earned[$i]-$list_last50_spent[$i])."</td>";
+                                        echo "<td><button class='btn btn-sm btn-warning' id='compare_".$i."'>Compare</button></td></tr>";
                                     }
                                 ?>
                             </tbody>
