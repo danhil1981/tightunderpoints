@@ -5,7 +5,8 @@
     Class Officers extends Security {
 
         public function index($msg = null) {
-            $data['character_names'] = $this->model_characters->get_list();
+            $data['list_names'] = $this->model_characters->get_list_names();
+            $data['list_types'] = $this->model_characters->get_list_types();
             $data['list_total_earned'] = $this->model_characters->get_list_total_earned();
             $data['list_last50_earned'] = $this->model_characters->get_list_last50_earned();
             $data['list_total_spent'] = $this->model_characters->get_list_total_spent();
@@ -18,7 +19,8 @@
         public function point_list() {
 
             if ($this->check_login()) {
-                $data['character_names'] = $this->model_characters->get_list();
+                $data['list_names'] = $this->model_characters->get_list_names();
+                $data['list_types'] = $this->model_characters->get_list_types();
                 $data['list_total_earned'] = $this->model_characters->get_list_total_earned();
                 $data['list_last50_earned'] = $this->model_characters->get_list_last50_earned();
                 $data['list_total_spent'] = $this->model_characters->get_list_total_spent();
