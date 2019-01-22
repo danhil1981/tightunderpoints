@@ -9,7 +9,7 @@
             if ($this->check_login()) {    
                 $data['view_name'] = 'form_insert_attendance_entry';
                 $data['event_names'] = $this->model_events->get_list();
-                $data['character_names'] = $this->model_characters->get_list();
+                $data['character_names'] = $this->model_characters->get_list_names();
                 $this->load->view('template', $data);    
             }
 
@@ -52,7 +52,7 @@
             if ($this->check_login()) {    
                 $data['view_name'] = 'form_modify_attendance_entry';
                 $data['event_names'] = $this->model_events->get_list();
-                $data['character_names'] = $this->model_characters->get_list();
+                $data['character_names'] = $this->model_characters->get_list_names();
                 $data['attendance_entry'] = $this->model_attendance->get($id);
                 $this->load->view('template', $data);    
             }

@@ -9,7 +9,7 @@
             if ($this->check_login()) {    
                 $data['view_name'] = 'form_insert_loot_entry';
                 $data['drop_names'] = $this->model_drops->get_list();
-                $data['character_names'] = $this->model_characters->get_list();
+                $data['character_names'] = $this->model_characters->get_list_names();
                 $this->load->view('template', $data);    
             }
 
@@ -52,7 +52,7 @@
             if ($this->check_login()) {    
                 $data['view_name'] = 'form_modify_loot_entry';
                 $data['drop_names'] = $this->model_drops->get_list();
-                $data['character_names'] = $this->model_characters->get_list();
+                $data['character_names'] = $this->model_characters->get_list_names();
                 $data['loot_entry'] = $this->model_loot->get($id);
                 $this->load->view('template', $data);    
             }

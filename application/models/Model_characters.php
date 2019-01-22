@@ -54,7 +54,7 @@
             return $this->db->affected_rows();
         }
 
-        public function get_list() {
+        public function get_list_names() {
             $query = $this->db->query("SELECT id AS id_character, name AS name_character FROM characters;");
             $characters = array();
             if ($query->num_rows() > 0) {
@@ -182,6 +182,17 @@
                 }
             }
             return $list_last50_spent;
+        }
+
+        public function get_list_types() {
+            $query = $this->db->query("SELECT id AS id_character, type AS type_character FROM characters;");
+            $characters = array();
+            if ($query->num_rows() > 0) {
+                foreach ($query->result_array() as $row) {
+                    $characters[] = $row;
+                }
+            }
+            return array_column($characters, 'type_character', 'id_character');
         }
 
     }
