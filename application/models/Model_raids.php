@@ -52,7 +52,7 @@
         }
 
         public function get_list() {
-            $query = $this->db->query("SELECT id AS id_raid, description AS description_raid FROM raids;");
+            $query = $this->db->query("SELECT id AS id_raid, CONCAT(date, ' - ',description) AS description_raid FROM raids ORDER BY date ASC;");
             $raids = array();
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
