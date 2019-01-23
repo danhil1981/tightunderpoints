@@ -21,6 +21,12 @@
             $character = $query->result_array()[0];
             return $character;
         }
+
+        public function get_name($id) {
+            $query = $this->db->query("SELECT name FROM characters WHERE id = $id;");
+            $name = $query->result_array()[0];
+            return $name;
+        }
     
         public function delete($id) {
     
