@@ -31,6 +31,28 @@
             }
 
         }
+
+        public function loot($id) {
+            if ($this->check_login()) {    
+                $data['view_name'] = 'form_insert_loot_entry_officers';
+                $data['id_character'] = $id;
+                $data['name_character'] = $this->model_characters->get_name($id);
+                $data['raid_descriptions'] = $this->model_raids->get_list();
+                $this->load->view('template', $data);   
+            }
+        }
+
+        public function insert_raid($description, $date) {
+            if ($this->check_login()) {
+                $result_insert = $this->model_raids->insert();
+                if ($result_insert == 0) {
+                    $this->output->set_output("0");                
+                }
+                else {
+                    $this->output->set_output("1");
+                }    
+            }
+        }
         
     }
     
