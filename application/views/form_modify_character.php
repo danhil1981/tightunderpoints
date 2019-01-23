@@ -32,7 +32,7 @@
                         <br/>
                     </div>
 
-                    <?php $options = array('Main' => 'Main','Alt' => 'Alt','Bot' => 'Bot');?>
+                    <?php $options = array('1' => 'Main','2' => 'Alt','3' => 'Bot');?>
                     <div class="form-group">
                         <div class="text-white">
                             Type<br/><br/>
