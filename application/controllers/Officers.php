@@ -38,19 +38,25 @@
                 $data['id_character'] = $id;
                 $data['name_character'] = $this->model_characters->get_name($id);
                 $data['raid_descriptions'] = $this->model_raids->get_list();
+                $data['events_not_raid'] = $this->model_events->not_raid();
                 $this->load->view('template', $data);   
             }
         }
 
-        public function insert_raid($description, $date) {
+        public function insert_raid() {
             if ($this->check_login()) {
-                $result_insert = $this->model_raids->insert();
-                if ($result_insert == 0) {
-                    $this->output->set_output("0");                
-                }
-                else {
-                    $this->output->set_output("1");
-                }    
+                $description= $this->input->post('description');
+                $date = $this->input->post('date');
+                $result_insert = $this->model_raids->officer_insert($description, $date);
+                print_r($result_insert);die;   
+            }
+        }
+
+        public function get_events() {
+            if ($this->check_login()) {
+                $id_raid = $this->input->post('id_raid');
+                $raid_events = $this->model_events->raid_events($id_raid);
+                $this->output->set_output(json_encode($raid_events));
             }
         }
         
