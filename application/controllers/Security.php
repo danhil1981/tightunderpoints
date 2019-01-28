@@ -15,6 +15,7 @@
             $this->load->model('model_drops');
             $this->load->model('model_attendance');
             $this->load->model('model_loot');
+            $this->load->model('model_officers');
             
         }
 
