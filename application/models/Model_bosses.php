@@ -22,7 +22,14 @@
     
             return $boss;
         }
+        
+        public function get_name($id) {
+            $query = $this->db->query("SELECT name FROM bosses WHERE id = $id;");
+            $bossname = $query->row()->name;
     
+            return $bossname;
+        }
+
         public function delete($id) {
     
             $this->db->query("DELETE FROM bosses WHERE id = $id ;");

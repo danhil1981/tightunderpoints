@@ -70,23 +70,7 @@
             return array_column($bosses, 'name_event', 'id_event');
         }
 
-        public function not_raid() {
-            $query = $this->db->query("SELECT 
-            events.id AS id_event, CONCAT(events.timestamp,' - ', bosses.name) AS name_event 
-            FROM bosses 
-            INNER JOIN events ON events.id_boss = bosses.id
-            WHERE id_raid = 0;
-            ");
-            $events_not_raid = array();
-            if ($query->num_rows() > 0) {
-                foreach ($query->result_array() as $row) {
-                    $events_not_raid[] = $row;
-                }
-            }
-            return array_column($events_not_raid, 'name_event', 'id_event');
-        }
-
-        public function raid_events($id_raid) {
+        public function events_in_raid($id_raid) {
             $query = $this->db->query("SELECT 
             events.id AS id_event, CONCAT(events.timestamp,' - ', bosses.name) AS name_event 
             FROM bosses 
@@ -100,6 +84,22 @@
                 }
             }
             return array_column($events_in_raid, 'name_event', 'id_event');
+        }
+
+        public function events_not_in_raid() {
+            $query = $this->db->query("SELECT 
+            events.id AS id_event, CONCAT(events.timestamp,' - ', bosses.name) AS name_event 
+            FROM bosses 
+            INNER JOIN events ON events.id_boss = bosses.id
+            WHERE id_raid = 0;
+            ");
+            $events_not_raid = array();
+            if ($query->num_rows() > 0) {
+                foreach ($query->result_array() as $row) {
+                    $events_not_raid[] = $row;
+                }
+            }
+            return array_column($events_not_raid, 'name_event', 'id_event');
         }
 
     }
