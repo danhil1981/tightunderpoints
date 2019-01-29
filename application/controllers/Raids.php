@@ -24,7 +24,7 @@
                     $data['msg'] = "<div class='badge badge-success'>Raid successfully inserted</div><br/>";
                 }    
                 $data["table_to_show"] = "raids";
-                $this->load_view($data);    
+                $this->admin_panel($data);    
             }
 
         }
@@ -40,7 +40,7 @@
                     $data['msg'] = "<div class='badge badge-success'>Raid successfully deleted</div><br/>";                
                 }
                 $data["table_to_show"] = "raids";
-                $this->load_view($data);     
+                $this->admin_panel($data);     
             }
 
         }
@@ -66,7 +66,7 @@
                     $data['msg'] = "<div class='badge badge-success'>Raid successfully modified</div><br/>";    
                 }
                 $data["table_to_show"] = "raids";
-                $this->load_view($data); 
+                $this->admin_panel($data); 
             }
 
         }

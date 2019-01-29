@@ -24,7 +24,7 @@
                     $data['msg'] = "<div class='badge badge-success'>Boss successfully inserted</div><br/>";
                 }    
                 $data["table_to_show"] = "bosses";
-                $this->load_view($data);
+                $this->admin_panel($data);
             }
 
         }
@@ -40,7 +40,7 @@
                     $data['msg'] = "<div class='badge badge-success'>Boss successfully deleted</div><br/>";                
                 }
                 $data["table_to_show"] = "bosses";
-                $this->load_view($data);     
+                $this->admin_panel($data);     
             }
 
         }
@@ -66,7 +66,7 @@
                     $data['msg'] = "<div class='badge badge-success'>Boss successfully modified</div><br/>";    
                 }
                 $data["table_to_show"] = "bosses";
-                $this->load_view($data); 
+                $this->admin_panel($data); 
             }
 
         }

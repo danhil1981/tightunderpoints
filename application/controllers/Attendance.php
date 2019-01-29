@@ -26,7 +26,7 @@
                         $data['msg'] = "<div class='badge badge-success'>Attendance Entry successfully inserted</div><br/>";    
                     }    
                 $data["table_to_show"] = "attendance";
-                $this->load_view($data);    
+                $this->admin_panel($data);    
             }
 
         }
@@ -42,7 +42,7 @@
                     $data['msg'] = "<div class='badge badge-success'>Attendance Entry successfully deleted</div><br/>";                
                 }
                 $data["table_to_show"] = "attendance";
-                $this->load_view($data);     
+                $this->admin_panel($data);     
             }
 
         }
@@ -70,7 +70,7 @@
                     $data['msg'] = "<div class='badge badge-success'>Attendance Entry successfully modified</div><br/>";    
                 }
                 $data["table_to_show"] = "attendance";
-                $this->load_view($data); 
+                $this->admin_panel($data); 
             }
 
         }

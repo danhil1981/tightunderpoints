@@ -24,7 +24,7 @@
                     $data['msg'] = "<div class='badge badge-success'>Player successfully inserted</div><br/>";
                 }    
                 $data["table_to_show"] = "players";
-                $this->load_view($data);    
+                $this->admin_panel($data);    
             }
 
         }
@@ -40,7 +40,7 @@
                     $data['msg'] = "<div class='badge badge-success'>Player successfully deleted</div><br/>";                
                 }
                 $data["table_to_show"] = "players";
-                $this->load_view($data);     
+                $this->admin_panel($data);     
             }
 
         }
@@ -66,7 +66,7 @@
                     $data['msg'] = "<div class='badge badge-success'>Player successfully modified</div><br/>";    
                 }
                 $data["table_to_show"] = "players";
-                $this->load_view($data); 
+                $this->admin_panel($data); 
             }
 
         }
