@@ -11,6 +11,7 @@
                     <br/><br/>
                     <button id='button_points' class="btn btn-primary btn-sm">Points</button>
                     <button id='button_timers' class="btn btn-light btn-sm">Timers</button>
+                    <a href='<?php echo site_url()?>' class='btn btn-danger btn-sm'>Logout</a>
                     <br/><br/>
                 </div>
             </div>
