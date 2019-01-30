@@ -56,15 +56,15 @@
                 $data['msg'] = "<div class='badge badge-success'>Welcome, ".$this->session->username." !</div><br/>";
                 switch($this->session->type) {
                     case "Admin": {
-                        $this->admin_panel($data);
+                        $this->admin_panel($data); 
                         break;
                     }
                     case "Officer": {
-                        $this->officer_panel($data);
+                        $this->officer_panel($data); 
                         break;
                     }
                     default: {
-                        $this->user_panel($data);
+                        redirect('default');
                     }
                 }         
                 
