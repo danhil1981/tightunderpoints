@@ -62,7 +62,7 @@
             if ($this->check_login()) {
                 $id_event = $this->input->post("id_event");
                 $id_boss = $this->model_events->get_boss($id_event);
-                $boss_items = $this->model_bosses->get_items($id_boss);
+                $boss_items = $this->model_items->get_items($id_boss);
                 $this->output->set_output(json_encode($boss_items));
             }
         }
