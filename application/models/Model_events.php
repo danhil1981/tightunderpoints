@@ -106,7 +106,7 @@
             $query = $this->db->query("SELECT
                 id_boss FROM events WHERE id = $id_event;
             ");
-            $id_boss = $query->result_array()[0];
+            $id_boss = implode($query->result_array()[0]);
             return $id_boss;
         }
 
