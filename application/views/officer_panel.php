@@ -17,34 +17,31 @@
             </div>
 
             <div class="row">
-                <div class="col-4 offset-4">
-                    <div id='compare' style='display: none'>
-                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_compare">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Type</th>
-                                    <th scope="col">Available Points</th>
-                                    <th scope="col">&nbsp;</th>
-                                </tr>
-                            </thead>
-                            <tbody id="compare_tbody">
-                            </tbody>
-                        </table>
-                        <br/>
-                    </div>
+                <div class="col-4 offset-4" id='compare' style='display: none'>
+                    <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_compare">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Available Points</th>
+                                <th scope="col">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody id="compare_tbody">
+                        </tbody>
+                    </table>
                 </div>
 
-                <div class="col-4 offset-4">
-                        <div id="winner" style="display: none">
-                            <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_winner">
-                                <tbody id="winner_tbody">
-                                </tbody>
-                            </table>
-                        </div>
-                        <br/>
-                    </div>
+                <br/>
+
+                <div class="col-4 offset-4" id="winner" style="display: none">
+                    <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_winner">
+                        <tbody id="winner_tbody">
+                        </tbody>
+                    </table>
                 </div>
+
+                <br/>
     
                 <div class="col-8 offset-2" id="tables">
                     <div id='points'>
