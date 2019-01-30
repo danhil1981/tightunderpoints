@@ -11,6 +11,7 @@
             $data['list_last50_earned'] = $this->model_characters->get_list_last50_earned();
             $data['list_total_spent'] = $this->model_characters->get_list_total_spent();
             $data['list_last50_spent'] = $this->model_characters->get_list_last50_spent();
+            $data['timers'] = $this->model_officers->get_timers();
             $data['view_name'] = 'officer_panel';
             $this->load->view('template', $data);
 
