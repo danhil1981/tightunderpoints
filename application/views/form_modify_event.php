@@ -39,7 +39,7 @@
                     <?php 
                         echo form_hidden('id',$event['id']);
                         echo form_submit('submit', 'Submit', 'class="btn btn-primary btn-small"');
-                        echo anchor('users/admin_panel', 'Cancel', 'class="btn btn-danger btn-small"');
+                        echo anchor('admins', 'Cancel', 'class="btn btn-danger btn-small"');
                         echo form_close();
                     ?>
                 </div>
