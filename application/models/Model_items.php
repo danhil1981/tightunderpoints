@@ -63,6 +63,17 @@
             }
             return array_column($items, 'name_item', 'id_item');
         }
+
+        public function get_items($id_boss) {
+            $query = $this->db->query("SELECT id AS id_item, name AS name_item FROM items WHERE id_boss = $id_boss;");
+            $items = array();
+            if ($query->num_rows() > 0) {
+                foreach ($query->result_array() as $row) {
+                    $items[] = $row;
+                }
+            }
+            return array_column($items, 'name_item', 'id_item');
+        }
     }
 
 ?>
