@@ -102,6 +102,14 @@
             return array_column($events_not_raid, 'name_event', 'id_event');
         }
 
+        public function get_boss($id_event) {
+            $query = $this->db->query("SELECT
+                id_boss FROM events WHERE id = $id_event;
+            ");
+            $id_boss = $query->result_array()[0];
+            return $id_boss;
+        }
+
     }
 
 ?>
