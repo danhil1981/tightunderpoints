@@ -25,6 +25,8 @@
                         $("body").removeClass("modal-open");
                         $(".modal-backdrop").remove();
                         $('#form_raid')[0].reset();
+                        $("#event_dropdown option").remove();
+                        $("#item_dropdown option").remove();
                         return false;
                     });
                     
@@ -36,8 +38,10 @@
                             type: 'post', 
                             success: function(output) {
                                 $("#event_dropdown option").remove();
+                                $("#item_dropdown option").remove();
                                 $.each(JSON.parse(output), function (id_event, name_event) {
                                     $("#event_dropdown").append($('<option></option>').attr('value', id_event).text(name_event));
+                                    $("#event_dropdown").trigger("change");
                                 })   
                             }
                         });
@@ -77,19 +81,20 @@
                         $("body").removeClass("modal-open");
                         $(".modal-backdrop").remove();
                         $('#form_event')[0].reset();
+                        $("#event_dropdown").trigger();
                         return false;
                     });
 
                     $("#event_dropdown").change(function() {
-                        var id_event = $("#event_dropdown").prop('selectedIndex');
+                        var id_event = $("#event_dropdown").val();
                         $.ajax({
                             url: '<?php echo site_url()?>/officers/get_drops/',
                             data: {'id_event':id_event},
                             type: 'post', 
                             success: function(output) {
-                                $("#drop_dropdown option").remove();
-                                $.each(JSON.parse(output), function (id_drop, name_drop) {
-                                    $("#drop_dropdown").append($('<option></option>').attr('value', id_drop).text(name_drop));
+                                $("#item_dropdown option").remove();
+                                $.each(JSON.parse(output), function (id_item, name_item) {
+                                    $("#item_dropdown").append($('<option></option>').attr('value', id_item).text(decodeHtml(name_item)));
                                 })   
                             }
                         });
@@ -97,6 +102,12 @@
                     });
 
                 });
+
+                function decodeHtml(html) {
+                    var txt = document.createElement("textarea");
+                    txt.innerHTML = html;
+                    return txt.value;
+                }
             </script>
 
             <div class="row" id="content">
@@ -139,10 +150,10 @@
 
                     <div class="form-group">
                         <div class="text-white">
-                            Drop<br/><br/>
+                            Item<br/><br/>
                         </div>
                         <div class="form-inline d-block">
-                        <?php echo form_dropdown('id_drop', '' , '', 'id="drop_dropdown" class="form-control float-left"');?>
+                        <?php echo form_dropdown('id_item', '' , '', 'id="item_dropdown" class="form-control float-left"');?>
                         <button type="button" class='btn btn-primary float-right' id="new_drop" data-toggle="modal" data-target="#modal_drop">New</button>
                         </div>
                         <br/><br/>
@@ -228,12 +239,16 @@
                             <h1 class="text-center text-white">New Drop</h1>
             
                             <form id="form_drop">
-                                Event:
-                                <select class="form-control" disabled="true" id="selected_event">
-                                </select>
-                                
-
-                                <button id="insert_drop" class="btn btn-primary">Submit</button>
+                                Id
+                                <input type="number" class="form-control" id="item_id" min="1" max="32768" required/>
+                                Name
+                                <input type="text" class="form-control" id="item_name" required/>
+                                Drops From
+                                <?php $options = $boss_names; echo form_dropdown('id_boss', $options, '', 'required class="form-control"');?>
+                                Points:
+                                <input type="number" class="form-control" name="value" min="0" max="15" required/>
+                                <br/>
+                                <button id="insert_item" class="btn btn-primary">Submit</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </form>
                         </div>
