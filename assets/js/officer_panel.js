@@ -22,6 +22,11 @@ $(document).ready(function () {
         var index = comparing.indexOf(id);
         comparing.splice(index,3);
         get_winner();
+        if ($('#table_compare > tbody > tr').length == 0){
+            $('#compare').css('display','none');
+            $('#winner').css('display','none');
+        }
+
     });
 
     $('#menu_buttons').on('click', "button", function () {
