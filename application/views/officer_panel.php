@@ -75,10 +75,46 @@
                         </table>
                         <br/><br/>
                     </div>
+                    
+                    <div id='timers' style='display:none'>
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_timers">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Boss</th>
+                                    <th scope="col">Last Killed</th>
+                                    <th scope="col">Start Window</th>
+                                    <th scope="col">End Window</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    $timezone  = +1;
+                                    foreach ($timers as $i => $value) {
+                                        echo "<tr><td>".$value['name_boss']."</td>";
+                                        echo "<td>".$value['last_killed']."</td>";
+                                        echo "<td>".$value['start_window']."</td>";
+                                        echo "<td>".$value['end_window']."</td>";
+                                        echo "<td>";
+                                        if (gmdate("Y-m-d H:i:s",time()+ 3600*($timezone+date("I"))) > $value['end_window']) {
+                                            echo "<div class='bg-success'>UP</div></td><td><button class='btn btn-sm btn-info' id='kill_".$value['id_boss']."'>Add Event</button></td>";
+                                        }
+                                        else {
+                                            if (gmdate("Y-m-d H:i:s",time()+ 3600*($timezone+date("I"))) < $value['start_window']) {
+                                                echo "<div class='bg-danger'>DOWN</div></td><td>";
+                                            }
+                                            else {
+                                                echo "<div class='bg-warning text-dark'>IN WINDOW</div></td><td><button class='btn btn-sm btn-info' id='kill_".$value['id_boss']."'>Add Event</button></td>";
+                                            }
+                                        }
+                                        echo "</td></tr>";
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                        <br/><br/>
+                    </div>
+
                 </div>
             </div>
-            <?php
-                if (isset($table_to_show)) {
-                    echo "<script>show('".$table_to_show."');</script>";
-                }
-            ?>
