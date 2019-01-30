@@ -54,14 +54,13 @@
                 $this->index("<div class='badge badge-danger'>User/password incorrect</div><br/>");
             }
             else {
-                $data['msg'] = "<div class='badge badge-success'>Welcome, ".$this->session->username." !</div><br/>";
                 switch($this->session->type) {
                     case "Admin": {
-                        $this->admin_panel($data); 
+                        redirect('admins');
                         break;
                     }
                     case "Officer": {
-                        $this->officer_panel($data); 
+                        redirect('officers'); 
                         break;
                     }
                     default: {
