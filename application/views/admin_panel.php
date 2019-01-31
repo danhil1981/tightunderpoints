@@ -347,7 +347,7 @@
             </div>
 
             <?php
-                if (isset($table_to_show)) {
-                    echo "<script>show('".$table_to_show."');</script>";
+                if (isset($this->session->table)) {
+                    echo "<script>show('".$this->session->table."');</script>";
                 }
             ?>

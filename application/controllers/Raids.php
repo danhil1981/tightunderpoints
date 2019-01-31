@@ -23,8 +23,8 @@
                 else {
                     $this->session->set_flashdata("msg","<div class='badge badge-success'>Raid successfully inserted</div><br/>");
                 }    
-                $data["table_to_show"] = "raids";
-                $this->admin_panel($data);    
+                $this->session->set_flashdata("table", "raids");
+                redirect('admins');    
             }
 
         }
@@ -39,8 +39,8 @@
                 else {    
                     $this->session->set_flashdata("msg","<div class='badge badge-success'>Raid successfully deleted</div><br/>");                
                 }
-                $data["table_to_show"] = "raids";
-                $this->admin_panel($data);     
+                $this->session->set_flashdata("table", "raids");
+                redirect('admins');     
             }
 
         }
@@ -65,8 +65,8 @@
                 else {    
                     $this->session->set_flashdata("msg","<div class='badge badge-success'>Raid successfully modified</div><br/>");    
                 }
-                $data["table_to_show"] = "raids";
-                $this->admin_panel($data); 
+                $this->session->set_flashdata("table", "raids");
+                redirect('admins');
             }
 
         }

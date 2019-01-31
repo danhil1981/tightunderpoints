@@ -23,8 +23,8 @@
                 else {
                     $this->session->set_flashdata("msg","<div class='badge badge-success'>Player successfully inserted</div><br/>");
                 }    
-                $data["table_to_show"] = "players";
-                $this->admin_panel($data);    
+                $this->session->set_flashdata("table", "players");
+                redirect('admins');   
             }
 
         }
@@ -39,8 +39,8 @@
                 else {    
                     $this->session->set_flashdata("msg","<div class='badge badge-success'>Player successfully deleted</div><br/>");                
                 }
-                $data["table_to_show"] = "players";
-                $this->admin_panel($data);     
+                $this->session->set_flashdata("table", "players");
+                redirect('admins');    
             }
 
         }
@@ -65,8 +65,8 @@
                 else {    
                     $this->session->set_flashdata("msg","<div class='badge badge-success'>Player successfully modified</div><br/>");    
                 }
-                $data["table_to_show"] = "players";
-                $this->admin_panel($data); 
+                $this->session->set_flashdata("table", "players");
+                redirect('admins');
             }
 
         }

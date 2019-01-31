@@ -25,8 +25,8 @@
                     else {    
                         $this->session->set_flashdata("msg","<div class='badge badge-success'>Drop successfully inserted</div><br/>");    
                     }    
-                $data["table_to_show"] = "drops";
-                $this->admin_panel($data);    
+                $this->session->set_flashdata("table", "drops";
+                redirect('admins');    
             }
 
         }
@@ -41,8 +41,8 @@
                 else {    
                     $this->session->set_flashdata("msg","<div class='badge badge-success'>Drop successfully deleted</div><br/>");                
                 }
-                $data["table_to_show"] = "drops";
-                $this->admin_panel($data);     
+                $this->session->set_flashdata("table", "drops");
+                redirect('admins');     
             }
 
         }
@@ -69,8 +69,8 @@
                 else {    
                     $this->session->set_flashdata("msg","<div class='badge badge-success'>Drop successfully modified</div><br/>");    
                 }
-                $data["table_to_show"] = "drops";
-                $this->admin_panel($data); 
+                $this->session->set_flashdata("table", "drops");
+                redirect('admins');
             }
 
         }

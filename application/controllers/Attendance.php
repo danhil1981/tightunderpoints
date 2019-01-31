@@ -25,8 +25,8 @@
                     else {    
                         $this->session->set_flashdata("msg","<div class='badge badge-success'>Attendance Entry successfully inserted</div><br/>");    
                     }    
-                $data["table_to_show"] = "attendance";
-                $this->admin_panel($data);    
+                $this->session->set_flashdata("table", "attendance");
+                redirect('admins');    
             }
 
         }
@@ -41,8 +41,8 @@
                 else {    
                     $this->session->set_flashdata("msg","<div class='badge badge-success'>Attendance Entry successfully deleted</div><br/>");                
                 }
-                $data["table_to_show"] = "attendance";
-                $this->admin_panel($data);     
+                $this->session->set_flashdata("table", "attendance");
+                redirect('admins');     
             }
 
         }
@@ -69,8 +69,8 @@
                 else {    
                     $this->session->set_flashdata("msg","<div class='badge badge-success'>Attendance Entry successfully modified</div><br/>");    
                 }
-                $data["table_to_show"] = "attendance";
-                $this->admin_panel($data); 
+                $this->session->set_flashdata("table", "attendance");
+                redirect('admins'); 
             }
 
         }
