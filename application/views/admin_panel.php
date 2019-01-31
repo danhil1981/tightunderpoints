@@ -8,7 +8,7 @@
 
             <div class="row">
                 <div class="col-10 offset-1 text-center">
-                    <?php if(isset($msg)) echo $msg ?>
+                    <?php if(isset($this->session->msg)) echo $this->session->msg ?>
                     <br/><br/>
                     <button onclick='show("users")' id='button_users' class="btn btn-primary btn-sm">Users</button>
                     <button onclick='show("players")' id='button_players' class="btn btn-light btn-sm">Players</button>

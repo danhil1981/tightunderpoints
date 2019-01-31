@@ -7,7 +7,7 @@
 
             <div class="row" id="menu_buttons">
                 <div class="col-10 offset-1 text-center">
-                    <?php if(isset($msg)) echo $msg ?>
+                    <?php if(isset($this->session->msg)) echo $this->session->msg ?>
                     <br/><br/>
                     <button id='button_points' class="btn btn-primary btn-sm">Points</button>
                     <button id='button_timers' class="btn btn-light btn-sm">Timers</button>

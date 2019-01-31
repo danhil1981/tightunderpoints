@@ -16,7 +16,6 @@
             $data['attendance_list'] = $this->model_attendance->get_all();
             $data['loot_list'] = $this->model_loot->get_all();
             $data['view_name'] = 'admin_panel';
-            $data['msg'] = "<div class='badge badge-success'>Welcome, ".$this->session->username." !</div><br/>";
             $this->load->view('template', $data);
         }
     }

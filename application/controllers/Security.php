@@ -54,6 +54,7 @@
                 $this->index("<div class='badge badge-danger'>User/password incorrect</div><br/>");
             }
             else {
+                $this->session->set_flashdata("msg","<div class='badge badge-success'>Welcome, ".$this->session->username." !</div><br/>");
                 switch($this->session->type) {
                     case "Admin": {
                         redirect('admins');
