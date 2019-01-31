@@ -110,7 +110,15 @@
                                         echo "<td>".$character['name']."</td>";
                                         echo "<td>".$character['level']."</td>";
                                         echo "<td>".$character['class']."</td>";
-                                        echo "<td>".$character['type']."</td>";
+                                        echo "<td>";
+                                            switch($character['type']) {
+                                                case "1": echo "Main";
+                                                break;
+                                                case "2": echo "Alt";
+                                                break;
+                                                default: echo "Bot";
+                                            }
+                                        echo "</td>";
                                         echo "<td>".$character['name_player']."</td>";
                                         echo "<td><a href='".site_url()."/characters/delete/".$character['id']."' class='btn btn-danger btn-sm'>Delete</a></td>";
                                         echo "<td><a href='".site_url()."/characters/show_modify/".$character['id']."' class='btn btn-warning btn-sm'>Modify</a></td></tr>";

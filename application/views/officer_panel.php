@@ -62,7 +62,15 @@
                                 <?php
                                     foreach ($list_names as $i => $value) {
                                         echo "<tr><td id='name_$i'>".$value."</td>";
-                                        echo "<td id='type_$i'>".$list_types[$i]."</td>";
+                                        echo "<td id='type_$i'>";
+                                            switch($list_types[$i]) {
+                                                case "1": echo "Main";
+                                                break;
+                                                case "2": echo "Alt";
+                                                break;
+                                                default: echo "Bot";
+                                            }
+                                        echo "</td>";
                                         echo "<td>".$list_total_earned[$i]."</td>";
                                         echo "<td>".$list_total_spent[$i]."</td>";
                                         echo "<td>".$list_last50_earned[$i]."</td>";
