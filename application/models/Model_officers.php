@@ -44,5 +44,32 @@
             return $timers;
         }
 
+        public function insert_item($id_item, $name_item, $id_boss, $value_item) {
+            $this->db->query("INSERT INTO items (id, name, id_boss, value) VALUES ('$id_item', '$name_item','$id_boss', '$value_item');");
+            $output = 0;
+            if ($this->db->affected_rows() == 1) {
+                $output = 1;
+            }
+            return $output;
+        }
+
+        public function insert_drop_loot() {
+            $id_item = $this->input->post("id_item");
+            $id_event = $this->input->post("id_event");
+            $id_character = $this->input->post("id_character");
+            $output = 0;
+            $this->db->query("INSERT INTO drops (id_event, id_item) VALUES ('$id_event', '$id_item');");
+
+            if($this->db->affected_rows() != 0) {
+                $output = 1;
+                $id_drop = $this->db->insert_id();
+                $this->db->query("INSERT INTO loot (id_drop, id_character) VALUES ('$id_drop', $id_character);");
+                if($this->db->affected_rows() != 0) {
+                    $output = 2;
+                }
+            }
+            return $output;
+        }
+
     }
 ?>
