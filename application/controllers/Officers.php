@@ -34,7 +34,8 @@
                 $description= $this->input->post('description');
                 $date = $this->input->post('date');
                 $result_insert = $this->model_officers->insert_raid($description, $date);
-                print_r($result_insert);die;   
+                print_r($result_insert);
+                die;    
             }
         }
 
@@ -43,6 +44,7 @@
                 $id_raid = $this->input->post('id_raid');
                 $events_in_raid = $this->model_events->events_in_raid($id_raid);
                 $this->output->set_output(json_encode($events_in_raid));
+                die;
             }
         }
 
@@ -53,7 +55,8 @@
                 $id_boss = $this->input->post('id_boss');
                 $id_raid = $this->input->post('id_raid');
                 $result_insert = $this->model_officers->insert_event($time, $date, $id_boss, $id_raid);
-                print_r($result_insert);die;
+                print_r($result_insert);
+                die;
             }
         }
 
@@ -63,6 +66,7 @@
                 $id_boss = $this->model_events->get_boss($id_event);
                 $boss_items = $this->model_items->get_items($id_boss);
                 $this->output->set_output(json_encode($boss_items));
+                die;
             }
         }
 
@@ -70,7 +74,8 @@
             if ($this->check_login()) {
                 $id_event = $this->input->post("id_event");
                 $id_boss = $this->model_events->get_boss($id_event);
-                print_r($id_boss);die;
+                print_r($id_boss);
+                die;
             }
         }
 
@@ -81,7 +86,8 @@
                 $id_boss = $this->input->post("id_boss");
                 $value_item = $this->input->post("value_item");
                 $result_insert = $this->model_officers->insert_item($id_item, $name_item, $id_boss, $value_item);
-                print_r($result_insert);die;
+                print_r($result_insert);
+                die;
             }
         }
 
