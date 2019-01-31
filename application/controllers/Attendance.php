@@ -20,10 +20,10 @@
             if ($this->check_login()) {    
                     $result_insert = $this->model_attendance->insert();    
                     if ($result_insert == 0) {    
-                        $data['msg'] = "<div class='badge badge-danger'>Error on insertion</div><br/>";                    
+                        $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on insertion</div><br/>");                    
                     }    
                     else {    
-                        $data['msg'] = "<div class='badge badge-success'>Attendance Entry successfully inserted</div><br/>";    
+                        $this->session->set_flashdata("msg","<div class='badge badge-success'>Attendance Entry successfully inserted</div><br/>");    
                     }    
                 $data["table_to_show"] = "attendance";
                 $this->admin_panel($data);    
@@ -36,10 +36,10 @@
             if ($this->check_login()) {    
                 $result = $this->model_attendance->delete($id);    
                 if ($result == 0) {    
-                    $data['msg'] = "<div class='badge badge-danger'>Error on deletion</div><br/>";    
+                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on deletion</div><br/>");    
                 }                
                 else {    
-                    $data['msg'] = "<div class='badge badge-success'>Attendance Entry successfully deleted</div><br/>";                
+                    $this->session->set_flashdata("msg","<div class='badge badge-success'>Attendance Entry successfully deleted</div><br/>");                
                 }
                 $data["table_to_show"] = "attendance";
                 $this->admin_panel($data);     
@@ -64,10 +64,10 @@
             if ($this->check_login()) {    
                 $result = $this->model_attendance->modify();  
                 if ($result == 0) {    
-                    $data['msg'] = "<div class='badge badge-danger'>Error on modification</div><br/>";    
+                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on modification</div><br/>");    
                 }
                 else {    
-                    $data['msg'] = "<div class='badge badge-success'>Attendance Entry successfully modified</div><br/>";    
+                    $this->session->set_flashdata("msg","<div class='badge badge-success'>Attendance Entry successfully modified</div><br/>");    
                 }
                 $data["table_to_show"] = "attendance";
                 $this->admin_panel($data); 

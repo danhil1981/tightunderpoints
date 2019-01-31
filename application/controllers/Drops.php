@@ -20,10 +20,10 @@
             if ($this->check_login()) {    
                     $result_insert = $this->model_drops->insert();    
                     if ($result_insert == 0) {    
-                        $data['msg'] = "<div class='badge badge-danger'>Error on insertion</div><br/>";                    
+                        $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on insertion</div><br/>");                    
                     }    
                     else {    
-                        $data['msg'] = "<div class='badge badge-success'>Drop successfully inserted</div><br/>";    
+                        $this->session->set_flashdata("msg","<div class='badge badge-success'>Drop successfully inserted</div><br/>");    
                     }    
                 $data["table_to_show"] = "drops";
                 $this->admin_panel($data);    
@@ -36,10 +36,10 @@
             if ($this->check_login()) {    
                 $result = $this->model_drops->delete($id);    
                 if ($result == 0) {    
-                    $data['msg'] = "<div class='badge badge-danger'>Error on deletion</div><br/>";    
+                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on deletion</div><br/>");    
                 }                
                 else {    
-                    $data['msg'] = "<div class='badge badge-success'>Drop successfully deleted</div><br/>";                
+                    $this->session->set_flashdata("msg","<div class='badge badge-success'>Drop successfully deleted</div><br/>");                
                 }
                 $data["table_to_show"] = "drops";
                 $this->admin_panel($data);     
@@ -64,10 +64,10 @@
             if ($this->check_login()) {    
                 $result = $this->model_drops->modify();  
                 if ($result == 0) {    
-                    $data['msg'] = "<div class='badge badge-danger'>Error on modification</div><br/>";    
+                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on modification</div><br/>");    
                 }
                 else {    
-                    $data['msg'] = "<div class='badge badge-success'>Drop successfully modified</div><br/>";    
+                    $this->session->set_flashdata("msg","<div class='badge badge-success'>Drop successfully modified</div><br/>");    
                 }
                 $data["table_to_show"] = "drops";
                 $this->admin_panel($data); 

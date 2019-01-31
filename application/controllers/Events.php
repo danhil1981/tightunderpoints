@@ -20,10 +20,10 @@
             if ($this->check_login()) {    
                 $result_insert = $this->model_events->insert();
                 if ($result_insert == 0) {
-                    $data['msg'] = "<div class='badge badge-danger'>Error on insertion</div><br/>";                
+                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on insertion</div><br/>");                
                 }
                 else {
-                    $data['msg'] = "<div class='badge badge-success'>Event successfully inserted</div><br/>";
+                    $this->session->set_flashdata("msg","<div class='badge badge-success'>Event successfully inserted</div><br/>");
                 }    
                 $data["table_to_show"] = "events";
                 $this->admin_panel($data);    
@@ -36,10 +36,10 @@
             if ($this->check_login()) {    
                 $result = $this->model_events->delete($id);    
                 if ($result == 0) {    
-                    $data['msg'] = "<div class='badge badge-danger'>Error on deletion</div><br/>";    
+                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on deletion</div><br/>");    
                 }                
                 else {    
-                    $data['msg'] = "<div class='badge badge-success'>Event successfully deleted</div><br/>";                
+                    $this->session->set_flashdata("msg","<div class='badge badge-success'>Event successfully deleted</div><br/>");                
                 }
                 $data["table_to_show"] = "events";
                 $this->admin_panel($data);
@@ -64,10 +64,10 @@
             if ($this->check_login()) {    
                 $result = $this->model_events->modify();    
                 if ($result == 0) {    
-                    $data['msg'] = "<div class='badge badge-danger'>Error on modification</div><br/>";    
+                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on modification</div><br/>");    
                 }
                 else {    
-                    $data['msg'] = "<div class='badge badge-success'>Event successfully modified</div><br/>";    
+                    $this->session->set_flashdata("msg","<div class='badge badge-success'>Event successfully modified</div><br/>");    
                 }
                 $data["table_to_show"] = "events";
                 $this->admin_panel($data); 
