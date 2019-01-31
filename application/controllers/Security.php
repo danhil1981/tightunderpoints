@@ -77,15 +77,13 @@
 
             $checked = false;
             if (!isset($this->session->logged_in)) {
-                $data['msg'] = "<div class='badge badge-danger mx-auto'>You need to be logged in to do this!</div><br/>";
-                $data['view_name'] = 'form_login';
-                $this->load->view('template', $data);
+                $this->index("<div class='badge badge-danger mx-auto'>You need to be logged in to do this!</div><br/>");
             }
             else {
                 $checked = true;
             }
             return $checked;
-
+            
         }
 
     }
