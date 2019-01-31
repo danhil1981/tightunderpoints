@@ -4,7 +4,7 @@
 
     Class Admins extends Security {
 
-        public function index($msg = null) {
+        public function index() {
             $data['users_list'] = $this->model_users->get_all();
             $data['players_list'] = $this->model_players->get_all();
             $data['characters_list'] = $this->model_characters->get_all();

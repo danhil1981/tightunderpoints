@@ -4,7 +4,7 @@
 
     Class Officers extends Security {
 
-        public function index($msg = null) {
+        public function index() {
             $data['list_names'] = $this->model_characters->get_list_names();
             $data['list_types'] = $this->model_characters->get_list_types();
             $data['list_total_earned'] = $this->model_characters->get_list_total_earned();
