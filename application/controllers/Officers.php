@@ -21,7 +21,7 @@
             if ($this->check_login()) {    
                 $data['view_name'] = 'form_insert_loot_entry_officers';
                 $data['id_character'] = $id;
-                $data['name_character'] = $this->model_characters->get_name($id);
+                $data['character_names'] = $this->model_characters->get_list_names();
                 $data['raid_descriptions'] = $this->model_raids->get_list();
                 $data['boss_names'] = $this->model_bosses->get_list();
                 $data['events_not_in_raid'] = $this->model_events->events_not_in_raid();
@@ -63,6 +63,40 @@
                 $id_boss = $this->model_events->get_boss($id_event);
                 $boss_items = $this->model_items->get_items($id_boss);
                 $this->output->set_output(json_encode($boss_items));
+            }
+        }
+
+        public function get_boss() {
+            if ($this->check_login()) {
+                $id_event = $this->input->post("id_event");
+                $id_boss = $this->model_events->get_boss($id_event);
+                print_r($id_boss);die;
+            }
+        }
+
+        public function insert_item() {
+            if ($this->check_login()) {
+                $id_item = $this->input->post("id_item");
+                $name_item = $this->input->post("name_item");
+                $id_boss = $this->input->post("id_boss");
+                $value_item = $this->input->post("value_item");
+                $result_insert = $this->model_officers->insert_item($id_item, $name_item, $id_boss, $value_item);
+                print_r($result_insert);die;
+            }
+        }
+
+        public function insert_drop_loot() {
+            if ($this->check_login()) {
+                
+                $result_insert = $this->model_officers->insert_drop_loot();    
+                switch ($result_insert) {    
+                    case "0": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on insertion (drop)</div><br/>");
+                    break;
+                    case "1": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on insertion (loot)</div><br/>");
+                    break;
+                    default: $this->session->set_flashdata("msg","<div class='badge badge-success'>Drop and Loot Entries successfully inserted</div><br/>");
+                }    
+                redirect('officers');
             }
         }
         
