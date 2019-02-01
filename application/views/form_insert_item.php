@@ -10,7 +10,7 @@
                         <div class="text-white">
                             Id<br/><br/>
                         </div>
-                        <?php echo form_number('id','','required class="form-control"')?>
+                        <?php echo form_number('id','','min="1" max="32768" required class="form-control"')?>
                         <br/>
                     </div>
                     
