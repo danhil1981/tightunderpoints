@@ -10,7 +10,7 @@
                         <div class="text-white">
                             Name<br/><br/>
                         </div>
-                        <?php echo form_input('name','','required class="form-control"')?>
+                        <?php echo form_input('name','','required pattern="^[A-Za-z]+$" class="form-control"')?>
                         <br/><br/>
                     </div>
                     <?php echo form_submit('submit', 'Submit', 'class="btn btn-primary btn-small"');?>
