@@ -69,6 +69,38 @@
             return $output;
         }
 
+        public function get_winner() {
+            $comparing = $this->input->post("comparing");
+            $max_id = 0;
+            $max_points = -32000;
+            $max_type = 3;
+            $multiples = array();
+            for ($i = 0; $i < count($comparing); $i=$i+3) {
+                if ($comparing[$i + 2] < $max_type) {
+                    $max_id = $comparing[$i];
+                    $max_points = $comparing[$i + 1];
+                    $max_type = $comparing[$i + 2];
+                }
+                else {
+                    if ($comparing[$i + 2] == $max_type) {
+                        if ($comparing[$i + 1] > $max_points) {
+                            $multiples = array();
+                            $max_id = $comparing[$i];
+                            $max_points = $comparing[$i + 1];
+                        }
+                        if ($comparing[$i + 1] == $max_points) {
+                            array_push($multiples, $max_id);
+                            array_push($multiples, $comparing[$i]);
+                            $max_id = $multiples[array_rand($multiples)];
+                        }
+                    }
+                }
+            }
+            $query = $this->db->query("SELECT id, name FROM characters WHERE id = $max_id;");
+            $id_name = implode($query->result_array()[0]);
+            return $id_name;
+        }
+
     }
 
 ?>

@@ -104,6 +104,14 @@
             }
         }
 
+        public function get_winner() {
+            if ($this->check_login()) {
+                $id_name = $this->model_officers->get_winner();
+                print_r($id_name);
+                die;
+            }
+        }
+
     }
 
 ?>
