@@ -4,8 +4,7 @@ $(document).ready( function () {
     $("#insert_raid").click( function() {
         var description = $("#raid_description").val();
         var date = $("#raid_date").val();
-
-        $.ajax({ 
+        $.ajax({
             url: path +'insert_raid/',
             data: { 'description':description, 'date':date },
             type: 'post',
@@ -30,20 +29,20 @@ $(document).ready( function () {
         $("#item_dropdown option").remove();
         return false;
     });
-    
+
     $("#raid_dropdown").change(function() {
         var id_raid = $("#raid_dropdown").prop('selectedIndex');
         $.ajax({
             url: path +'get_events/',
             data: {'id_raid':id_raid},
-            type: 'post', 
+            type: 'post',
             success: function(output) {
                 $("#event_dropdown option").remove();
                 $("#item_dropdown option").remove();
                 $.each(JSON.parse(output), function (id_event, name_event) {
                     $("#event_dropdown").append($('<option></option>').attr('value', id_event).text(name_event));
                     $("#event_dropdown").trigger("change");
-                })   
+                })
             }
         });
         return false;
@@ -61,7 +60,7 @@ $(document).ready( function () {
         var date = $("#event_date").val();
         var id_boss = $("#event_boss_id").val();
         var id_raid = $("#raid_dropdown").val();
-        $.ajax({ 
+        $.ajax({
             url: path +'insert_event/',
             data: { 'time':time, 'date':date, 'id_boss':id_boss , 'id_raid':id_raid  },
             type: 'post',
@@ -91,12 +90,12 @@ $(document).ready( function () {
         $.ajax({
             url: path +'get_drops/',
             data: {'id_event':id_event},
-            type: 'post', 
+            type: 'post',
             success: function(output) {
                 $("#item_dropdown option").remove();
                 $.each(JSON.parse(output), function (id_item, name_item) {
                     $("#item_dropdown").append($('<option></option>').attr('value', id_item).text(decodeHtml(name_item)));
-                })   
+                })
             }
         });
         return false;
@@ -104,7 +103,7 @@ $(document).ready( function () {
 
     $("#new_item").click(function() {
         var id_event = $("#event_dropdown").val();
-        $.ajax({ 
+        $.ajax({
             url: path +'get_boss/',
             data: { 'id_event':id_event},
             type: 'post',
@@ -119,7 +118,7 @@ $(document).ready( function () {
         var name_item = $("#name_item").val();
         var id_boss = $("#boss_dropdown").val();
         var value_item = $("#value_item").val();
-        $.ajax({ 
+        $.ajax({
             url: path +'insert_item/',
             data: { 'id_item':id_item, 'name_item':name_item, 'id_boss':id_boss , 'value_item':value_item  },
             type: 'post',

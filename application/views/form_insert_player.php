@@ -1,11 +1,8 @@
             <div class="row">
                 <div class="col-6 offset-3">
                     <h1 class="text-center text-white">New Player</h1>
-
                     <br/><br/>
-        
                     <?php echo form_open_multipart('players/insert');?>
-
                     <div class="form-group">
                         <div class="text-white">
                             Name<br/><br/>

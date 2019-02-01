@@ -2,11 +2,9 @@
             <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
             <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
             <script src="<?php echo base_url()?>assets/js/admin_panel.js"></script>
-
             <h1 class='text-center text-white'>Admin Panel</h1>
             <br/><br/>
-
-            <div class="row">
+            <div class="row" id="menu_buttons">
                 <div class="col-10 offset-1 text-center">
                     <?php if(isset($this->session->msg)) echo $this->session->msg ?>
                     <br/><br/>
@@ -26,7 +24,6 @@
                     <br/><br/>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-8 offset-2">
                     <div id='users'>
@@ -44,7 +41,6 @@
                                 <?php
                                     for ($i = 0; $i < count($users_list); $i++) {
                                         $user = $users_list[$i];
-                                
                                         echo "<tr><th scope='row'>".$user['id']."</th>";
                                         echo "<td>".$user['name']."</td>";
                                         echo "<td>".$user['type']."</td>";
@@ -58,7 +54,6 @@
                         <a href='<?php echo site_url()?>/users/show_insert/' class='btn btn-success btn-sm'>New</a>
                         <br/><br/>
                     </div>
-
                     <div id='players' style='display: none;'>
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_players">
                             <thead>
@@ -73,7 +68,6 @@
                                 <?php
                                     for ($i = 0; $i < count($players_list); $i++) {
                                         $player = $players_list[$i];
-                                
                                         echo "<tr><th scope='row'>".$player['id']."</th>";
                                         echo "<td>".$player['name']."</td>";
                                         echo "<td><a href='".site_url()."/players/delete/".$player['id']."' class='btn btn-danger btn-sm'>Delete</a></td>";
@@ -86,7 +80,6 @@
                         <a href='<?php echo site_url()?>/players/show_insert/' class='btn btn-success btn-sm'>New</a>
                         <br/><br/>
                     </div>
-
                     <div id='characters' style='display: none;'>
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_characters">
                             <thead>
@@ -105,7 +98,6 @@
                                 <?php
                                     for ($i = 0; $i < count($characters_list); $i++) {
                                         $character = $characters_list[$i];
-                                
                                         echo "<tr><th scope='row'>".$character['id']."</th>";
                                         echo "<td>".$character['name']."</td>";
                                         echo "<td>".$character['level']."</td>";
@@ -130,7 +122,6 @@
                         <a href='<?php echo site_url()?>/characters/show_insert/' class='btn btn-success btn-sm'>New</a>
                         <br/><br/>
                     </div>
-                    
                     <div id='bosses' style='display: none;'>
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_bosses">
                             <thead>
@@ -148,7 +139,6 @@
                                 <?php
                                     for ($i = 0; $i < count($bosses_list); $i++) {
                                         $boss = $bosses_list[$i];
-                                
                                         echo "<tr><th scope='row'>".$boss['id']."</th>";
                                         echo "<td>".$boss['name']."</td>";
                                         echo "<td>".$boss['respawn']."</td>";
@@ -164,7 +154,6 @@
                         <a href='<?php echo site_url()?>/bosses/show_insert/' class='btn btn-success btn-sm'>New</a>
                         <br/><br/>
                     </div>
-                    
                     <div id='items' style='display: none;'>
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_items">
                             <thead>
@@ -182,7 +171,6 @@
                                 <?php
                                     for ($i = 0; $i < count($items_list); $i++) {
                                         $item = $items_list[$i];
-                                
                                         echo "<tr><th scope='row'>".$item['id']."</th>";
                                         echo "<td>".$item['name']."</td>";
                                         echo "<td>".$item['name_boss']."</td>";
@@ -198,7 +186,6 @@
                         <a href='<?php echo site_url()?>/items/show_insert/' class='btn btn-success btn-sm'>New</a>
                         <br/><br/>
                     </div>
-
                     <div id='raids' style='display: none;'>
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_raids">
                             <thead>
@@ -214,7 +201,6 @@
                                 <?php
                                     for ($i = 0; $i < count($raids_list); $i++) {
                                         $raid = $raids_list[$i];
-                                
                                         echo "<tr><th scope='row'>".$raid['id']."</th>";
                                         echo "<td>".$raid['date']."</td>";
                                         echo "<td>".$raid['description']."</td>";
@@ -228,7 +214,6 @@
                         <a href='<?php echo site_url()?>/raids/show_insert/' class='btn btn-success btn-sm'>New</a>
                         <br/><br/>
                     </div>
-                    
                     <div id='events' style='display: none;'>
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_events">
                             <thead>
@@ -245,7 +230,6 @@
                                 <?php
                                     for ($i = 0; $i < count($events_list); $i++) {
                                         $event = $events_list[$i];
-                                
                                         echo "<tr><th scope='row'>".$event['id']."</th>";
                                         echo "<td>".$event['timestamp']."</td>";
                                         echo "<td>".$event['name_boss']."</td>";
@@ -260,7 +244,6 @@
                         <a href='<?php echo site_url()?>/events/show_insert/' class='btn btn-success btn-sm'>New</a>
                         <br/><br/>
                     </div>
-
                      <div id='drops' style='display: none;'>
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_drops">
                             <thead>
@@ -276,7 +259,6 @@
                                 <?php
                                     for ($i = 0; $i < count($drops_list); $i++) {
                                         $drop = $drops_list[$i];
-                                
                                         echo "<tr><th scope='row'>".$drop['id']."</th>";
                                         echo "<td>".$drop['name_event']."</td>";
                                         echo "<td>".$drop['name_item']."</td>";
@@ -290,7 +272,6 @@
                         <a href='<?php echo site_url()?>/drops/show_insert/' class='btn btn-success btn-sm'>New</a>
                         <br/><br/>
                     </div>
-
                     <div id='attendance' style='display: none;'>
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_attendance">
                             <thead>
@@ -306,7 +287,6 @@
                                 <?php
                                     for ($i = 0; $i < count($attendance_list); $i++) {
                                         $attendance_entry = $attendance_list[$i];
-                                
                                         echo "<tr><th scope='row'>".$attendance_entry['id']."</th>";
                                         echo "<td>".$attendance_entry['name_event']."</td>";
                                         echo "<td>".$attendance_entry['name_character']."</td>";
@@ -320,7 +300,6 @@
                         <a href='<?php echo site_url()?>/attendance/show_insert/' class='btn btn-success btn-sm'>New</a>
                         <br/><br/>
                     </div>
-
                     <div id='loot' style='display: none;'>
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_loot">
                             <thead>
@@ -336,7 +315,6 @@
                                 <?php
                                     for ($i = 0; $i < count($loot_list); $i++) {
                                         $loot_entry = $loot_list[$i];
-                                
                                         echo "<tr><th scope='row'>".$loot_entry['id']."</th>";
                                         echo "<td>".$loot_entry['name_drop']."</td>";
                                         echo "<td>".$loot_entry['name_character']."</td>";
@@ -350,7 +328,6 @@
                         <a href='<?php echo site_url()?>/loot/show_insert/' class='btn btn-success btn-sm'>New</a>
                         <br/><br/>
                     </div>
-
                 </div>
             </div>
 

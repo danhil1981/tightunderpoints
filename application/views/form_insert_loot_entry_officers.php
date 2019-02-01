@@ -4,9 +4,7 @@
                     <h1 class="text-center text-white">New Loot Entry</h1>
                     <div id="messages" class="text-center"></div>
                     <br/><br/>
-        
                     <?php echo form_open_multipart('officers/insert_drop_loot');?>
-
                     <div class="form-group">
                         <div class="text-white">
                             Character<br/><br/>
@@ -16,7 +14,6 @@
                         </div>
                         <br/><br/>
                     </div>
-
                     <div class="form-group">
                         <div class="text-white">
                             Raid<br/><br/>
@@ -27,7 +24,6 @@
                         </div>
                         <br/><br/>
                     </div>
-
                     <div class="form-group">
                         <div class="text-white">
                             Event<br/><br/>
@@ -38,7 +34,6 @@
                         </div>
                         <br/><br/>
                     </div>
-
                     <div class="form-group">
                         <div class="text-white">
                             Item<br/><br/>
@@ -49,7 +44,6 @@
                         </div>
                         <br/><br/>
                     </div>
-
                     <?php echo form_submit('submit', 'Submit', 'class="btn btn-success btn-small"');?>
                     <?php echo anchor('officers', 'Cancel', 'class="btn btn-danger btn-small"');?>
                     <?php echo form_close();?>
@@ -80,7 +74,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="modal fade" id="modal_event" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content bg-dark text-white">
@@ -96,7 +89,7 @@
                                 <select class="form-control" disabled="true" id="selected_raid"></select>
                                 <br/>
                                 Boss:
-                                <?php 
+                                <?php
                                     $options = $boss_names;
                                     echo form_dropdown('id_boss', $options, '', 'required id="event_boss_id" class="form-control"');
                                 ?>
@@ -114,7 +107,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="modal fade" id="modal_item" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content bg-dark text-white">

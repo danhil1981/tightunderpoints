@@ -1,11 +1,8 @@
             <div class="row">
                 <div class="col-6 offset-3">
                     <h1 class="text-center text-white">Modify Drop</h1>
-
                     <br/><br/>
-        
                     <?php echo form_open_multipart('drops/modify');?>
-
                     <?php $options = $event_names;?>
                     <div class="form-group">
                         <div class="text-white">
@@ -14,7 +11,6 @@
                         <?php echo form_dropdown('id_event', $options, $drop['id_event'], 'required class="form-control"');?>
                         <br/><br/>
                     </div>
-
                     <?php $options = $item_names;?>
                     <div class="form-group">
                         <div class="text-white">

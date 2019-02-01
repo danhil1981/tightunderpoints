@@ -1,9 +1,8 @@
 <?php
 
-    
     defined('BASEPATH') OR exit('No direct script access allowed');
 
-    class Model_Officers extends CI_Model {
+    class Model_officers extends CI_Model {
 
         public function insert_event($time, $date, $id_boss, $id_raid) {
             $timestamp = $date." ".$time;
@@ -25,16 +24,16 @@
         }
 
         public function get_timers() {
-            $query = $this->db->query("SELECT 
-            bosses.id AS 'id_boss',
-            bosses.name AS 'name_boss', 
-            events.timestamp AS 'last_killed',
-            ADDTIME(ADDTIME(events.timestamp, bosses.respawn),-bosses.variance) AS 'start_window',
-            ADDTIME(ADDTIME(events.timestamp, bosses.respawn),bosses.variance) AS 'end_window'
-            FROM bosses 
-            INNER JOIN events ON bosses.id = events.id_boss
-            WHERE events.timestamp = (SELECT MAX(events.timestamp) FROM events WHERE bosses.id = events.id_boss);
-            ");
+            $query = $this->db->query("SELECT
+                bosses.id AS 'id_boss',
+                bosses.name AS 'name_boss',
+                events.timestamp AS 'last_killed',
+                ADDTIME(ADDTIME(events.timestamp, bosses.respawn),-bosses.variance) AS 'start_window',
+                ADDTIME(ADDTIME(events.timestamp, bosses.respawn),bosses.variance) AS 'end_window'
+                FROM bosses
+                INNER JOIN events ON bosses.id = events.id_boss
+                WHERE events.timestamp = (SELECT MAX(events.timestamp) FROM events WHERE bosses.id = events.id_boss)
+            ;");
             $timers = array();
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
@@ -59,7 +58,6 @@
             $id_character = $this->input->post("id_character");
             $output = 0;
             $this->db->query("INSERT INTO drops (id_event, id_item) VALUES ('$id_event', '$id_item');");
-
             if($this->db->affected_rows() != 0) {
                 $output = 1;
                 $id_drop = $this->db->insert_id();
@@ -72,4 +70,5 @@
         }
 
     }
+
 ?>

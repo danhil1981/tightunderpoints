@@ -1,6 +1,5 @@
-var comparing = [];
-
 $(document).ready(function () {
+    var comparing = [];
     $("[id^='datatable']").DataTable();
 
     $('#points').on('click', "button", function () {
@@ -26,7 +25,6 @@ $(document).ready(function () {
             $('#compare').css('display','none');
             $('#winner').css('display','none');
         }
-
     });
 
     $('#menu_buttons').on('click', "button", function () {
@@ -58,7 +56,6 @@ function get_winner() {
                     max_id = comparing[i];
                     max_points = comparing[i + 1];
                 }
-                 
                 if (comparing[i + 1] == max_points) {
                     multiples.push(max_id);
                     multiples.push(comparing[i]);

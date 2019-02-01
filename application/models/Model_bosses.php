@@ -1,9 +1,8 @@
 <?php
 
-    
     defined('BASEPATH') OR exit('No direct script access allowed');
 
-    class Model_Bosses extends CI_Model {
+    Class Model_bosses extends CI_Model {
 
         public function get_all() {
             $query = $this->db->query("SELECT * FROM bosses;");
@@ -15,49 +14,40 @@
             }
             return $bosses;
         }
-    
+
         public function get($id) {
             $query = $this->db->query("SELECT * FROM bosses WHERE id = $id;");
             $boss = $query->result_array()[0];
-    
             return $boss;
         }
-        
+
         public function get_name($id) {
             $query = $this->db->query("SELECT name FROM bosses WHERE id = $id;");
             $bossname = $query->row()->name;
-    
             return $bossname;
         }
 
         public function delete($id) {
-    
             $this->db->query("DELETE FROM bosses WHERE id = $id ;");
-    
-            return $this->db->affected_rows();            
+            return $this->db->affected_rows();
         }
-    
-    
+
         public function insert() {
             $name = quotes_to_entities($this->input->post('name'));
             $respawn = $this->input->post('respawn');
             $variance = $this->input->post('variance');
             $value = $this->input->post('value');
-    
             $this->db->query("INSERT INTO bosses (name, respawn, variance, value) VALUES ('$name', '$respawn', '$variance', '$value');");
-    
-            return $this->db->affected_rows(); 
+            return $this->db->affected_rows();
         }
-    
+
         public function modify() {
             $id = $this->input->post('id');
             $name = quotes_to_entities($this->input->post('name'));
             $respawn = $this->input->post('respawn');
             $variance = $this->input->post('variance');
             $value = $this->input->post('value');
-    
             $this->db->query("UPDATE bosses SET name = '$name', respawn = '$respawn', variance = '$variance', value = '$value' WHERE id = $id;");
-    
             return $this->db->affected_rows();
         }
 
@@ -71,6 +61,7 @@
             }
             return array_column($bosses, 'name_boss', 'id_boss');
         }
+
     }
 
 ?>

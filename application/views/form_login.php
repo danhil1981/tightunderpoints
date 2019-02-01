@@ -1,5 +1,4 @@
             <?php $this->session->userdata = array(); ?>
-
             <div class="row">
                 <div class="col-10 offset-1 text-center">
                     <?php if(isset($msg)) echo $msg;?>
@@ -8,7 +7,6 @@
             <div class="row">
                 <div class="col-6 offset-3">
                     <h1 class='text-center text-white'>Login</h1>
-
                     <?php echo form_open('users/process_login');?>
                     <div class="form-group">
                         <div class="text-center text-white">
@@ -27,4 +25,4 @@
                     </div>
                     <?php echo form_close();?>
                 </div>
-            </div> 
+            </div>

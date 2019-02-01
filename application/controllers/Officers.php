@@ -14,18 +14,17 @@
             $data['timers'] = $this->model_officers->get_timers();
             $data['view_name'] = 'officer_panel';
             $this->load->view('template', $data);
-
         }
 
         public function loot($id) {
-            if ($this->check_login()) {    
+            if ($this->check_login()) {
                 $data['view_name'] = 'form_insert_loot_entry_officers';
                 $data['id_character'] = $id;
                 $data['character_names'] = $this->model_characters->get_list_names();
                 $data['raid_descriptions'] = $this->model_raids->get_list();
                 $data['boss_names'] = $this->model_bosses->get_list();
                 $data['events_not_in_raid'] = $this->model_events->events_not_in_raid();
-                $this->load->view('template', $data);   
+                $this->load->view('template', $data);
             }
         }
 
@@ -35,7 +34,7 @@
                 $date = $this->input->post('date');
                 $result_insert = $this->model_officers->insert_raid($description, $date);
                 print_r($result_insert);
-                die;    
+                die;
             }
         }
 
@@ -93,19 +92,18 @@
 
         public function insert_drop_loot() {
             if ($this->check_login()) {
-                
-                $result_insert = $this->model_officers->insert_drop_loot();    
-                switch ($result_insert) {    
+                $result_insert = $this->model_officers->insert_drop_loot();
+                switch ($result_insert) {
                     case "0": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on insertion (drop)</div><br/>");
                     break;
                     case "1": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on insertion (loot)</div><br/>");
                     break;
                     default: $this->session->set_flashdata("msg","<div class='badge badge-success'>Drop and Loot Entries successfully inserted</div><br/>");
-                }    
+                }
                 redirect('officers');
             }
         }
-        
+
     }
-    
+
 ?>

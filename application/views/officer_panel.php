@@ -2,9 +2,7 @@
             <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
             <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
             <script src="<?php echo base_url()?>assets/js/officer_panel.js"></script>
-            
             <h1 class='text-center text-white'>Officer Panel</h1>
-
             <div class="row" id="menu_buttons">
                 <div class="col-10 offset-1 text-center">
                     <?php if(isset($this->session->msg)) echo $this->session->msg ?>
@@ -15,7 +13,6 @@
                     <br/><br/>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-4 offset-4" id='compare' style='display: none'>
                     <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_compare">
@@ -31,18 +28,14 @@
                         </tbody>
                     </table>
                 </div>
-
                 <br/>
-
                 <div class="col-4 offset-4" id="winner" style="display: none">
                     <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_winner">
                         <tbody id="winner_tbody">
                         </tbody>
                     </table>
                 </div>
-
                 <br/>
-    
                 <div class="col-8 offset-2" id="tables">
                     <div id='points'>
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_points">
@@ -83,7 +76,6 @@
                         </table>
                         <br/><br/>
                     </div>
-                    
                     <div id='timers' style='display:none'>
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_timers">
                             <thead>
@@ -123,6 +115,5 @@
                         </table>
                         <br/><br/>
                     </div>
-
                 </div>
             </div>
