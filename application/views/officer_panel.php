@@ -21,7 +21,6 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Type</th>
                                 <th scope="col">Available Points</th>
-                                <th scope="col">&nbsp;</th>
                             </tr>
                         </thead>
                         <tbody id="compare_tbody">
