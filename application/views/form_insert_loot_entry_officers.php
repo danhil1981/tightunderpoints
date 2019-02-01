@@ -68,7 +68,7 @@
                         <div class="modal-body">
                             <form id="form_raid">
                                 Description:
-                                <input type="text" id="raid_description" class="form-control"/>
+                                <input type="text" id="raid_description" class="form-control" required="true"/>
                                 <br/>
                                 Date:
                                 <?php echo form_date('date',gmdate('Y-m-d'), 'id="raid_date" required class="form-control"')?>
