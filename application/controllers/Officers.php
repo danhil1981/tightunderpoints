@@ -31,7 +31,7 @@
 
         public function insert_raid() {
             if ($this->check_login()) {
-                $description= $this->input->post('description');
+                $description= quotes_to_entities($this->input->post('description'));
                 $date = $this->input->post('date');
                 $result_insert = $this->model_officers->insert_raid($description, $date);
                 print_r($result_insert);
@@ -82,7 +82,7 @@
         public function insert_item() {
             if ($this->check_login()) {
                 $id_item = $this->input->post("id_item");
-                $name_item = $this->input->post("name_item");
+                $name_item = quotes_to_entities($this->input->post("name_item"));
                 $id_boss = $this->input->post("id_boss");
                 $value_item = $this->input->post("value_item");
                 $result_insert = $this->model_officers->insert_item($id_item, $name_item, $id_boss, $value_item);
