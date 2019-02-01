@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var comparing = [];
+    comparing = [];
     $("[id^='datatable']").DataTable();
 
     $('#points').on('click', "button", function () {
