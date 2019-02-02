@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-8 offset-2" id="tables">
                     <div id='users'>
-                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_users">
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_users">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -55,7 +55,7 @@
                         <br/><br/>
                     </div>
                     <div id='players' style='display: none;'>
-                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_players">
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_players">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -81,7 +81,7 @@
                         <br/><br/>
                     </div>
                     <div id='characters' style='display: none;'>
-                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_characters">
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_characters">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -123,7 +123,7 @@
                         <br/><br/>
                     </div>
                     <div id='bosses' style='display: none;'>
-                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_bosses">
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_bosses">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -155,7 +155,7 @@
                         <br/><br/>
                     </div>
                     <div id='items' style='display: none;'>
-                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_items">
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_items">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -187,7 +187,7 @@
                         <br/><br/>
                     </div>
                     <div id='raids' style='display: none;'>
-                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_raids">
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_raids">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -215,7 +215,7 @@
                         <br/><br/>
                     </div>
                     <div id='events' style='display: none;'>
-                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_events">
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_events">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -245,7 +245,7 @@
                         <br/><br/>
                     </div>
                      <div id='drops' style='display: none;'>
-                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_drops">
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_drops">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -273,7 +273,7 @@
                         <br/><br/>
                     </div>
                     <div id='attendance' style='display: none;'>
-                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_attendance">
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_attendance">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -301,7 +301,7 @@
                         <br/><br/>
                     </div>
                     <div id='loot' style='display: none;'>
-                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_loot">
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_loot">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $("[id^='table']").DataTable({"order": [[1, "asc"]]});
+    $("[id^='datatable']").DataTable({"order": [[1, "asc"]]});
 
     $('#menu_buttons').on('click', "button", function () {
         $('#menu_buttons button').removeClass('btn-primary');
