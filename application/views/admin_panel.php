@@ -8,16 +8,16 @@
                 <div class="col-10 offset-1 text-center">
                     <?php if(isset($this->session->msg)) echo $this->session->msg ?>
                     <br/><br/>
-                    <button onclick='show("users")' id='button_users' class="btn btn-primary btn-sm">Users</button>
-                    <button onclick='show("players")' id='button_players' class="btn btn-light btn-sm">Players</button>
-                    <button onclick='show("characters")' id='button_characters' class="btn btn-light btn-sm">Characters</button>
-                    <button onclick='show("bosses")' id='button_bosses' class="btn btn-light btn-sm">Bosses</button>
-                    <button onclick='show("items")' id='button_items' class="btn btn-light btn-sm">Items</button>
-                    <button onclick='show("raids")' id='button_raids' class="btn btn-light btn-sm">Raids</button>
-                    <button onclick='show("events")' id='button_events' class="btn btn-light btn-sm">Events</button>
-                    <button onclick='show("drops")' id='button_drops' class="btn btn-light btn-sm">Drops</button>
-                    <button onclick='show("attendance")' id='button_attendance' class="btn btn-light btn-sm">Attendance</button>
-                    <button onclick='show("loot")' id='button_loot' class="btn btn-light btn-sm">Loot</button>
+                    <button id='button_users' class="btn btn-primary btn-sm">Users</button>
+                    <button id='button_players' class="btn btn-light btn-sm">Players</button>
+                    <button id='button_characters' class="btn btn-light btn-sm">Characters</button>
+                    <button id='button_bosses' class="btn btn-light btn-sm">Bosses</button>
+                    <button id='button_items' class="btn btn-light btn-sm">Items</button>
+                    <button id='button_raids' class="btn btn-light btn-sm">Raids</button>
+                    <button id='button_events' class="btn btn-light btn-sm">Events</button>
+                    <button id='button_drops' class="btn btn-light btn-sm">Drops</button>
+                    <button id='button_attendance' class="btn btn-light btn-sm">Attendance</button>
+                    <button id='button_loot' class="btn btn-light btn-sm">Loot</button>
                     <?php echo anchor('admins', 'Refresh', 'class="btn btn-success btn-sm"');?>
                     <a href='<?php echo site_url()?>' class='btn btn-danger btn-sm'>Logout</a>
                     <?php echo anchor('officers', 'Officer Panel', 'class="btn btn-success btn-sm"');?>
@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-8 offset-2">
+                <div class="col-8 offset-2" id="tables">
                     <div id='users'>
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_users">
                             <thead>
