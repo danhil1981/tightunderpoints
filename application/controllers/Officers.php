@@ -42,7 +42,7 @@
             if ($this->check_login()) {
                 $id_raid = $this->input->post('id_raid');
                 $events_in_raid = $this->model_events->events_in_raid($id_raid);
-                $this->output->set_output(json_encode($events_in_raid));
+                print_r(json_encode($events_in_raid));
                 die;
             }
         }
@@ -64,7 +64,7 @@
                 $id_event = $this->input->post("id_event");
                 $id_boss = $this->model_events->get_boss($id_event);
                 $boss_items = $this->model_items->get_items($id_boss);
-                $this->output->set_output(json_encode($boss_items));
+                print_r(json_encode($boss_items));
                 die;
             }
         }
