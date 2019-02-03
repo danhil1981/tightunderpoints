@@ -3,8 +3,8 @@ $(document).ready(function () {
     $("[id^='datatable']").DataTable();
 
     $('#points').on('click', "button", function () {
-        $("#compare").css("display", "block");
-        $("#winner").css("display", "block");
+        $("#compare").addClass('d-block');
+        $("#winner").addClass('d-block');
         var id = parseInt(this.id.slice(8));
         this.remove();
         var points = parseInt($("#points_" + id).html());
@@ -30,12 +30,15 @@ $(document).ready(function () {
     });
 
     $('#menu_buttons').on('click', "button", function () {
-        $('#menu_buttons button').removeClass('btn-primary');
-        $('#menu_buttons button').addClass('btn-light');
-        $(this).removeClass('btn-light');
-        $(this).addClass('btn-primary');
-        $('#tables').children().css("display", "none");
-        $('#'+this.id.slice(7)).css("display", "block");
+        $('#menu_buttons button').removeClass('btn-primary').addClass('btn-light');
+        $(this).removeClass('btn-light').addClass('btn-primary');
+        $('#tables').children().removeClass('d-block').addClass('d-none');
+        $('#'+this.id.slice(7)).removeClass('d-none').addClass('d-block');
     });
 
 });
+
+function show(table) {
+    $('#button_'+table).removeClass('btn-light').addClass('btn-primary');
+    $('#'+table).removeClass('d-none').addClass('d-block');
+}
