@@ -1,5 +1,5 @@
             <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/custom.css">
-            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/tables.bootstrap4.min.css">
             <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
             <script src="<?php echo base_url()?>assets/js/admin_panel.js"></script>
             <h1 class='text-center text-white'>Admin Panel</h1>
@@ -8,16 +8,16 @@
                 <div class="col-10 offset-1 text-center">
                     <?php if(isset($this->session->msg)) echo $this->session->msg ?>
                     <br/><br/>
-                    <button id='button_users' class="btn btn-primary btn-sm">Users</button>
-                    <button id='button_players' class="btn btn-light btn-sm">Players</button>
-                    <button id='button_characters' class="btn btn-light btn-sm">Characters</button>
-                    <button id='button_bosses' class="btn btn-light btn-sm">Bosses</button>
-                    <button id='button_items' class="btn btn-light btn-sm">Items</button>
-                    <button id='button_raids' class="btn btn-light btn-sm">Raids</button>
-                    <button id='button_events' class="btn btn-light btn-sm">Events</button>
-                    <button id='button_drops' class="btn btn-light btn-sm">Drops</button>
-                    <button id='button_attendance' class="btn btn-light btn-sm">Attendance</button>
-                    <button id='button_loot' class="btn btn-light btn-sm">Loot</button>
+                    <button onclick='show("users")' id='button_users' class="btn btn-primary btn-sm">Users</button>
+                    <button onclick='show("players")' id='button_players' class="btn btn-light btn-sm">Players</button>
+                    <button onclick='show("characters")' id='button_characters' class="btn btn-light btn-sm">Characters</button>
+                    <button onclick='show("bosses")' id='button_bosses' class="btn btn-light btn-sm">Bosses</button>
+                    <button onclick='show("items")' id='button_items' class="btn btn-light btn-sm">Items</button>
+                    <button onclick='show("raids")' id='button_raids' class="btn btn-light btn-sm">Raids</button>
+                    <button onclick='show("events")' id='button_events' class="btn btn-light btn-sm">Events</button>
+                    <button onclick='show("drops")' id='button_drops' class="btn btn-light btn-sm">Drops</button>
+                    <button onclick='show("attendance")' id='button_attendance' class="btn btn-light btn-sm">Attendance</button>
+                    <button onclick='show("loot")' id='button_loot' class="btn btn-light btn-sm">Loot</button>
                     <?php echo anchor('admins', 'Refresh', 'class="btn btn-success btn-sm"');?>
                     <a href='<?php echo site_url()?>' class='btn btn-danger btn-sm'>Logout</a>
                     <?php echo anchor('officers', 'Officer Panel', 'class="btn btn-success btn-sm"');?>
@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-8 offset-2" id="tables">
                     <div id='users'>
-                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_users">
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_users">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -55,7 +55,7 @@
                         <br/><br/>
                     </div>
                     <div id='players' style='display: none;'>
-                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_players">
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_players">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -81,7 +81,7 @@
                         <br/><br/>
                     </div>
                     <div id='characters' style='display: none;'>
-                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_characters">
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_characters">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -123,7 +123,7 @@
                         <br/><br/>
                     </div>
                     <div id='bosses' style='display: none;'>
-                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_bosses">
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_bosses">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -155,7 +155,7 @@
                         <br/><br/>
                     </div>
                     <div id='items' style='display: none;'>
-                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_items">
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_items">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -187,7 +187,7 @@
                         <br/><br/>
                     </div>
                     <div id='raids' style='display: none;'>
-                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_raids">
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_raids">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -215,7 +215,7 @@
                         <br/><br/>
                     </div>
                     <div id='events' style='display: none;'>
-                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_events">
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_events">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -245,7 +245,7 @@
                         <br/><br/>
                     </div>
                      <div id='drops' style='display: none;'>
-                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_drops">
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_drops">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -273,7 +273,7 @@
                         <br/><br/>
                     </div>
                     <div id='attendance' style='display: none;'>
-                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_attendance">
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_attendance">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -301,7 +301,7 @@
                         <br/><br/>
                     </div>
                     <div id='loot' style='display: none;'>
-                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_loot">
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_loot">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -330,9 +330,4 @@
                     </div>
                 </div>
             </div>
-
-            <?php
-                if (isset($this->session->table)) {
-                    echo "<script>show('".$this->session->table."');</script>";
-                }
-            ?>
+            <?php if(isset($this->session->table)) echo "<script>show('".$this->session->table."')</script>"; ?>
