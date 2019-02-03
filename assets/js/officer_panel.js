@@ -1,6 +1,6 @@
 $(document).ready(function () {
     comparing = [];
-    $("[id^='datatable']").DataTable();
+    $("#tables table").DataTable();
 
     $('#points').on('click', "button", function () {
         $("#compare").addClass('d-block');
