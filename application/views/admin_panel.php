@@ -8,16 +8,16 @@
                 <div class="col-10 offset-1 text-center">
                     <?php if(isset($this->session->msg)) echo $this->session->msg ?>
                     <br/><br/>
-                    <button onclick='show("users")' id='button_users' class="btn btn-primary btn-sm">Users</button>
-                    <button onclick='show("players")' id='button_players' class="btn btn-light btn-sm">Players</button>
-                    <button onclick='show("characters")' id='button_characters' class="btn btn-light btn-sm">Characters</button>
-                    <button onclick='show("bosses")' id='button_bosses' class="btn btn-light btn-sm">Bosses</button>
-                    <button onclick='show("items")' id='button_items' class="btn btn-light btn-sm">Items</button>
-                    <button onclick='show("raids")' id='button_raids' class="btn btn-light btn-sm">Raids</button>
-                    <button onclick='show("events")' id='button_events' class="btn btn-light btn-sm">Events</button>
-                    <button onclick='show("drops")' id='button_drops' class="btn btn-light btn-sm">Drops</button>
-                    <button onclick='show("attendance")' id='button_attendance' class="btn btn-light btn-sm">Attendance</button>
-                    <button onclick='show("loot")' id='button_loot' class="btn btn-light btn-sm">Loot</button>
+                    <button id='button_users' class="btn btn-light btn-sm">Users</button>
+                    <button id='button_players' class="btn btn-light btn-sm">Players</button>
+                    <button id='button_characters' class="btn btn-light btn-sm">Characters</button>
+                    <button id='button_bosses' class="btn btn-light btn-sm">Bosses</button>
+                    <button id='button_items' class="btn btn-light btn-sm">Items</button>
+                    <button id='button_raids' class="btn btn-light btn-sm">Raids</button>
+                    <button id='button_events' class="btn btn-light btn-sm">Events</button>
+                    <button id='button_drops' class="btn btn-light btn-sm">Drops</button>
+                    <button id='button_attendance' class="btn btn-light btn-sm">Attendance</button>
+                    <button id='button_loot' class="btn btn-light btn-sm">Loot</button>
                     <?php echo anchor('admins', 'Refresh', 'class="btn btn-success btn-sm"');?>
                     <a href='<?php echo site_url()?>' class='btn btn-danger btn-sm'>Logout</a>
                     <?php echo anchor('officers', 'Officer Panel', 'class="btn btn-success btn-sm"');?>
@@ -26,7 +26,7 @@
             </div>
             <div class="row">
                 <div class="col-8 offset-2" id="tables">
-                    <div id='users'>
+                    <div id='users' class='d-none'>
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_users">
                             <thead>
                                 <tr>
@@ -54,7 +54,7 @@
                         <a href='<?php echo site_url()?>/users/show_insert/' class='btn btn-success btn-sm'>New</a>
                         <br/><br/>
                     </div>
-                    <div id='players' style='display: none;'>
+                    <div id='players' class='d-none'>
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_players">
                             <thead>
                                 <tr>
@@ -80,7 +80,7 @@
                         <a href='<?php echo site_url()?>/players/show_insert/' class='btn btn-success btn-sm'>New</a>
                         <br/><br/>
                     </div>
-                    <div id='characters' style='display: none;'>
+                    <div id='characters' class='d-none'>
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_characters">
                             <thead>
                                 <tr>
@@ -122,7 +122,7 @@
                         <a href='<?php echo site_url()?>/characters/show_insert/' class='btn btn-success btn-sm'>New</a>
                         <br/><br/>
                     </div>
-                    <div id='bosses' style='display: none;'>
+                    <div id='bosses' class='d-none'>
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_bosses">
                             <thead>
                                 <tr>
@@ -154,7 +154,7 @@
                         <a href='<?php echo site_url()?>/bosses/show_insert/' class='btn btn-success btn-sm'>New</a>
                         <br/><br/>
                     </div>
-                    <div id='items' style='display: none;'>
+                    <div id='items' class='d-none'>
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_items">
                             <thead>
                                 <tr>
@@ -186,7 +186,7 @@
                         <a href='<?php echo site_url()?>/items/show_insert/' class='btn btn-success btn-sm'>New</a>
                         <br/><br/>
                     </div>
-                    <div id='raids' style='display: none;'>
+                    <div id='raids' class='d-none'>
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_raids">
                             <thead>
                                 <tr>
@@ -214,7 +214,7 @@
                         <a href='<?php echo site_url()?>/raids/show_insert/' class='btn btn-success btn-sm'>New</a>
                         <br/><br/>
                     </div>
-                    <div id='events' style='display: none;'>
+                    <div id='events' class='d-none'>
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_events">
                             <thead>
                                 <tr>
@@ -244,7 +244,7 @@
                         <a href='<?php echo site_url()?>/events/show_insert/' class='btn btn-success btn-sm'>New</a>
                         <br/><br/>
                     </div>
-                     <div id='drops' style='display: none;'>
+                     <div id='drops' class='d-none'>
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_drops">
                             <thead>
                                 <tr>
@@ -272,7 +272,7 @@
                         <a href='<?php echo site_url()?>/drops/show_insert/' class='btn btn-success btn-sm'>New</a>
                         <br/><br/>
                     </div>
-                    <div id='attendance' style='display: none;'>
+                    <div id='attendance' class='d-none'>
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_attendance">
                             <thead>
                                 <tr>
@@ -300,7 +300,7 @@
                         <a href='<?php echo site_url()?>/attendance/show_insert/' class='btn btn-success btn-sm'>New</a>
                         <br/><br/>
                     </div>
-                    <div id='loot' style='display: none;'>
+                    <div id='loot' class='d-none'>
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_loot">
                             <thead>
                                 <tr>
@@ -330,4 +330,11 @@
                     </div>
                 </div>
             </div>
-            <?php if(isset($this->session->table)) echo "<script>show('".$this->session->table."')</script>"; ?>
+            <?php 
+                if(isset($this->session->table)) {
+                    echo "<script>show('".$this->session->table."')</script>";
+                }
+                else {
+                    echo "<script>show('users')</script>";
+                }
+            ?>

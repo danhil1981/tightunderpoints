@@ -7,14 +7,14 @@
                 <div class="col-10 offset-1 text-center">
                     <?php if(isset($this->session->msg)) echo $this->session->msg ?>
                     <br/><br/>
-                    <button id='button_points' class="btn btn-primary btn-sm">Points</button>
+                    <button id='button_points' class="btn btn-light btn-sm">Points</button>
                     <button id='button_timers' class="btn btn-light btn-sm">Timers</button>
                     <a href='<?php echo site_url()?>' class='btn btn-danger btn-sm'>Logout</a>
                     <br/><br/>
                 </div>
             </div>
             <div class="row">
-                <div class="col-4 offset-4" id='compare' style='display: none'>
+                <div class="col-4 offset-4 d-none" id='compare'>
                     <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_compare">
                         <thead>
                             <tr>
@@ -28,7 +28,7 @@
                     </table>
                 </div>
                 <br/>
-                <div class="col-4 offset-4" id="winner" style="display: none">
+                <div class="col-4 offset-4 d-none" id="winner">
                     <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_winner">
                         <tbody id="winner_tbody">
                         </tbody>
@@ -36,7 +36,7 @@
                 </div>
                 <br/>
                 <div class="col-8 offset-2" id="tables">
-                    <div id='points'>
+                    <div id='points' class='d-none'>
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_points">
                             <thead>
                                 <tr>
@@ -75,7 +75,7 @@
                         </table>
                         <br/><br/>
                     </div>
-                    <div id='timers' style='display:none'>
+                    <div id='timers' class='d-none'>
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_timers">
                             <thead>
                                 <tr>
@@ -116,3 +116,11 @@
                     </div>
                 </div>
             </div>
+            <?php 
+                if(isset($this->session->table)) {
+                    echo "<script>show('".$this->session->table."')</script>";
+                }
+                else {
+                    echo "<script>show('points')</script>";
+                }
+            ?>
