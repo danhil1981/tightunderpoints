@@ -3,6 +3,7 @@
             <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
             <script src="<?php echo base_url()?>assets/js/officer_panel.js"></script>
             <h1 class='text-center text-white'>Officer Panel</h1>
+            <br/><br/>
             <div class="row" id="menu_buttons">
                 <div class="col-10 offset-1 text-center">
                     <?php if(isset($this->session->msg)) echo $this->session->msg ?>
@@ -37,7 +38,7 @@
                 <br/>
                 <div class="col-8 offset-2" id="tables">
                     <div id='points' class='d-none'>
-                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_points">
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_points">
                             <thead>
                                 <tr>
                                     <th scope="col">Name</th>
@@ -76,7 +77,7 @@
                         <br/><br/>
                     </div>
                     <div id='timers' class='d-none'>
-                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="datatable_timers">
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_timers">
                             <thead>
                                 <tr>
                                     <th scope="col">Boss</th>
