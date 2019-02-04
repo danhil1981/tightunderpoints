@@ -13,6 +13,7 @@
                 INNER JOIN characters ON attendance.id_character = characters.id
                 INNER JOIN events ON attendance.id_event = events.id
                 INNER JOIN bosses ON events.id_boss = bosses.id
+                ORDER BY characters.name
             ;");
             $attendance = array();
             if ($query->num_rows() > 0) {
