@@ -10,6 +10,7 @@
                     <br/><br/>
                     <button id='button_points' class="btn btn-light btn-sm">Points</button>
                     <button id='button_timers' class="btn btn-light btn-sm">Timers</button>
+                    <button id='button_attendance' class="btn btn-light btn-sm">Attendance</button>
                     <a href='<?php echo site_url()?>' class='btn btn-danger btn-sm'>Logout</a>
                     <?php if($this->session->type == "Admin") echo anchor('admins', 'Admin Panel', 'class="btn btn-success btn-sm"') ?>
                     <br/><br/>
@@ -110,6 +111,41 @@
                                             }
                                         }
                                         echo "</td></tr>";
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                        <br/><br/>
+                    </div>
+                    <div id='attendance' class='d-none'>
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_attendance">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Event</th>
+                                    <th scope="col">Characters</th>
+                                    <th scope="col">&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    foreach ($events as $i => $value) {
+                                        echo "<td class='align-middle'>".$value."</td>";
+                                        echo "<td class='align-middle'>";
+                                        $found = false;
+                                        for ($j = 0; $j < count($attendance_list); $j++) {
+                                            $attendance_entry = $attendance_list[$j];
+                                            if ($attendance_entry['id_event'] == $i) {
+                                                echo $attendance_entry['name_character']." ";
+                                                $found = true;
+                                            }
+                                        }
+                                        echo "</td>";
+                                        if ($found == true) {
+                                            echo "<td class='align-middle'><a href='".site_url()."/officers/show_modify_attendance/".$i."' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
+                                        }
+                                        else {
+                                            echo "<td class='align-middle'><a href='".site_url()."/officers/show_insert_attendance/".$i."' class='btn btn-success btn-sm'>New</a></td></tr>";
+                                        }  
                                     }
                                 ?>
                             </tbody>
