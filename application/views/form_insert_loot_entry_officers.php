@@ -10,7 +10,7 @@
                             Character<br/><br/>
                         </div>
                         <div class="form-inline-block">
-                            <?php echo form_dropdown('id_character', $character_names, $id_character,'class="form-control float-left"');?>
+                            <?php echo form_dropdown('id_character', $character_names, $id_character,'disabled class="form-control float-left"');?>
                         </div>
                         <br/><br/>
                     </div>
@@ -42,7 +42,7 @@
                         <?php echo form_dropdown('id_item', '' , '', 'id="item_dropdown" class="form-control float-left"');?>
                         <button type="button" class='btn btn-primary float-right' id="new_item" data-toggle="modal" data-target="#modal_item">New</button>
                         </div>
-                        <br/><br/>
+                        <br/><br/><br/>
                     </div>
                     <?php echo form_submit('submit', 'Submit', 'class="btn btn-success btn-small"');?>
                     <?php echo anchor('officers', 'Cancel', 'class="btn btn-danger btn-small"');?>
