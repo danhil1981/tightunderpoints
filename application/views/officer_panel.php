@@ -11,6 +11,7 @@
                     <button id='button_points' class="btn btn-light btn-sm">Points</button>
                     <button id='button_timers' class="btn btn-light btn-sm">Timers</button>
                     <a href='<?php echo site_url()?>' class='btn btn-danger btn-sm'>Logout</a>
+                    <?php if($this->session->type == "Admin") echo anchor('admins', 'Admin Panel', 'class="btn btn-success btn-sm"') ?>
                     <br/><br/>
                 </div>
             </div>
@@ -69,7 +70,7 @@
                                         echo "<td>".$list_last50_earned[$i]."</td>";
                                         echo "<td>".$list_last50_spent[$i]."</td>";
                                         echo "<td id='points_$i'>".($list_last50_earned[$i]-$list_last50_spent[$i])."</td>";
-                                        echo "<td><button class='btn btn-sm btn-info' id='compare_".$i."'>Compare</button></td></tr>";
+                                        echo "<td><button class='btn btn-sm btn-primary' id='compare_".$i."'>Compare</button></td></tr>";
                                     }
                                 ?>
                             </tbody>
@@ -92,20 +93,20 @@
                                 <?php
                                     $timezone  = +1;
                                     foreach ($timers as $i => $value) {
-                                        echo "<tr><td>".$value['name_boss']."</td>";
-                                        echo "<td>".$value['last_killed']."</td>";
-                                        echo "<td>".$value['start_window']."</td>";
-                                        echo "<td>".$value['end_window']."</td>";
-                                        echo "<td>";
+                                        echo "<tr><td class='align-middle'>".$value['name_boss']."</td>";
+                                        echo "<td class='align-middle'>".$value['last_killed']."</td>";
+                                        echo "<td class='align-middle'>".$value['start_window']."</td>";
+                                        echo "<td class='align-middle'>".$value['end_window']."</td>";
+                                        echo "<td class='align-middle'>";
                                         if (gmdate("Y-m-d H:i:s",time()+ 3600*($timezone+date("I"))) > $value['end_window']) {
-                                            echo "<div class='bg-success'>UP</div></td><td><button class='btn btn-sm btn-info' id='kill_".$value['id_boss']."'>Add Event</button></td>";
+                                            echo "<div class='btn btn-sm btn-block btn-success'>UP</div></td><td class='align-middle'><a href='officers/event/".$value['id_boss']."' class='btn btn-sm btn-block btn-primary'>Create Event</a>";
                                         }
                                         else {
                                             if (gmdate("Y-m-d H:i:s",time()+ 3600*($timezone+date("I"))) < $value['start_window']) {
-                                                echo "<div class='bg-danger'>DOWN</div></td><td>";
+                                                echo "<div class='btn btn-sm btn-block btn-danger'>DOWN</div></td><td>";
                                             }
                                             else {
-                                                echo "<div class='bg-warning text-dark'>IN WINDOW</div></td><td><button class='btn btn-sm btn-info' id='kill_".$value['id_boss']."'>Add Event</button></td>";
+                                                echo "<div class='btn btn-sm btn-block btn-warning'>IN WINDOW</div></td><td class='align-middle'><a href='officers/event/".$value['id_boss']."' class='btn btn-sm btn-block  btn-primary'>Create Event</a>";
                                             }
                                         }
                                         echo "</td></tr>";
