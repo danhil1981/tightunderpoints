@@ -61,7 +61,7 @@ $(document).ready( function () {
         var id_boss = $("#event_boss_id").val();
         var id_raid = $("#raid_dropdown").val();
         $.ajax({
-            url: path +'insert_event/',
+            url: path +'insert_event_ajax/',
             data: { 'time':time, 'date':date, 'id_boss':id_boss , 'id_raid':id_raid  },
             type: 'post',
             success: function(output) {
