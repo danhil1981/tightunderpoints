@@ -31,7 +31,7 @@ $(document).ready( function () {
     });
 
     $("#raid_dropdown").change(function() {
-        var id_raid = $("#raid_dropdown").prop('selectedIndex');
+        var id_raid = $("#raid_dropdown").val();
         $.ajax({
             url: path +'get_events/',
             data: {'id_raid':id_raid},
