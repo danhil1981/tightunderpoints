@@ -21,9 +21,7 @@ $(document).ready( function () {
                 }
             }
         });
-        $("#modal_raid").removeClass("show");
-        $("body").removeClass("modal-open");
-        $(".modal-backdrop").remove();
+        $('#modal_raid').modal('hide');
         $('#form_raid')[0].reset();
         $("#event_dropdown option").remove();
         $("#item_dropdown option").remove();
@@ -77,9 +75,7 @@ $(document).ready( function () {
                 }
             }
         });
-        $("#modal_event").removeClass("show");
-        $("body").removeClass("modal-open");
-        $(".modal-backdrop").remove();
+        $('#modal_event').modal('hide');
         $('#form_event')[0].reset();
         $("#raid_dropdown").trigger("change");
         return false;
@@ -131,9 +127,7 @@ $(document).ready( function () {
                 }
             }
         });
-        $("#modal_item").removeClass("show");
-        $("body").removeClass("modal-open");
-        $(".modal-backdrop").remove();
+        $('#modal_item').modal('hide');
         $('#form_item')[0].reset();
         $("#raid_dropdown").trigger("change");
         return false;

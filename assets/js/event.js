@@ -21,9 +21,7 @@ $(document).ready(function () {
                 }
             }
         });
-        $("#modal_raid").removeClass("show");
-        $("body").removeClass("modal-open");
-        $(".modal-backdrop").remove();
+        $('#modal_raid').modal('hide');
         $('#form_raid')[0].reset();
         return false;
     });
