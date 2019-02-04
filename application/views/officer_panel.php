@@ -141,10 +141,10 @@
                                         }
                                         echo "</td>";
                                         if ($found == true) {
-                                            echo "<td class='align-middle'><a href='".site_url()."/officers/show_modify_attendance/".$i."' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
+                                            echo "<td class='align-middle'><a href='".site_url()."officers/show_modify_attendance/".$i."' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
                                         }
                                         else {
-                                            echo "<td class='align-middle'><a href='".site_url()."/officers/show_insert_attendance/".$i."' class='btn btn-success btn-sm'>New</a></td></tr>";
+                                            echo "<td class='align-middle'><a href='".site_url()."officers/show_insert_attendance/".$i."' class='btn btn-success btn-sm'>New</a></td></tr>";
                                         }  
                                     }
                                 ?>
