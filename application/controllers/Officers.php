@@ -28,6 +28,17 @@
             }
         }
 
+        public function event($id) {
+            if ($this->check_login()) {
+                $data['view_name'] = 'form_insert_event_entry_officers';
+                $data['id_boss'] = $id;
+                $data['raid_descriptions'] = $this->model_raids->get_list();
+                $data['boss_names'] = $this->model_bosses->get_list();
+                $data['events_not_in_raid'] = $this->model_events->events_not_in_raid();
+                $this->load->view('template', $data);
+            }
+        }
+
         public function insert_raid() {
             if ($this->check_login()) {
                 $description= quotes_to_entities($this->input->post('description'));
@@ -48,6 +59,20 @@
         }
 
         public function insert_event() {
+            if ($this->check_login()) {
+                $result_insert = $this->model_events->insert();
+                if ($result_insert == 0) {
+                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on insertion</div><br/>");
+                }
+                else {
+                    $this->session->set_flashdata("msg","<div class='badge badge-success'>Event successfully inserted</div><br/>");
+                }
+                $this->session->set_flashdata("table", "timers");
+                redirect('officers');
+            }
+        }
+
+        public function insert_event_ajax() {
             if ($this->check_login()) {
                 $time = $this->input->post('time');
                 $date = $this->input->post('date');
@@ -100,6 +125,7 @@
                     break;
                     default: $this->session->set_flashdata("msg","<div class='badge badge-success'>Drop and Loot Entries successfully inserted</div><br/>");
                 }
+                $this->session->set_flashdata("table", "points");
                 redirect('officers');
             }
         }
