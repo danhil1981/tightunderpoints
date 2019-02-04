@@ -25,5 +25,9 @@ $(document).ready(function () {
         $('#form_raid')[0].reset();
         return false;
     });
+
+    $('#modal_raid').on('shown.bs.modal', function () {
+        $('#raid_description').focus();
+    })
     
 });

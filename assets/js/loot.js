@@ -134,6 +134,18 @@ $(document).ready( function () {
     });
     $("#raid_dropdown").trigger("change");
 
+    $('#modal_raid').on('shown.bs.modal', function () {
+        $('#raid_description').focus();
+    })
+
+    $('#modal_event').on('shown.bs.modal', function () {
+        $('#event_boss_id').focus();
+    })
+
+    $('#modal_item').on('shown.bs.modal', function () {
+        $('#id_item').focus();
+    })
+
 });
 
 function decodeHtml(html) {
