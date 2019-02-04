@@ -12,6 +12,8 @@
             $data['list_total_spent'] = $this->model_characters->get_list_total_spent();
             $data['list_last50_spent'] = $this->model_characters->get_list_last50_spent();
             $data['timers'] = $this->model_officers->get_timers();
+            $data['events'] = $this->model_events->get_list();
+            $data['attendance_list'] = $this->model_attendance->get_all();
             $data['view_name'] = 'officer_panel';
             $this->load->view('template', $data);
         }
@@ -135,6 +137,16 @@
                 $id_name = $this->model_officers->get_winner();
                 print_r($id_name);
                 die;
+            }
+        }
+
+        public function show_insert_attendance($id) {
+            if ($this->check_login()) {
+                $data['view_name'] = 'form_insert_attendance_officers';
+                $data['id_event'] = $id;
+                $data['events'] = $this->model_events->get_list();
+                $data['character_names'] = $this->model_characters->get_list_names();
+                $this->load->view('template', $data);
             }
         }
 
