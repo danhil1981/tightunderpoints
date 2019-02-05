@@ -3,7 +3,7 @@
                 <div class="col-6 offset-3">
                     <h1 class="text-center text-white">New Attendance List</h1>
                     <br/><br/>
-                    <?php echo form_open_multipart('officers/insert_attendance');?>
+                    <?php echo form_open_multipart('officers/confirm_attendance');?>
                     <div class="form-group">
                         <div class="text-white">
                             Event<br/><br/>
@@ -19,10 +19,24 @@
                         <div class="form-inline d-block">
                             <?php echo form_dropdown('id_character', $options, '', 'required id="character_dropdown" class="form-control float-left"');?>
                             <button id="add_character" class="btn btn-sm btn-primary form-control float-left ml-2">Add</button>
+                            <?php echo form_upload('list_characters','','class="float-right"');?>
                         </div>
                         <br/><br/><br/>
                     </div>
+                    <div id="characters" class="col-4 d-none">
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_characters">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Name</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody_characters">
+                            </tbody>
+                        </table>
+                    </div>
                     <?php echo form_hidden('id_event',$id_event);?>
+                    <input type="hidden" name="list_characters" id="list_characters" value="" />
                     <?php echo form_submit('submit', 'Submit', 'class="btn btn-success btn-small"');?>
                     <?php echo anchor('officers', 'Cancel', 'class="btn btn-danger btn-small"');?>
                     <?php echo form_close();?>
