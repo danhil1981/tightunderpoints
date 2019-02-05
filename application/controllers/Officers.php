@@ -150,6 +150,16 @@
             }
         }
 
+        public function confirm_attendance() {
+            if ($this->check_login()) {
+                $data['view_name'] = 'form_confirm_attendance';
+                $data['id_event'] = $this->input->post("id_event");
+                $data['list_characters'] = $this->input->post("list_characters");
+                $data['list_types'] = $this->model_characters->get_list_types();
+                $this->load->view('template', $data);
+            }
+        }
+
     }
 
 ?>
