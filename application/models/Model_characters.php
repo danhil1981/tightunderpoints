@@ -67,6 +67,17 @@
             return array_column($characters, 'name_character', 'id_character');
         }
 
+        public function get_list_mains() {
+            $query = $this->db->query("SELECT id AS id_character, name AS name_character FROM characters WHERE type = 1 ORDER BY name;");
+            $characters = array();
+            if ($query->num_rows() > 0) {
+                foreach ($query->result_array() as $row) {
+                    $characters[] = $row;
+                }
+            }
+            return array_column($characters, 'name_character', 'id_character');
+        }
+
         public function get_list_total_earned() {
             $query = $this->db->query("SELECT
                 characters.id AS id_character, IFNULL(SUM(bosses.value),0) AS total_earned
