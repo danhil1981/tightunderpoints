@@ -115,6 +115,8 @@
                                 ?>
                             </tbody>
                         </table>
+                        <br/>
+                        <a href='<?php echo site_url()?>/events/show_insert/officers' class='btn btn-success btn-sm'>New</a>
                         <br/><br/>
                     </div>
                     <div id='attendance' class='d-none'>
