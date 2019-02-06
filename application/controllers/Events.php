@@ -4,23 +4,29 @@
 
     Class Events extends Security {
 
-        public function show_insert() {
+        public function show_insert($source = "admins") {
             if ($this->check_login()) {
                 $data['view_name'] = 'form_insert_event';
                 $data['raid_descriptions'] = $this->model_raids->get_list();
                 $data['boss_names'] = $this->model_bosses->get_list();
+                $data['source'] = $source;
                 $this->load->view('template', $data);
             }
         }
 
         public function insert() {
             if ($this->check_login()) {
+                $source = $this->input->post("source");
                 $result_insert = $this->model_events->insert();
                 if ($result_insert == 0) {
                     $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on insertion</div><br/>");
                 }
                 else {
                     $this->session->set_flashdata("msg","<div class='badge badge-success'>Event successfully inserted</div><br/>");
+                }
+                if ($source == "officers") {
+                    $this->session->set_flashdata("table", "timers");
+                    redirect('officers');
                 }
                 $this->session->set_flashdata("table", "events");
                 redirect('admins');
