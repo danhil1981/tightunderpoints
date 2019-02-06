@@ -17,8 +17,8 @@
                     </div>
                     <?php
                         echo form_hidden('id',$raid['id']);
-                        echo form_submit('submit', 'Submit', 'class="btn btn-primary btn-small"');
-                        echo anchor('admins', 'Cancel', 'class="btn btn-danger btn-small"');
+                        echo form_submit('submit', 'Submit', 'class="btn btn-primary btn-sm"');
+                        echo anchor('admins', 'Cancel', 'class="btn btn-danger btn-sm"');
                         echo form_close();
                     ?>
                 </div>

@@ -31,8 +31,8 @@
                         </div>
                         <?php echo form_date('date',gmdate('Y-m-d'), 'required class="form-control"')?>
                     </div>
-                    <?php echo form_submit('submit', 'Submit', 'class="btn btn-primary btn-small"');?>
-                    <?php echo anchor('admins', 'Cancel', 'class="btn btn-danger btn-small"');?>
+                    <?php echo form_submit('submit', 'Submit', 'class="btn btn-primary btn-sm"');?>
+                    <?php echo anchor('admins', 'Cancel', 'class="btn btn-danger btn-sm"');?>
                     <?php echo form_close();?>
                 </div>
             </div>

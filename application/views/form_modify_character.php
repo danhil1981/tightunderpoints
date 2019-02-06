@@ -42,9 +42,9 @@
                         <?php echo form_dropdown('id_player', $options, $character['id_player'], 'required class="form-control"');?>
                         <br/><br/>
                     </div>
-                    <?php echo form_submit('submit', 'Submit', 'class="btn btn-primary btn-small"');?>
+                    <?php echo form_submit('submit', 'Submit', 'class="btn btn-primary btn-sm"');?>
                     <?php echo form_hidden('id',$character['id']);?>
-                    <?php echo anchor('admins', 'Cancel', 'class="btn btn-danger btn-small"');?>
+                    <?php echo anchor('admins', 'Cancel', 'class="btn btn-danger btn-sm"');?>
                     <?php echo form_close();?>
                 </div>
             </div>
