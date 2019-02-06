@@ -154,7 +154,14 @@
             if ($this->check_login()) {
                 $data['view_name'] = 'form_confirm_attendance';
                 $data['id_event'] = $this->input->post("id_event");
-                $data['list_characters'] = $this->input->post("list_characters");
+                $list_characters = explode(',',$this->input->post("list_characters"));
+                $data['list_characters'] = $list_characters;
+                $data['character_names'] = $this->model_characters->get_list_names();
+                $list_mains = array(0 => "-- Select a character --")+$this->model_characters->get_list_mains();
+                foreach ($list_characters as $i => $value) {
+                    unset($list_mains[$value]);
+                }
+                $data['list_mains'] = $list_mains;
                 $data['list_types'] = $this->model_characters->get_list_types();
                 $this->load->view('template', $data);
             }
