@@ -13,7 +13,7 @@
             $data['list_last50_spent'] = $this->model_characters->get_list_last50_spent();
             $data['timers'] = $this->model_officers->get_timers();
             $data['events'] = $this->model_events->get_list();
-            $data['attendance_list'] = $this->model_attendance->get_all();  
+            $data['attendance_list'] = $this->model_attendance->get_all();
             $data['view_name'] = 'officer_panel';
             $this->load->view('template', $data);
         }
