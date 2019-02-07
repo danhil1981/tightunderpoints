@@ -13,7 +13,7 @@
             $data['list_last50_spent'] = $this->model_characters->get_list_last50_spent();
             $data['timers'] = $this->model_officers->get_timers();
             $data['events'] = $this->model_events->get_list();
-            $data['attendance_list'] = $this->model_attendance->get_all();
+            $data['attendance_list'] = $this->model_attendance->get_all();  
             $data['view_name'] = 'officer_panel';
             $this->load->view('template', $data);
         }
@@ -157,13 +157,28 @@
                 $list_characters = explode(',',$this->input->post("list_characters"));
                 $data['list_characters'] = $list_characters;
                 $data['character_names'] = $this->model_characters->get_list_names();
-                $list_mains = array(0 => "-- Select a character --")+$this->model_characters->get_list_mains();
+                $list_mains = $this->model_characters->get_list_mains();
                 foreach ($list_characters as $i => $value) {
                     unset($list_mains[$value]);
                 }
                 $data['list_mains'] = $list_mains;
                 $data['list_types'] = $this->model_characters->get_list_types();
                 $this->load->view('template', $data);
+            }
+        }
+
+        public function insert_attendance() {
+            if ($this->check_login()) {
+                $result_insert = $this->model_attendance->officer_insert();
+                switch ($result_insert) {
+                    case "0": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error: Missing data)</div><br/>");
+                    break;
+                    case "1": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on insertion(s)</div><br/>");
+                    break;
+                    default: $this->session->set_flashdata("msg","<div class='badge badge-success'>Attendance Entries successfully inserted</div><br/>");
+                }
+                $this->session->set_flashdata("table", "attendance");
+                redirect('officers');
             }
         }
 
