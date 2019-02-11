@@ -110,7 +110,7 @@
             $count_inserts = count($characters);
             $count_success = 0;
             for ($i = 0; $i < count($characters); $i++) {
-                $this->db->query("INSERT INTO attendance (id_event, id_character, id_bot) VALUES ($id_event, $characters[$i], $substitutions[$i]);");
+                $this->db->query("INSERT INTO attendance (id_event, id_bot, id_character) VALUES ($id_event, $characters[$i], $substitutions[$i]);");
                 $count_success += $this->db->affected_rows();
             }
             if ($count_success == $count_inserts) {
