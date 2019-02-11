@@ -19,6 +19,14 @@
                         <?php echo form_dropdown('id_character', $options, $attendance_entry['id_character'], 'required class="form-control"');?>
                         <br/><br/>
                     </div>
+                    <?php $options = $main_names;?>
+                    <div class="form-group">
+                        <div class="text-white">
+                            Played By<br/><br/>
+                        </div>
+                        <?php echo form_dropdown('id_points', $options, $attendance_entry['id_points'], 'required class="form-control"');?>
+                        <br/><br/>
+                    </div>
                     <?php echo form_hidden('id',$attendance_entry['id']);?>
                     <?php echo form_submit('submit', 'Submit', 'class="btn btn-primary btn-sm"');?>
                     <?php echo anchor('admins', 'Cancel', 'class="btn btn-danger btn-sm"');?>

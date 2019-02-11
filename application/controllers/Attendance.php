@@ -9,6 +9,7 @@
                 $data['view_name'] = 'form_insert_attendance_entry';
                 $data['event_names'] = $this->model_events->get_list();
                 $data['character_names'] = $this->model_characters->get_list_names();
+                $data['main_names'] = $this->model_characters->get_list_mains();
                 $this->load->view('template', $data);
             }
         }
@@ -46,6 +47,7 @@
                 $data['view_name'] = 'form_modify_attendance_entry';
                 $data['event_names'] = $this->model_events->get_list();
                 $data['character_names'] = $this->model_characters->get_list_names();
+                $data['main_names'] = $this->model_characters->get_list_mains();
                 $data['attendance_entry'] = $this->model_attendance->get($id);
                 $this->load->view('template', $data);
             }

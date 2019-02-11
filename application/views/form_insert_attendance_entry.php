@@ -19,7 +19,7 @@
                         <?php echo form_dropdown('id_character', $options, '', 'required class="form-control"');?>
                         <br/><br/>
                     </div>
-                    <?php $options = $mains_names;?>
+                    <?php $options = $main_names;?>
                     <div class="form-group">
                         <div class="text-white">
                             Played By<br/><br/>
