@@ -14,6 +14,7 @@
             $data['events_list'] = $this->model_events->get_all();
             $data['drops_list'] = $this->model_drops->get_all();
             $data['attendance_list'] = $this->model_attendance->get_all();
+            $data['played_list'] = $this->model_attendance->get_played();
             $data['loot_list'] = $this->model_loot->get_all();
             $data['view_name'] = 'admin_panel';
             $this->load->view('template', $data);
