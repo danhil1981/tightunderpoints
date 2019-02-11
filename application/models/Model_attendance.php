@@ -55,7 +55,8 @@
         public function insert() {
             $id_event = $this->input->post("id_event");
             $id_character = $this->input->post("id_character");
-            $this->db->query("INSERT INTO attendance (id_event, id_character) VALUES ('$id_event', '$id_character');");
+            $id_points = $this->input->post("id_points");
+            $this->db->query("INSERT INTO attendance (id_event, id_character, id_points) VALUES ('$id_event', '$id_character', '$id_points');");
             return $this->db->affected_rows();
         }
 
@@ -63,7 +64,8 @@
             $id = $this->input->post('id');
             $id_event = $this->input->post("id_event");
             $id_character = $this->input->post("id_character");
-            $this->db->query("UPDATE attendance SET id_event = '$id_event', id_character = '$id_character' WHERE id = $id;");
+            $id_points = $this->input->post("id_points");
+            $this->db->query("UPDATE attendance SET id_event = '$id_event', id_character = '$id_character', id_points = '$id_points' WHERE id = $id;");
             return $this->db->affected_rows();
         }
 
