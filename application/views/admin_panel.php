@@ -290,8 +290,8 @@
                                         $played_entry = $played_list[$i];
                                         echo "<tr><th scope='row' class='align-middle'>".$attendance_entry['id']."</th>";
                                         echo "<td class='align-middle'>".$attendance_entry['name_event']."</td>";
-                                        echo "<td class='align-middle'>".$played_entry['name_character']."</td>";
                                         echo "<td class='align-middle'>".$attendance_entry['name_character']."</td>";
+                                        echo "<td class='align-middle'>".$played_entry['name_character']."</td>";
                                         echo "<td class='align-middle'><a href='".site_url()."/attendance/delete/".$attendance_entry['id']."' class='btn btn-danger btn-sm'>Delete</a></td>";
                                         echo "<td class='align-middle'><a href='".site_url()."/attendance/show_modify/".$attendance_entry['id']."' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
                                     }

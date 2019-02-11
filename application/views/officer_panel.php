@@ -139,11 +139,11 @@
                                             $played_entry = $played_list[$j];
                                             if ($attendance_entry['id_event'] == $i) {
                                                 if($attendance_entry['name_character'] !== $played_entry['name_character']) {
-                                                    echo "<div class='badge badge-secondary m-1'>".$played_entry['name_character']." ";
-                                                    echo "<div class='bg-primary d-inline'>".$attendance_entry['name_character']."</div></div>";
+                                                    echo "<div class='badge badge-secondary m-1'>".$attendance_entry['name_character']." ";
+                                                    echo "<div class='bg-primary d-inline'>".$played_entry['name_character']."</div></div>";
                                                 }
                                                 else {
-                                                    echo "<div class='badge badge-primary m-1'>".$played_entry['name_character']."</div>";
+                                                    echo "<div class='badge badge-primary m-1'>".$attendance_entry['name_character']."</div>";
                                                 }                                                
                                                 $found = true;
                                             }
