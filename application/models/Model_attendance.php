@@ -34,28 +34,9 @@
                 attendance.id_event,
                 characters.name AS name_character
                 FROM attendance
-                INNER JOIN characters ON attendance.id_bot = characters.id
+                INNER JOIN characters ON attendance.id_points = characters.id
                 INNER JOIN events ON attendance.id_event = events.id
                 INNER JOIN bosses ON events.id_boss = bosses.id
-            ;");
-            $attendance = array();
-            if ($query->num_rows() > 0) {
-                foreach ($query->result_array() as $row) {
-                    $attendance[] = $row;
-                }
-            }
-            return $attendance;
-        }
-
-        public function get_botted() {
-            $query = $this->db->query("SELECT
-                attendance.id_event,
-                characters.name AS name_character
-                FROM attendance
-                INNER JOIN characters ON attendance.id_bot = characters.id
-                INNER JOIN events ON attendance.id_event = events.id
-                INNER JOIN bosses ON events.id_boss = bosses.id
-                ORDER BY characters.id
             ;");
             $attendance = array();
             if ($query->num_rows() > 0) {
@@ -110,7 +91,7 @@
             $count_inserts = count($characters);
             $count_success = 0;
             for ($i = 0; $i < count($characters); $i++) {
-                $this->db->query("INSERT INTO attendance (id_event, id_bot, id_character) VALUES ($id_event, $characters[$i], $substitutions[$i]);");
+                $this->db->query("INSERT INTO attendance (id_event, id_points, id_character) VALUES ($id_event, $characters[$i], $substitutions[$i]);");
                 $count_success += $this->db->affected_rows();
             }
             if ($count_success == $count_inserts) {
