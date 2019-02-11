@@ -24,7 +24,7 @@ $(document).ready(function () {
             data: { 'comparing': comparing},
             type: 'post',
             success: function(output) {
-                $("#winner_tbody").html("<tr><th>Winner:</th><td>"+output.substring(parseInt(output).toString().length)+"</td><td><a href='/officers/loot/"+parseInt(output)+"' class='btn btn-block btn-sm btn-success'>Loot</a></td></tr>");
+                $("#winner_tbody").html("<tr><th>Winner:</th><td>"+output.substring(parseInt(output).toString().length)+"</td><td><a href='officers/loot/"+parseInt(output)+"' class='btn btn-block btn-sm btn-success'>Loot</a></td></tr>");
             }
         });
     });
