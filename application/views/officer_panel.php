@@ -100,14 +100,14 @@
                                         echo "<td class='align-middle'>".$value['end_window']."</td>";
                                         echo "<td class='align-middle'>";
                                         if (gmdate("Y-m-d H:i:s",time()+ 3600*($timezone+date("I"))) > $value['end_window']) {
-                                            echo "<div class='btn btn-sm btn-block btn-success'>UP</div></td><td class='align-middle'><a href='officers/event/".$value['id_boss']."' class='btn btn-sm btn-block btn-primary'>Create Event</a>";
+                                            echo "<div class='btn btn-sm btn-block btn-success'>UP</div></td><td class='align-middle'><a href='/officers/event/".$value['id_boss']."' class='btn btn-sm btn-block btn-primary'>Create Event</a>";
                                         }
                                         else {
                                             if (gmdate("Y-m-d H:i:s",time()+ 3600*($timezone+date("I"))) < $value['start_window']) {
                                                 echo "<div class='btn btn-sm btn-block btn-danger'>DOWN</div></td><td>";
                                             }
                                             else {
-                                                echo "<div class='btn btn-sm btn-block btn-warning'>IN WINDOW</div></td><td class='align-middle'><a href='officers/event/".$value['id_boss']."' class='btn btn-sm btn-block  btn-primary'>Create Event</a>";
+                                                echo "<div class='btn btn-sm btn-block btn-warning'>IN WINDOW</div></td><td class='align-middle'><a href='/officers/event/".$value['id_boss']."' class='btn btn-sm btn-block  btn-primary'>Create Event</a>";
                                             }
                                         }
                                         echo "</td></tr>";
@@ -150,10 +150,10 @@
                                         }
                                         echo "</td>";
                                         if ($found == true) {
-                                            echo "<td class='align-middle'><a href='".site_url()."officers/show_modify_attendance/".$i."' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
+                                            echo "<td class='align-middle'><a href='".site_url()."//officers/show_modify_attendance/".$i."' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
                                         }
                                         else {
-                                            echo "<td class='align-middle'><a href='".site_url()."officers/show_insert_attendance/".$i."' class='btn btn-success btn-sm'>New</a></td></tr>";
+                                            echo "<td class='align-middle'><a href='".site_url()."//officers/show_insert_attendance/".$i."' class='btn btn-success btn-sm'>New</a></td></tr>";
                                         }  
                                     }
                                 ?>

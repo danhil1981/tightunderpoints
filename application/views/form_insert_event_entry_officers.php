@@ -4,7 +4,7 @@
                     <h1 class="text-center text-white">New Event Entry</h1>
                     <div id="messages" class="text-center"></div>
                     <br/><br/>
-                    <?php echo form_open_multipart('officers/insert_event');?>
+                    <?php echo form_open_multipart('/officers/insert_event');?>
                     <div class="form-group">
                         <div class="text-white">
                             Boss<br/><br/>

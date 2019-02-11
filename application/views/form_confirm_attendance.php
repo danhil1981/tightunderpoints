@@ -3,7 +3,7 @@
             <br/><br/>
             <div class="row">
                 <div class="col-8 offset-2" id="tables">
-                    <?php echo form_open_multipart('officers/insert_attendance');?>
+                    <?php echo form_open_multipart('/officers/insert_attendance');?>
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_users">
                             <thead>
                                 <tr>
