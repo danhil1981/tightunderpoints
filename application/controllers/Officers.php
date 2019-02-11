@@ -172,11 +172,56 @@
             if ($this->check_login()) {
                 $result_insert = $this->model_attendance->officer_insert();
                 switch ($result_insert) {
-                    case "0": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error: Missing data)</div><br/>");
+                    case "0": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error: Missing data</div><br/>");
                     break;
                     case "1": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on insertion(s)</div><br/>");
                     break;
                     default: $this->session->set_flashdata("msg","<div class='badge badge-success'>Attendance Entries successfully inserted</div><br/>");
+                }
+                $this->session->set_flashdata("table", "attendance");
+                redirect('officers');
+            }
+        }
+
+        public function show_modify_attendance($id_event) {
+            if ($this->check_login()) {
+                $data['id_event'] = $id_event;
+                $data['events'] = $this->model_events->get_list();
+                $data['view_name'] = 'form_modify_attendance_officers';
+                $data['character_names'] = $this->model_characters->get_list_names();
+                $list_characters = $this->model_attendance->get_characters($id_event);
+                $data['list_characters_array'] = $list_characters;
+                $data['list_characters_comma'] = implode(',',array_keys($list_characters));                
+                $this->load->view('template', $data);
+            }
+        }
+
+        public function confirm_modify_attendance() {
+            if ($this->check_login()) {
+                $data['view_name'] = 'form_confirm_modify_attendance';
+                $data['id_event'] = $this->input->post("id_event");
+                $list_characters = explode(',',$this->input->post("list_characters"));
+                $data['list_characters'] = $list_characters;
+                $data['character_names'] = $this->model_characters->get_list_names();
+                $list_mains = $this->model_characters->get_list_mains();
+                foreach ($list_characters as $i => $value) {
+                    unset($list_mains[$value]);
+                }
+                $data['list_mains'] = $list_mains;
+                $data['list_types'] = $this->model_characters->get_list_types();
+                $this->load->view('template', $data);
+            }
+        }
+
+        public function modify_attendance() {
+            if ($this->check_login()) {
+                $result_modify = $this->model_attendance->officer_modify();
+                switch ($result_modify) {
+                    case "0": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error: Missing data</div><br/>");
+                    break;
+                    case "1": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on modification(s)</div><br/>");
+                    break;
+                    default: $this->session->set_flashdata("msg","<div class='badge badge-success'>Attendance Entries successfully modified</div><br/>");
                 }
                 $this->session->set_flashdata("table", "attendance");
                 redirect('officers');
