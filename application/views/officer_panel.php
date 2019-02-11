@@ -136,8 +136,15 @@
                                         $found = false;
                                         for ($j = 0; $j < count($attendance_list); $j++) {
                                             $attendance_entry = $attendance_list[$j];
+                                            $played_entry = $played_list[$j];
                                             if ($attendance_entry['id_event'] == $i) {
-                                                echo $attendance_entry['name_character']." ";
+                                                if($attendance_entry['name_character'] !== $played_entry['name_character']) {
+                                                    echo "<div class='badge badge-secondary m-1'>".$played_entry['name_character']." ";
+                                                    echo "<div class='bg-primary d-inline'>(".$attendance_entry['name_character'].")</div></div>";
+                                                }
+                                                else {
+                                                    echo "<div class='badge badge-primary m-1'>".$played_entry['name_character']."</div>";
+                                                }                                                
                                                 $found = true;
                                             }
                                         }
