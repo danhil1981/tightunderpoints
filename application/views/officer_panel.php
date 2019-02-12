@@ -14,7 +14,8 @@
                     <button id='button_players' class="btn btn-light btn-sm">Players</button>
                     <button id='button_characters' class="btn btn-light btn-sm">Characters</button>
                     <a href='<?php echo site_url()?>' class='btn btn-danger btn-sm'>Logout</a>
-                    <?php if($this->session->type == "Admin") echo anchor('admins', 'Admin Panel', 'class="btn btn-success btn-sm"') ?>
+                    <?php if($this->session->type < 2) echo anchor('admins', 'Admin Panel', 'class="btn btn-success btn-sm"') ?>
+                    <?php echo anchor('members', 'Member Panel', 'class="btn btn-success btn-sm"');?>
                     <br/><br/>
                 </div>
             </div>
