@@ -15,6 +15,8 @@
             $data['events'] = $this->model_events->get_list();
             $data['attendance_list'] = $this->model_attendance->get_all();
             $data['played_list'] = $this->model_attendance->get_played();
+            $data['players_list'] = $this->model_players->get_all();
+            $data['characters_list'] = $this->model_characters->get_all();
             $data['view_name'] = 'officer_panel';
             $this->load->view('template', $data);
         }

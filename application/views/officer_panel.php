@@ -11,6 +11,8 @@
                     <button id='button_points' class="btn btn-light btn-sm">Points</button>
                     <button id='button_timers' class="btn btn-light btn-sm">Timers</button>
                     <button id='button_attendance' class="btn btn-light btn-sm">Attendance</button>
+                    <button id='button_players' class="btn btn-light btn-sm">Players</button>
+                    <button id='button_characters' class="btn btn-light btn-sm">Characters</button>
                     <a href='<?php echo site_url()?>' class='btn btn-danger btn-sm'>Logout</a>
                     <?php if($this->session->type == "Admin") echo anchor('admins', 'Admin Panel', 'class="btn btn-success btn-sm"') ?>
                     <br/><br/>
@@ -131,7 +133,7 @@
                             <tbody>
                                 <?php
                                     foreach ($events as $i => $value) {
-                                        echo "<td class='align-middle'>".$value."</td>";
+                                        echo "<tr><td class='align-middle'>".$value."</td>";
                                         echo "<td class='align-middle'>";
                                         $found = false;
                                         for ($j = 0; $j < count($attendance_list); $j++) {
@@ -154,11 +156,76 @@
                                         }
                                         else {
                                             echo "<td class='align-middle'><a href='".site_url()."//officers/show_insert_attendance/".$i."' class='btn btn-success btn-sm'>New</a></td></tr>";
-                                        }  
+                                        }
+                                        echo "</tr>";  
                                     }
                                 ?>
                             </tbody>
                         </table>
+                        <br/><br/>
+                    </div>
+                    <div id='players' class='d-none'>
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_players">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">&nbsp;</th>
+                                    <th scope="col">&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    for ($i = 0; $i < count($players_list); $i++) {
+                                        $player = $players_list[$i];
+                                        echo "<td class='align-middle'>".$player['name']."</td>";
+                                        echo "<td class='align-middle'><a href='".site_url()."/players/delete/".$player['id']."' class='btn btn-danger btn-sm'>Delete</a></td>";
+                                        echo "<td class='align-middle'><a href='".site_url()."/players/show_modify/".$player['id']."' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <a href='<?php echo site_url()?>/players/show_insert/' class='btn btn-success btn-sm'>New</a>
+                        <br/><br/>
+                    </div>
+                    <div id='characters' class='d-none'>
+                        <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_characters">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Level</th>
+                                    <th scope="col">Class</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Player</th>
+                                    <th scope="col">&nbsp;</th>
+                                    <th scope="col">&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    for ($i = 0; $i < count($characters_list); $i++) {
+                                        $character = $characters_list[$i];
+                                        echo "<tr><td class='align-middle'>".$character['name']."</td>";
+                                        echo "<td class='align-middle'>".$character['level']."</td>";
+                                        echo "<td class='align-middle'>".$character['class']."</td>";
+                                        echo "<td class='align-middle'>";
+                                            switch($character['type']) {
+                                                case "1": echo "Main";
+                                                break;
+                                                case "2": echo "Alt";
+                                                break;
+                                                default: echo "Bot";
+                                            }
+                                        echo "</td>";
+                                        echo "<td class='align-middle'>".$character['name_player']."</td>";
+                                        echo "<td class='align-middle'><a href='".site_url()."/characters/delete/".$character['id']."' class='btn btn-danger btn-sm'>Delete</a></td>";
+                                        echo "<td class='align-middle'><a href='".site_url()."/characters/show_modify/".$character['id']."' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <a href='<?php echo site_url()?>/characters/show_insert/' class='btn btn-success btn-sm'>New</a>
                         <br/><br/>
                     </div>
                 </div>
