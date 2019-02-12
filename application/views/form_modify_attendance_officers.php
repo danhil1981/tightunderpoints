@@ -20,7 +20,7 @@
                             <?php echo form_dropdown('id_character', $options, '', 'required id="character_dropdown" class="manual_input form-control float-left"');?>
                             <button id="add_character" class="manual_input btn btn-sm btn-primary form-control float-left ml-2">Add</button>
                             <label class="btn btn-sm btn-primary float-right" for="upload_input">
-                                <?php echo form_upload('list_characters','','id="upload_input" class="d-none"');?>Upload Log
+                                <?php echo form_upload('upload_characters','','id="upload_input" class="d-none"');?>Upload Log
                             </label>
                             <div class='text-white float-right mr-2' id="upload-file-info"></div>
                         </div>
