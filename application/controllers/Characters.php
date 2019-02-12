@@ -5,7 +5,7 @@
     Class Characters extends Security {
 
         public function show_insert($source = "admins") {
-            if ($this->check_login()) {
+            if ($this->check_permission(2)) {
                 $data['view_name'] = 'form_insert_character';
                 $data['player_names'] = $this->model_players->get_list();
                 $data['source'] = $source;
@@ -14,7 +14,7 @@
         }
 
         public function insert() {
-            if ($this->check_login()) {
+            if ($this->check_permission(2)) {
                 $source = $this->input->post("source");
                 $result_insert = $this->model_characters->insert();
                 if ($result_insert == 0) {
@@ -32,7 +32,7 @@
         }
 
         public function delete($id, $source = "admins") {
-            if ($this->check_login()) {
+            if ($this->check_permission(2)) {
                 $result = $this->model_characters->delete($id);
                 if ($result == 0) {
                     $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on deletion</div><br/>");
@@ -49,7 +49,7 @@
         }
 
         public function show_modify($id, $source = "admins") {
-            if ($this->check_login()) {
+            if ($this->check_permission(2)) {
                 $data['view_name'] = 'form_modify_character';
                 $data['character'] = $this->model_characters->get($id);
                 $data['player_names'] = $this->model_players->get_list();
@@ -59,7 +59,7 @@
         }
 
         public function modify() {
-            if ($this->check_login()) {
+            if ($this->check_permission(2)) {
                 $source = $this->input->post("source");
                 $result = $this->model_characters->modify();
                 if ($result == 0) {

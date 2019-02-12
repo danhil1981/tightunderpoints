@@ -5,7 +5,7 @@
     Class Drops extends Security {
 
         public function show_insert() {
-            if ($this->check_login()) {
+            if ($this->check_permission(1)) {
                 $data['view_name'] = 'form_insert_drop';
                 $data['event_names'] = $this->model_events->get_list();
                 $data['item_names'] = $this->model_items->get_list();
@@ -14,7 +14,7 @@
         }
 
         public function insert() {
-            if ($this->check_login()) {
+            if ($this->check_permission(1)) {
                     $result_insert = $this->model_drops->insert();
                     if ($result_insert == 0) {
                         $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on insertion</div><br/>");
@@ -28,7 +28,7 @@
         }
 
         public function delete($id) {
-            if ($this->check_login()) {
+            if ($this->check_permission(1)) {
                 $result = $this->model_drops->delete($id);
                 if ($result == 0) {
                     $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on deletion</div><br/>");
@@ -42,7 +42,7 @@
         }
 
         public function show_modify($id) {
-            if ($this->check_login()) {
+            if ($this->check_permission(1)) {
                 $data['view_name'] = 'form_modify_drop';
                 $data['event_names'] = $this->model_events->get_list();
                 $data['item_names'] = $this->model_items->get_list();
@@ -52,7 +52,7 @@
         }
 
         public function modify() {
-            if ($this->check_login()) {
+            if ($this->check_permission(1)) {
                 $result = $this->model_drops->modify();
                 if ($result == 0) {
                     $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on modification</div><br/>");

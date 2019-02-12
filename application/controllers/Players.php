@@ -5,7 +5,7 @@
     Class Players extends Security {
 
         public function show_insert($source = "admins") {
-            if ($this->check_login()) {
+            if ($this->check_permission(2)) {
                 $data['view_name'] = 'form_insert_player';
                 $data['source'] = $source;
                 $this->load->view('template', $data);
@@ -13,7 +13,7 @@
         }
 
         public function insert() {
-            if ($this->check_login()) {
+            if ($this->check_permission(2)) {
                 $source = $this->input->post("source");
                 $result_insert = $this->model_players->insert();
                 if ($result_insert == 0) {
@@ -31,7 +31,7 @@
         }
 
         public function delete($id, $source = "admins") {
-            if ($this->check_login()) {
+            if ($this->check_permission(2)) {
                 $result = $this->model_players->delete($id);
                 if ($result == 0) {
                     $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on deletion</div><br/>");
@@ -48,7 +48,7 @@
         }
 
         public function show_modify($id, $source = "admins") {
-            if ($this->check_login()) {
+            if ($this->check_permission(2)) {
                 $data['view_name'] = 'form_modify_player';
                 $data['player'] = $this->model_players->get($id);
                 $data['source'] = $source;
@@ -57,7 +57,7 @@
         }
 
         public function modify() {
-            if ($this->check_login()) {
+            if ($this->check_permission(2)) {
                 $source = $this->input->post("source");
                 $result = $this->model_players->modify();
                 if ($result == 0) {

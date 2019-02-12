@@ -5,7 +5,7 @@
     Class Events extends Security {
 
         public function show_insert($source = "admins") {
-            if ($this->check_login()) {
+            if ($this->check_permission(2)) {
                 $data['view_name'] = 'form_insert_event';
                 $data['raid_descriptions'] = $this->model_raids->get_list();
                 $data['boss_names'] = $this->model_bosses->get_list();
@@ -15,7 +15,7 @@
         }
 
         public function insert() {
-            if ($this->check_login()) {
+            if ($this->check_permission(2)) {
                 $source = $this->input->post("source");
                 $result_insert = $this->model_events->insert();
                 if ($result_insert == 0) {
@@ -33,7 +33,7 @@
         }
 
         public function delete($id) {
-            if ($this->check_login()) {
+            if ($this->check_permission(1)) {
                 $result = $this->model_events->delete($id);
                 if ($result == 0) {
                     $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on deletion</div><br/>");
@@ -47,7 +47,7 @@
         }
 
         public function show_modify($id) {
-            if ($this->check_login()) {
+            if ($this->check_permission(1)) {
                 $data['view_name'] = 'form_modify_event';
                 $data['event'] = $this->model_events->get($id);
                 $data['raid_descriptions'] = $this->model_raids->get_list();
@@ -57,7 +57,7 @@
         }
 
         public function modify() {
-            if ($this->check_login()) {
+            if ($this->check_permission(1)) {
                 $result = $this->model_events->modify();
                 if ($result == 0) {
                     $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on modification</div><br/>");
