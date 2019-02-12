@@ -15,6 +15,7 @@
             $this->load->model('model_attendance');
             $this->load->model('model_loot');
             $this->load->model('model_officers');
+            $this->load->model('model_upload');
         }
 
         public function process_login() {
