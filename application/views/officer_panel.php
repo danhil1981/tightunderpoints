@@ -218,14 +218,14 @@
                                             }
                                         echo "</td>";
                                         echo "<td class='align-middle'>".$character['name_player']."</td>";
-                                        echo "<td class='align-middle'><a href='".site_url()."/characters/delete/".$character['id']."' class='btn btn-danger btn-sm'>Delete</a></td>";
-                                        echo "<td class='align-middle'><a href='".site_url()."/characters/show_modify/".$character['id']."' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
+                                        echo "<td class='align-middle'><a href='".site_url()."/characters/delete/".$character['id']."/officers' class='btn btn-danger btn-sm'>Delete</a></td>";
+                                        echo "<td class='align-middle'><a href='".site_url()."/characters/show_modify/".$character['id']."/officers' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
                                     }
                                 ?>
                             </tbody>
                         </table>
                         <br/>
-                        <a href='<?php echo site_url()?>/characters/show_insert/' class='btn btn-success btn-sm'>New</a>
+                        <a href='<?php echo site_url()?>/characters/show_insert/officers/' class='btn btn-success btn-sm'>New</a>
                         <br/><br/>
                     </div>
                 </div>
