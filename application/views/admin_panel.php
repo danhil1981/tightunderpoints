@@ -42,7 +42,13 @@
                                         $user = $users_list[$i];
                                         echo "<tr><th scope='row'>".$user['id']."</th>";
                                         echo "<td>".$user['name']."</td>";
-                                        echo "<td>".$user['type']."</td>";
+                                        echo "<td>";
+                                        switch($user['type']) {
+                                            case "1": echo "Admin"; break;
+                                            case "2": echo "Officer"; break;
+                                            default: echo "Member";
+                                        }
+                                        echo "</td>";
                                         echo "<td><a href='".site_url()."/users/delete/".$user['id']."' class='btn btn-danger btn-sm'>Delete</a></td>";
                                         echo "<td><a href='".site_url()."/users/show_modify/".$user['id']."' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
                                     }
