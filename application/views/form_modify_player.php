@@ -10,6 +10,7 @@
                         <?php echo form_input('name',$player['name'],'required pattern="^[A-Za-z]+$" class="form-control"')?>
                         <br/><br/>
                     </div>
+                    <?php echo form_hidden('source',$source);?>
                     <?php echo form_hidden('id',$player['id']);?>
                     <?php echo form_submit('submit', 'Submit', 'class="btn btn-primary btn-sm"');?>
                     <?php echo anchor('admins', 'Cancel', 'class="btn btn-danger btn-sm"');?>
