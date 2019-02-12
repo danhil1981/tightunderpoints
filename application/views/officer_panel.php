@@ -100,7 +100,7 @@
                                         echo "<td class='align-middle'>".$value['end_window']."</td>";
                                         echo "<td class='align-middle'>";
                                         if (gmdate("Y-m-d H:i:s",time()+ 3600*($timezone+date("I"))) > $value['end_window']) {
-                                            echo "<div class='btn btn-sm btn-block btn-success'>UP</div></td><td class='align-middle'><a href='/officers/event/".$value['id_boss']."' class='btn btn-sm btn-block btn-primary'>Create Event</a>";
+                                            echo "<div class='btn btn-sm btn-block btn-success'>UP</div></td><td class='align-middle'><a href='officers/event/".$value['id_boss']."' class='btn btn-sm btn-block btn-primary'>Create Event</a>";
                                         }
                                         else {
                                             if (gmdate("Y-m-d H:i:s",time()+ 3600*($timezone+date("I"))) < $value['start_window']) {
