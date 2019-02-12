@@ -16,3 +16,7 @@ database.sql
 
 /application/config/config.php
 /application/config/database.php
+
+## Raid Logs
+
+/assets/uploads/raid_dumps/*
