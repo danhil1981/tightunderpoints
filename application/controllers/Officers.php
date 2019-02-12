@@ -175,10 +175,10 @@
                     }
                 }
                 foreach ($list_characters as $i => $value) {
-                        unset($list_mains[$value]);
-                    }
-                    $data['list_mains'] = $list_mains;
-                    $this->load->view('template', $data);
+                    unset($list_mains[$value]);
+                }
+                $data['list_mains'] = $list_mains;
+                $this->load->view('template', $data);
             }
         }
 
@@ -214,15 +214,29 @@
             if ($this->check_login()) {
                 $data['view_name'] = 'form_confirm_modify_attendance';
                 $data['id_event'] = $this->input->post("id_event");
-                $list_characters = explode(',',$this->input->post("list_characters"));
-                $data['list_characters'] = $list_characters;
                 $data['character_names'] = $this->model_characters->get_list_names();
+                $data['list_types'] = $this->model_characters->get_list_types();
                 $list_mains = $this->model_characters->get_list_mains();
+                if (($_FILES['upload_characters']['error'] == 4)) {
+                    $list_characters = explode(',',$this->input->post("list_characters"));
+                    $data['list_characters'] = $list_characters;
+                }
+                else {
+                    $result_upload = $this->model_raid_dump->upload($this->input->post("id_event"));
+                    if (!$result_upload) {
+                        $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on upload</div><br/>");
+                        $this->session->set_flashdata("table", "attendance");
+                        redirect('officers');
+                    }
+                    else {
+                        $list_characters = $this->model_raid_dump->process($this->upload->data('file_name'));
+                        $data['list_characters'] = $list_characters;
+                    }
+                }
                 foreach ($list_characters as $i => $value) {
                     unset($list_mains[$value]);
                 }
                 $data['list_mains'] = $list_mains;
-                $data['list_types'] = $this->model_characters->get_list_types();
                 $this->load->view('template', $data);
             }
         }
