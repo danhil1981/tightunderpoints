@@ -1,0 +1,12 @@
+1 Epic 65 Bard Group Leader
+1 Famous 65 Wizard
+1 Finto 65 Ranger
+1 Kajlars 65 Paladin
+1 Magikka 65 Magician
+1 Voxnatt 65 Druid
+2 Ericx 65 Warrior Group Leader
+2 Cirelca 65 Cleric
+2 Newguy 65 Magician
+11 Zeothule 65 Shadow Knight
+12 Crackinz 65 Wizard
+0 Mclovin 65 Cleric
