@@ -5,8 +5,10 @@
     Class Members extends Security {
 
         public function index() {
-            $data['view_name'] = 'member_panel';
-            $this->load->view('template', $data);
+            if ($this->check_permission()) {
+                $data['view_name'] = 'member_panel';
+                $this->load->view('template', $data);
+            }
         }
     }
 
