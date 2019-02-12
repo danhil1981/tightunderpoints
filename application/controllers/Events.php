@@ -24,11 +24,10 @@
                 else {
                     $this->session->set_flashdata("msg","<div class='badge badge-success'>Event successfully inserted</div><br/>");
                 }
+                $this->session->set_flashdata("table", "timers");
                 if ($source == "officers") {
-                    $this->session->set_flashdata("table", "timers");
                     redirect('officers');
                 }
-                $this->session->set_flashdata("table", "events");
                 redirect('admins');
             }
         }
