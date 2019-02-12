@@ -26,30 +26,45 @@
             else {
                 $this->session->set_flashdata("msg","<div class='badge badge-success'>Welcome, ".$this->session->username." !</div><br/>");
                 switch($this->session->type) {
-                    case "Admin": {
+                    case "1": {
                         redirect('admins');
                         break;
                     }
-                    case "Officer": {
+                    case "2": {
                         redirect('officers');
                         break;
                     }
                     default: {
-                        redirect('default');
+                        redirect('members');
                     }
                 }
             }
         }
 
-        public function check_login() {
-            $checked = false;
+        public function check_permission($type = 3) {
+            $allowed = false;
             if (!isset($this->session->logged_in)) {
                 $this->index("<div class='badge badge-danger mx-auto'>You need to be logged in to do this!</div><br/>");
             }
             else {
-                $checked = true;
+                if ($type < $this->session->type) {
+                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>You are not allowed to do this!</div><br/>");
+                    switch($this->session->type) {
+                        case "2": {
+                            redirect('officers');
+                            break;
+                        }
+                        default: {
+                            redirect('members');
+                        }
+                    }
+                }
+                else {
+                    $allowed = true;
+                }
+                
             }
-            return $checked;
+            return $allowed;
         }
 
     }
