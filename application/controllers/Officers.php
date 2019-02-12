@@ -174,6 +174,7 @@
                     else {
                         $list_characters = $this->model_raid_dump->process($this->upload->data('file_name'));
                         $data['list_characters'] = $list_characters;
+                        unlink('./assets/uploads/raid_dumps/'.$this->upload->data('file_name'));
                     }
                 }
                 foreach ($list_characters as $i => $value) {
@@ -233,6 +234,7 @@
                     else {
                         $list_characters = $this->model_raid_dump->process($this->upload->data('file_name'));
                         $data['list_characters'] = $list_characters;
+                        unlink('./assets/uploads/raid_dumps/'.$this->upload->data('file_name'));
                     }
                 }
                 foreach ($list_characters as $i => $value) {
