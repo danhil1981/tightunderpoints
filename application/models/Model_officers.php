@@ -89,7 +89,6 @@
                             $max_points = $comparing[$i + 1];
                         }
                         if ($comparing[$i + 1] == $max_points) {
-                            array_push($multiples, $max_id);
                             array_push($multiples, $comparing[$i]);
                             $max_id = $multiples[array_rand($multiples)];
                         }
