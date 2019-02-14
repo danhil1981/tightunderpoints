@@ -20,7 +20,7 @@
                         </div>
                         <?php echo form_password('password','','class="form-control"')?><br/>
                         <div class="text-center">
-                        <?php echo form_submit('submit', 'Submit', 'class="btn btn-primary btn-sm"');?>
+                        <?php echo form_submit('submit', 'Log In', 'class="btn btn-primary btn-sm"');?>
                         </div>
                     </div>
                     <?php echo form_close();?>

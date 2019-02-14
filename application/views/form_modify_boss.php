@@ -35,7 +35,7 @@
                         <br/>
                     </div>
                     <?php echo form_hidden('id',$boss['id']);?>
-                    <?php echo form_submit('submit', 'Submit', 'class="btn btn-primary btn-sm"');?>
+                    <?php echo form_submit('submit', 'Modify', 'class="btn btn-primary btn-sm"');?>
                     <?php echo anchor('admins', 'Cancel', 'class="btn btn-danger btn-sm"');?>
                     <?php echo form_close();?>
                 </div>

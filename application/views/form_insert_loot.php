@@ -20,7 +20,7 @@
                         </div>
                         <div class="form-inline d-block">
                             <?php $options = array(0 => "-- Not part of a raid --")+$raid_descriptions;echo form_dropdown('id_raid', $options , '', 'id="raid_dropdown" class="form-control float-left"');?>
-                            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#modal_raid">New</button>
+                            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#modal_raid">New Raid</button>
                         </div>
                         <br/><br/>
                     </div>
@@ -30,7 +30,7 @@
                         </div>
                         <div class="form-inline d-block">
                             <?php echo form_dropdown('id_event', $events_not_in_raid , '', 'id="event_dropdown" class="form-control float-left"');?>
-                            <button type="button" class='btn btn-primary float-right' id="new_event" data-toggle="modal" data-target="#modal_event">New</button>
+                            <button type="button" class='btn btn-primary float-right' id="new_event" data-toggle="modal" data-target="#modal_event">New Event</button>
                         </div>
                         <br/><br/>
                     </div>
@@ -40,12 +40,12 @@
                         </div>
                         <div class="form-inline d-block">
                         <?php echo form_dropdown('id_item', '' , '', 'id="item_dropdown" class="form-control float-left"');?>
-                        <button type="button" class='btn btn-primary float-right' id="new_item" data-toggle="modal" data-target="#modal_item">New</button>
+                        <button type="button" class='btn btn-primary float-right' id="new_item" data-toggle="modal" data-target="#modal_item">New Item</button>
                         </div>
                         <br/><br/><br/>
                     </div>
                     <?php echo form_hidden('id_character',$id_character);?>
-                    <?php echo form_submit('submit', 'Submit', 'class="btn btn-success btn-sm"');?>
+                    <?php echo form_submit('submit', 'Create', 'class="btn btn-success btn-sm"');?>
                     <?php echo anchor('officers', 'Cancel', 'class="btn btn-danger btn-sm"');?>
                     <?php echo form_close();?>
                 </div>
@@ -68,8 +68,8 @@
                                 Date:
                                 <?php echo form_date('date',gmdate('Y-m-d'), 'id="raid_date" required class="form-control"')?>
                                 <br/>
-                                <button id="insert_raid" class="btn btn-success">Submit</button>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                <button id="insert_raid" class="btn btn-success">Create</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                             </form>
                         </div>
                     </div>
@@ -101,8 +101,8 @@
                                 Date:
                                 <?php echo form_date('date',gmdate('Y-m-d'), 'required id="event_date" class="form-control"')?>
                                 <br/>
-                                <button id="insert_event" class="btn btn-success">Submit</button>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                <button id="insert_event" class="btn btn-success">Create</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                             </form>
                         </div>
                     </div>
@@ -132,8 +132,8 @@
                                 <?php $options = array('0' => '0', '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '11' => '11', '12' => '12', '13' => '13', '14' => '14', '15' => '15');?>
                                 <?php echo form_dropdown('value_item', $options, '', 'required id="value_item" class="form-control"');?>
                                 <br/>
-                                <button id="insert_item" class="btn btn-success">Submit</button>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                <button id="insert_item" class="btn btn-success">Create</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                             </form>
                         </div>
                     </div>

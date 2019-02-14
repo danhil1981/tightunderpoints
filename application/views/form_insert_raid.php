@@ -16,7 +16,7 @@
                         <?php echo form_date('date',gmdate('Y-m-d'), 'required class="form-control"')?>
                     </div>
                     <?php
-                        echo form_submit('submit', 'Submit', 'class="btn btn-primary btn-sm"');
+                        echo form_submit('submit', 'Create', 'class="btn btn-primary btn-sm"');
                         echo anchor('admins', 'Cancel', 'class="btn btn-danger btn-sm"');
                         echo form_close();
                     ?>

@@ -1,5 +1,5 @@
             <script src="<?php echo base_url()?>assets/js/confirm_attendance.js"></script>
-            <h1 class='text-center text-white'>Confirm Attendance</h1>
+            <h1 class='text-center text-white'>Attendance</h1>
             <br/><br/>
             <div class="row">
                 <div class="col-8 offset-2" id="tables">
@@ -30,7 +30,7 @@
                             </tbody>
                         </table>
                         <?php echo form_hidden('id_event',$id_event);?>
-                        <?php echo form_submit('submit', 'Submit', 'class="btn btn-primary btn-sm"');?>
+                        <?php echo form_submit('submit', 'Confirm', 'class="btn btn-primary btn-sm"');?>
                         <?php echo anchor('officers', 'Cancel', 'class="btn btn-danger btn-sm"');?>
                         <?php echo form_close();?>
                     </form>

@@ -57,7 +57,7 @@
                             </tbody>
                         </table>
                         <br/>
-                        <a href='<?php echo site_url()?>/users/show_insert/' class='btn btn-success btn-sm'>New</a>
+                        <a href='<?php echo site_url()?>/users/show_insert/' class='btn btn-success btn-sm'>New User</a>
                         <br/><br/>
                     </div>
                     <div id='players' class='d-none'>
@@ -83,7 +83,7 @@
                             </tbody>
                         </table>
                         <br/>
-                        <a href='<?php echo site_url()?>/players/show_insert/' class='btn btn-success btn-sm'>New</a>
+                        <a href='<?php echo site_url()?>/players/show_insert/' class='btn btn-success btn-sm'>New Player</a>
                         <br/><br/>
                     </div>
                     <div id='characters' class='d-none'>
@@ -125,7 +125,7 @@
                             </tbody>
                         </table>
                         <br/>
-                        <a href='<?php echo site_url()?>/characters/show_insert/' class='btn btn-success btn-sm'>New</a>
+                        <a href='<?php echo site_url()?>/characters/show_insert/' class='btn btn-success btn-sm'>New Character</a>
                         <br/><br/>
                     </div>
                     <div id='bosses' class='d-none'>
@@ -157,7 +157,7 @@
                             </tbody>
                         </table>
                         <br/>
-                        <a href='<?php echo site_url()?>/bosses/show_insert/' class='btn btn-success btn-sm'>New</a>
+                        <a href='<?php echo site_url()?>/bosses/show_insert/' class='btn btn-success btn-sm'>New Boss</a>
                         <br/><br/>
                     </div>
                     <div id='items' class='d-none'>
@@ -189,7 +189,7 @@
                             </tbody>
                         </table>
                         <br/>
-                        <a href='<?php echo site_url()?>/items/show_insert/' class='btn btn-success btn-sm'>New</a>
+                        <a href='<?php echo site_url()?>/items/show_insert/' class='btn btn-success btn-sm'>New Item</a>
                         <br/><br/>
                     </div>
                     <div id='raids' class='d-none'>
@@ -217,7 +217,7 @@
                             </tbody>
                         </table>
                         <br/>
-                        <a href='<?php echo site_url()?>/raids/show_insert/' class='btn btn-success btn-sm'>New</a>
+                        <a href='<?php echo site_url()?>/raids/show_insert/' class='btn btn-success btn-sm'>New Raid</a>
                         <br/><br/>
                     </div>
                     <div id='events' class='d-none'>
@@ -247,7 +247,7 @@
                             </tbody>
                         </table>
                         <br/>
-                        <a href='<?php echo site_url()?>/events/show_insert/' class='btn btn-success btn-sm'>New</a>
+                        <a href='<?php echo site_url()?>/events/show_insert/' class='btn btn-success btn-sm'>New Event</a>
                         <br/><br/>
                     </div>
                      <div id='drops' class='d-none'>
@@ -275,7 +275,7 @@
                             </tbody>
                         </table>
                         <br/>
-                        <a href='<?php echo site_url()?>/drops/show_insert/' class='btn btn-success btn-sm'>New</a>
+                        <a href='<?php echo site_url()?>/drops/show_insert/' class='btn btn-success btn-sm'>New Drop</a>
                         <br/><br/>
                     </div>
                     <div id='attendance' class='d-none'>
@@ -306,7 +306,7 @@
                             </tbody>
                         </table>
                         <br/>
-                        <a href='<?php echo site_url()?>/attendance/show_insert/' class='btn btn-success btn-sm'>New</a>
+                        <a href='<?php echo site_url()?>/attendance/show_insert/' class='btn btn-success btn-sm'>New Attendance Entry</a>
                         <br/><br/>
                     </div>
                     <div id='loot' class='d-none'>
@@ -334,7 +334,7 @@
                             </tbody>
                         </table>
                         <br/>
-                        <a href='<?php echo site_url()?>/loot/show_insert/' class='btn btn-success btn-sm'>New</a>
+                        <a href='<?php echo site_url()?>/loot/show_insert/' class='btn btn-success btn-sm'>New Loot Entry</a>
                         <br/><br/>
                     </div>
                 </div>

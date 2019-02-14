@@ -18,7 +18,7 @@
                         </div>
                         <div class="form-inline d-block">
                             <?php echo form_dropdown('id_character', $options, '', 'required id="character_dropdown" class="manual_input form-control float-left"');?>
-                            <button id="add_character" class="manual_input btn btn-sm btn-primary form-control float-left ml-2">Add</button>
+                            <button id="add_character" class="manual_input btn btn-sm btn-primary form-control float-left ml-2">Add to List</button>
                             <label class="btn btn-sm btn-primary float-right" for="upload_input">
                                 <?php echo form_upload('upload_characters','','id="upload_input" class="d-none"');?>Upload Log
                             </label>
@@ -45,7 +45,7 @@
                     </div>
                     <?php echo form_hidden('id_event',$id_event);?>
                     <input type="hidden" name="list_characters" id="list_characters" value="<?php echo $list_characters_comma?>" />
-                    <?php echo form_submit('submit', 'Submit', 'class="btn btn-success btn-sm"');?>
+                    <?php echo form_submit('submit', 'Modify', 'class="btn btn-success btn-sm"');?>
                     <?php echo anchor('officers', 'Cancel', 'class="btn btn-danger btn-sm"');?>
                     <?php echo form_close();?>
                 </div>

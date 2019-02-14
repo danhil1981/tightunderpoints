@@ -20,7 +20,7 @@
                         </div>
                         <div class="form-inline d-block">
                             <?php echo form_dropdown('id_raid', $options, '', 'required id="raid_dropdown" class="form-control float-left"');?>
-                            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#modal_raid">New</button>
+                            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#modal_raid">New Raid</button>
                         </div>
                         <br/><br/>
                     </div>
@@ -37,7 +37,7 @@
                         <?php echo form_date('date',gmdate('Y-m-d'), 'required class="form-control"')?>
                     </div>
                     <?php echo form_hidden('source',$source);?>
-                    <?php echo form_submit('submit', 'Submit', 'class="btn btn-primary btn-sm"');?>
+                    <?php echo form_submit('submit', 'Create', 'class="btn btn-primary btn-sm"');?>
                     <?php echo anchor($source, 'Cancel', 'class="btn btn-danger btn-sm"');?>
                     <?php echo form_close();?>
                 </div>
@@ -59,8 +59,8 @@
                                 Date:
                                 <?php echo form_date('date',gmdate('Y-m-d'), 'id="raid_date" required class="form-control"')?>
                                 <br/>
-                                <button id="insert_raid" class="btn btn-success">Submit</button>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                <button id="insert_raid" class="btn btn-success">Create</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                             </form>
                         </div>
                     </div>

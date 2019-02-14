@@ -119,7 +119,7 @@
                             </tbody>
                         </table>
                         <br/>
-                        <a href='<?php echo site_url()?>/events/show_insert/officers' class='btn btn-success btn-sm'>New</a>
+                        <a href='<?php echo site_url()?>/events/show_insert/officers' class='btn btn-success btn-sm'>New Event</a>
                         <br/><br/>
                     </div>
                     <div id='attendance' class='d-none'>
@@ -186,7 +186,7 @@
                             </tbody>
                         </table>
                         <br/>
-                        <a href='<?php echo site_url()?>/players/show_insert/officers/' class='btn btn-success btn-sm'>New</a>
+                        <a href='<?php echo site_url()?>/players/show_insert/officers/' class='btn btn-success btn-sm'>New Player</a>
                         <br/><br/>
                     </div>
                     <div id='characters' class='d-none'>
@@ -226,7 +226,7 @@
                             </tbody>
                         </table>
                         <br/>
-                        <a href='<?php echo site_url()?>/characters/show_insert/officers/' class='btn btn-success btn-sm'>New</a>
+                        <a href='<?php echo site_url()?>/characters/show_insert/officers/' class='btn btn-success btn-sm'>New Character</a>
                         <br/><br/>
                     </div>
                 </div>
