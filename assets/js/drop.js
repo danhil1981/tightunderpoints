@@ -12,6 +12,9 @@ $(document).ready(function () {
                 $.each(JSON.parse(output), function (id_item, name_item) {
                     $("#item_dropdown").append($('<option></option>').attr('value', id_item).text(decodeHtml(name_item)));
                 })
+            },
+            error: function () {
+                $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
             }
         });
         return false;

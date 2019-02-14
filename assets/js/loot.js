@@ -22,6 +22,9 @@ $(document).ready( function () {
                     $("#raid_dropdown").append(new Option(description_raid, id_raid));
                     $('#raid_dropdown option:last').attr("selected", "selected");
                 }
+            },
+            error: function () {
+                $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
             }
         });
         $('#modal_raid').modal('hide');
@@ -44,6 +47,9 @@ $(document).ready( function () {
                     $("#event_dropdown").append($('<option></option>').attr('value', id_event).text(name_event));
                     $("#event_dropdown").trigger("change");
                 })
+            },
+            error: function () {
+                $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
             }
         });
         return false;
@@ -76,6 +82,9 @@ $(document).ready( function () {
                     $("#event_dropdown").append(new Option(description_event, id_event));
                     $('#event_dropdown option:last').attr("selected", "selected");
                 }
+            },
+            error: function () {
+                $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
             }
         });
         $('#modal_event').modal('hide');
@@ -96,6 +105,9 @@ $(document).ready( function () {
                     $("#item_dropdown").append($('<option></option>').attr('value', id_item).text(decodeHtml(name_item)));
                 })
                 $("#item_dropdown").trigger("change");
+            },
+            error: function () {
+                $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
             }
         });
         return false;
@@ -109,7 +121,10 @@ $(document).ready( function () {
             type: 'post',
             success: function(output) {
                 $('#boss_dropdown').val(output);
-                }
+            },
+            error: function () {
+                $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
+            }
         });
     });
 
@@ -129,6 +144,9 @@ $(document).ready( function () {
                 else {
                     $("#messages").html("<br><br><div class='badge badge-success'>Item successfully inserted</div><br/>");
                 }
+            },
+            error: function () {
+                $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
             }
         });
         $('#modal_item').modal('hide');

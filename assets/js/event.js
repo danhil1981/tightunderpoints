@@ -21,8 +21,8 @@ $(document).ready(function () {
                     $('#raid_dropdown option:last').attr("selected", "selected");
                 }
             },
-            error: function() {
-                $("#messages").html("<br><br><div class='badge badge-success'>Ajax request failed</div><br/>");
+            error: function () {
+                $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
             }
         });
         $('#modal_raid').modal('hide');
