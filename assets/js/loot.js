@@ -46,7 +46,6 @@ $(document).ready( function () {
                 })
             }
         });
-        $("#item_dropdown").trigger("change");
         return false;
     });
 
@@ -96,6 +95,7 @@ $(document).ready( function () {
                 $.each(JSON.parse(output), function (id_item, name_item) {
                     $("#item_dropdown").append($('<option></option>').attr('value', id_item).text(decodeHtml(name_item)));
                 })
+                $("#item_dropdown").trigger("change");
             }
         });
         return false;
@@ -136,7 +136,6 @@ $(document).ready( function () {
         $("#raid_dropdown").trigger("change");
         return false;
     });
-    $("#raid_dropdown").trigger("change");
 
     $('#modal_raid').on('shown.bs.modal', function () {
         $('#raid_description').focus();
@@ -150,8 +149,13 @@ $(document).ready( function () {
         $('#id_item').focus();
     })
 
-    $("#item_dropdown").change(function() {
+    $('#item_dropdown').change(function() {
+        if ($(this).val() != null) {
             $("input[type=submit]").removeAttr("disabled");
+        }
+        else {
+            $("input[type=submit]").attr("disabled", "true");
+        }
     });
 
     $("#raid_description").keyup(function () {
