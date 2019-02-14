@@ -1,5 +1,8 @@
 $(document).ready( function () {
     path = window.location.href.substring(0,window.location.href.lastIndexOf('loot'));
+    $("input[type=submit]").attr("disabled", "true");
+    $("#insert_raid").attr("disabled", "true");
+    $("#insert_item").attr("disabled", "true");
 
     $("#insert_raid").click( function() {
         var description = $("#raid_description").val();
@@ -43,6 +46,7 @@ $(document).ready( function () {
                 })
             }
         });
+        $("#item_dropdown").trigger("change");
         return false;
     });
 
@@ -145,6 +149,37 @@ $(document).ready( function () {
     $('#modal_item').on('shown.bs.modal', function () {
         $('#id_item').focus();
     })
+
+    $("#item_dropdown").change(function() {
+            $("input[type=submit]").removeAttr("disabled");
+    });
+
+    $("#raid_description").keyup(function () {
+        if ($("#raid_description").val() != "") {
+            $("#insert_raid").removeAttr("disabled");
+        }
+        else {
+            $("#insert_raid").attr("disabled", "true");
+        }
+    });
+
+    $("#id_item").keyup(function () {
+        if ($("#name_item").val() != "" && $("#id_item").val() != "") {
+            $("#insert_item").removeAttr("disabled");
+        }
+        else {
+            $("#insert_item").attr("disabled", "true");
+        }
+    }); 
+
+    $("#name_item").keyup(function () {
+        if ($("#name_item").val() != "" && $("#id_item").val() != "") {
+            $("#insert_item").removeAttr("disabled");
+        }
+        else {
+            $("#insert_item").attr("disabled", "true");
+        }
+    }); 
 
 });
 
