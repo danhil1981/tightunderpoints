@@ -7,12 +7,12 @@
                         <div class="text-white">
                             Name<br/><br/>
                         </div>
-                        <?php echo form_input('name','','required pattern="^[A-Za-z]+$" class="form-control"')?>
+                        <?php echo form_input('name','','required pattern="^[A-Za-z]+$" title="1 word consisting of uppercase/lowercase letters" class="form-control"')?>
                         <br/><br/>
                     </div>
                     <?php echo form_hidden('source',$source);?>
                     <?php echo form_submit('submit', 'Submit', 'class="btn btn-primary btn-sm"');?>
-                    <?php echo anchor('admins', 'Cancel', 'class="btn btn-danger btn-sm"');?>
+                    <?php echo anchor($source, 'Cancel', 'class="btn btn-danger btn-sm"');?>
                     <?php echo form_close();?>
                 </div>
             </div>
