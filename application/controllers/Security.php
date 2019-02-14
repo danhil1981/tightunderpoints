@@ -45,11 +45,11 @@
         public function check_permission($type = 3) {
             $allowed = false;
             if (!isset($this->session->logged_in)) {
-                $this->index("<div class='badge badge-danger mx-auto'>You need to be logged in to do this!</div><br/>");
+                $this->index("<div class='badge badge-danger mx-auto'>You need to be logged in to access this page</div><br/>");
             }
             else {
                 if ($type < $this->session->type) {
-                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>You are not allowed to do this!</div><br/>");
+                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>You do not have permissions to access this page</div><br/>");
                     switch($this->session->type) {
                         case "2": {
                             redirect('officers');

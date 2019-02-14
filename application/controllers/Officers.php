@@ -69,7 +69,7 @@
             if ($this->check_permission(2)) {
                 $result_insert = $this->model_events->insert();
                 if ($result_insert == 0) {
-                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on insertion</div><br/>");
+                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
                 }
                 else {
                     $this->session->set_flashdata("msg","<div class='badge badge-success'>Event successfully inserted</div><br/>");
@@ -126,9 +126,9 @@
             if ($this->check_permission(2)) {
                 $result_insert = $this->model_officers->insert_drop_loot();
                 switch ($result_insert) {
-                    case "0": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on insertion (drop)</div><br/>");
+                    case "0": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error (drop)</div><br/>");
                     break;
-                    case "1": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on insertion (loot)</div><br/>");
+                    case "1": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error (loot)</div><br/>");
                     break;
                     default: $this->session->set_flashdata("msg","<div class='badge badge-success'>Drop and Loot Entries successfully inserted</div><br/>");
                 }
@@ -201,7 +201,7 @@
                 switch ($result_insert) {
                     case "0": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error: Missing data</div><br/>");
                     break;
-                    case "1": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on insertion(s)</div><br/>");
+                    case "1": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error(s)</div><br/>");
                     break;
                     default: $this->session->set_flashdata("msg","<div class='badge badge-success'>Attendance Entries successfully inserted</div><br/>");
                 }
@@ -269,7 +269,7 @@
                 switch ($result_modify) {
                     case "0": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error: Missing data</div><br/>");
                     break;
-                    case "1": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on modification(s)</div><br/>");
+                    case "1": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error(s)</div><br/>");
                     break;
                     default: $this->session->set_flashdata("msg","<div class='badge badge-success'>Attendance Entries successfully modified</div><br/>");
                 }

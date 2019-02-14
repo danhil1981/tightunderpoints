@@ -18,7 +18,7 @@
                 $source = $this->input->post("source");
                 $result_insert = $this->model_characters->insert();
                 if ($result_insert == 0) {
-                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on insertion</div><br/>");
+                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
                 }
                 else {
                     $this->session->set_flashdata("msg","<div class='badge badge-success'>Character successfully inserted</div><br/>");
@@ -35,7 +35,7 @@
             if ($this->check_permission(2)) {
                 $result = $this->model_characters->delete($id);
                 if ($result == 0) {
-                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on deletion</div><br/>");
+                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
                 }
                 else {
                     $this->session->set_flashdata("msg","<div class='badge badge-success'>Character successfully deleted</div><br/>");
@@ -63,7 +63,7 @@
                 $source = $this->input->post("source");
                 $result = $this->model_characters->modify();
                 if ($result == 0) {
-                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error on modification</div><br/>");
+                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
                 }
                 else {
                     $this->session->set_flashdata("msg","<div class='badge badge-success'>Character successfully modified</div><br/>");

@@ -11,7 +11,7 @@ $(document).ready(function () {
             type: 'post',
             success: function (output) {
                 if (parseInt(output) < 1) {
-                    $("#messages").html("<br><br><div class='badge badge-success'>Error on insertion</div><br/>");
+                    $("#messages").html("<br><br><div class='badge badge-success'>Database Error</div><br/>");
                 }
                 else {
                     $("#messages").html("<br><br><div class='badge badge-success'>Raid successfully inserted</div><br/>");
