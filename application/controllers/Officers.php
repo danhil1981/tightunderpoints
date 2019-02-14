@@ -25,7 +25,7 @@
 
         public function loot($id) {
             if ($this->check_permission(2)) {
-                $data['view_name'] = 'form_insert_loot_entry_officers';
+                $data['view_name'] = 'form_insert_loot';
                 $data['id_character'] = $id;
                 $data['character_names'] = $this->model_characters->get_list_names();
                 $data['raid_descriptions'] = $this->model_raids->get_list();
@@ -37,7 +37,7 @@
 
         public function event($id) {
             if ($this->check_permission(2)) {
-                $data['view_name'] = 'form_insert_event_entry_officers';
+                $data['view_name'] = 'form_insert_event';
                 $data['id_boss'] = $id;
                 $data['raid_descriptions'] = $this->model_raids->get_list();
                 $data['boss_names'] = $this->model_bosses->get_list();
@@ -147,7 +147,7 @@
 
         public function show_insert_attendance($id) {
             if ($this->check_permission(2)) {
-                $data['view_name'] = 'form_insert_attendance_officers';
+                $data['view_name'] = 'form_insert_attendance';
                 $data['id_event'] = $id;
                 $data['events'] = $this->model_events->get_list();
                 $data['character_names'] = $this->model_characters->get_list_names();
@@ -157,7 +157,7 @@
 
         public function confirm_attendance() {
             if ($this->check_permission(2)) {
-                $data['view_name'] = 'form_confirm_attendance';
+                $data['view_name'] = 'form_confirm_insert_attendance';
                 $data['id_event'] = $this->input->post("id_event");
                 $data['character_names'] = $this->model_characters->get_list_names();
                 $data['list_types'] = $this->model_characters->get_list_types();
@@ -206,7 +206,7 @@
             if ($this->check_permission(2)) {
                 $data['id_event'] = $id_event;
                 $data['events'] = $this->model_events->get_list();
-                $data['view_name'] = 'form_modify_attendance_officers';
+                $data['view_name'] = 'form_modify_attendance';
                 $data['character_names'] = $this->model_characters->get_list_names();
                 $list_characters = $this->model_attendance->get_characters($id_event);
                 $data['list_characters_array'] = $list_characters;
