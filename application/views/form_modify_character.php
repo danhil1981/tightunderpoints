@@ -7,7 +7,7 @@
                         <div class="text-white">
                             Name<br/><br/>
                         </div>
-                        <?php echo form_input('name', $character['name'],'required pattern="^[A-Za-z]+$" title="1 word consisting of uppercase/lowercase letters" class="form-control"')?>
+                        <?php echo form_input('name', $character['name'],'required maxlength="32" pattern="^[A-Za-z]+$" title="1 word consisting of uppercase/lowercase letters" class="form-control"')?>
                         <br/>
                     </div>
                     <?php $options = range(1,65);?>

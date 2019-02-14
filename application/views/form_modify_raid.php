@@ -7,7 +7,7 @@
                         <div class="text-white">
                             Description<br/><br/>
                         </div>
-                        <?php echo form_input('description',$raid['description'],'required class="form-control"')?>
+                        <?php echo form_input('description',$raid['description'],'required maxlength="32" class="form-control"')?>
                     </div>
                     <div class="form-group">
                         <div class="text-white">

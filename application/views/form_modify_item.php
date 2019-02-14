@@ -14,7 +14,7 @@
                         <div class="text-white">
                             Name<br/><br/>
                         </div>
-                        <?php echo form_input('name',$item['name'],'required class="form-control"')?>
+                        <?php echo form_input('name',$item['name'],'required maxlength="64" class="form-control"')?>
                         <br/>
                     </div>
                     <?php $options = $boss_names;?>
