@@ -3,6 +3,7 @@
                 <div class="col-6 offset-3">
                     <h1 class="text-center text-white">Modify Drop</h1>
                     <br/><br/>
+                    <div id="messages" class="text-center"></div>
                     <?php echo form_open_multipart('drops/modify');?>
                     <?php $options = $event_names;?>
                     <div class="form-group">
