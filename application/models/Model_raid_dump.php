@@ -19,9 +19,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $info = array();
             $rows = explode("\n", $raid_dump);
             foreach ($rows as $row => $data) {
-                $row_data = explode(' ', $data);
-                $info[$row]['id_group'] = $row_data[0];
-                $info[$row]['name_character'] = $row_data[1];
+                if (!empty($data)) {
+                    $row_data = explode("\t", $data);
+                    $info[$row]['id_group'] = $row_data[0];
+                    $info[$row]['name_character'] = $row_data[1];
+                }
             }
             $list_characters = array();
             foreach ($info as $i => $data) {
