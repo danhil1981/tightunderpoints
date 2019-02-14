@@ -14,6 +14,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             return $this->upload->do_upload('upload_characters');
         }
 
+        public function validate($name_file) {
+            $validated = true;
+            $raid_dump = file_get_contents('./assets/uploads/raid_dumps/'.$name_file);
+            $rows = explode("\n", $raid_dump);
+            foreach ($rows as $row => $data) {
+                if (!empty($data)) {
+                    $row_data = explode("\t", $data);
+                    if (count($row_data) < 6) {
+                        $validated = false;
+                    }
+                }
+            }
+            return $validated;
+        }
+
         public function process($name_file) {
             $raid_dump = file_get_contents('./assets/uploads/raid_dumps/'.$name_file);
             $info = array();

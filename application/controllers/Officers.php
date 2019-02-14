@@ -174,9 +174,17 @@
                         redirect('officers');
                     }
                     else {
-                        $list_characters = $this->model_raid_dump->process($this->upload->data('file_name'));
-                        $data['list_characters'] = $list_characters;
-                        unlink('./assets/uploads/raid_dumps/'.$this->upload->data('file_name'));
+                        $validated_raid_dump = $this->model_raid_dump->validate($this->upload->data('file_name'));
+                        if (!$validated_raid_dump) {
+                            $this->session->set_flashdata("msg","<div class='badge badge-danger'>Incorrect file format</div><br/>");
+                            $this->session->set_flashdata("table", "attendance");
+                            redirect('officers');
+                        }
+                        else {
+                            $list_characters = $this->model_raid_dump->process($this->upload->data('file_name'));
+                            $data['list_characters'] = $list_characters;
+                            unlink('./assets/uploads/raid_dumps/'.$this->upload->data('file_name'));
+                        }   
                     }
                 }
                 foreach ($list_characters as $i => $value) {
@@ -234,9 +242,17 @@
                         redirect('officers');
                     }
                     else {
-                        $list_characters = $this->model_raid_dump->process($this->upload->data('file_name'));
-                        $data['list_characters'] = $list_characters;
-                        unlink('./assets/uploads/raid_dumps/'.$this->upload->data('file_name'));
+                        $validated_raid_dump = $this->model_raid_dump->validate($this->upload->data('file_name'));
+                        if (!$validated_raid_dump) {
+                            $this->session->set_flashdata("msg","<div class='badge badge-danger'>Incorrect file format</div><br/>");
+                            $this->session->set_flashdata("table", "attendance");
+                            redirect('officers');
+                        }
+                        else {
+                            $list_characters = $this->model_raid_dump->process($this->upload->data('file_name'));
+                            $data['list_characters'] = $list_characters;
+                            unlink('./assets/uploads/raid_dumps/'.$this->upload->data('file_name'));
+                        }   
                     }
                 }
                 foreach ($list_characters as $i => $value) {
