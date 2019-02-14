@@ -44,6 +44,7 @@
                         </div>
                         <br/><br/><br/>
                     </div>
+                    <?php echo form_hidden('id_character',$id_character);?>
                     <?php echo form_submit('submit', 'Submit', 'class="btn btn-success btn-sm"');?>
                     <?php echo anchor('officers', 'Cancel', 'class="btn btn-danger btn-sm"');?>
                     <?php echo form_close();?>
@@ -128,7 +129,8 @@
                                 <?php $options = $boss_names; echo form_dropdown('id_boss', $options, '', 'required disabled id="boss_dropdown" class="form-control"');?>
                                 <br/>
                                 Points
-                                <input type="number" class="form-control" id="value_item" min="0" max="15" required/>
+                                <?php $options = array('0' => '0', '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '11' => '11', '12' => '12', '13' => '13', '14' => '14', '15' => '15');?>
+                                <?php echo form_dropdown('value_item', $options, '', 'required id="value_item" class="form-control"');?>
                                 <br/>
                                 <button id="insert_item" class="btn btn-success">Submit</button>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
