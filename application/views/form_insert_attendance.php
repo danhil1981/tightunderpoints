@@ -1,4 +1,4 @@
-            <script src="<?php echo base_url()?>assets/js/attendance.js"></script>
+            <script src="<?php echo base_url()?>assets/js/insert_attendance.js"></script>
             <div class="row">
                 <div class="col-6 offset-3">
                     <h1 class="text-center text-white">New Attendance List</h1>
