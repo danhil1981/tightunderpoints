@@ -143,7 +143,7 @@
                                             if ($attendance_entry['id_event'] == $i) {
                                                 if($attendance_entry['name_character'] !== $played_entry['name_character']) {
                                                     echo "<div class='badge badge-secondary m-1'>".$attendance_entry['name_character']." ";
-                                                    echo "<div class='bg-primary d-inline'>".$played_entry['name_character']."</div></div>";
+                                                    echo "<div class='badge badge-primary'>".$played_entry['name_character']."</div></div>";
                                                 }
                                                 else {
                                                     echo "<div class='badge badge-primary m-1'>".$attendance_entry['name_character']."</div>";
@@ -153,10 +153,10 @@
                                         }
                                         echo "</td>";
                                         if ($found == true) {
-                                            echo "<td class='align-middle'><a href='".site_url()."//officers/show_modify_attendance/".$i."' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
+                                            echo "<td class='align-middle'><a href='".site_url()."/officers/show_modify_attendance/".$i."' class='btn btn-warning btn-sm'>Modify List</a></td></tr>";
                                         }
                                         else {
-                                            echo "<td class='align-middle'><a href='".site_url()."//officers/show_insert_attendance/".$i."' class='btn btn-success btn-sm'>New</a></td></tr>";
+                                            echo "<td class='align-middle'><a href='".site_url()."/officers/show_insert_attendance/".$i."' class='btn btn-success btn-sm'>Create List</a></td></tr>";
                                         }
                                         echo "</tr>";  
                                     }
