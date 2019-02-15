@@ -115,17 +115,20 @@ $(document).ready( function () {
 
     $("#new_item").click(function() {
         var id_event = $("#event_dropdown").val();
-        $.ajax({
-            url: path +'get_boss/',
-            data: { 'id_event':id_event},
-            type: 'post',
-            success: function(output) {
-                $('#boss_dropdown').val(output);
-            },
-            error: function () {
-                $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
-            }
-        });
+        if (id_event != null) {
+            $("#boss_dropdown").prop("disabled", true);
+            $.ajax({
+                url: path +'get_boss/',
+                data: { 'id_event':id_event},
+                type: 'post',
+                success: function(output) {
+                    $('#boss_dropdown').val(output);
+                },
+                error: function () {
+                    $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
+                }
+            });
+        }  
     });
 
     $("#insert_item").click( function() {
