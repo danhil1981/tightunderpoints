@@ -4,12 +4,15 @@
 
     Class Events extends Security {
 
-        public function show_insert($source = "admins") {
+        public function show_insert($source = "admins", $id_boss = null) {
             if ($this->check_permission(2)) {
                 $data['view_name'] = 'form_insert_event';
                 $data['raid_descriptions'] = $this->model_raids->get_list();
                 $data['boss_names'] = $this->model_bosses->get_list();
                 $data['source'] = $source;
+                if (isset($id_boss)) {
+                    $data['id_boss'] = $id_boss;
+                }
                 $this->load->view('template', $data);
             }
         }

@@ -35,7 +35,7 @@
             }
         }
 
-        public function event($id) {
+        /*public function event($id) {
             if ($this->check_permission(2)) {
                 $data['view_name'] = 'form_insert_event';
                 $data['id_boss'] = $id;
@@ -44,7 +44,7 @@
                 $data['events_not_in_raid'] = $this->model_events->events_not_in_raid();
                 $this->load->view('template', $data);
             }
-        }
+        }*/
 
         public function insert_raid() {
             if ($this->check_permission(2)) {
