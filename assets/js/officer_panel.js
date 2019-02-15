@@ -6,7 +6,7 @@ $(document).ready(function () {
         $("#compare").addClass('d-block');
         $("#winner").addClass('d-block');
         var id = parseInt(this.id.slice(8));
-        this.remove();
+        $(this).addClass("d-none");
         var points = parseInt($("#points_" + id).html());
         var type = $("#type_" + id).html();
         switch (type) {
@@ -37,6 +37,11 @@ $(document).ready(function () {
         $(this).removeClass('btn-light').addClass('btn-primary');
         $('#tables').children().removeClass('d-block').addClass('d-none');
         $('#'+this.id.slice(7)).removeClass('d-none').addClass('d-block');
+        $('#winner').removeClass('d-block').addClass('d-none');
+        $('#compare').removeClass('d-block').addClass('d-none');
+        comparing = [];
+        $("#compare_tbody").html("");
+        $('#points button').removeClass("d-none");
     });
 
 });
