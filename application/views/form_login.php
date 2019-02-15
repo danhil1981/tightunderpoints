@@ -12,13 +12,13 @@
                         <div class="text-center text-white">
                             User<br/>
                         </div>
-                        <?php echo form_input('user','','class="form-control"')?>
+                        <?php echo form_input('user','','autofocus required class="form-control"')?>
                     </div>
                     <div class="form-group">
                         <div class="text-center text-white">
                             Password<br/>
                         </div>
-                        <?php echo form_password('password','','class="form-control"')?><br/>
+                        <?php echo form_password('password','','required class="form-control"')?><br/>
                         <div class="text-center">
                         <?php echo form_submit('submit', 'Log In', 'class="btn btn-primary btn-sm"');?>
                         </div>
