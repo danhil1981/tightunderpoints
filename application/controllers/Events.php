@@ -25,7 +25,7 @@
                     $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
                 }
                 else {
-                    $this->session->set_flashdata("msg","<div class='badge badge-success'>Event successfully inserted</div><br/>");
+                    $this->session->set_flashdata("msg","<div class='badge badge-success'>Event successfully created</div><br/>");
                 }
                 $this->session->set_flashdata("table", "timers");
                 if ($source == "officers") {

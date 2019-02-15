@@ -21,7 +21,7 @@
                         $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
                     }
                     else {
-                        $this->session->set_flashdata("msg","<div class='badge badge-success'>Attendance Entry successfully inserted</div><br/>");
+                        $this->session->set_flashdata("msg","<div class='badge badge-success'>Attendance Entry successfully created</div><br/>");
                     }
                 $this->session->set_flashdata("table", "attendance");
                 redirect('admins');

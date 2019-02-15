@@ -19,7 +19,7 @@
                     $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
                 }
                 else {
-                    $this->session->set_flashdata("msg","<div class='badge badge-success'>Item successfully inserted</div><br/>");
+                    $this->session->set_flashdata("msg","<div class='badge badge-success'>Item successfully created</div><br/>");
                 }
                 $this->session->set_flashdata("table", "items");
                 redirect('admins');

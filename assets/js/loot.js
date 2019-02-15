@@ -16,7 +16,7 @@ $(document).ready( function () {
                     $("#messages").html("<br><br><div class='badge badge-success'>Database Error</div><br/>");
                 }
                 else {
-                    $("#messages").html("<br><br><div class='badge badge-success'>Raid successfully inserted</div><br/>");
+                    $("#messages").html("<br><br><div class='badge badge-success'>Raid successfully created</div><br/>");
                     var id_raid = output;
                     var description_raid = date +" - " +description;
                     $("#raid_dropdown").append(new Option(description_raid, id_raid));
@@ -78,7 +78,7 @@ $(document).ready( function () {
                 else {
                     var id_event = output.substring(0,output.indexOf(","));
                     var description_event = output.substring(output.indexOf(",")+1);
-                    $("#messages").html("<br><br><div class='badge badge-success'>Event successfully inserted</div><br/>");
+                    $("#messages").html("<br><br><div class='badge badge-success'>Event successfully created</div><br/>");
                     $("#event_dropdown").append(new Option(description_event, id_event));
                     $('#event_dropdown option:last').attr("selected", "selected");
                 }
@@ -142,7 +142,7 @@ $(document).ready( function () {
                     $("#messages").html("<br><br><div class='badge badge-success'>Database Error</div><br/>");
                 }
                 else {
-                    $("#messages").html("<br><br><div class='badge badge-success'>Item successfully inserted</div><br/>");
+                    $("#messages").html("<br><br><div class='badge badge-success'>Item successfully created</div><br/>");
                 }
             },
             error: function () {

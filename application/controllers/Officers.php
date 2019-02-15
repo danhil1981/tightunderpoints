@@ -72,7 +72,7 @@
                     $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
                 }
                 else {
-                    $this->session->set_flashdata("msg","<div class='badge badge-success'>Event successfully inserted</div><br/>");
+                    $this->session->set_flashdata("msg","<div class='badge badge-success'>Event successfully created</div><br/>");
                 }
                 $this->session->set_flashdata("table", "timers");
                 redirect('officers');
@@ -130,7 +130,7 @@
                     break;
                     case "1": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error (loot)</div><br/>");
                     break;
-                    default: $this->session->set_flashdata("msg","<div class='badge badge-success'>Drop and Loot Entries successfully inserted</div><br/>");
+                    default: $this->session->set_flashdata("msg","<div class='badge badge-success'>Drop and Loot Entries successfully created</div><br/>");
                 }
                 $this->session->set_flashdata("table", "points");
                 redirect('officers');
@@ -203,7 +203,7 @@
                     break;
                     case "1": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error(s)</div><br/>");
                     break;
-                    default: $this->session->set_flashdata("msg","<div class='badge badge-success'>Attendance Entries successfully inserted</div><br/>");
+                    default: $this->session->set_flashdata("msg","<div class='badge badge-success'>Attendance Entries successfully created</div><br/>");
                 }
                 $this->session->set_flashdata("table", "attendance");
                 redirect('officers');

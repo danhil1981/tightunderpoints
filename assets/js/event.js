@@ -14,7 +14,7 @@ $(document).ready(function () {
                     $("#messages").html("<br><br><div class='badge badge-success'>Database Error</div><br/>");
                 }
                 else {
-                    $("#messages").html("<br><br><div class='badge badge-success'>Raid successfully inserted</div><br/>");
+                    $("#messages").html("<br><br><div class='badge badge-success'>Raid successfully created</div><br/>");
                     var id_raid = output;
                     var description_raid = date + " - " + description;
                     $("#raid_dropdown").append(new Option(description_raid, id_raid));
