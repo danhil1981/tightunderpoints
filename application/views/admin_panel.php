@@ -50,7 +50,7 @@
                                             default: echo "Member";
                                         }
                                         echo "</td>";
-                                        echo "<td><a href='".site_url()."/users/delete/".$user['id']."' class='btn btn-danger btn-sm'>Delete</a></td>";
+                                        echo "<td><a href='".site_url()."users/delete/".$user['id']."' class='btn btn-danger btn-sm'>Delete</a></td>";
                                         echo "<td><a href='".site_url()."/users/show_modify/".$user['id']."' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
                                     }
                                 ?>
