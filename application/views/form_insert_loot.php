@@ -126,7 +126,7 @@
                                 <input type="text" class="form-control" id="name_item" required/>
                                 <br/>
                                 Drops From
-                                <?php $options = $boss_names; echo form_dropdown('id_boss', $options, '', 'required disabled id="boss_dropdown" class="form-control"');?>
+                                <?php $options = $boss_names; echo form_dropdown('id_boss', $options, '', 'required id="boss_dropdown" class="form-control"');?>
                                 <br/>
                                 Points
                                 <?php $options = array('0' => '0', '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '11' => '11', '12' => '12', '13' => '13', '14' => '14', '15' => '15');?>

@@ -33,7 +33,7 @@
                         <?php echo form_dropdown('value', $options, '', 'required class="form-control"');?>
                         <br/>
                     </div>
-                    <?php echo form_submit('submit', 'Create', 'class="btn btn-primary btn-sm"');?>
+                    <?php echo form_submit('submit', 'Create', 'class="btn btn-success btn-sm"');?>
                     <?php echo anchor('admins', 'Cancel', 'class="btn btn-danger btn-sm"');?>
                     <?php echo form_close();?>
                 </div>
