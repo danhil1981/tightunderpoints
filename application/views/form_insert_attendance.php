@@ -26,15 +26,12 @@
                         </div>
                         <br/><br/><br/>
                     </div>
-                    <div id="characters" class="col-4 d-none">
+                    <div id="characters" class="d-none">
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_characters">
-                            <thead>
+                            <tbody>
                                 <tr>
-                                    <th scope="col">Id</th>
-                                    <th scope="col">Name</th>
+                                    <td id="tcell_characters"></td>
                                 </tr>
-                            </thead>
-                            <tbody id="tbody_characters">
                             </tbody>
                         </table>
                     </div>

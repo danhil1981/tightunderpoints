@@ -26,20 +26,18 @@
                         </div>
                         <br/><br/><br/>
                     </div>
-                    <div id="characters" class="col-4 d-none">
+                    <div id="characters" class="d-none">
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_characters">
-                            <thead>
+                            <tbody>
                                 <tr>
-                                    <th scope="col">Id</th>
-                                    <th scope="col">Name</th>
+                                    <td id="tcell_characters">
+                                        <?php 
+                                            foreach ($list_characters_array as $i => $value) {
+                                                echo '<div class="btn btn-sm btn-secondary m-1" id="'.$i.'">'.$character_names[$i].'<button class="close text-white" id="'.$i.$character_names[$i].'"><div class="small ml-1">&times;</div></button></div>';
+                                            }
+                                        ?>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody id="tbody_characters">
-                                <?php
-                                    foreach ($list_characters_array as $i => $value) {
-                                        echo "<tr id='".$i."'><td>".$i."</td><td>".$character_names[$i]."</td><td><button id='".$i.$character_names[$i]."' class='btn btn-sm btn-primary'>Remove</button></td></tr>";
-                                    }
-                                ?>
                             </tbody>
                         </table>
                     </div>
