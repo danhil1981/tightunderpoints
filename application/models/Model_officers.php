@@ -33,6 +33,7 @@
                 FROM bosses
                 INNER JOIN events ON bosses.id = events.id_boss
                 WHERE events.timestamp = (SELECT MAX(events.timestamp) FROM events WHERE bosses.id = events.id_boss)
+                AND ADDTIME(ADDTIME(ADDTIME(events.timestamp, bosses.respawn),bosses.variance), '50 0:00:00') > NOW() 
             ;");
             $timers = array();
             if ($query->num_rows() > 0) {
