@@ -21,14 +21,12 @@
 
         public function get($id) {
             $query = $this->db->query("SELECT * FROM characters WHERE id = $id;");
-            $character = $query->result_array()[0];
-            return $character;
+            return $query->result_array()[0];
         }
 
         public function get_name($id) {
             $query = $this->db->query("SELECT name FROM characters WHERE id = $id;");
-            $name = $query->result_array()[0];
-            return $name;
+            return $query->result_array()[0];
         }
 
         public function delete($id) {

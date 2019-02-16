@@ -22,8 +22,7 @@
 
         public function get($id) {
             $query = $this->db->query("SELECT * FROM events WHERE id = $id;");
-            $event = $query->result_array()[0];
-            return $event;
+            return $query->result_array()[0];
         }
 
         public function delete($id) {
@@ -102,8 +101,7 @@
             $query = $this->db->query("SELECT
                 id_boss FROM events WHERE id = $id_event
             ;");
-            $id_boss = implode($query->result_array()[0]);
-            return $id_boss;
+            return implode($query->result_array()[0]);
         }
 
     }

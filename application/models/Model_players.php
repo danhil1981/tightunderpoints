@@ -17,8 +17,7 @@
 
         public function get($id) {
             $query = $this->db->query("SELECT * FROM players WHERE id = $id;");
-            $player = $query->result_array()[0];
-            return $player;
+            return $query->result_array()[0];
         }
 
         public function delete($id) {

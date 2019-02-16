@@ -39,8 +39,7 @@
             if ($this->check_permission(2)) {
                 $description= quotes_to_entities($this->input->post('description'));
                 $date = $this->input->post('date');
-                $result_insert = $this->model_officers->insert_raid($description, $date);
-                print_r($result_insert);
+                print_r($this->model_officers->insert_raid($description, $date));
                 die;
             }
         }
@@ -74,8 +73,7 @@
                 $date = $this->input->post('date');
                 $id_boss = $this->input->post('id_boss');
                 $id_raid = $this->input->post('id_raid');
-                $result_insert = $this->model_officers->insert_event($time, $date, $id_boss, $id_raid);
-                print_r($result_insert);
+                print_r($this->model_officers->insert_event($time, $date, $id_boss, $id_raid));
                 die;
             }
         }
@@ -93,8 +91,7 @@
         public function get_boss() {
             if ($this->check_permission(2)) {
                 $id_event = $this->input->post("id_event");
-                $id_boss = $this->model_events->get_boss($id_event);
-                print_r($id_boss);
+                print_r($this->model_events->get_boss($id_event));
                 die;
             }
         }
@@ -105,8 +102,7 @@
                 $name_item = quotes_to_entities($this->input->post("name_item"));
                 $id_boss = $this->input->post("id_boss");
                 $value_item = $this->input->post("value_item");
-                $result_insert = $this->model_officers->insert_item($id_item, $name_item, $id_boss, $value_item);
-                print_r($result_insert);
+                print_r($this->model_officers->insert_item($id_item, $name_item, $id_boss, $value_item));
                 die;
             }
         }
@@ -128,8 +124,7 @@
 
         public function get_winner() {
             if ($this->check_permission(2)) {
-                $id_name = $this->model_officers->get_winner();
-                print_r($id_name);
+                print_r($this->model_officers->get_winner());
                 die;
             }
         }

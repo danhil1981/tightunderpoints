@@ -23,8 +23,7 @@
 
         public function get($id) {
             $query = $this->db->query("SELECT * FROM drops WHERE id = $id;");
-            $drop = $query->result_array()[0];
-            return $drop;
+            return $query->result_array()[0];
         }
 
         public function delete($id) {

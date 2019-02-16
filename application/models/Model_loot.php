@@ -26,8 +26,7 @@
 
         public function get($id) {
             $query = $this->db->query("SELECT * FROM loot WHERE id = $id;");
-            $loot_entry = $query->result_array()[0];
-            return $loot_entry;
+            return $query->result_array()[0];
         }
 
         public function delete($id) {

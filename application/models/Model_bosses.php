@@ -17,14 +17,12 @@
 
         public function get($id) {
             $query = $this->db->query("SELECT * FROM bosses WHERE id = $id;");
-            $boss = $query->result_array()[0];
-            return $boss;
+            return $query->result_array()[0];
         }
 
         public function get_name($id) {
             $query = $this->db->query("SELECT name FROM bosses WHERE id = $id;");
-            $bossname = $query->row()->name;
-            return $bossname;
+            return $query->row()->name;
         }
 
         public function delete($id) {

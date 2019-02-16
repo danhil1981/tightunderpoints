@@ -31,8 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         public function get($id) {
             $query = $this->db->query("SELECT * FROM users WHERE id = $id;");
-            $user = $query->result_array()[0];
-            return $user;
+            return $query->result_array()[0];
         }
 
         public function delete($id) {

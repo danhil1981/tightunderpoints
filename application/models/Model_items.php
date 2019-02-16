@@ -20,8 +20,7 @@
 
         public function get($id) {
             $query = $this->db->query("SELECT * FROM items WHERE id = $id;");
-            $item = $query->result_array()[0];
-            return $item;
+            return $query->result_array()[0];
         }
 
         public function delete($id) {

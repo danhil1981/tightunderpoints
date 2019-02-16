@@ -25,8 +25,7 @@
 
         public function get($id) {
             $query = $this->db->query("SELECT * FROM attendance WHERE id = $id;");
-            $attendance_entry = $query->result_array()[0];
-            return $attendance_entry;
+            return $query->result_array()[0];
         }
 
         public function get_played() {

@@ -25,8 +25,7 @@
 
         public function get_max() {
             if ($this->check_permission(3)) {
-                $names = $this->model_members->get_max();
-                print_r($names);
+                print_r($this->model_members->get_max());
                 die;
             }
         }

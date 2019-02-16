@@ -17,8 +17,7 @@
 
         public function get($id) {
             $query = $this->db->query("SELECT * FROM raids WHERE id = $id;");
-            $raid = $query->result_array()[0];
-            return $raid;
+            return $query->result_array()[0];
         }
 
         public function delete($id) {
