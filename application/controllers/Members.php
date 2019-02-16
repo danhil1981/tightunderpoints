@@ -23,9 +23,9 @@
             }
         }
 
-        public function get_winner() {
+        public function get_max() {
             if ($this->check_permission(3)) {
-                $names = $this->model_members->get_winner();
+                $names = $this->model_members->get_max();
                 print_r($names);
                 die;
             }

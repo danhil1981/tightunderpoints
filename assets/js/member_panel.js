@@ -20,7 +20,7 @@ $(document).ready(function () {
         $("#compare_tbody").append("<tr id='row_" + id + "'><td>" + $("#name_" + id).html() + "</td><td>" + $("#type_" + id).html() + "</td><td>" + $("#points_" + id).html()
             + "</td></tr>");
         $.ajax({
-            url: 'members/get_winner/',
+            url: 'members/get_max/',
             data: { 'comparing': comparing },
             type: 'post',
             success: function (output) {
