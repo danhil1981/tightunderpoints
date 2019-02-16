@@ -153,10 +153,10 @@
                                         }
                                         echo "</td>";
                                         if ($found == true) {
-                                            echo "<td class='align-middle'><a href='".site_url()."officers/show_modify_attendance/".$i."' class='btn btn-warning btn-sm'>Modify List</a></td></tr>";
+                                            echo "<td class='align-middle'><a href='".site_url()."officers/show_modify_attendance/".$i."' class='btn btn-warning btn-sm'>Modify List</a></td>";
                                         }
                                         else {
-                                            echo "<td class='align-middle'><a href='".site_url()."officers/show_insert_attendance/".$i."' class='btn btn-success btn-sm'>Create List</a></td></tr>";
+                                            echo "<td class='align-middle'><a href='".site_url()."officers/show_insert_attendance/".$i."' class='btn btn-success btn-sm'>Create List</a></td>";
                                         }
                                         echo "</tr>";  
                                     }
@@ -178,7 +178,7 @@
                                 <?php
                                     for ($i = 0; $i < count($players_list); $i++) {
                                         $player = $players_list[$i];
-                                        echo "<td class='align-middle'>".$player['name']."</td>";
+                                        echo "<tr><td class='align-middle'>".$player['name']."</td>";
                                         echo "<td class='align-middle'><a href='".site_url()."players/delete/".$player['id']."/officers' class='btn btn-danger btn-sm'>Delete</a></td>";
                                         echo "<td class='align-middle'><a href='".site_url()."players/show_modify/".$player['id']."/officers' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
                                     }
