@@ -36,7 +36,7 @@
                 $names = implode($query->result_array()[0]);
             }
             else {
-                foreach ($multiples as $i => $value) {
+                foreach ($multiples as $value) {
                     $query = $this->db->query("SELECT name FROM characters WHERE id = $value;");
                     if ($query->num_rows() > 0) {
                         foreach ($query->result_array() as $row) {

@@ -14,7 +14,7 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    foreach ($list_characters as $i => $value) {
+                                    foreach ($list_characters as $value) {
                                         echo "<tr id='".$value."'>";
                                         echo "<td><input type='text' hidden name='character_".$value."'/>".$character_names[$value]."</td>";
                                         if ($list_types[$value] != 1) {

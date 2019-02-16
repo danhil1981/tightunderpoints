@@ -71,7 +71,6 @@
 
         public function get_winner() {
             $comparing = $this->input->post("comparing");
-            $max_id = 0;
             $max_points = -32000;
             $max_type = 3;
             for ($i = 0; $i < count($comparing); $i=$i+3) {

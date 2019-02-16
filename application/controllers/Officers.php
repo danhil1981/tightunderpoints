@@ -176,7 +176,7 @@
                         }   
                     }
                 }
-                foreach ($list_characters as $i => $value) {
+                foreach ($list_characters as $value) {
                     unset($list_mains[$value]);
                 }
                 $data['list_mains'] = $list_mains;
@@ -244,7 +244,7 @@
                         }   
                     }
                 }
-                foreach ($list_characters as $i => $value) {
+                foreach ($list_characters as $value) {
                     unset($list_mains[$value]);
                 }
                 $data['list_mains'] = $list_mains;

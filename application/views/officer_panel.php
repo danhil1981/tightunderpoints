@@ -96,7 +96,7 @@
                             <tbody>
                                 <?php
                                     $timezone  = +1;
-                                    foreach ($timers as $i => $value) {
+                                    foreach ($timers as $value) {
                                         echo "<tr><td class='align-middle'>".$value['name_boss']."</td>";
                                         echo "<td class='align-middle'>".$value['last_killed']."</td>";
                                         echo "<td class='align-middle'>".$value['start_window']."</td>";

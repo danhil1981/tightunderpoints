@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $validated = true;
             $raid_dump = file_get_contents('./assets/uploads/raid_dumps/'.$name_file);
             $rows = explode("\n", $raid_dump);
-            foreach ($rows as $row => $data) {
+            foreach ($rows as $data) {
                 if (!empty($data)) {
                     $row_data = explode("\t", $data);
                     if (count($row_data) < 6) {
@@ -41,7 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 }
             }
             $list_characters = array();
-            foreach ($info as $i => $data) {
+            foreach ($info as $data) {
                 if (!in_array($data['id_group'], array('0','11','12'))) {
                     $name = $data['name_character'];
                     $query = $this->db->query("SELECT id FROM characters WHERE name = '$name';");
