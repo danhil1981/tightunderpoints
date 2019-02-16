@@ -74,33 +74,40 @@
             $max_id = 0;
             $max_points = -32000;
             $max_type = 3;
-            $multiples = array();
             for ($i = 0; $i < count($comparing); $i=$i+3) {
-                if ($comparing[$i + 2] < $max_type) {
-                    $max_id = $comparing[$i];
-                    $max_points = $comparing[$i + 1];
-                    $max_type = $comparing[$i + 2];
+                $id = $comparing[$i];
+                $points = $comparing[$i+1];
+                $type = $comparing[$i+2];
+                if ($type < $max_type) {
+                    $max_id = $id;
+                    $max_points = $points;
+                    $max_type = $type;
+                    $multiples = array();
+                    array_push($multiples, $id);
                 }
                 else {
-                    if ($comparing[$i + 2] == $max_type) {
-                        if ($comparing[$i + 1] > $max_points) {
+                    if ($type == $max_type) {
+                        if ($points > $max_points) {
+                            $max_points = $points;
                             $multiples = array();
-                            $max_id = $comparing[$i];
-                            $max_points = $comparing[$i + 1];
+                            array_push($multiples, $id);
                         }
-                        if ($comparing[$i + 1] == $max_points) {
-                            if (!in_array($max_id, $multiples)) {
-                                array_push($multiples, $max_id);
-                            }
-                            array_push($multiples, $comparing[$i]); 
-                            $max_id = $multiples[array_rand($multiples)];
+                        else if ($points == $max_points) {
+                            array_push($multiples, $id); 
                         }
                     }
                 }
             }
-            $query = $this->db->query("SELECT id, name FROM characters WHERE id = $max_id;");
-            $id_name = implode($query->result_array()[0]);
-            return $id_name;
+            if (count($multiples) == 1) {
+                $query = $this->db->query("SELECT id, name FROM characters WHERE id = $multiples[0];");
+                $winner = implode($query->result_array()[0]);
+            }
+            else {
+                $winner = $multiples[array_rand($multiples)];
+                $query = $this->db->query("SELECT id, name FROM characters WHERE id = $winner;");
+                $winner = implode($query->result_array()[0]);
+            }
+            return $winner;
         }
 
     }

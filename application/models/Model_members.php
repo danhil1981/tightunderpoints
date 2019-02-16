@@ -4,36 +4,35 @@
 
     class Model_members extends CI_Model {
 
-        public function get_winner() {
+        public function get_max() {
             $comparing = $this->input->post("comparing");
-            $max_id = 0;
             $max_points = -32000;
             $max_type = 3;
-            $multiples = array();
-            for ($i = 0; $i < count($comparing); $i=$i+3) {
-                if ($comparing[$i + 2] < $max_type) {
-                    $max_id = $comparing[$i];
-                    $max_points = $comparing[$i + 1];
-                    $max_type = $comparing[$i + 2];
+            for ($i = 0; $i < count($comparing); $i+=3) {
+                $id = $comparing[$i];
+                $points = $comparing[$i+1];
+                $type = $comparing[$i+2];
+                if ($type < $max_type) {
+                    $max_points = $points;
+                    $max_type = $type;
+                    $multiples = array();
+                    array_push($multiples, $id);
                 }
                 else {
-                    if ($comparing[$i + 2] == $max_type) {
-                        if ($comparing[$i + 1] > $max_points) {
+                    if ($type == $max_type) {
+                        if ($points > $max_points) {
+                            $max_points = $points;
                             $multiples = array();
-                            $max_id = $comparing[$i];
-                            $max_points = $comparing[$i + 1];
+                            array_push($multiples, $id); 
                         }
-                        if ($comparing[$i + 1] == $max_points) {
-                            if (!in_array($max_id, $multiples)) {
-                                array_push($multiples, $max_id);
-                            }
-                            array_push($multiples, $comparing[$i]); 
+                        else if ($points == $max_points) {
+                            array_push($multiples, $id); 
                         }
                     }
                 }
             }
-            if (empty($multiples)) {
-                $query = $this->db->query("SELECT name FROM characters WHERE id = $max_id;");
+            if (count($multiples) == 1) {
+                $query = $this->db->query("SELECT name FROM characters WHERE id = $multiples[0];");
                 $names = implode($query->result_array()[0]);
             }
             else {
@@ -46,7 +45,6 @@
                     }
                 }
                 $names = implode(', ',array_column($name, 'name'));
-
             }
             return $names;
         }
