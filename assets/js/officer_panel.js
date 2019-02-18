@@ -1,6 +1,34 @@
 $(document).ready(function () {
     comparing = [];
-    $("#tables table").DataTable();
+    $("#table_points").DataTable({
+        "lengthMenu": [50, 100, 500],
+        "order": [0, 'asc'],
+        "columnDefs": [{ "targets": [7], "orderable": false }]
+    });
+
+    $("#table_timers").DataTable({
+        "lengthMenu": [50, 100, 500],
+        "order": [3, 'asc'],
+        "columnDefs": [{"targets": [4,5],"orderable": false}]
+    });
+
+    $("#table_attendance").DataTable({
+        "lengthMenu": [50, 100, 500],
+        "order": [0, 'asc'],
+        "columnDefs": [{ "targets": [2], "orderable": false }]
+    });
+
+    $("#table_players").DataTable({
+        "lengthMenu": [50, 100, 500],
+        "order": [0, 'asc'],
+        "columnDefs": [{ "targets": [1,2], "orderable": false }]
+    });
+
+    $("#table_characters").DataTable({
+        "lengthMenu": [50, 100, 500],
+        "order": [0, 'asc'],
+        "columnDefs": [{ "targets": [5,6], "orderable": false }]
+    });
 
     $('#points').on('click', "button", function () {
         $("#compare").addClass('d-block');
