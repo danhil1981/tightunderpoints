@@ -259,7 +259,14 @@
                                             echo "<tr><td class='align-middle'>".$event['timestamp']."</td>";
                                             echo "<td class='align-middle'>".date('D j M, Y',strtotime($event['timestamp']))."</td>";
                                             echo "<td class='align-middle'>".$event['name_boss']."</td>";
-                                            echo "<td class='align-middle'>".$event['description_raid']."</td>";
+                                            echo "<td class='align-middle'>";
+                                            if (!isset($event['description_raid'])) {
+                                                echo "-- not part of a raid --";
+                                            }
+                                            else {
+                                                echo $event['description_raid'];
+                                            }
+                                            echo "</td>";
                                             echo "</tr>";
                                         }
                                     ?>
