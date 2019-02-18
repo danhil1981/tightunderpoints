@@ -116,6 +116,7 @@
                     case "1": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error (loot)</div><br/>");
                     break;
                     default: $this->session->set_flashdata("msg","<div class='badge badge-success'>Drop and Loot Entries successfully created</div><br/>");
+                    $this->model_discord->loot_update();
                 }
                 $this->session->set_flashdata("table", "points");
                 redirect('officers');
