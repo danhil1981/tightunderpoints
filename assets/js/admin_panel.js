@@ -1,5 +1,8 @@
 $(document).ready(function () {
-    $("#tables table").DataTable({"order": [[1, "asc"]]});
+    $("#tables table").DataTable({
+        "order": [[0, "asc"]],
+        "lengthMenu": [50, 100, 500]
+    });
 
     $('#menu_buttons').on('click', "button", function () {
         $('#menu_buttons button').removeClass('btn-primary').addClass('btn-light');
