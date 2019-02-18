@@ -13,7 +13,7 @@
                         <?php if(!isset($id_boss)) $id_boss = "";  echo form_dropdown('id_boss', $options, $id_boss, 'required class="form-control"');?>
                         <br/><br/>
                     </div>
-                    <?php $options = $raid_descriptions;array_unshift($options,"-- Not part of a raid --");?>
+                    <?php $options = $options = array(0 => "-- Not part of a raid --")+$raid_descriptions;?>
                     <div class="form-group">
                         <div class="text-white">
                             Raid<br/><br/>

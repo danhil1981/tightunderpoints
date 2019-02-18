@@ -10,7 +10,7 @@
                         </div>
                         <?php echo form_dropdown('id_boss', $options, $event['id_boss'], 'required class="form-control"');?>
                     </div>
-                    <?php $options = $raid_descriptions;array_unshift($options,"-- Not part of a raid --");?>
+                    <?php $options = array(0 => "-- Not part of a raid --")+$raid_descriptions;?>
                     <div class="form-group">
                         <div class="text-white">
                             Raid<br/><br/>
