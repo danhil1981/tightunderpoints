@@ -14,9 +14,21 @@ $(document).ready(function () {
         ]
     });
 
-    $("#table_points, #table_roster, #table_items").DataTable( {
+    $("#table_points").DataTable( {
         "lengthMenu": [50, 100, 500],
         "order": [0, 'asc'],
+        "columnDefs": [{ "targets": [7], "orderable": false }]
+    });
+
+    $("#table_roster").DataTable({
+        "lengthMenu": [50, 100, 500],
+        "order": [0, 'asc'],
+    });
+
+    $("#table_items").DataTable({
+        "lengthMenu": [50, 100, 500],
+        "order": [0, 'asc'],
+        "columnDefs": [{ "targets": [3], "orderable": false }]
     });
 
     $("#table_bosses").DataTable({
