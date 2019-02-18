@@ -7,6 +7,8 @@
         public function get_all() {
             $query = $this->db->query("SELECT
             loot.id, loot.id_drop, loot.id_character,
+            events.timestamp AS timestamp,
+            items.name AS name_item,
             characters.name AS name_character,
             CONCAT(events.timestamp,' - ', items.name) AS name_drop
             FROM loot
