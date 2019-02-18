@@ -42,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
             $list_characters = array();
             foreach ($info as $data) {
-                if (!in_array($data['id_group'], array('0','11','12'))) {
+                if ($data['id_group'] != '0') {
                     $name = $data['name_character'];
                     $query = $this->db->query("SELECT id FROM characters WHERE name = '$name';");
                     if (count($query->result_array()) != 0 ) {
