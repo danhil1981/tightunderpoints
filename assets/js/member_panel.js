@@ -1,6 +1,43 @@
 $(document).ready(function () {
     comparing = [];
-    $("#tables table").DataTable();
+    $("#table_events, #table_loot, #table_raids").DataTable( {
+        "lengthMenu": [25, 50, 100, 500],
+        "autoWidth": false,
+        "order": [0, 'asc'],
+        "columnDefs": [
+            { 'orderData': [0], 'targets': [1] },
+            {
+                "targets": [0],
+                "visible": false,
+                "searchable": false
+            }
+        ]
+    });
+
+    $("#table_points, #table_roster, #table_items").DataTable( {
+        "lengthMenu": [50, 100, 500],
+        "order": [0, 'asc'],
+    });
+
+    $("#table_bosses").DataTable({
+        "lengthMenu": [25, 50, 100, 500],
+        "autoWidth": false,
+        "order": [0, 'asc'],
+        "columnDefs": [
+            { 'orderData': [1], 'targets': [2] },
+            {
+                "targets": [1],
+                "visible": false,
+                "searchable": false
+            },
+            { 'orderData': [3], 'targets': [4] },
+            {
+                "targets": [3],
+                "visible": false,
+                "searchable": false
+            }
+        ]
+    });
 
     $('#points').on('click', "button", function () {
         $("#compare").addClass('d-block');

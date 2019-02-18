@@ -10,7 +10,7 @@
                     <br/><br/>
                     <button id='button_points' class="btn btn-light btn-sm">Points</button>
                     <button id='button_loot' class="btn btn-light btn-sm">Loot</button>
-                    <button id='button_characters' class="btn btn-light btn-sm">Characters</button>
+                    <button id='button_roster' class="btn btn-light btn-sm">Roster</button>
                     <button id='button_bosses' class="btn btn-light btn-sm">Bosses</button>
                     <button id='button_items' class="btn btn-light btn-sm">Items</button>
                     <button id='button_raids' class="btn btn-light btn-sm">Raids</button>
@@ -87,7 +87,9 @@
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_loot">
                             <thead>
                                 <tr>
-                                    <th scope="col">Drop</th>
+                                    <th></th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Item</th>
                                     <th scope="col">Character</th>
                                 </tr>
                             </thead>
@@ -95,7 +97,9 @@
                                 <?php
                                     for ($i = 0; $i < count($loot_list); $i++) {
                                         $loot_entry = $loot_list[$i];
-                                        echo "<tr><td class='align-middle'>".$loot_entry['name_drop']."</td>";
+                                        echo "<tr><td class='align-middle'>".$loot_entry['timestamp']."</td>";
+                                        echo "<td class='align-middle'>".date('D j M, Y',strtotime($loot_entry['timestamp']))."</td>";
+                                        echo "<td class='align-middle'>".$loot_entry['name_item']."</td>";
                                         echo "<td class='align-middle'>".$loot_entry['name_character']."</td>";
                                         echo "</tr>";
                                     }
@@ -104,8 +108,8 @@
                         </table>
                         <br/><br/>
                     </div>
-                    <div id='characters' class='d-none'>
-                            <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_characters">
+                    <div id='roster' class='d-none'>
+                            <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_roster">
                                 <thead>
                                     <tr>
                                         <th scope="col">Name</th>
@@ -144,7 +148,9 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">Name</th>
+                                        <th></th>
                                         <th scope="col">Respawn Time</th>
+                                        <td></th>
                                         <th scope="col">Variance</th>
                                         <th scope="col">Points</th>
                                     </tr>
@@ -154,8 +160,32 @@
                                         for ($i = 0; $i < count($bosses_list); $i++) {
                                             $boss = $bosses_list[$i];
                                             echo "<tr><td class='align-middle'>".$boss['name']."</td>";
-                                            echo "<td class='align-middle'>".$boss['respawn']."</td>";
-                                            echo "<td class='align-middle'>".$boss['variance']."</td>";
+                                            echo "<td>".$boss['respawn']."</td>";
+                                            echo "<td class='align-middle'>";
+                                                $hms = explode(":", $boss['respawn']);
+                                                if ($hms[0] < 24) {
+                                                    echo $hms[0]." hours";
+                                                }
+                                                else {
+                                                    echo ($hms[0]/24)." days";
+                                                }
+                                            echo "</td>";
+                                            echo "<td>".$boss['variance']."</td>";
+                                            echo "<td class='align-middle'>";
+                                                $hms = explode(":", $boss['variance']);
+                                                
+                                                if ($hms[0] < 24) {
+                                                    if ($hms[0] == 0) {
+                                                    echo "none";
+                                                    }
+                                                    else {
+                                                        echo intval($hms[0])." hours";
+                                                    }  
+                                                }
+                                                else {
+                                                    echo ($hms[0]/24)." days";
+                                                }
+                                            echo "</td>";
                                             echo "<td class='align-middle'>".$boss['value']."</td>";
                                             echo "</tr>";
                                         }
@@ -193,6 +223,7 @@
                             <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_raids">
                                 <thead>
                                     <tr>
+                                        <th></th>
                                         <th scope="col">Date</th>
                                         <th scope="col">Description</th>
                                     </tr>
@@ -202,6 +233,7 @@
                                         for ($i = 0; $i < count($raids_list); $i++) {
                                             $raid = $raids_list[$i];
                                             echo "<tr><td class='align-middle'>".$raid['date']."</td>";
+                                            echo "<td class='align-middle'>".date('D j M, Y',strtotime($raid['date']))."</td>";
                                             echo "<td class='align-middle'>".$raid['description']."</td>";
                                             echo "</tr>";
                                         }
@@ -214,7 +246,8 @@
                             <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_events">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Timestamp</th>
+                                        <th></th>
+                                        <th scope="col">Date</th>
                                         <th scope="col">Boss</th>
                                         <th scope="col">Raid</th>
                                     </tr>
@@ -224,6 +257,7 @@
                                         for ($i = 0; $i < count($events_list); $i++) {
                                             $event = $events_list[$i];
                                             echo "<tr><td class='align-middle'>".$event['timestamp']."</td>";
+                                            echo "<td class='align-middle'>".date('D j M, Y',strtotime($event['timestamp']))."</td>";
                                             echo "<td class='align-middle'>".$event['name_boss']."</td>";
                                             echo "<td class='align-middle'>".$event['description_raid']."</td>";
                                             echo "</tr>";
