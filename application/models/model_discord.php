@@ -19,8 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             $hookObject = json_encode([
                 "content" => $name_character." has just won ".$article." ".$name_item.". Congratulations! :beers: :champagne:",
-                "username" => "Tightunderpoints",
-                "avatar_url" => base_url()."assets/img/discord_avatar.PNG",
+                "username" => "Tight Underpoints",
                 "tts" => true,
                 "embeds" => [
                     [
