@@ -97,6 +97,29 @@ $(document).ready(function () {
         $('#points button').removeClass("d-none");
     });
 
+    $(".character").click(function() {
+        var id_character = this.id.slice(10);
+        $.ajax({
+            url: 'members/show_character/',
+            data: { 'id_character': id_character },
+            type: 'post',
+            success: function (output) {
+                var data = JSON.parse(output);
+                switch (data['type_character']) {
+                    case "1": var type = "Main";break;
+                    case "2": var type = "Alt";break;
+                    default: var type = "Bot";
+                }
+                $("#title_character").text(data['name_character']+" "+data['level_character']+" "+data['class_character']);
+                $("#content_character").html("Type: " + type + "<br/>Player: " + data['name_player']+"<br/><br/>Earned all time: " + data['total_earned'] + "<br/>Spent all time: " + data['total_spent'] + "<br/></br>Earned last 50 days: " + data['last50_earned'] + "<br/>Spent last 50 days: " + data['last50_spent'] +"<br/><br/>Current Points: " +(data['last50_earned']-data['last50_spent']) +"<br/><br/>Last Event: " +data['timestamp_last_event'] +" (" +data['boss_last_event'] +")<br/>Last Loot: " +data['timestamp_last_loot'] +" (" +data['item_last_loot'] +")");
+                $("#modal_character").modal();
+            },
+            error: function () {
+                $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
+            }
+        });
+    });
+
 });
 
 function show(table) {
