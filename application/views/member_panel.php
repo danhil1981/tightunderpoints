@@ -61,8 +61,8 @@
                             <tbody>
                                 <?php
                                     foreach ($list_names as $i => $value) {
-                                        echo "<tr><td id='name_$i'>".$value."</td>";
-                                        echo "<td id='type_$i'>";
+                                        echo "<tr><th scope='row' id='name_$i' class='align-middle'><div class='btn character' id='character_".$i."'>".$value."</div></td>";
+                                        echo "<td id='type_$i' class='align-middle'>";
                                             switch($list_types[$i]) {
                                                 case "1": echo "Main";
                                                 break;
@@ -71,12 +71,12 @@
                                                 default: echo "Bot";
                                             }
                                         echo "</td>";
-                                        echo "<td>".$list_total_earned[$i]."</td>";
-                                        echo "<td>".$list_total_spent[$i]."</td>";
-                                        echo "<td>".$list_last50_earned[$i]."</td>";
-                                        echo "<td>".$list_last50_spent[$i]."</td>";
-                                        echo "<td id='points_$i'>".($list_last50_earned[$i]-$list_last50_spent[$i])."</td>";
-                                        echo "<td><button class='btn btn-sm btn-primary' id='compare_".$i."'>Compare</button></td></tr>";
+                                        echo "<td class='align-middle'>".$list_total_earned[$i]."</td>";
+                                        echo "<td class='align-middle'>".$list_total_spent[$i]."</td>";
+                                        echo "<td class='align-middle'>".$list_last50_earned[$i]."</td>";
+                                        echo "<td class='align-middle'>".$list_last50_spent[$i]."</td>";
+                                        echo "<td id='points_$i' class='align-middle'>".($list_last50_earned[$i]-$list_last50_spent[$i])."</td>";
+                                        echo "<td class='align-middle'><button class='btn btn-sm btn-primary' id='compare_".$i."'>Compare</button></td></tr>";
                                     }
                                 ?>
                             </tbody>
@@ -275,6 +275,20 @@
                             <br/><br/>
                         </div>
                     </div>
+            </div>
+            <div class="modal fade" id="modal_character" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content bg-dark text-white">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="title_character"></h5>
+                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-center" id="content_character">
+                        </div>
+                    </div>
+                </div>
             </div>
             <?php 
                 if(isset($this->session->table)) {
