@@ -3,7 +3,7 @@ $(document).ready(function () {
     $("#table_events, #table_loot, #table_raids").DataTable( {
         "lengthMenu": [25, 50, 100, 500],
         "autoWidth": false,
-        "order": [0, 'asc'],
+        "order": [1, 'asc'],
         "columnDefs": [
             { 'orderData': [0], 'targets': [1] },
             {
