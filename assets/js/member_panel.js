@@ -97,7 +97,7 @@ $(document).ready(function () {
         $('#points button').removeClass("d-none");
     });
 
-    $(".character").click(function() {
+    $('#table_points').on("click", ".character", function() {
         var id_character = this.id.slice(10);
         $.ajax({
             url: 'members/show_character/',
