@@ -30,6 +30,14 @@
             }
         }
 
+        public function show_character() {
+            if ($this->check_permission(3)) {
+                $id_character= $this->input->post("id_character");
+                print_r(json_encode($this->model_members->show_character($id_character)));
+                die;
+            }
+        }
+
     }
 
 ?>
