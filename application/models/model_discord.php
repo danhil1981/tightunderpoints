@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $url = "https://discordapp.com/api/webhooks/547018898147377152/v4drrC20ptdDP_XiLBTZlT8ZabPtb3wJ7OOrV_rWrFUOjXtKjEx70mCRDRk73aK7LUyD";
 
             $hookObject = json_encode([
-                "content" => $name_character." has just won ".$article." ".$name_item.". Congratulations! :beers: :champagne:",
+                "content" => ":gift: ".$name_character." has just won ".$article." ".$name_item.". Congratulations! :beers:",
                 "username" => "Tight Underpoints",
                 "tts" => true,
                 "embeds" => [
