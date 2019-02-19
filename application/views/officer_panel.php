@@ -60,8 +60,8 @@
                             <tbody>
                                 <?php
                                     foreach ($list_names as $i => $value) {
-                                        echo "<tr><td id='name_$i'>".$value."</td>";
-                                        echo "<td id='type_$i'>";
+                                        echo "<tr><td id='name_$i' class='align-middle'>".$value."</td>";
+                                        echo "<td id='type_$i' class='align-middle'>";
                                             switch($list_types[$i]) {
                                                 case "1": echo "Main";
                                                 break;
@@ -70,12 +70,12 @@
                                                 default: echo "Bot";
                                             }
                                         echo "</td>";
-                                        echo "<td>".$list_total_earned[$i]."</td>";
-                                        echo "<td>".$list_total_spent[$i]."</td>";
-                                        echo "<td>".$list_last50_earned[$i]."</td>";
-                                        echo "<td>".$list_last50_spent[$i]."</td>";
-                                        echo "<td id='points_$i'>".($list_last50_earned[$i]-$list_last50_spent[$i])."</td>";
-                                        echo "<td><button class='btn btn-sm btn-primary' id='compare_".$i."'>Compare</button></td></tr>";
+                                        echo "<td class='align-middle'>".$list_total_earned[$i]."</td>";
+                                        echo "<td class='align-middle'>".$list_total_spent[$i]."</td>";
+                                        echo "<td class='align-middle'>".$list_last50_earned[$i]."</td>";
+                                        echo "<td class='align-middle'>".$list_last50_spent[$i]."</td>";
+                                        echo "<td id='points_$i' class='align-middle'>".($list_last50_earned[$i]-$list_last50_spent[$i])."</td>";
+                                        echo "<td class='align-middle'><button class='btn btn-sm btn-primary' id='compare_".$i."'>Compare</button></td></tr>";
                                     }
                                 ?>
                             </tbody>
