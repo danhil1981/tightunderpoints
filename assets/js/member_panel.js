@@ -97,8 +97,8 @@ $(document).ready(function () {
         $('#points button').removeClass("d-none");
     });
 
-    $('#table_points').on("click", ".character", function() {
-        var id_character = this.id.slice(10);
+    $('#table_points,#table_loot,#roster').on("click", ".character", function() {
+        var id_character = ($(this).attr('class').slice(24));;
         $.ajax({
             url: 'members/show_character/',
             data: { 'id_character': id_character },

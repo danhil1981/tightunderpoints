@@ -61,7 +61,7 @@
                             <tbody>
                                 <?php
                                     foreach ($list_names as $i => $value) {
-                                        echo "<tr><th scope='row' id='name_$i' class='align-middle'><div class='btn character' id='character_".$i."'>".$value."</div></td>";
+                                        echo "<tr><th scope='row' id='name_$i' class='align-middle'><div class='btn character character_".$i."'>".$value."</div></td>";
                                         echo "<td id='type_$i' class='align-middle'>";
                                             switch($list_types[$i]) {
                                                 case "1": echo "Main";
@@ -100,7 +100,7 @@
                                         echo "<tr><td class='align-middle'>".$loot_entry['timestamp']."</td>";
                                         echo "<td class='align-middle'>".date('D j M, Y',strtotime($loot_entry['timestamp']))."</td>";
                                         echo "<td class='align-middle'>".$loot_entry['name_item']."</td>";
-                                        echo "<td class='align-middle'>".$loot_entry['name_character']."</td>";
+                                        echo "<td class='align-middle'><div class='btn character character_".$loot_entry['id_character']."'>".$loot_entry['name_character']."</div></td>";
                                         echo "</tr>";
                                     }
                                 ?>
@@ -123,7 +123,7 @@
                                     <?php
                                         for ($i = 0; $i < count($characters_list); $i++) {
                                             $character = $characters_list[$i];
-                                            echo "<tr><td class='align-middle'>".$character['name']."</td>";
+                                            echo "<tr><td class='align-middle'><div class='btn character character_".$character['id']."'>".$character['name']."</div></td>";
                                             echo "<td class='align-middle'>".$character['level']."</td>";
                                             echo "<td class='align-middle'>".$character['class']."</td>";
                                             echo "<td class='align-middle'>";
