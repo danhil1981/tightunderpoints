@@ -63,6 +63,22 @@
             return array_column($drops, 'name_drop', 'id_drop');
         }
 
+        public function get_drops_items() {
+            $query = $this->db->query("SELECT
+                drops.id AS id_drop,
+                items.id AS id_item
+                FROM drops
+                INNER JOIN items ON drops.id_item = items.id
+            ;");
+            $drops_items = array();
+            if ($query->num_rows() > 0) {
+                foreach ($query->result_array() as $row) {
+                    $drops_items[] = $row;
+                }
+            }
+            return array_column($drops_items, 'id_item', 'id_drop');
+        }
+
     }
 
 ?>
