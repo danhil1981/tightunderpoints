@@ -98,7 +98,20 @@
                 events.timestamp AS timestamp_last_event,
                 bosses.name AS boss_last_event
                 FROM characters
-                INNER JOIN attendance ON characters.id = attendance.id_points OR attendance.id_character
+                INNER JOIN attendance ON characters.id = attendance.id_points
+                INNER JOIN events ON attendance.id_event = events.id
+                INNER JOIN bosses ON events.id_boss = bosses.id
+                WHERE characters.id = $id_character
+                ORDER BY events.timestamp DESC LIMIT 1
+            ;");
+            if (isset($query->result_array()[0])) {
+                $character += $query->result_array()[0];
+            }
+            $query = $this->db->query("SELECT
+                events.timestamp AS timestamp_last_botted,
+                bosses.name AS boss_last_event
+                FROM characters
+                INNER JOIN attendance ON characters.id = attendance.id_character
                 INNER JOIN events ON attendance.id_event = events.id
                 INNER JOIN bosses ON events.id_boss = bosses.id
                 WHERE characters.id = $id_character
@@ -166,6 +179,51 @@
                 }
             }
             return $drops;
+        }
+
+        public function show_item($id_item) {
+            $query = $this->db->query("SELECT 
+	            items.name AS name_item
+                FROM items
+                WHERE id = $id_item
+            ;");
+            $item = $query->result_array()[0];
+            $query = $this->db->query("SELECT 
+	            COUNT(items.id) AS number_drops
+                FROM items
+                INNER JOIN drops on items.id = drops.id_item
+                WHERE items.id = $id_item
+            ;");
+            $item += $query->result_array()[0];
+            $query = $this->db->query("SELECT 
+                characters.name AS name_first_looter,
+                events.timestamp AS timestamp_first_loot
+                FROM characters
+                INNER JOIN loot ON characters.id = loot.id_character
+                INNER JOIN drops ON loot.id_drop = drops.id
+                INNER JOIN items ON drops.id_item = items.id
+                INNER JOIN events ON drops.id_event = events.id
+                WHERE items.id = $id_item
+                ORDER BY drops.id ASC LIMIT 1
+            ;");
+            if (isset($query->result_array()[0])) {
+                $item += $query->result_array()[0];
+            }
+            $query = $this->db->query("SELECT 
+                characters.name AS name_last_looter,
+                events.timestamp AS timestamp_last_loot
+                FROM characters
+                INNER JOIN loot ON characters.id = loot.id_character
+                INNER JOIN drops ON loot.id_drop = drops.id
+                INNER JOIN items ON drops.id_item = items.id
+                INNER JOIN events ON drops.id_event = events.id
+                WHERE items.id = $id_item
+                ORDER BY drops.id DESC LIMIT 1
+            ;");
+            if (isset($query->result_array()[0])) {
+                $item += $query->result_array()[0];
+            }
+            return $item;
         }
     }
 
