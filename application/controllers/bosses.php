@@ -13,7 +13,11 @@
 
         public function insert() {
             if ($this->check_permission(1)) {
-                $result_insert = $this->model_bosses->insert();
+                $name = quotes_to_entities($this->input->post('name'));
+                $respawn = $this->input->post('respawn');
+                $variance = $this->input->post('variance');
+                $value = $this->input->post('value');
+                $result_insert = $this->model_bosses->insert($name, $respawn, $variance, $value);
                 if ($result_insert == 0) {
                     $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
                 }
@@ -49,7 +53,12 @@
 
         public function modify() {
             if ($this->check_permission(1)) {
-                $result = $this->model_bosses->modify();
+                $id = $this->input->post('id');
+                $name = quotes_to_entities($this->input->post('name'));
+                $respawn = $this->input->post('respawn');
+                $variance = $this->input->post('variance');
+                $value = $this->input->post('value');
+                $result = $this->model_bosses->modify($id, $name, $respawn, $variance, $value);
                 if ($result == 0) {
                     $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
                 }
