@@ -92,7 +92,7 @@ $(document).ready( function () {
         $("#raid_dropdown").trigger("change");
         return false;
     });
-
+    
     $("#event_dropdown").change(function() {
         var id_event = $("#event_dropdown").val();
         $.ajax({
@@ -157,6 +157,10 @@ $(document).ready( function () {
         $("#raid_dropdown").trigger("change");
         return false;
     });
+
+    if ($("#event_dropdown").has("option")) {
+        $("#raid_dropdown").trigger("change");
+    }
 
     $('#modal_raid').on('shown.bs.modal', function () {
         $('#raid_description').focus();
