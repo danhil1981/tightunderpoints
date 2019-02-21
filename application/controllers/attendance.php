@@ -16,13 +16,16 @@
 
         public function insert() {
             if ($this->check_permission(1)) {
-                    $result_insert = $this->model_attendance->insert();
-                    if ($result_insert == 0) {
-                        $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
-                    }
-                    else {
-                        $this->session->set_flashdata("msg","<div class='badge badge-success'>Attendance Entry successfully created</div><br/>");
-                    }
+                $id_event = $this->input->post("id_event");
+                $id_character = $this->input->post("id_character");
+                $id_points = $this->input->post("id_points");
+                $result_insert = $this->model_attendance->insert($id_event, $id_character, $id_points);
+                if ($result_insert == 0) {
+                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
+                }
+                else {
+                    $this->session->set_flashdata("msg","<div class='badge badge-success'>Attendance Entry successfully created</div><br/>");
+                }
                 $this->session->set_flashdata("table", "attendance");
                 redirect('admins');
             }
@@ -55,7 +58,11 @@
 
         public function modify() {
             if ($this->check_permission(1)) {
-                $result = $this->model_attendance->modify();
+                $id = $this->input->post('id');
+                $id_event = $this->input->post("id_event");
+                $id_character = $this->input->post("id_character");
+                $id_points = $this->input->post("id_points");
+                $result = $this->model_attendance->modify($id, $id_event, $id_character, $id_points);
                 if ($result == 0) {
                     $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
                 }

@@ -21,6 +21,7 @@
                 $this->load->view('template', $data);
             }
         }
+
     }
 
 ?>

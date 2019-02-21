@@ -4,6 +4,11 @@
 
     Class Model_attendance extends CI_Model {
 
+        public function get($id) {
+            $query = $this->db->query("SELECT * FROM attendance WHERE id = $id;");
+            return $query->result_array()[0];
+        }
+
         public function get_all() {
             $query = $this->db->query("SELECT
                 attendance.id, attendance.id_event, attendance.id_character,
@@ -23,9 +28,19 @@
             return $attendance;
         }
 
-        public function get($id) {
-            $query = $this->db->query("SELECT * FROM attendance WHERE id = $id;");
-            return $query->result_array()[0];
+        public function get_characters($id_event) {
+            $query = $this->db->query("SELECT
+                attendance.id_character AS id_character, characters.name as name_character
+                FROM attendance
+                INNER JOIN characters ON attendance.id_character = characters.id
+                WHERE id_event = $id_event;");
+            $characters = array();
+            if ($query->num_rows() > 0) {
+                foreach ($query->result_array() as $row) {
+                    $characters[] = $row;
+                }
+            }
+            return array_column($characters, 'name_character', 'id_character');
         }
 
         public function get_played() {
@@ -46,25 +61,8 @@
             return $attendance;
         }
 
-        public function delete($id) {
-            $this->db->query("DELETE FROM attendance WHERE id = $id ;");
-            return $this->db->affected_rows();
-        }
-
-        public function insert() {
-            $id_event = $this->input->post("id_event");
-            $id_character = $this->input->post("id_character");
-            $id_points = $this->input->post("id_points");
+        public function insert($id_event, $id_character, $id_points) {
             $this->db->query("INSERT INTO attendance (id_event, id_character, id_points) VALUES ('$id_event', '$id_character', '$id_points');");
-            return $this->db->affected_rows();
-        }
-
-        public function modify() {
-            $id = $this->input->post('id');
-            $id_event = $this->input->post("id_event");
-            $id_character = $this->input->post("id_character");
-            $id_points = $this->input->post("id_points");
-            $this->db->query("UPDATE attendance SET id_event = '$id_event', id_character = '$id_character', id_points = '$id_points' WHERE id = $id;");
             return $this->db->affected_rows();
         }
 
@@ -101,19 +99,14 @@
             return $output;
         }
 
-        public function get_characters($id_event) {
-            $query = $this->db->query("SELECT 
-                attendance.id_character AS id_character, characters.name as name_character
-                FROM attendance 
-                INNER JOIN characters ON attendance.id_character = characters.id
-                WHERE id_event = $id_event;");
-            $characters = array();
-            if ($query->num_rows() > 0) {
-                foreach ($query->result_array() as $row) {
-                    $characters[] = $row;
-                }
-            }
-            return array_column($characters, 'name_character', 'id_character');
+        public function delete($id) {
+            $this->db->query("DELETE FROM attendance WHERE id = $id ;");
+            return $this->db->affected_rows();
+        }
+
+        public function modify($id, $id_event, $id_character, $id_points) {
+            $this->db->query("UPDATE attendance SET id_event = '$id_event', id_character = '$id_character', id_points = '$id_points' WHERE id = $id;");
+            return $this->db->affected_rows();
         }
 
         public function officer_modify() {
