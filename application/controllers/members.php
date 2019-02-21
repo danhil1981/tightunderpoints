@@ -24,45 +24,6 @@
             }
         }
 
-        public function get_max() {
-            if ($this->check_permission(3)) {
-                print_r($this->model_members->get_max());
-                die;
-            }
-        }
-
-        public function show_character() {
-            if ($this->check_permission(3)) {
-                $id_character= $this->input->post("id_character");
-                print_r(json_encode($this->model_members->show_character($id_character)));
-                die;
-            }
-        }
-
-        public function list_kills() {
-            if ($this->check_permission(3)) {
-                $id_boss = $this->input->post("id_boss");
-                print_r(json_encode($this->model_members->list_kills($id_boss)));
-                die;
-            }
-        }
-
-        public function list_items() {
-            if ($this->check_permission(3)) {
-                $id_boss = $this->input->post("id_boss");
-                print_r(json_encode($this->model_members->list_items($id_boss)));
-                die;
-            }
-        }
-
-        public function show_item() {
-            if ($this->check_permission(3)) {
-                $id_item = $this->input->post("id_item");
-                print_r(json_encode($this->model_members->show_item($id_item)));
-                die;
-            }
-        }
-
     }
 
 ?>
