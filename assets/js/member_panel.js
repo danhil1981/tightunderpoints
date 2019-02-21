@@ -110,8 +110,24 @@ $(document).ready(function () {
                     case "2": var type = "Alt";break;
                     default: var type = "Bot";
                 }
+                let timestamp_last_event = data['timestamp_last_event'];
+                let boss_last_event = "("+data['boss_last_event']+")";
+                let timestamp_last_loot = data['timestamp_last_loot'];
+                let item_last_loot = "("+data['item_last_loot']+")";
+                if (data['timestamp_last_event'] == undefined) {
+                    timestamp_last_event = "never";
+                }
+                if (data['boss_last_event'] == undefined) {
+                    boss_last_event = "";
+                }
+                if (data['timestamp_last_loot'] == undefined) {
+                    timestamp_last_loot = "never";
+                }
+                if (data['item_last_loot'] == undefined) {
+                    item_last_loot = "";
+                }
                 $("#title_character").text(data['name_character']+" "+data['level_character']+" "+data['class_character']);
-                $("#content_character").html("Type: " + type + "<br/>Player: " + data['name_player']+"<br/><br/>Earned all time: " + data['total_earned'] + "<br/>Spent all time: " + data['total_spent'] + "<br/></br>Earned last 50 days: " + data['last50_earned'] + "<br/>Spent last 50 days: " + data['last50_spent'] +"<br/><br/>Current Points: " +(data['last50_earned']-data['last50_spent']) +"<br/><br/>Last Event: " +data['timestamp_last_event'] +" (" +data['boss_last_event'] +")<br/>Last Loot: " +data['timestamp_last_loot'] +" (" +data['item_last_loot'] +")");
+                $("#content_character").html("Type: " + type + "<br/>Player: " + data['name_player']+"<br/><br/>Earned all time: " + data['total_earned'] + "<br/>Spent all time: " + data['total_spent'] + "<br/></br>Earned last 50 days: " + data['last50_earned'] + "<br/>Spent last 50 days: " + data['last50_spent'] +"<br/><br/>Current Points: " +(data['last50_earned']-data['last50_spent']) +"<br/><br/>Last Event: " +timestamp_last_event +" " +boss_last_event +"<br/>Last Loot: " +timestamp_last_loot +" "+item_last_loot);
                 $("#modal_character").modal();
             },
             error: function () {
