@@ -110,28 +110,33 @@ $(document).ready(function () {
                     case "2": var type = "Alt";break;
                     default: var type = "Bot";
                 }
-                let timestamp_last_event = data['timestamp_last_event'];
-                let timestamp_last_botted = data['timestamp_last_botted'];
-                let boss_last_event = "("+data['boss_last_event']+")";
-                let timestamp_last_loot = data['timestamp_last_loot'];
-                let item_last_loot = "("+data['item_last_loot']+")";
-                if (timestamp_last_event == undefined) {
-                    if (timestamp_last_botted == undefined) {
-                        timestamp_last_event = "never";
+                let timestamp_last_event;
+                let boss_last_event;
+                let timestamp_last_loot;
+                let item_last_loot;
+                if (data['timestamp_last_event'] == undefined) {
+                    if (data['timestamp_last_botted'] == undefined) {
+                        timestamp_last_event = "n/a";
+                        boss_last_event = "";
                     }
                     else {
-                        timestamp_last_event = timestamp_last_botted;
+                        timestamp_last_event = data['timestamp_last_botted'];
+                        boss_last_event = "(" + data['boss_last_event'] + ")";
                     }
                 }
-                if (boss_last_event == undefined) {
-                    boss_last_event = "";
+                else {
+                    timestamp_last_event = data['timestamp_last_event'];
+                    boss_last_event = "(" + data['boss_last_event'] + ")";
                 }
-                if (timestamp_last_loot == undefined) {
-                    timestamp_last_loot = "never";
-                }
-                if (item_last_loot == undefined) {
+                if (data['timestamp_last_loot'] == undefined) {
+                    timestamp_last_loot = "n/a";
                     item_last_loot = "";
                 }
+                else {
+                    timestamp_last_loot = data['timestamp_last_loot'];
+                    item_last_loot = "(" + data['item_last_loot'] + ")";
+                }
+                
                 $("#title_character").text(data['name_character']+" "+data['level_character']+" "+data['class_character']);
                 $("#content_character").html("Type: " + type + "<br/>Player: " + data['name_player']+"<br/><br/>Earned all time: " + data['total_earned'] + "<br/>Spent all time: " + data['total_spent'] + "<br/></br>Earned last 50 days: " + data['last50_earned'] + "<br/>Spent last 50 days: " + data['last50_spent'] +"<br/><br/>Current Points: " +(data['last50_earned']-data['last50_spent']) +"<br/><br/>Last Event: " +timestamp_last_event +" " +boss_last_event +"<br/>Last Loot: " +timestamp_last_loot +" "+item_last_loot);
                 $("#modal_character").modal();
@@ -151,10 +156,10 @@ $(document).ready(function () {
             success: function (output) {
                 var data = JSON.parse(output);
                 if (data['last_killed'] == null) {
-                    data['last_killed'] = "never";
+                    data['last_killed'] = "n/a";
                 }
                 if (data['first_killed'] == null) {
-                    data['first_killed'] = "never";
+                    data['first_killed'] = "n/a";
                 }
                 $("#title_boss").text(data['name_boss']);
                 $("#content_boss").html("Tracked kills: "+data['total_kills']+"<br/>First killed: " + data['first_killed']+"<br/>Last killed: " + data['last_killed'] + "<br/>");
