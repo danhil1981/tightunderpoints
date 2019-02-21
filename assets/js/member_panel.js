@@ -111,19 +111,25 @@ $(document).ready(function () {
                     default: var type = "Bot";
                 }
                 let timestamp_last_event = data['timestamp_last_event'];
+                let timestamp_last_botted = data['timestamp_last_botted'];
                 let boss_last_event = "("+data['boss_last_event']+")";
                 let timestamp_last_loot = data['timestamp_last_loot'];
                 let item_last_loot = "("+data['item_last_loot']+")";
-                if (data['timestamp_last_event'] == undefined) {
-                    timestamp_last_event = "never";
+                if (timestamp_last_event == undefined) {
+                    if (timestamp_last_botted == undefined) {
+                        timestamp_last_event = "never";
+                    }
+                    else {
+                        timestamp_last_event = timestamp_last_botted;
+                    }
                 }
-                if (data['boss_last_event'] == undefined) {
+                if (boss_last_event == undefined) {
                     boss_last_event = "";
                 }
-                if (data['timestamp_last_loot'] == undefined) {
+                if (timestamp_last_loot == undefined) {
                     timestamp_last_loot = "never";
                 }
-                if (data['item_last_loot'] == undefined) {
+                if (item_last_loot == undefined) {
                     item_last_loot = "";
                 }
                 $("#title_character").text(data['name_character']+" "+data['level_character']+" "+data['class_character']);
@@ -151,7 +157,7 @@ $(document).ready(function () {
                     data['first_killed'] = "never";
                 }
                 $("#title_boss").text(data['name_boss']);
-                $("#content_boss").html("Number of kills: "+data['total_kills']+"<br/>First killed: " + data['first_killed']+"<br/>Last killed: " + data['last_killed'] + "<br/>");
+                $("#content_boss").html("Tracked kills: "+data['total_kills']+"<br/>First killed: " + data['first_killed']+"<br/>Last killed: " + data['last_killed'] + "<br/>");
                 $.ajax({
                     url: 'members/list_items/',
                     data: { 'id_boss': id_boss },
@@ -185,6 +191,31 @@ $(document).ready(function () {
         });
     });
 
+    $('#table_loot,#table_items').on("click", ".item", function () {
+        var id_item = ($(this).attr('class').slice(14));;
+        $.ajax({
+            url: 'members/show_item/',
+            data: { 'id_item': id_item },
+            type: 'post',
+            success: function (output) {
+                var data = JSON.parse(output);
+                $("#title_item").text(decodeHtml(data['name_item']));
+                $("#content_item").html("Number of drops: " + data['number_drops'] +"<br/>");
+                if (data['name_first_looter'] != undefined) {
+                    $("#content_item").append("<br/>First looted by: "+data['name_first_looter']+" ("+data['timestamp_first_loot']+")");
+                }
+                if (data['name_last_looter'] != undefined) {
+                    $("#content_item").append("<br/>Last looted by: " + data['name_last_looter'] + " (" + data['timestamp_last_loot'] + ")");
+                }
+                $("#content_item").append("<br/><br/><a href='http://allaclone.p2002.com/item.php?id="+id_item+"' target='_blank' class='btn btn-primary btn-sm'>Allaclone</a>")
+                $("#modal_item").modal();
+            },
+            error: function () {
+                $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
+            }
+        });
+    });
+
 });
 
 function show(table) {
@@ -201,4 +232,10 @@ function get_max() {
             $("#winner_tbody").html("<tr><th>Maximum:</th><td>" + output + "</td></tr>");
         }
     });
+}
+
+function decodeHtml(html) {
+    var txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
 }

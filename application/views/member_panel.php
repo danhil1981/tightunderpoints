@@ -99,7 +99,7 @@
                                         $loot_entry = $loot_list[$i];
                                         echo "<tr><td class='align-middle'>".$loot_entry['timestamp']."</td>";
                                         echo "<td class='align-middle'>".date('D j M, Y',strtotime($loot_entry['timestamp']))."</td>";
-                                        echo "<td class='align-middle'>".$loot_entry['name_item']."</td>";
+                                        echo "<td class='align-middle'><div class='btn item item_".$drop_list[$loot_entry['id_drop']]."'>".$loot_entry['name_item']."</div></td>";
                                         echo "<td class='align-middle'><div class='btn character character_".$loot_entry['id_character']."'>".$loot_entry['name_character']."</div></td>";
                                         echo "</tr>";
                                     }
@@ -208,7 +208,7 @@
                                     <?php
                                         for ($i = 0; $i < count($items_list); $i++) {
                                             $item = $items_list[$i];
-                                            echo "<tr><td class='align-middle'>".$item['name']."</td>";
+                                            echo "<tr><td class='align-middle'><div class='btn item item_".$item['id']."'>".$item['name']."</div></td>";
                                             echo "<td class='align-middle'><div class='btn boss boss_".$item['id_boss']."'>".$item['name_boss']."</div></td>";
                                             echo "<td class='align-middle'>".$item['value']."</td>";
                                             echo "<td class='align-middle'><a href='http://allaclone.p2002.com/item.php?id=".$item['id']."' target='_blank' class='btn btn-primary btn-sm'>Allaclone</a></td>";
@@ -300,6 +300,20 @@
                             </button>
                         </div>
                         <div class="modal-body text-center" id="content_boss">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal_item" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content bg-dark text-white">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-primary" id="title_item"></h5>
+                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-center" id="content_item">
                         </div>
                     </div>
                 </div>
