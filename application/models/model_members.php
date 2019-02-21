@@ -82,7 +82,7 @@
                 INNER JOIN attendance ON characters.id = attendance.id_points
                 INNER JOIN events ON attendance.id_event = events.id
                 INNER JOIN bosses ON events.id_boss = bosses.id
-                WHERE events.timestamp >= DATE_SUB(NOW(), INTERVAL 50 DAY) AND id_character = $id_character
+                WHERE events.timestamp >= DATE_SUB(NOW(), INTERVAL 50 DAY) AND characters.id = $id_character
             ;");
             $character += $query->result_array()[0];
             $query = $this->db->query("SELECT
@@ -91,17 +91,17 @@
                 INNER JOIN attendance ON characters.id = attendance.id_points
                 INNER JOIN events ON attendance.id_event = events.id
                 INNER JOIN bosses ON events.id_boss = bosses.id
-                WHERE id_character = $id_character
+                WHERE characters.id = $id_character
             ;");
             $character += $query->result_array()[0];
             $query = $this->db->query("SELECT
                 events.timestamp AS timestamp_last_event,
                 bosses.name AS boss_last_event
                 FROM characters
-                INNER JOIN attendance ON characters.id = attendance.id_points
+                INNER JOIN attendance ON characters.id = attendance.id_points OR attendance.id_character
                 INNER JOIN events ON attendance.id_event = events.id
                 INNER JOIN bosses ON events.id_boss = bosses.id
-                WHERE id_character = $id_character
+                WHERE characters.id = $id_character
                 ORDER BY events.timestamp DESC LIMIT 1
             ;");
             if (isset($query->result_array()[0])) {
@@ -115,7 +115,7 @@
                 INNER JOIN drops ON loot.id_drop = drops.id
                 INNER JOIN events ON drops.id_event = events.id
                 INNER JOIN items ON drops.id_item = items.id
-                WHERE id_character = $id_character
+                WHERE characters.id = $id_character
                 ORDER BY events.timestamp DESC LIMIT 1
             ;");
             if (isset($query->result_array()[0])) {
