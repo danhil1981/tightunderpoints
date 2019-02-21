@@ -1,5 +1,5 @@
 $(document).ready( function () {
-    path = window.location.href.substring(0,window.location.href.lastIndexOf('loot'));
+    path = window.location.href.substring(0,window.location.href.lastIndexOf('officers'));
     $("input[type=submit]").attr("disabled", "true");
     $("#insert_raid").attr("disabled", "true");
     $("#insert_item").attr("disabled", "true");
@@ -8,7 +8,7 @@ $(document).ready( function () {
         var description = $("#raid_description").val();
         var date = $("#raid_date").val();
         $.ajax({
-            url: path +'insert_raid/',
+            url: path +'ajax/insert_raid/',
             data: { 'description':description, 'date':date },
             type: 'post',
             success: function(output) {
@@ -37,7 +37,7 @@ $(document).ready( function () {
     $("#raid_dropdown").change(function() {
         var id_raid = $("#raid_dropdown").val();
         $.ajax({
-            url: path +'get_events/',
+            url: path +'ajax/get_events/',
             data: {'id_raid':id_raid},
             type: 'post',
             success: function(output) {
@@ -68,7 +68,7 @@ $(document).ready( function () {
         var id_boss = $("#event_boss_id").val();
         var id_raid = $("#raid_dropdown").val();
         $.ajax({
-            url: path +'insert_event_ajax/',
+            url: path +'ajax/insert_event/',
             data: { 'time':time, 'date':date, 'id_boss':id_boss , 'id_raid':id_raid  },
             type: 'post',
             success: function(output) {
@@ -96,7 +96,7 @@ $(document).ready( function () {
     $("#event_dropdown").change(function() {
         var id_event = $("#event_dropdown").val();
         $.ajax({
-            url: path +'get_drops/',
+            url: path +'ajax/get_drops/',
             data: {'id_event':id_event},
             type: 'post',
             success: function(output) {
@@ -118,7 +118,7 @@ $(document).ready( function () {
         if (id_event != null) {
             $("#boss_dropdown").prop("disabled", true);
             $.ajax({
-                url: path +'get_boss/',
+                url: path +'ajax/get_boss/',
                 data: { 'id_event':id_event},
                 type: 'post',
                 success: function(output) {
@@ -137,7 +137,7 @@ $(document).ready( function () {
         var id_boss = $("#boss_dropdown").val();
         var value_item = $("#value_item").val();
         $.ajax({
-            url: path +'insert_item/',
+            url: path +'ajax/insert_item/',
             data: { 'id_item':id_item, 'name_item':name_item, 'id_boss':id_boss , 'value_item':value_item  },
             type: 'post',
             success: function(output) {

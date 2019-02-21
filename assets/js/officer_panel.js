@@ -85,7 +85,7 @@ function show(table) {
 
 function get_winner() {
     $.ajax({
-        url: 'officers/get_winner/',
+        url: 'ajax/get_winner/',
         data: { 'comparing': comparing },
         type: 'post',
         success: function (output) {

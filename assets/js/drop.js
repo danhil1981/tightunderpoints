@@ -4,7 +4,7 @@ $(document).ready(function () {
     $("#event_dropdown").change(function () {
         var id_event = $("#event_dropdown").val();
         $.ajax({
-            url: path + '/officers/get_drops/',
+            url: path + 'ajax/get_drops/',
             data: { 'id_event': id_event },
             type: 'post',
             success: function (output) {

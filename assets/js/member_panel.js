@@ -100,7 +100,7 @@ $(document).ready(function () {
     $('#table_points,#table_loot,#table_roster').on("click", ".character", function() {
         var id_character = ($(this).attr('class').slice(24));;
         $.ajax({
-            url: 'members/show_character/',
+            url: 'ajax/show_character/',
             data: { 'id_character': id_character },
             type: 'post',
             success: function (output) {
@@ -150,7 +150,7 @@ $(document).ready(function () {
     $('#table_bosses,#table_items,#table_events').on("click", ".boss", function () {
         var id_boss = ($(this).attr('class').slice(14));;
         $.ajax({
-            url: 'members/list_kills/',
+            url: 'ajax/list_kills/',
             data: { 'id_boss': id_boss },
             type: 'post',
             success: function (output) {
@@ -164,7 +164,7 @@ $(document).ready(function () {
                 $("#title_boss").text(data['name_boss']);
                 $("#content_boss").html("Tracked kills: "+data['total_kills']+"<br/>First killed: " + data['first_killed']+"<br/>Last killed: " + data['last_killed'] + "<br/>");
                 $.ajax({
-                    url: 'members/list_items/',
+                    url: 'ajax/list_items/',
                     data: { 'id_boss': id_boss },
                     type: 'post',
                     success: function (output) {
@@ -199,7 +199,7 @@ $(document).ready(function () {
     $('#table_loot,#table_items').on("click", ".item", function () {
         var id_item = ($(this).attr('class').slice(14));;
         $.ajax({
-            url: 'members/show_item/',
+            url: 'ajax/show_item/',
             data: { 'id_item': id_item },
             type: 'post',
             success: function (output) {
@@ -230,7 +230,7 @@ function show(table) {
 
 function get_max() {
     $.ajax({
-        url: 'members/get_max/',
+        url: 'ajax/get_max/',
         data: { 'comparing': comparing },
         type: 'post',
         success: function (output) {
