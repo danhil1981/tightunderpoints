@@ -159,7 +159,7 @@
                                     <?php
                                         for ($i = 0; $i < count($bosses_list); $i++) {
                                             $boss = $bosses_list[$i];
-                                            echo "<tr><td class='align-middle'>".$boss['name']."</td>";
+                                            echo "<tr><td class='align-middle'><div class='btn boss boss_".$boss['id']."'>".$boss['name']."</div></td>";
                                             echo "<td>".$boss['respawn']."</td>";
                                             echo "<td class='align-middle'>";
                                                 $hms = explode(":", $boss['respawn']);
@@ -209,7 +209,7 @@
                                         for ($i = 0; $i < count($items_list); $i++) {
                                             $item = $items_list[$i];
                                             echo "<tr><td class='align-middle'>".$item['name']."</td>";
-                                            echo "<td class='align-middle'>".$item['name_boss']."</td>";
+                                            echo "<td class='align-middle'><div class='btn boss boss_".$item['id_boss']."'>".$item['name_boss']."</div></td>";
                                             echo "<td class='align-middle'>".$item['value']."</td>";
                                             echo "<td class='align-middle'><a href='http://allaclone.p2002.com/item.php?id=".$item['id']."' target='_blank' class='btn btn-primary btn-sm'>Allaclone</a></td>";
                                             echo "</tr>";
@@ -258,7 +258,7 @@
                                             $event = $events_list[$i];
                                             echo "<tr><td class='align-middle'>".$event['timestamp']."</td>";
                                             echo "<td class='align-middle'>".date('D j M, Y',strtotime($event['timestamp']))."</td>";
-                                            echo "<td class='align-middle'>".$event['name_boss']."</td>";
+                                            echo "<td class='align-middle'><div class='btn boss boss_".$event['id_boss']."'>".$event['name_boss']."</div></td>";
                                             echo "<td class='align-middle'>";
                                             if (!isset($event['description_raid'])) {
                                                 echo "-- not part of a raid --";
@@ -280,7 +280,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content bg-dark text-white">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="title_character"></h5>
+                            <h5 class="modal-title text-primary" id="title_character"></h5>
                             <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
@@ -294,7 +294,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content bg-dark text-white">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="title_boss"></h5>
+                            <h5 class="modal-title text-primary" id="title_boss"></h5>
                             <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>

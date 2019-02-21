@@ -97,7 +97,7 @@ $(document).ready(function () {
         $('#points button').removeClass("d-none");
     });
 
-    $('#table_points,#table_loot,#roster').on("click", ".character", function() {
+    $('#table_points,#table_loot,#table_roster').on("click", ".character", function() {
         var id_character = ($(this).attr('class').slice(24));;
         $.ajax({
             url: 'members/show_character/',
@@ -113,6 +113,55 @@ $(document).ready(function () {
                 $("#title_character").text(data['name_character']+" "+data['level_character']+" "+data['class_character']);
                 $("#content_character").html("Type: " + type + "<br/>Player: " + data['name_player']+"<br/><br/>Earned all time: " + data['total_earned'] + "<br/>Spent all time: " + data['total_spent'] + "<br/></br>Earned last 50 days: " + data['last50_earned'] + "<br/>Spent last 50 days: " + data['last50_spent'] +"<br/><br/>Current Points: " +(data['last50_earned']-data['last50_spent']) +"<br/><br/>Last Event: " +data['timestamp_last_event'] +" (" +data['boss_last_event'] +")<br/>Last Loot: " +data['timestamp_last_loot'] +" (" +data['item_last_loot'] +")");
                 $("#modal_character").modal();
+            },
+            error: function () {
+                $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
+            }
+        });
+    });
+
+    $('#table_bosses,#table_items,#table_events').on("click", ".boss", function () {
+        var id_boss = ($(this).attr('class').slice(14));;
+        $.ajax({
+            url: 'members/list_kills/',
+            data: { 'id_boss': id_boss },
+            type: 'post',
+            success: function (output) {
+                var data = JSON.parse(output);
+                if (data['last_killed'] == null) {
+                    data['last_killed'] = "never";
+                }
+                if (data['first_killed'] == null) {
+                    data['first_killed'] = "never";
+                }
+                $("#title_boss").text(data['name_boss']);
+                $("#content_boss").html("Number of kills: "+data['total_kills']+"<br/>First killed: " + data['first_killed']+"<br/>Last killed: " + data['last_killed'] + "<br/>");
+                $.ajax({
+                    url: 'members/list_items/',
+                    data: { 'id_boss': id_boss },
+                    type: 'post',
+                    success: function (output) {
+                        var data2 = JSON.parse(output);
+                        if (data2.length != 0) {
+                            $("#content_boss").append("<br/>List of drops:<br/>");
+                            for (i in data2) {
+                                let percentage = 0;
+                                let drops = " drops ";
+                                if (data['total_kills'] != 0) {
+                                    percentage = parseInt(100*data2[i]['number_drops'] / data['total_kills']);
+                                }
+                                if (data2[i]['number_drops'] == 1) {
+                                    drops = " drop ";
+                                }
+                                $("#content_boss").append("<br/>" + data2[i]['name_item'] + " (" + data2[i]['number_drops'] + drops +"- " +percentage +" %)");
+                            }
+                        }                      
+                        $("#modal_boss").modal();
+                    },
+                    error: function () {
+                        $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
+                    }
+                });
             },
             error: function () {
                 $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");

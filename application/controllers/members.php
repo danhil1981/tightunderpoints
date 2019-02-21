@@ -38,6 +38,22 @@
             }
         }
 
+        public function list_kills() {
+            if ($this->check_permission(3)) {
+                $id_boss = $this->input->post("id_boss");
+                print_r(json_encode($this->model_members->list_kills($id_boss)));
+                die;
+            }
+        }
+
+        public function list_items() {
+            if ($this->check_permission(3)) {
+                $id_boss = $this->input->post("id_boss");
+                print_r(json_encode($this->model_members->list_items($id_boss)));
+                die;
+            }
+        }
+
     }
 
 ?>
