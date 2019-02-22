@@ -181,11 +181,7 @@
             return array_column($characters, 'type_character', 'id_character');
         }
 
-        public function insert() {
-            $name = $this->input->post('name');
-            $level = $this->input->post('level');
-            $class = $this->input->post('class');
-            $type = $this->input->post('type');
+        public function insert($name, $level, $class, $type) {
             $id_character = $this->input->post('id_player');
             $this->db->query("INSERT INTO characters (name, level, class, type, id_player) VALUES ('$name', '$level', '$class', '$type', '$id_character');");
             return $this->db->affected_rows();
@@ -196,12 +192,7 @@
             return $this->db->affected_rows();
         }
 
-        public function modify() {
-            $id = $this->input->post('id');
-            $name = $this->input->post('name');
-            $level = $this->input->post('level');
-            $type = $this->input->post('type');
-            $id_player = $this->input->post('id_player');
+        public function modify($id, $name, $level, $class, $type) {
             $this->db->query("UPDATE characters SET name = '$name', level = '$level', type = '$type', id_player = '$id_player' WHERE id = $id;");
             return $this->db->affected_rows();
         }
