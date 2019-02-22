@@ -4,6 +4,11 @@
 
     Class Model_characters extends CI_Model {
 
+        public function get($id) {
+            $query = $this->db->query("SELECT * FROM characters WHERE id = $id;");
+            return $query->result_array()[0];
+        }
+        
         public function get_all() {
             $query = $this->db->query("SELECT
                 characters.id, characters.name, characters.level, characters.class, characters.type, characters.id_player,
@@ -19,39 +24,9 @@
             return $characters;
         }
 
-        public function get($id) {
-            $query = $this->db->query("SELECT * FROM characters WHERE id = $id;");
-            return $query->result_array()[0];
-        }
-
         public function get_name($id) {
             $query = $this->db->query("SELECT name FROM characters WHERE id = $id;");
             return $query->result_array()[0];
-        }
-
-        public function delete($id) {
-            $this->db->query("DELETE FROM characters WHERE id = $id ;");
-            return $this->db->affected_rows();
-        }
-
-        public function insert() {
-            $name = $this->input->post('name');
-            $level = $this->input->post('level')+1;
-            $class = $this->input->post('class');
-            $type = $this->input->post('type');
-            $id_character = $this->input->post('id_player');
-            $this->db->query("INSERT INTO characters (name, level, class, type, id_player) VALUES ('$name', '$level', '$class', '$type', '$id_character');");
-            return $this->db->affected_rows();
-        }
-
-        public function modify() {
-            $id = $this->input->post('id');
-            $name = $this->input->post('name');
-            $level = $this->input->post('level')+1;
-            $type = $this->input->post('type');
-            $id_player = $this->input->post('id_player');
-            $this->db->query("UPDATE characters SET name = '$name', level = '$level', type = '$type', id_player = '$id_player' WHERE id = $id;");
-            return $this->db->affected_rows();
         }
 
         public function get_list_names() {
@@ -204,6 +179,31 @@
                 }
             }
             return array_column($characters, 'type_character', 'id_character');
+        }
+
+        public function insert() {
+            $name = $this->input->post('name');
+            $level = $this->input->post('level');
+            $class = $this->input->post('class');
+            $type = $this->input->post('type');
+            $id_character = $this->input->post('id_player');
+            $this->db->query("INSERT INTO characters (name, level, class, type, id_player) VALUES ('$name', '$level', '$class', '$type', '$id_character');");
+            return $this->db->affected_rows();
+        }
+
+        public function delete($id) {
+            $this->db->query("DELETE FROM characters WHERE id = $id ;");
+            return $this->db->affected_rows();
+        }
+
+        public function modify() {
+            $id = $this->input->post('id');
+            $name = $this->input->post('name');
+            $level = $this->input->post('level');
+            $type = $this->input->post('type');
+            $id_player = $this->input->post('id_player');
+            $this->db->query("UPDATE characters SET name = '$name', level = '$level', type = '$type', id_player = '$id_player' WHERE id = $id;");
+            return $this->db->affected_rows();
         }
 
     }

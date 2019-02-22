@@ -10,7 +10,7 @@
                         <?php echo form_input('name', $character['name'],'required maxlength="32" pattern="^[A-Za-z]+$" title="1 word consisting of uppercase/lowercase letters" class="form-control"')?>
                         <br/>
                     </div>
-                    <?php $options = range(1,65);?>
+                    <?php $options = array_combine(range(1,65),range(1,65));?>
                     <div class="form-group">
                         <div class="text-white">
                             Level<br/><br/>
