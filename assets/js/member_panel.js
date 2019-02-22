@@ -66,8 +66,8 @@ $(document).ready(function () {
             default: type = 3;
         }
         comparing.push(id, points, type);
-        $("#compare_tbody").append("<tr id='row_" + id + "'><td>" + $("#name_" + id).html() + "</td><td>" + $("#type_" + id).html() + "</td><td>" + $("#points_" + id).html()
-            + "</td><td><button id='remove_" + id +"' class='btn btn-warning btn-sm font-weight-bold'>&times;</button></td></tr>");
+        $("#compare_tbody").append("<tr id='row_" + id + "'><td class='align-middle'>" + $("#name_" + id).html() + "</td><td class='align-middle'>" + $("#type_" + id).html() + "</td><td class='align-middle'>" + $("#points_" + id).html()
+            + "</td><td class='align-middle'><button id='remove_" + id +"' class='btn btn-warning btn-sm font-weight-bold'>&times;</button></td></tr>");
         get_max();
     });
 
