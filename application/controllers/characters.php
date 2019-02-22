@@ -20,7 +20,8 @@
                 $level = $this->input->post('level');
                 $class = $this->input->post('class');
                 $type = $this->input->post('type');
-                $result_insert = $this->model_characters->insert($name, $level, $class, $type);
+                $id_player = $this->input->post('id_player');
+                $result_insert = $this->model_characters->insert($name, $level, $class, $type, $id_player);
                 if ($result_insert == 0) {
                     $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
                 }
@@ -70,7 +71,7 @@
                 $level = $this->input->post('level');
                 $type = $this->input->post('type');
                 $id_player = $this->input->post('id_player');
-                $result = $this->model_characters->modify($id, $name, $level, $class, $type);
+                $result = $this->model_characters->modify($id, $name, $level, $class, $type, $id_player);
                 if ($result == 0) {
                     $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
                 }
