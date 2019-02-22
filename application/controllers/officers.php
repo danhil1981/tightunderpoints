@@ -30,7 +30,7 @@
                 $data['character_names'] = $this->model_characters->get_list_names();
                 $data['raid_descriptions'] = $this->model_raids->get_list();
                 $data['boss_names'] = $this->model_bosses->get_list();
-                $data['events_not_in_raid'] = $this->model_events->events_not_in_raid();
+                $data['events_not_in_raid'] = $this->model_events->get_events_not_in_raid();
                 $this->load->view('template', $data);
             }
         }

@@ -55,7 +55,7 @@
         public function get_events() {
             if ($this->check_permission(2)) {
                 $id_raid = $this->input->post('id_raid');
-                $events_in_raid = $this->model_events->events_in_raid($id_raid);
+                $events_in_raid = $this->model_events->get_events_in_raid($id_raid);
                 print_r(json_encode($events_in_raid));
                 die;
             }
