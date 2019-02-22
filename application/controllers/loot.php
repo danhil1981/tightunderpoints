@@ -15,13 +15,15 @@
 
         public function insert() {
             if ($this->check_permission(1)) {
-                    $result_insert = $this->model_loot->insert();
-                    if ($result_insert == 0) {
-                        $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
-                    }
-                    else {
-                        $this->session->set_flashdata("msg","<div class='badge badge-success'>Loot Entry successfully created</div><br/>");
-                    }
+                $id_drop = $this->input->post("id_drop");
+                $id_character = $this->input->post("id_character");
+                $result_insert = $this->model_loot->insert($id_drop, $id_character);
+                if ($result_insert == 0) {
+                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
+                }
+                else {
+                    $this->session->set_flashdata("msg","<div class='badge badge-success'>Loot Entry successfully created</div><br/>");
+                }
                 $this->session->set_flashdata("table", "loot");
                 redirect('admins');
             }
@@ -53,7 +55,10 @@
 
         public function modify() {
             if ($this->check_permission(1)) {
-                $result = $this->model_loot->modify();
+                $id = $this->input->post('id');
+                $id_drop = $this->input->post("id_drop");
+                $id_character = $this->input->post("id_character");
+                $result = $this->model_loot->modify($id, $id_drop, $id_character);
                 if ($result == 0) {
                     $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
                 }

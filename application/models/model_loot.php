@@ -4,6 +4,11 @@
 
     Class Model_loot extends CI_Model {
 
+        public function get($id) {
+            $query = $this->db->query("SELECT * FROM loot WHERE id = $id;");
+            return $query->result_array()[0];
+        }
+
         public function get_all() {
             $query = $this->db->query("SELECT
             loot.id, loot.id_drop, loot.id_character,
@@ -26,9 +31,9 @@
             return $loot;
         }
 
-        public function get($id) {
-            $query = $this->db->query("SELECT * FROM loot WHERE id = $id;");
-            return $query->result_array()[0];
+        public function insert($id_drop, $id_character) {
+            $this->db->query("INSERT INTO loot (id_drop, id_character) VALUES ('$id_drop', '$id_character');");
+            return $this->db->affected_rows();
         }
 
         public function delete($id) {
@@ -36,17 +41,7 @@
             return $this->db->affected_rows();
         }
 
-        public function insert() {
-            $id_drop = $this->input->post("id_drop");
-            $id_character = $this->input->post("id_character");
-            $this->db->query("INSERT INTO loot (id_drop, id_character) VALUES ('$id_drop', '$id_character');");
-            return $this->db->affected_rows();
-        }
-
-        public function modify() {
-            $id = $this->input->post('id');
-            $id_drop = $this->input->post("id_drop");
-            $id_character = $this->input->post("id_character");
+        public function modify($id, $id_drop, $id_character) {
             $this->db->query("UPDATE loot SET id_drop = '$id_drop', id_character = '$id_character' WHERE id = $id;");
             return $this->db->affected_rows();
         }
