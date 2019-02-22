@@ -17,6 +17,7 @@
             $this->load->model('model_officers');
             $this->load->model('model_raid_dump');
             $this->load->model('model_discord');
+            $this->load->model('model_security');
         }
 
         public function process_login() {
