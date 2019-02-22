@@ -4,6 +4,11 @@
 
     Class Model_drops extends CI_Model {
 
+        public function get($id) {
+            $query = $this->db->query("SELECT * FROM drops WHERE id = $id;");
+            return $query->result_array()[0];
+        }
+
         public function get_all() {
             $query = $this->db->query("SELECT
                 drops.id, drops.id_event, drops.id_item,
@@ -19,31 +24,6 @@
                 }
             }
             return $drops;
-        }
-
-        public function get($id) {
-            $query = $this->db->query("SELECT * FROM drops WHERE id = $id;");
-            return $query->result_array()[0];
-        }
-
-        public function delete($id) {
-            $this->db->query("DELETE FROM drops WHERE id = $id ;");
-            return $this->db->affected_rows();
-        }
-
-        public function insert() {
-            $id_event = $this->input->post('id_event');
-            $id_item = $this->input->post('id_item');
-            $this->db->query("INSERT INTO drops (id_event, id_item) VALUES ('$id_event', '$id_item');");
-            return $this->db->affected_rows();
-        }
-
-        public function modify() {
-            $id = $this->input->post('id');
-            $id_event = $this->input->post('id_event');
-            $id_item = $this->input->post('id_item');
-            $this->db->query("UPDATE drops SET id_event = '$id_event', id_item = '$id_item' WHERE id = $id;");
-            return $this->db->affected_rows();
         }
 
         public function get_list() {
@@ -77,6 +57,21 @@
                 }
             }
             return array_column($drops_items, 'id_item', 'id_drop');
+        }
+
+        public function insert($id_event, $id_item) {
+            $this->db->query("INSERT INTO drops (id_event, id_item) VALUES ('$id_event', '$id_item');");
+            return $this->db->affected_rows();
+        }
+
+        public function delete($id) {
+            $this->db->query("DELETE FROM drops WHERE id = $id ;");
+            return $this->db->affected_rows();
+        }
+
+        public function modify($id, $id_event, $id_item) {
+            $this->db->query("UPDATE drops SET id_event = '$id_event', id_item = '$id_item' WHERE id = $id;");
+            return $this->db->affected_rows();
         }
 
     }

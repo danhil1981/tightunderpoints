@@ -4,6 +4,11 @@
 
     Class Model_events extends CI_Model {
 
+        public function get($id) {
+            $query = $this->db->query("SELECT * FROM events WHERE id = $id;");
+            return $query->result_array()[0];
+        }
+
         public function get_all() {
             $query = $this->db->query("SELECT
                 events.id, events.timestamp, events.id_boss, events.id_raid,
@@ -20,37 +25,6 @@
             return $events;
         }
 
-        public function get($id) {
-            $query = $this->db->query("SELECT * FROM events WHERE id = $id;");
-            return $query->result_array()[0];
-        }
-
-        public function delete($id) {
-            $this->db->query("DELETE FROM events WHERE id = $id ;");
-            return $this->db->affected_rows();
-        }
-
-        public function insert() {
-            $time = $this->input->post("time");
-            $date = $this->input->post("date");
-            $timestamp = $date." ".$time;
-            $id_boss = $this->input->post("id_boss");
-            $id_raid = $this->input->post("id_raid");
-            $this->db->query("INSERT INTO events (timestamp, id_boss, id_raid) VALUES ('$timestamp', '$id_boss', '$id_raid');");
-            return $this->db->affected_rows();
-        }
-
-        public function modify() {
-            $id = $this->input->post('id');
-            $time = $this->input->post("time");
-            $date = $this->input->post("date");
-            $timestamp = $date." ".$time;
-            $id_boss = $this->input->post("id_boss");
-            $id_raid = $this->input->post("id_raid");
-            $this->db->query("UPDATE events SET timestamp = '$timestamp', id_boss = '$id_boss', id_raid = '$id_raid' WHERE id = $id;");
-            return $this->db->affected_rows();
-        }
-
         public function get_list() {
             $query = $this->db->query("SELECT
                 events.id AS id_event, CONCAT(events.timestamp,' - ', bosses.name) AS name_event
@@ -65,7 +39,7 @@
             return array_column($bosses, 'name_event', 'id_event');
         }
 
-        public function events_in_raid($id_raid) {
+        public function get_events_in_raid($id_raid) {
             $query = $this->db->query("SELECT
                 events.id AS id_event, CONCAT(events.timestamp,' - ', bosses.name) AS name_event
                 FROM bosses
@@ -81,7 +55,7 @@
             return array_column($events_in_raid, 'name_event', 'id_event');
         }
 
-        public function events_not_in_raid() {
+        public function get_events_not_in_raid() {
             $query = $this->db->query("SELECT
                 events.id AS id_event, CONCAT(events.timestamp,' - ', bosses.name) AS name_event
                 FROM bosses
@@ -102,6 +76,21 @@
                 id_boss FROM events WHERE id = $id_event
             ;");
             return implode($query->result_array()[0]);
+        }
+
+        public function insert($timestamp, $id_boss, $id_raid) {
+            $this->db->query("INSERT INTO events (timestamp, id_boss, id_raid) VALUES ('$timestamp', '$id_boss', '$id_raid');");
+            return $this->db->affected_rows();
+        }
+
+        public function delete($id) {
+            $this->db->query("DELETE FROM events WHERE id = $id ;");
+            return $this->db->affected_rows();
+        }
+
+        public function modify($id, $timestamp, $id_boss, $id_raid) {
+            $this->db->query("UPDATE events SET timestamp = '$timestamp', id_boss = '$id_boss', id_raid = '$id_raid' WHERE id = $id;");
+            return $this->db->affected_rows();
         }
 
     }
