@@ -7,9 +7,11 @@
         public function insert_event($time, $date, $id_boss, $id_raid) {
             $timestamp = $date." ".$time;
             $this->db->query("INSERT INTO events (timestamp, id_boss, id_raid ) VALUES ('$timestamp', '$id_boss', '$id_raid');");
-            $output = 0;
+            $output = array();
             if ($this->db->affected_rows() == 1) {
-                $output = $this->db->insert_id().",".$timestamp.":00 - ".$this->model_bosses->get_name($id_boss);
+                $output['id_event'] = $this->db->insert_id();
+                $output['timestamp'] = $timestamp;
+                $output['name_boss'] = $this->model_bosses->get_name($id_boss);
             }
             return $output;
         }

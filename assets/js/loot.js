@@ -76,10 +76,12 @@ $(document).ready( function () {
                     $("#messages").html("<br><br><div class='badge badge-success'>Database Error</div><br/>");
                 }
                 else {
-                    var id_event = output.substring(0,output.indexOf(","));
-                    var description_event = output.substring(output.indexOf(",")+1);
+                    var data = JSON.parse(output);
+                    var id_event = data['id_event'];
+                    var timestamp = data['timestamp'];
+                    var name_boss = data['name_boss'];
                     $("#messages").html("<br><br><div class='badge badge-success'>Event successfully created</div><br/>");
-                    $("#event_dropdown").append(new Option(description_event, id_event));
+                    $("#event_dropdown").append(new Option(timestamp+" - "+name_boss, id_event));
                     $('#event_dropdown option:last').attr("selected", "selected");
                 }
             },

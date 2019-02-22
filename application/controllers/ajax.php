@@ -67,7 +67,7 @@
                 $date = $this->input->post('date');
                 $id_boss = $this->input->post('id_boss');
                 $id_raid = $this->input->post('id_raid');
-                print_r($this->model_officers->insert_event($time, $date, $id_boss, $id_raid));
+                print_r(json_encode($this->model_officers->insert_event($time, $date, $id_boss, $id_raid)));
                 die;
             }
         }
