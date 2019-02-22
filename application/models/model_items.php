@@ -46,20 +46,20 @@
         }
 
         public function get_item_info($id_item) {
-            $query = $this->db->query("SELECT 
+            $query = $this->db->query("SELECT
 	            items.name AS name_item
                 FROM items
                 WHERE id = $id_item
             ;");
             $item = $query->result_array()[0];
-            $query = $this->db->query("SELECT 
+            $query = $this->db->query("SELECT
 	            COUNT(items.id) AS number_drops
                 FROM items
                 INNER JOIN drops on items.id = drops.id_item
                 WHERE items.id = $id_item
             ;");
             $item += $query->result_array()[0];
-            $query = $this->db->query("SELECT 
+            $query = $this->db->query("SELECT
                 characters.name AS name_first_looter,
                 events.timestamp AS timestamp_first_loot
                 FROM characters
@@ -73,7 +73,7 @@
             if (isset($query->result_array()[0])) {
                 $item += $query->result_array()[0];
             }
-            $query = $this->db->query("SELECT 
+            $query = $this->db->query("SELECT
                 characters.name AS name_last_looter,
                 events.timestamp AS timestamp_last_loot
                 FROM characters

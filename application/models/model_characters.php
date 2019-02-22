@@ -8,7 +8,7 @@
             $query = $this->db->query("SELECT * FROM characters WHERE id = $id;");
             return $query->result_array()[0];
         }
-        
+
         public function get_all() {
             $query = $this->db->query("SELECT
                 characters.id, characters.name, characters.level, characters.class, characters.type, characters.id_player,
@@ -200,10 +200,10 @@
                         if ($points > $max_points) {
                             $max_points = $points;
                             $multiples = array();
-                            array_push($multiples, $id); 
+                            array_push($multiples, $id);
                         }
                         else if ($points == $max_points) {
-                            array_push($multiples, $id); 
+                            array_push($multiples, $id);
                         }
                     }
                 }
@@ -240,7 +240,7 @@
                 INNER JOIN items ON drops.id_item = items.id
                 INNER JOIN events ON drops.id_event = events.id
                 INNER JOIN players ON characters.id_player = players.id
-                WHERE events.timestamp >= DATE_SUB(NOW(), INTERVAL 50 DAY) AND characters.id = $id_character;  
+                WHERE events.timestamp >= DATE_SUB(NOW(), INTERVAL 50 DAY) AND characters.id = $id_character;
             ;");
             $character = $query->result_array()[0];
             $query = $this->db->query("SELECT
@@ -250,7 +250,7 @@
                 INNER JOIN drops ON loot.id_drop = drops.id
                 INNER JOIN items ON drops.id_item = items.id
                 INNER JOIN events ON drops.id_event = events.id
-                WHERE characters.id = $id_character;  
+                WHERE characters.id = $id_character;
             ;");
             $character += $query->result_array()[0];
             $query = $this->db->query("SELECT
