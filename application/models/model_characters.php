@@ -181,6 +181,139 @@
             return array_column($characters, 'type_character', 'id_character');
         }
 
+        public function get_max() {
+            $comparing = $this->input->post("comparing");
+            $max_points = -32000;
+            $max_type = 3;
+            for ($i = 0; $i < count($comparing); $i+=3) {
+                $id = $comparing[$i];
+                $points = $comparing[$i+1];
+                $type = $comparing[$i+2];
+                if ($type < $max_type) {
+                    $max_points = $points;
+                    $max_type = $type;
+                    $multiples = array();
+                    array_push($multiples, $id);
+                }
+                else {
+                    if ($type == $max_type) {
+                        if ($points > $max_points) {
+                            $max_points = $points;
+                            $multiples = array();
+                            array_push($multiples, $id); 
+                        }
+                        else if ($points == $max_points) {
+                            array_push($multiples, $id); 
+                        }
+                    }
+                }
+            }
+            if (count($multiples) == 1) {
+                $query = $this->db->query("SELECT name FROM characters WHERE id = $multiples[0];");
+                $names = implode($query->result_array()[0]);
+            }
+            else {
+                foreach ($multiples as $value) {
+                    $query = $this->db->query("SELECT name FROM characters WHERE id = $value;");
+                    if ($query->num_rows() > 0) {
+                        foreach ($query->result_array() as $row) {
+                            $name[] = $row;
+                        }
+                    }
+                }
+                $names = implode(', ',array_column($name, 'name'));
+            }
+            return $names;
+        }
+
+        public function get_character_info($id_character) {
+            $query = $this->db->query("SELECT
+                characters.name AS 'name_character',
+                characters.level AS 'level_character',
+                characters.class AS 'class_character',
+                characters.type AS 'type_character',
+                players.name AS 'name_player',
+                IFNULL(SUM(items.value),0) AS last50_spent
+                FROM characters
+                INNER JOIN loot ON characters.id = loot.id_character
+                INNER JOIN drops ON loot.id_drop = drops.id
+                INNER JOIN items ON drops.id_item = items.id
+                INNER JOIN events ON drops.id_event = events.id
+                INNER JOIN players ON characters.id_player = players.id
+                WHERE events.timestamp >= DATE_SUB(NOW(), INTERVAL 50 DAY) AND characters.id = $id_character;  
+            ;");
+            $character = $query->result_array()[0];
+            $query = $this->db->query("SELECT
+                IFNULL(SUM(items.value),0) AS total_spent
+                FROM characters
+                INNER JOIN loot ON characters.id = loot.id_character
+                INNER JOIN drops ON loot.id_drop = drops.id
+                INNER JOIN items ON drops.id_item = items.id
+                INNER JOIN events ON drops.id_event = events.id
+                WHERE characters.id = $id_character;  
+            ;");
+            $character += $query->result_array()[0];
+            $query = $this->db->query("SELECT
+                IFNULL(SUM(bosses.value),0) AS last50_earned
+                FROM characters
+                INNER JOIN attendance ON characters.id = attendance.id_points
+                INNER JOIN events ON attendance.id_event = events.id
+                INNER JOIN bosses ON events.id_boss = bosses.id
+                WHERE events.timestamp >= DATE_SUB(NOW(), INTERVAL 50 DAY) AND characters.id = $id_character
+            ;");
+            $character += $query->result_array()[0];
+            $query = $this->db->query("SELECT
+                IFNULL(SUM(bosses.value),0) AS total_earned
+                FROM characters
+                INNER JOIN attendance ON characters.id = attendance.id_points
+                INNER JOIN events ON attendance.id_event = events.id
+                INNER JOIN bosses ON events.id_boss = bosses.id
+                WHERE characters.id = $id_character
+            ;");
+            $character += $query->result_array()[0];
+            $query = $this->db->query("SELECT
+                events.timestamp AS timestamp_last_event,
+                bosses.name AS boss_last_event
+                FROM characters
+                INNER JOIN attendance ON characters.id = attendance.id_points
+                INNER JOIN events ON attendance.id_event = events.id
+                INNER JOIN bosses ON events.id_boss = bosses.id
+                WHERE characters.id = $id_character
+                ORDER BY events.timestamp DESC LIMIT 1
+            ;");
+            if (isset($query->result_array()[0])) {
+                $character += $query->result_array()[0];
+            }
+            $query = $this->db->query("SELECT
+                events.timestamp AS timestamp_last_botted,
+                bosses.name AS boss_last_event
+                FROM characters
+                INNER JOIN attendance ON characters.id = attendance.id_character
+                INNER JOIN events ON attendance.id_event = events.id
+                INNER JOIN bosses ON events.id_boss = bosses.id
+                WHERE characters.id = $id_character
+                ORDER BY events.timestamp DESC LIMIT 1
+            ;");
+            if (isset($query->result_array()[0])) {
+                $character += $query->result_array()[0];
+            }
+            $query = $this->db->query("SELECT
+                events.timestamp AS timestamp_last_loot,
+                items.name AS item_last_loot
+                FROM characters
+                INNER JOIN loot ON characters.id = loot.id_character
+                INNER JOIN drops ON loot.id_drop = drops.id
+                INNER JOIN events ON drops.id_event = events.id
+                INNER JOIN items ON drops.id_item = items.id
+                WHERE characters.id = $id_character
+                ORDER BY events.timestamp DESC LIMIT 1
+            ;");
+            if (isset($query->result_array()[0])) {
+                $character += $query->result_array()[0];
+            }
+            return $character;
+        }
+
         public function insert($name, $level, $class, $type, $id_player) {
             $this->db->query("INSERT INTO characters (name, level, class, type, id_player) VALUES ('$name', '$level', '$class', '$type', '$id_player');");
             return $this->db->affected_rows();

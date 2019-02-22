@@ -16,7 +16,6 @@
             $this->load->model('model_loot');
             $this->load->model('model_officers');
             $this->load->model('model_raid_dump');
-            $this->load->model('model_members');
             $this->load->model('model_discord');
         }
 
