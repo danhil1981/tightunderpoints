@@ -4,18 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     class Model_users extends CI_Model {
 
-        public function validate() {
-            $validated = false;
-            $username = $this->input->post('user');
-            $password = $this->input->post('password');
-            $query = $this->db->query("SELECT type FROM users WHERE name='$username' AND password='$password';");
-            if($query->num_rows() == 1) {
-                $validated = true;
-                $type = implode($query->result_array()[0]);
-                $session_data = array('logged_in' => TRUE,'username' => $username, 'type' => $type);
-                $this->session->set_userdata($session_data);
-            }
-        return $validated;
+        public function get($id) {
+            $query = $this->db->query("SELECT * FROM users WHERE id = $id;");
+            return $query->result_array()[0];
         }
 
         public function get_all() {
@@ -29,9 +20,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             return $users;
         }
 
-        public function get($id) {
-            $query = $this->db->query("SELECT * FROM users WHERE id = $id;");
-            return $query->result_array()[0];
+        public function insert($name, $password, $type) {
+            $this->db->query("INSERT INTO users (name, password, type) VALUES ('$name', '$password', '$type');");
+            return $this->db->affected_rows();
         }
 
         public function delete($id) {
@@ -39,20 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             return $this->db->affected_rows();
         }
 
-
-        public function insert() {
-            $name = $this->input->post('name');
-            $password = $this->input->post('password');
-            $type = $this->input->post('type');
-            $this->db->query("INSERT INTO users (name, password, type) VALUES ('$name', '$password', '$type');");
-            return $this->db->affected_rows();
-        }
-
-        public function modify() {
-            $id = $this->input->post('id');
-            $name = $this->input->post('name');
-            $password = $this->input->post('password');
-            $type = $this->input->post('type');
+        public function modify($id, $name, $password, $type) {
             $this->db->query("UPDATE users SET name = '$name', password = '$password', type = '$type' WHERE id = $id;");
             return $this->db->affected_rows();
         }

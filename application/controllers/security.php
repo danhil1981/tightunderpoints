@@ -20,7 +20,9 @@
         }
 
         public function process_login() {
-            $result = $this->model_users->validate();
+            $username = $this->input->post('user');
+            $password = $this->input->post('password');
+            $result = $this->model_security->validate_user($username, $password);
             if(!$result) {
                 $this->index("<div class='badge badge-danger'>User/password incorrect</div><br/>");
             }
@@ -63,7 +65,7 @@
                 else {
                     $allowed = true;
                 }
-                
+
             }
             return $allowed;
         }

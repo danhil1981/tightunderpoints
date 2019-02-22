@@ -19,13 +19,16 @@
 
         public function insert() {
             if ($this->check_permission(1)) {
-                    $result_insert = $this->model_users->insert();
-                    if ($result_insert == 0) {
-                        $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
-                    }
-                    else {
-                        $this->session->set_flashdata("msg","<div class='badge badge-success'>User successfully created</div><br/>");
-                    }
+                $name = $this->input->post('name');
+                $password = $this->input->post('password');
+                $type = $this->input->post('type');
+                $result_insert = $this->model_users->insert($name, $password, $type);
+                if ($result_insert == 0) {
+                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
+                }
+                else {
+                    $this->session->set_flashdata("msg","<div class='badge badge-success'>User successfully created</div><br/>");
+                }
                 $this->session->set_flashdata("table", "users");
                 redirect('admins');
             }
@@ -55,7 +58,11 @@
 
         public function modify() {
             if ($this->check_permission(1)) {
-                $result = $this->model_users->modify();
+                $id = $this->input->post('id');
+                $name = $this->input->post('name');
+                $password = $this->input->post('password');
+                $type = $this->input->post('type');
+                $result = $this->model_users->modify($id, $name, $password, $type);
                 if ($result == 0) {
                     $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
                 }
