@@ -15,7 +15,7 @@
                         <div class="text-white">
                             Level<br/><br/>
                         </div>
-                        <?php echo form_dropdown('level', $options, $character['level']-1, 'required class="form-control"');?>
+                        <?php echo form_dropdown('level', $options, $character['level'], 'required class="form-control"');?>
                         <br/>
                     </div>
                     <?php $options = array('BRD' => 'BRD','BST' => 'BST','CLR' => 'CLR', 'DRU' => 'DRU', 'ENC' => 'ENC', 'MAG' => 'MAG', 'MNK' => 'MNK', 'NEC' => 'NEC', 'PAL' => 'PAL', 'RNG' => 'RNG', 'ROG' => 'ROG', 'SHD' => 'SHD', 'SHM' => 'SHM', 'WAR' => 'WAR', 'WIZ' => 'WIZ');?>
