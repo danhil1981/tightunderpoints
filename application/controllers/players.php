@@ -15,7 +15,8 @@
         public function insert() {
             if ($this->check_permission(2)) {
                 $source = $this->input->post("source");
-                $result_insert = $this->model_players->insert();
+                $name = $this->input->post('name');
+                $result_insert = $this->model_players->insert($name);
                 if ($result_insert == 0) {
                     $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
                 }
@@ -59,7 +60,9 @@
         public function modify() {
             if ($this->check_permission(2)) {
                 $source = $this->input->post("source");
-                $result = $this->model_players->modify();
+                $id = $this->input->post('id');
+                $name = $this->input->post('name');
+                $result = $this->model_players->modify($id, $name);
                 if ($result == 0) {
                     $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
                 }

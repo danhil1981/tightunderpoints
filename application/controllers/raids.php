@@ -13,7 +13,9 @@
 
         public function insert() {
             if ($this->check_permission(1)) {
-                $result_insert = $this->model_raids->insert();
+                $description = quotes_to_entities($this->input->post('description'));
+                $date = $this->input->post("date");
+                $result_insert = $this->model_raids->insert($description, $date);
                 if ($result_insert == 0) {
                     $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
                 }
@@ -49,7 +51,10 @@
 
         public function modify() {
             if ($this->check_permission(1)) {
-                $result = $this->model_raids->modify();
+                $id = $this->input->post('id');
+                $description = quotes_to_entities($this->input->post('description'));
+                $date = $this->input->post('date');
+                $result = $this->model_raids->modify($id, $description, $date);
                 if ($result == 0) {
                     $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
                 }
