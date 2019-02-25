@@ -30,20 +30,18 @@
                         <table class='table table-dark table-striped table-bordered table-hover table-sm text-center' id="table_characters">
                             <tbody>
                                 <tr>
-                                    <td id="tcell_characters">
-                                        <?php 
-                                            foreach ($list_characters_array as $i => $value) {
-                                                echo '<div class="btn btn-sm btn-secondary m-1" id="'.$i.'">'.$character_names[$i].'<button class="close text-white" id="'.$i.$character_names[$i].'"><div class="small ml-1">&times;</div></button></div>';
-                                            }
-                                        ?>
-                                    </td>
+                                    <td id="tcell_characters"><?php
+                                        foreach ($list_characters_array as $i => $value) {
+                                            echo '<div class="btn btn-sm btn-secondary m-1" id="'.$i.'">'.$character_names[$i].'<button class="close text-white" id="'.$i.$character_names[$i].'"><div class="small ml-1">&times;</div></button></div>';
+                                        }
+                                    ?></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <?php echo form_hidden('id_event',$id_event);?>
                     <input type="hidden" name="list_characters" id="list_characters" value="<?php echo $list_characters_comma?>" />
-                    <?php echo form_submit('submit', 'Modify', 'class="btn btn-success btn-sm"');?>
+                    <?php echo form_submit('submit', 'Modify', 'id="submit" class="btn btn-success btn-sm"');?>
                     <?php echo anchor('officers', 'Cancel', 'class="btn btn-danger btn-sm"');?>
                     <?php echo form_close();?>
                 </div>

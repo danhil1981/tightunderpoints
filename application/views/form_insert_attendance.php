@@ -37,7 +37,7 @@
                     </div>
                     <?php echo form_hidden('id_event',$id_event);?>
                     <input type="hidden" name="list_characters" id="list_characters" value="" />
-                    <?php echo form_submit('submit', 'Create', 'class="btn btn-success btn-sm"');?>
+                    <?php echo form_submit('submit', 'Create', 'id="submit" class="btn btn-success btn-sm"');?>
                     <?php echo anchor('officers', 'Cancel', 'class="btn btn-danger btn-sm"');?>
                     <?php echo form_close();?>
                 </div>

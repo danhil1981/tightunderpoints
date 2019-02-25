@@ -1,5 +1,6 @@
 $(document).ready(function () {
     character_list = [];
+    $("#submit").attr("disabled", "true");
 
     $('#add_character').click(function() {
         var name = $('#character_dropdown option:selected').text();
@@ -9,6 +10,7 @@ $(document).ready(function () {
         $('#character_dropdown option[value="'+id+'"]').remove();
         character_list.push(id);
         $('#list_characters').attr('value', character_list);
+        $("#submit").removeAttr("disabled");
         return false;
     });
 
@@ -26,6 +28,7 @@ $(document).ready(function () {
         $('#list_characters').attr('value', character_list);
         if ($('#tcell_characters').html().length == 0) {
             $('#characters').removeClass('d-block').addClass('d-none');
+            $("#submit").attr("disabled", "true");
         }
         return false;
     });
@@ -35,6 +38,7 @@ $(document).ready(function () {
         $('.manual_input').addClass('d-none');
         $('#label_characters').html('Logfile<br/><br/>');
         $('#characters').removeClass('d-block').addClass('d-none');
+        $("#submit").removeAttr("disabled");
     });
 
 });
