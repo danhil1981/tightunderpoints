@@ -76,6 +76,105 @@ $(document).ready(function () {
         $('#points button').removeClass("d-none");
     });
 
+    $('#table_points,#table_characters').on("click", ".character", function () {
+        var id_character = ($(this).attr('class').slice(24));
+        $.ajax({
+            url: 'ajax/get_character_info/',
+            data: { 'id_character': id_character },
+            type: 'post',
+            success: function (output) {
+                var data = JSON.parse(output);
+                switch (data['type_character']) {
+                    case "1": var type = "Main"; break;
+                    case "2": var type = "Alt"; break;
+                    default: var type = "Bot";
+                }
+                let timestamp_last_event;
+                let boss_last_event;
+                let timestamp_last_loot;
+                let item_last_loot;
+                if (data['timestamp_last_event'] == undefined) {
+                    if (data['timestamp_last_botted'] == undefined) {
+                        timestamp_last_event = "n/a";
+                        boss_last_event = "";
+                    }
+                    else {
+                        timestamp_last_event = data['timestamp_last_botted'];
+                        boss_last_event = "(" + data['boss_last_event'] + ")";
+                    }
+                }
+                else {
+                    timestamp_last_event = data['timestamp_last_event'];
+                    boss_last_event = "(" + data['boss_last_event'] + ")";
+                }
+                if (data['timestamp_last_loot'] == undefined) {
+                    timestamp_last_loot = "n/a";
+                    item_last_loot = "";
+                }
+                else {
+                    timestamp_last_loot = data['timestamp_last_loot'];
+                    item_last_loot = "(" + data['item_last_loot'] + ")";
+                }
+
+                $("#title_character").text(data['name_character'] + " " + data['level_character'] + " " + data['class_character']);
+                $("#content_character").html("Type: " + type + "<br/>Player: " + data['name_player'] + "<br/><br/>Earned all time: " + data['total_earned'] + "<br/>Spent all time: " + data['total_spent'] + "<br/></br>Earned last 50 days: " + data['last50_earned'] + "<br/>Spent last 50 days: " + data['last50_spent'] + "<br/><br/>Current Points: " + (data['last50_earned'] - data['last50_spent']) + "<br/><br/>Last Event: " + timestamp_last_event + " " + boss_last_event + "<br/>Last Loot: " + timestamp_last_loot + " " + item_last_loot);
+                $("#modal_character").modal();
+            },
+            error: function () {
+                $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
+            }
+        });
+    });
+
+    $('#table_timers').on("click", ".boss", function () {
+        var id_boss = ($(this).attr('class').slice(14));;
+        $.ajax({
+            url: 'ajax/get_list_kills/',
+            data: { 'id_boss': id_boss },
+            type: 'post',
+            success: function (output) {
+                var data = JSON.parse(output);
+                if (data['last_killed'] == null) {
+                    data['last_killed'] = "n/a";
+                }
+                if (data['first_killed'] == null) {
+                    data['first_killed'] = "n/a";
+                }
+                $("#title_boss").text(data['name_boss']);
+                $("#content_boss").html("Tracked kills: " + data['total_kills'] + "<br/>First killed: " + data['first_killed'] + "<br/>Last killed: " + data['last_killed'] + "<br/>");
+                $.ajax({
+                    url: 'ajax/get_list_items/',
+                    data: { 'id_boss': id_boss },
+                    type: 'post',
+                    success: function (output) {
+                        var data2 = JSON.parse(output);
+                        if (data2.length != 0) {
+                            $("#content_boss").append("<br/>List of drops:<br/>");
+                            for (i in data2) {
+                                let percentage = 0;
+                                let drops = " drops ";
+                                if (data['total_kills'] != 0) {
+                                    percentage = parseInt(100 * data2[i]['number_drops'] / data['total_kills']);
+                                }
+                                if (data2[i]['number_drops'] == 1) {
+                                    drops = " drop ";
+                                }
+                                $("#content_boss").append("<br/>" + data2[i]['name_item'] + " (" + data2[i]['number_drops'] + drops + "- " + percentage + " %)");
+                            }
+                        }
+                        $("#modal_boss").modal();
+                    },
+                    error: function () {
+                        $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
+                    }
+                });
+            },
+            error: function () {
+                $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
+            }
+        });
+    });
+
 });
 
 function show(table) {

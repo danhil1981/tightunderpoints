@@ -60,7 +60,7 @@
                             <tbody>
                                 <?php
                                     foreach ($list_names as $i => $value) {
-                                        echo "<tr><td id='name_$i' class='align-middle'>".$value."</td>";
+                                        echo "<tr><td id='name_$i' class='align-middle'><div class='btn character character_".$i."'>".$value."</div></td>";
                                         echo "<td id='type_$i' class='align-middle'>";
                                             switch($list_types[$i]) {
                                                 case "1": echo "Main";
@@ -98,7 +98,7 @@
                                 <?php
                                     $timezone  = +1;
                                     foreach ($timers as $value) {
-                                        echo "<tr><td class='align-middle'>".$value['name_boss']."</td>";
+                                        echo "<tr><td class='align-middle'><div class='btn boss boss_".$value['id_boss']."'>".$value['name_boss']."</div></td>";
                                         echo "<td class='align-middle'>".$value['last_killed']."</td>";
                                         echo "<td class='align-middle'>".$value['start_window']."</td>";
                                         echo "<td class='align-middle'>".$value['end_window']."</td>";
@@ -207,7 +207,7 @@
                                 <?php
                                     for ($i = 0; $i < count($characters_list); $i++) {
                                         $character = $characters_list[$i];
-                                        echo "<tr><td class='align-middle'>".$character['name']."</td>";
+                                        echo "<tr><td class='align-middle'><div class='btn character character_".$character['id']."'>".$character['name']."</div></td>";
                                         echo "<td class='align-middle'>".$character['level']."</td>";
                                         echo "<td class='align-middle'>".$character['class']."</td>";
                                         echo "<td class='align-middle'>";
@@ -229,6 +229,34 @@
                         <br/>
                         <a href='<?php echo site_url()?>characters/show_insert/officers/' class='btn btn-success btn-sm'>New Character</a>
                         <br/><br/>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal_character" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content bg-dark text-white">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-primary" id="title_character"></h5>
+                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-center" id="content_character">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal_boss" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content bg-dark text-white">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-primary" id="title_boss"></h5>
+                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-center" id="content_boss">
+                        </div>
                     </div>
                 </div>
             </div>
