@@ -15,9 +15,9 @@
                     <button id='button_items' class="btn btn-light btn-sm">Items</button>
                     <button id='button_raids' class="btn btn-light btn-sm">Raids</button>
                     <button id='button_events' class="btn btn-light btn-sm">Events</button>
-                    <a href='<?php echo site_url()?>' class='btn btn-danger btn-sm'>Logout</a>
                     <?php if($this->session->type < 2) echo anchor('admins', 'Admin Panel', 'class="btn btn-success btn-sm"') ?>
                     <?php if($this->session->type < 3) echo anchor('officers', 'Officer Panel', 'class="btn btn-success btn-sm"') ?>
+                    <a href='<?php echo site_url()?>' class='btn btn-danger btn-sm'>Logout</a>
                     <br/><br/>
                 </div>
             </div>
