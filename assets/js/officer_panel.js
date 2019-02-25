@@ -2,37 +2,62 @@ $(document).ready(function () {
     comparing = [];
     $("#table_points").DataTable({
         "lengthMenu": [50, 100, 500],
-        "order": [0, 'asc'],
-        "columnDefs": [{ "targets": [7], "orderable": false }]
+        "order": [0, "asc"],
+        "columnDefs": [
+            {
+                "targets": [7],
+                "orderable": false
+            }
+        ]
     });
 
     $("#table_timers").DataTable({
         "lengthMenu": [50, 100, 500],
-        "order": [3, 'asc'],
-        "columnDefs": [{"targets": [4,5],"orderable": false}]
+        "order": [3, "asc"],
+        "columnDefs": [
+            {
+                "targets": [4,5],
+                "orderable": false
+            }
+        ]
     });
 
     $("#table_attendance").DataTable({
         "lengthMenu": [50, 100, 500],
-        "order": [0, 'asc'],
-        "columnDefs": [{ "targets": [2], "orderable": false }]
+        "order": [0, "asc"],
+        "columnDefs": [
+            {
+                "targets": [2],
+                "orderable": false
+            }
+        ]
     });
 
     $("#table_players").DataTable({
         "lengthMenu": [50, 100, 500],
-        "order": [0, 'asc'],
-        "columnDefs": [{ "targets": [1,2], "orderable": false }]
+        "order": [0, "asc"],
+        "columnDefs": [
+            {
+                "targets": [1,2],
+                "orderable": false
+            }
+        ]
     });
 
     $("#table_characters").DataTable({
         "lengthMenu": [50, 100, 500],
-        "order": [0, 'asc'],
-        "columnDefs": [{ "targets": [5,6], "orderable": false }]
+        "order": [0, "asc"],
+        "columnDefs": [
+            {
+                "targets": [5,6],
+                "orderable": false
+            }
+        ]
     });
 
-    $('#points').on('click', "button", function () {
-        $("#compare").addClass('d-block');
-        $("#winner").addClass('d-block');
+    $("#points").on("click", "button", function () {
+        $("#compare").addClass("d-block");
+        $("#winner").addClass("d-block");
         var id = parseInt(this.id.slice(8));
         $(this).addClass("d-none");
         var points = parseInt($("#points_" + id).html());
@@ -59,32 +84,32 @@ $(document).ready(function () {
             get_winner();
         }
         else {
-            $("#compare").removeClass('d-block').addClass('d-none');
-            $("#winner").removeClass('d-block').addClass('d-none');
+            $("#compare").removeClass("d-block").addClass("d-none");
+            $("#winner").removeClass("d-block").addClass("d-none");
         }
     });
 
-    $('#menu_buttons').on('click', "button", function () {
-        $('#menu_buttons button').removeClass('btn-primary').addClass('btn-light');
-        $(this).removeClass('btn-light').addClass('btn-primary');
-        $('#tables').children().removeClass('d-block').addClass('d-none');
-        $('#'+this.id.slice(7)).removeClass('d-none').addClass('d-block');
-        $('#winner').removeClass('d-block').addClass('d-none');
-        $('#compare').removeClass('d-block').addClass('d-none');
+    $("#menu_buttons").on("click", "button", function () {
+        $("#menu_buttons button").removeClass("btn-primary").addClass("btn-light");
+        $(this).removeClass("btn-light").addClass("btn-primary");
+        $("#tables").children().removeClass("d-block").addClass("d-none");
+        $("#"+this.id.slice(7)).removeClass("d-none").addClass("d-block");
+        $("#winner").removeClass("d-block").addClass("d-none");
+        $("#compare").removeClass("d-block").addClass("d-none");
         comparing = [];
         $("#compare_tbody").html("");
-        $('#points button').removeClass("d-none");
+        $("#points button").removeClass("d-none");
     });
 
     $('#table_points,#table_characters').on("click", ".character", function () {
         var id_character = ($(this).attr('class').slice(24));
         $.ajax({
-            url: 'ajax/get_character_info/',
-            data: { 'id_character': id_character },
-            type: 'post',
+            url: "ajax/get_character_info/",
+            data: { "id_character": id_character },
+            type: "post",
             success: function (output) {
                 var data = JSON.parse(output);
-                switch (data['type_character']) {
+                switch (data["type_character"]) {
                     case "1": var type = "Main"; break;
                     case "2": var type = "Alt"; break;
                     default: var type = "Bot";
@@ -93,31 +118,31 @@ $(document).ready(function () {
                 let boss_last_event;
                 let timestamp_last_loot;
                 let item_last_loot;
-                if (data['timestamp_last_event'] == undefined) {
-                    if (data['timestamp_last_botted'] == undefined) {
+                if (data["timestamp_last_event"] == undefined) {
+                    if (data["timestamp_last_botted"] == undefined) {
                         timestamp_last_event = "n/a";
                         boss_last_event = "";
                     }
                     else {
-                        timestamp_last_event = data['timestamp_last_botted'];
-                        boss_last_event = "(" + data['boss_last_event'] + ")";
+                        timestamp_last_event = data["timestamp_last_botted"];
+                        boss_last_event = "(" + data["boss_last_event"] + ")";
                     }
                 }
                 else {
-                    timestamp_last_event = data['timestamp_last_event'];
-                    boss_last_event = "(" + data['boss_last_event'] + ")";
+                    timestamp_last_event = data["timestamp_last_event"];
+                    boss_last_event = "(" + data["boss_last_event"] + ")";
                 }
-                if (data['timestamp_last_loot'] == undefined) {
+                if (data["timestamp_last_loot"] == undefined) {
                     timestamp_last_loot = "n/a";
                     item_last_loot = "";
                 }
                 else {
-                    timestamp_last_loot = data['timestamp_last_loot'];
-                    item_last_loot = "(" + data['item_last_loot'] + ")";
+                    timestamp_last_loot = data["timestamp_last_loot"];
+                    item_last_loot = "(" + data["item_last_loot"] + ")";
                 }
 
-                $("#title_character").text(data['name_character'] + " " + data['level_character'] + " " + data['class_character']);
-                $("#content_character").html("Type: " + type + "<br/>Player: " + data['name_player'] + "<br/><br/>Earned all time: " + data['total_earned'] + "<br/>Spent all time: " + data['total_spent'] + "<br/></br>Earned last 50 days: " + data['last50_earned'] + "<br/>Spent last 50 days: " + data['last50_spent'] + "<br/><br/>Current Points: " + (data['last50_earned'] - data['last50_spent']) + "<br/><br/>Last Event: " + timestamp_last_event + " " + boss_last_event + "<br/>Last Loot: " + timestamp_last_loot + " " + item_last_loot);
+                $("#title_character").text(data["name_character"] + " " + data["level_character"] + " " + data["class_character"]);
+                $("#content_character").html("Type: " + type + "<br/>Player: " + data["name_player"] + "<br/><br/>Earned all time: " + data["total_earned"] + "<br/>Spent all time: " + data["total_spent"] + "<br/></br>Earned last 50 days: " + data["last50_earned"] + "<br/>Spent last 50 days: " + data["last50_spent"] + "<br/><br/>Current Points: " + (data["last50_earned"] - data["last50_spent"]) + "<br/><br/>Last Event: " + timestamp_last_event + " " + boss_last_event + "<br/>Last Loot: " + timestamp_last_loot + " " + item_last_loot);
                 $("#modal_character").modal();
             },
             error: function () {
@@ -127,25 +152,25 @@ $(document).ready(function () {
     });
 
     $('#table_timers').on("click", ".boss", function () {
-        var id_boss = ($(this).attr('class').slice(14));;
+        var id_boss = ($(this).attr("class").slice(14));;
         $.ajax({
-            url: 'ajax/get_list_kills/',
-            data: { 'id_boss': id_boss },
-            type: 'post',
+            url: "ajax/get_list_kills/",
+            data: { "id_boss": id_boss },
+            type: "post",
             success: function (output) {
                 var data = JSON.parse(output);
-                if (data['last_killed'] == null) {
-                    data['last_killed'] = "n/a";
+                if (data["last_killed"] == null) {
+                    data["last_killed"] = "n/a";
                 }
-                if (data['first_killed'] == null) {
-                    data['first_killed'] = "n/a";
+                if (data["first_killed"] == null) {
+                    data["first_killed"] = "n/a";
                 }
-                $("#title_boss").text(data['name_boss']);
-                $("#content_boss").html("Tracked kills: " + data['total_kills'] + "<br/>First killed: " + data['first_killed'] + "<br/>Last killed: " + data['last_killed'] + "<br/>");
+                $("#title_boss").text(data["name_boss"]);
+                $("#content_boss").html("Tracked kills: " + data["total_kills"] + "<br/>First killed: " + data["first_killed"] + "<br/>Last killed: " + data["last_killed"] + "<br/>");
                 $.ajax({
-                    url: 'ajax/get_list_items/',
-                    data: { 'id_boss': id_boss },
-                    type: 'post',
+                    url: "ajax/get_list_items/",
+                    data: { "id_boss": id_boss },
+                    type: "post",
                     success: function (output) {
                         var data2 = JSON.parse(output);
                         if (data2.length != 0) {
@@ -153,13 +178,13 @@ $(document).ready(function () {
                             for (i in data2) {
                                 let percentage = 0;
                                 let drops = " drops ";
-                                if (data['total_kills'] != 0) {
-                                    percentage = parseInt(100 * data2[i]['number_drops'] / data['total_kills']);
+                                if (data["total_kills"] != 0) {
+                                    percentage = parseInt(100 * data2[i]["number_drops"] / data["total_kills"]);
                                 }
-                                if (data2[i]['number_drops'] == 1) {
+                                if (data2[i]["number_drops"] == 1) {
                                     drops = " drop ";
                                 }
-                                $("#content_boss").append("<br/>" + data2[i]['name_item'] + " (" + data2[i]['number_drops'] + drops + "- " + percentage + " %)");
+                                $("#content_boss").append("<br/>" + data2[i]["name_item"] + " (" + data2[i]["number_drops"] + drops + "- " + percentage + " %)");
                             }
                         }
                         $("#modal_boss").modal();
@@ -178,15 +203,15 @@ $(document).ready(function () {
 });
 
 function show(table) {
-    $('#button_'+table).removeClass('btn-light').addClass('btn-primary');
-    $('#'+table).removeClass('d-none').addClass('d-block');
+    $("#button_"+table).removeClass("btn-light").addClass("btn-primary");
+    $("#"+table).removeClass("d-none").addClass("d-block");
 }
 
 function get_winner() {
     $.ajax({
-        url: 'ajax/get_winner/',
-        data: { 'comparing': comparing },
-        type: 'post',
+        url: "ajax/get_winner/",
+        data: { "comparing": comparing },
+        type: "post",
         success: function (output) {
             $("#winner_tbody").html("<tr><th>Winner:</th><td>" + output.substring(parseInt(output).toString().length) + "</td><td><a href='loot/show_officer_insert/" + parseInt(output) + "' class='btn btn-block btn-sm btn-success'>Loot</a></td></tr>");
         },

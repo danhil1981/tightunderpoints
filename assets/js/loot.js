@@ -1,5 +1,5 @@
 $(document).ready( function () {
-    path = window.location.href.substring(0,window.location.href.lastIndexOf('loot'));
+    path = window.location.href.substring(0,window.location.href.lastIndexOf("loot"));
     $("input[type=submit]").attr("disabled", "true");
     $("#insert_raid").attr("disabled", "true");
     $("#insert_item").attr("disabled", "true");
@@ -8,9 +8,9 @@ $(document).ready( function () {
         var description = $("#raid_description").val();
         var date = $("#raid_date").val();
         $.ajax({
-            url: path +'ajax/officer_insert_raid/',
-            data: { 'description':description, 'date':date },
-            type: 'post',
+            url: path +"ajax/officer_insert_raid/",
+            data: { "description":description, "date":date },
+            type: "post",
             success: function(output) {
                 if (parseInt(output) < 1) {
                     $("#messages").html("<br><br><div class='badge badge-success'>Database Error</div><br/>");
@@ -27,8 +27,8 @@ $(document).ready( function () {
                 $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
             }
         });
-        $('#modal_raid').modal('hide');
-        $('#form_raid')[0].reset();
+        $("#modal_raid").modal("hide");
+        $("#form_raid")[0].reset();
         $("#event_dropdown option").remove();
         $("#item_dropdown option").remove();
         return false;
@@ -37,14 +37,14 @@ $(document).ready( function () {
     $("#raid_dropdown").change(function() {
         var id_raid = $("#raid_dropdown").val();
         $.ajax({
-            url: path +'ajax/get_events/',
-            data: {'id_raid':id_raid},
-            type: 'post',
+            url: path +"ajax/get_events/",
+            data: {"id_raid":id_raid},
+            type: "post",
             success: function(output) {
                 $("#event_dropdown option").remove();
                 $("#item_dropdown option").remove();
                 $.each(JSON.parse(output), function (id_event, name_event) {
-                    $("#event_dropdown").append($('<option></option>').attr('value', id_event).text(name_event));
+                    $("#event_dropdown").append($("<option></option>").attr("value", id_event).text(name_event));
                     $("#event_dropdown").trigger("change");
                 })
             },
@@ -68,29 +68,29 @@ $(document).ready( function () {
         var id_boss = $("#event_boss_id").val();
         var id_raid = $("#raid_dropdown").val();
         $.ajax({
-            url: path +'ajax/officer_insert_event/',
-            data: { 'time':time, 'date':date, 'id_boss':id_boss , 'id_raid':id_raid  },
-            type: 'post',
+            url: path +"ajax/officer_insert_event/",
+            data: { "time":time, "date":date, "id_boss":id_boss , "id_raid":id_raid  },
+            type: "post",
             success: function(output) {
                 if (parseInt(output) == 0) {
                     $("#messages").html("<br><br><div class='badge badge-success'>Database Error</div><br/>");
                 }
                 else {
                     var data = JSON.parse(output);
-                    var id_event = data['id_event'];
-                    var timestamp = data['timestamp'];
-                    var name_boss = data['name_boss'];
+                    var id_event = data["id_event"];
+                    var timestamp = data["timestamp"];
+                    var name_boss = data["name_boss"];
                     $("#messages").html("<br><br><div class='badge badge-success'>Event successfully created</div><br/>");
                     $("#event_dropdown").append(new Option(timestamp+" - "+name_boss, id_event));
-                    $('#event_dropdown option:last').attr("selected", "selected");
+                    $("#event_dropdown option:last").attr("selected", "selected");
                 }
             },
             error: function () {
                 $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
             }
         });
-        $('#modal_event').modal('hide');
-        $('#form_event')[0].reset();
+        $("#modal_event").modal("hide");
+        $("#form_event")[0].reset();
         $("#raid_dropdown").trigger("change");
         return false;
     });
@@ -98,13 +98,13 @@ $(document).ready( function () {
     $("#event_dropdown").change(function() {
         var id_event = $("#event_dropdown").val();
         $.ajax({
-            url: path +'ajax/get_drops/',
-            data: {'id_event':id_event},
-            type: 'post',
+            url: path +"ajax/get_drops/",
+            data: {"id_event":id_event},
+            type: "post",
             success: function(output) {
                 $("#item_dropdown option").remove();
                 $.each(JSON.parse(output), function (id_item, name_item) {
-                    $("#item_dropdown").append($('<option></option>').attr('value', id_item).text(decodeHtml(name_item)));
+                    $("#item_dropdown").append($("<option></option>").attr("value", id_item).text(decodeHtml(name_item)));
                 })
                 $("#item_dropdown").trigger("change");
             },
@@ -120,11 +120,11 @@ $(document).ready( function () {
         if (id_event != null) {
             $("#boss_dropdown").prop("disabled", true);
             $.ajax({
-                url: path +'ajax/get_boss/',
-                data: { 'id_event':id_event},
-                type: 'post',
+                url: path +"ajax/get_boss/",
+                data: { "id_event":id_event},
+                type: "post",
                 success: function(output) {
-                    $('#boss_dropdown').val(output);
+                    $("#boss_dropdown").val(output);
                 },
                 error: function () {
                     $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
@@ -139,9 +139,9 @@ $(document).ready( function () {
         var id_boss = $("#boss_dropdown").val();
         var value_item = $("#value_item").val();
         $.ajax({
-            url: path +'ajax/officer_insert_item/',
-            data: { 'id_item':id_item, 'name_item':name_item, 'id_boss':id_boss , 'value_item':value_item  },
-            type: 'post',
+            url: path +"ajax/officer_insert_item/",
+            data: { "id_item":id_item, "name_item":name_item, "id_boss":id_boss , "value_item":value_item  },
+            type: "post",
             success: function(output) {
                 if (parseInt(output) == 0) {
                     $("#messages").html("<br><br><div class='badge badge-success'>Database Error</div><br/>");
@@ -154,8 +154,8 @@ $(document).ready( function () {
                 $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
             }
         });
-        $('#modal_item').modal('hide');
-        $('#form_item')[0].reset();
+        $("#modal_item").modal("hide");
+        $("#form_item")[0].reset();
         $("#raid_dropdown").trigger("change");
         return false;
     });
@@ -164,19 +164,19 @@ $(document).ready( function () {
         $("#raid_dropdown").trigger("change");
     }
 
-    $('#modal_raid').on('shown.bs.modal', function () {
-        $('#raid_description').focus();
+    $("#modal_raid").on("shown.bs.modal", function () {
+        $("#raid_description").focus();
     })
 
-    $('#modal_event').on('shown.bs.modal', function () {
-        $('#event_boss_id').focus();
+    $("#modal_event").on("shown.bs.modal", function () {
+        $("#event_boss_id").focus();
     })
 
-    $('#modal_item').on('shown.bs.modal', function () {
-        $('#id_item').focus();
+    $("#modal_item").on("shown.bs.modal", function () {
+        $("#id_item").focus();
     })
 
-    $('#item_dropdown').change(function() {
+    $("#item_dropdown").change(function() {
         if ($(this).val() != null) {
             $("input[type=submit]").removeAttr("disabled");
         }

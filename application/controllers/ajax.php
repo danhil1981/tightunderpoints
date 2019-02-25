@@ -1,6 +1,6 @@
 <?php
 
-    include('Security.php');
+    include("Security.php");
 
     Class Ajax extends Security {
 
@@ -79,8 +79,8 @@
 
         public function officer_insert_raid() {
             if ($this->check_permission(2)) {
-                $description= quotes_to_entities($this->input->post('description'));
-                $date = $this->input->post('date');
+                $description= quotes_to_entities($this->input->post("description"));
+                $date = $this->input->post("date");
                 print_r($this->model_raids->officer_insert($description, $date));
                 die;
             }
@@ -99,10 +99,10 @@
 
         public function officer_insert_event() {
             if ($this->check_permission(2)) {
-                $time = $this->input->post('time');
-                $date = $this->input->post('date');
-                $id_boss = $this->input->post('id_boss');
-                $id_raid = $this->input->post('id_raid');
+                $time = $this->input->post("time");
+                $date = $this->input->post("date");
+                $id_boss = $this->input->post("id_boss");
+                $id_raid = $this->input->post("id_raid");
                 print_r(json_encode($this->model_events->officer_insert($time, $date, $id_boss, $id_raid)));
                 die;
             }

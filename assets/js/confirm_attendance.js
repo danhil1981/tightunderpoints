@@ -7,7 +7,7 @@ $(document).ready(function() {
     
     $(".checks:checkbox").change(function() {
         var id = this.id.slice(7);
-        var ischecked = $(this).is(':checked');
+        var ischecked = $(this).is(":checked");
         if (ischecked) {
             $("#dropdown_" + id).removeClass("d-none").addClass("d-block");
         }
@@ -21,7 +21,7 @@ $(document).ready(function() {
         var id_dropdown = this.id.slice(9);
         var id_main = $("#"+this.id+" option:selected").val();
         $("#"+this.id).removeClass("dropdowns");
-        $('#' + this.id + ' option[value!='+id_main+']').remove();
+        $('#' + this.id + " option[value!='"+id_main+"']").remove();
         $(".dropdowns").each(function() {
             $("#"+this.id+" option[value='"+id_main+"']").remove();
         });

@@ -1,19 +1,19 @@
 <?php
 
-    include('Security.php');
+    include("Security.php");
 
     Class Events extends Security {
 
         public function show_insert($source = "admins", $id_boss = null) {
             if ($this->check_permission(2)) {
-                $data['view_name'] = 'form_insert_event';
-                $data['raid_descriptions'] = $this->model_raids->get_list();
-                $data['boss_names'] = $this->model_bosses->get_list();
-                $data['source'] = $source;
+                $data["view_name"] = "form_insert_event";
+                $data["raid_descriptions"] = $this->model_raids->get_list();
+                $data["boss_names"] = $this->model_bosses->get_list();
+                $data["source"] = $source;
                 if (isset($id_boss)) {
-                    $data['id_boss'] = $id_boss;
+                    $data["id_boss"] = $id_boss;
                 }
-                $this->load->view('template', $data);
+                $this->load->view("template", $data);
             }
         }
 
@@ -35,10 +35,10 @@
 
                 if ($source == "officers") {
                     $this->session->set_flashdata("table", "timers");
-                    redirect('officers');
+                    redirect("officers");
                 }
                 $this->session->set_flashdata("table", "events");
-                redirect('admins');
+                redirect("admins");
             }
         }
 
@@ -52,23 +52,23 @@
                     $this->session->set_flashdata("msg","<div class='badge badge-success'>Event successfully deleted</div><br/>");
                 }
                 $this->session->set_flashdata("table", "events");
-                redirect('admins');
+                redirect("admins");
             }
         }
 
         public function show_modify($id) {
             if ($this->check_permission(1)) {
-                $data['view_name'] = 'form_modify_event';
-                $data['event'] = $this->model_events->get($id);
-                $data['raid_descriptions'] = $this->model_raids->get_list();
-                $data['boss_names'] = $this->model_bosses->get_list();
-                $this->load->view('template', $data);
+                $data["view_name"] = "form_modify_event";
+                $data["event"] = $this->model_events->get($id);
+                $data["raid_descriptions"] = $this->model_raids->get_list();
+                $data["boss_names"] = $this->model_bosses->get_list();
+                $this->load->view("template", $data);
             }
         }
 
         public function modify() {
             if ($this->check_permission(1)) {
-                $id = $this->input->post('id');
+                $id = $this->input->post("id");
                 $time = $this->input->post("time");
                 $date = $this->input->post("date");
                 $timestamp = $date." ".$time;
@@ -82,7 +82,7 @@
                     $this->session->set_flashdata("msg","<div class='badge badge-success'>Event successfully modified</div><br/>");
                 }
                 $this->session->set_flashdata("table", "events");
-                redirect('admins');
+                redirect("admins");
             }
         }
 

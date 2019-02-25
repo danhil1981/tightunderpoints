@@ -1,16 +1,16 @@
 $(document).ready(function () {
-    path = window.location.href.substring(0, window.location.href.lastIndexOf('drops'));
+    path = window.location.href.substring(0, window.location.href.lastIndexOf("drops"));
 
     $("#event_dropdown").change(function () {
         var id_event = $("#event_dropdown").val();
         $.ajax({
-            url: path + 'ajax/get_drops/',
-            data: { 'id_event': id_event },
-            type: 'post',
+            url: path + "ajax/get_drops/",
+            data: { "id_event": id_event },
+            type: "post",
             success: function (output) {
                 $("#item_dropdown option").remove();
                 $.each(JSON.parse(output), function (id_item, name_item) {
-                    $("#item_dropdown").append($('<option></option>').attr('value', id_item).text(decodeHtml(name_item)));
+                    $("#item_dropdown").append($("<option></option>").attr("value", id_item).text(decodeHtml(name_item)));
                 })
             },
             error: function () {
