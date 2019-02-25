@@ -36,6 +36,15 @@
             return $this->db->affected_rows();
         }
 
+        public function officer_insert($description,$date) {
+            $this->db->query("INSERT INTO raids (description, date ) VALUES ('$description', '$date');");
+            $output = 0;
+            if ($this->db->affected_rows() == 1) {
+                $output = $this->db->insert_id();
+            }
+            return $output;
+        }
+
         public function delete($id) {
             $this->db->query("DELETE FROM raids WHERE id = $id ;");
             return $this->db->affected_rows();

@@ -7,7 +7,7 @@
                         <div class="text-white">
                             Id<br/><br/>
                         </div>
-                        <?php echo form_number('id',$item['id'],'required class="form-control"')?>
+                        <?php echo form_number('id_new',$item['id'],'required class="form-control"')?>
                         <br/>
                     </div>
                     <div class="form-group">

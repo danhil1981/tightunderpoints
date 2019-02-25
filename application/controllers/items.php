@@ -56,10 +56,11 @@
         public function modify() {
             if ($this->check_permission(1)) {
                 $id = $this->input->post('id');
+                $id_new = $this->input->post('id_new');
                 $name = quotes_to_entities($this->input->post('name'));
                 $id_boss = $this->input->post('id_boss');
                 $value = $this->input->post('value');
-                $result = $this->model_items->modify($id, $name, $id_boss, $value);
+                $result = $this->model_items->modify($id_new, $id, $name, $id_boss, $value);
                 if ($result == 0) {
                     $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
                 }

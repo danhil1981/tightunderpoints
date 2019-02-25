@@ -3,7 +3,7 @@
                 <div class="col-6 offset-3">
                     <h1 class="text-center text-white">New Attendance List</h1>
                     <br/><br/>
-                    <?php echo form_open_multipart('/officers/confirm_attendance');?>
+                    <?php echo form_open_multipart('/attendance/show_confirm_officer_insert');?>
                     <div class="form-group">
                         <div class="text-white">
                             Event<br/><br/>

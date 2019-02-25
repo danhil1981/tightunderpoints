@@ -36,6 +36,23 @@
             return $this->db->affected_rows();
         }
 
+        public function officer_insert() {
+            $id_item = $this->input->post("id_item");
+            $id_event = $this->input->post("id_event");
+            $id_character = $this->input->post("id_character");
+            $output = 0;
+            $this->db->query("INSERT INTO drops (id_event, id_item) VALUES ('$id_event', '$id_item');");
+            if($this->db->affected_rows() != 0) {
+                $output = 1;
+                $id_drop = $this->db->insert_id();
+                $this->db->query("INSERT INTO loot (id_drop, id_character) VALUES ('$id_drop', $id_character);");
+                if($this->db->affected_rows() != 0) {
+                    $output = 2;
+                }
+            }
+            return $output;
+        }
+
         public function delete($id) {
             $this->db->query("DELETE FROM loot WHERE id = $id ;");
             return $this->db->affected_rows();

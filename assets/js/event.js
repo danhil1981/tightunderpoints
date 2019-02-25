@@ -6,7 +6,7 @@ $(document).ready(function () {
         var description = $("#raid_description").val();
         var date = $("#raid_date").val();
         $.ajax({
-            url: path + 'ajax/insert_raid/',
+            url: path + 'ajax/officer_insert_raid/',
             data: { 'description': description, 'date': date },
             type: 'post',
             success: function (output) {

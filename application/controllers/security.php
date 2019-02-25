@@ -14,7 +14,6 @@
             $this->load->model('model_drops');
             $this->load->model('model_attendance');
             $this->load->model('model_loot');
-            $this->load->model('model_officers');
             $this->load->model('model_raid_dump');
             $this->load->model('model_discord');
             $this->load->model('model_security');

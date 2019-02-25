@@ -11,7 +11,7 @@
             }
         }
 
-        public function show_character() {
+        public function get_character_info() {
             if ($this->check_permission(3)) {
                 $id_character= $this->input->post("id_character");
                 print_r(json_encode($this->model_characters->get_character_info($id_character)));
@@ -19,7 +19,7 @@
             }
         }
 
-        public function list_kills() {
+        public function get_list_kills() {
             if ($this->check_permission(3)) {
                 $id_boss = $this->input->post("id_boss");
                 print_r(json_encode($this->model_bosses->get_list_kills($id_boss)));
@@ -27,7 +27,7 @@
             }
         }
 
-        public function list_items() {
+        public function get_list_items() {
             if ($this->check_permission(3)) {
                 $id_boss = $this->input->post("id_boss");
                 print_r(json_encode($this->model_bosses->get_list_items($id_boss)));
@@ -35,19 +35,10 @@
             }
         }
 
-        public function show_item() {
+        public function get_item_info() {
             if ($this->check_permission(3)) {
                 $id_item = $this->input->post("id_item");
                 print_r(json_encode($this->model_items->get_item_info($id_item)));
-                die;
-            }
-        }
-
-        public function insert_raid() {
-            if ($this->check_permission(2)) {
-                $description= quotes_to_entities($this->input->post('description'));
-                $date = $this->input->post('date');
-                print_r($this->model_officers->insert_raid($description, $date));
                 die;
             }
         }
@@ -57,17 +48,6 @@
                 $id_raid = $this->input->post('id_raid');
                 $events_in_raid = $this->model_events->get_events_in_raid($id_raid);
                 print_r(json_encode($events_in_raid));
-                die;
-            }
-        }
-
-        public function insert_event() {
-            if ($this->check_permission(2)) {
-                $time = $this->input->post('time');
-                $date = $this->input->post('date');
-                $id_boss = $this->input->post('id_boss');
-                $id_raid = $this->input->post('id_raid');
-                print_r(json_encode($this->model_officers->insert_event($time, $date, $id_boss, $id_raid)));
                 die;
             }
         }
@@ -90,20 +70,40 @@
             }
         }
 
-        public function insert_item() {
+        public function get_winner() {
+            if ($this->check_permission(2)) {
+                print_r($this->model_characters->get_winner());
+                die;
+            }
+        }
+
+        public function officer_insert_raid() {
+            if ($this->check_permission(2)) {
+                $description= quotes_to_entities($this->input->post('description'));
+                $date = $this->input->post('date');
+                print_r($this->model_raids->officer_insert($description, $date));
+                die;
+            }
+        }
+
+        public function officer_insert_item() {
             if ($this->check_permission(2)) {
                 $id_item = $this->input->post("id_item");
                 $name_item = quotes_to_entities($this->input->post("name_item"));
                 $id_boss = $this->input->post("id_boss");
                 $value_item = $this->input->post("value_item");
-                print_r($this->model_officers->insert_item($id_item, $name_item, $id_boss, $value_item));
+                print_r($this->model_items->officer_insert($id_item, $name_item, $id_boss, $value_item));
                 die;
             }
         }
 
-        public function get_winner() {
+        public function officer_insert_event() {
             if ($this->check_permission(2)) {
-                print_r($this->model_officers->get_winner());
+                $time = $this->input->post('time');
+                $date = $this->input->post('date');
+                $id_boss = $this->input->post('id_boss');
+                $id_raid = $this->input->post('id_raid');
+                print_r(json_encode($this->model_events->officer_insert($time, $date, $id_boss, $id_raid)));
                 die;
             }
         }

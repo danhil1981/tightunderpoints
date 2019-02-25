@@ -70,6 +70,34 @@
             }
         }
 
+        public function show_officer_insert($id) {
+            if ($this->check_permission(2)) {
+                $data['view_name'] = 'form_insert_loot';
+                $data['id_character'] = $id;
+                $data['character_names'] = $this->model_characters->get_list_names();
+                $data['raid_descriptions'] = $this->model_raids->get_list();
+                $data['boss_names'] = $this->model_bosses->get_list();
+                $data['events_not_in_raid'] = $this->model_events->get_events_not_in_raid();
+                $this->load->view('template', $data);
+            }
+        }
+
+        public function officer_insert() {
+            if ($this->check_permission(2)) {
+                $result_insert = $this->model_loot->officer_insert();
+                switch ($result_insert) {
+                    case "0": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error (drop)</div><br/>");
+                    break;
+                    case "1": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error (loot)</div><br/>");
+                    break;
+                    default: $this->session->set_flashdata("msg","<div class='badge badge-success'>Drop and Loot Entries successfully created</div><br/>");
+                    $this->model_discord->loot_update();
+                }
+                $this->session->set_flashdata("table", "points");
+                redirect('officers');
+            }
+        }
+
     }
 
 ?>

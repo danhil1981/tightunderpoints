@@ -4,7 +4,7 @@
                     <h1 class="text-center text-white">New Loot Entry</h1>
                     <div id="messages" class="text-center"></div>
                     <br/><br/>
-                    <?php echo form_open_multipart('/officers/insert_drop_loot');?>
+                    <?php echo form_open_multipart('/loot/officer_insert');?>
                     <div class="form-group">
                         <div class="text-white">
                             Character<br/><br/>

@@ -154,10 +154,10 @@
                                         }
                                         echo "</td>";
                                         if ($found == true) {
-                                            echo "<td class='align-middle'><a href='".site_url()."officers/show_modify_attendance/".$i."' class='btn btn-warning btn-sm'>Modify List</a></td>";
+                                            echo "<td class='align-middle'><a href='".site_url()."attendance/show_officer_modify/".$i."' class='btn btn-warning btn-sm'>Modify List</a></td>";
                                         }
                                         else {
-                                            echo "<td class='align-middle'><a href='".site_url()."officers/show_insert_attendance/".$i."' class='btn btn-success btn-sm'>Create List</a></td>";
+                                            echo "<td class='align-middle'><a href='".site_url()."attendance/show_officer_insert/".$i."' class='btn btn-success btn-sm'>Create List</a></td>";
                                         }
                                         echo "</tr>";  
                                     }

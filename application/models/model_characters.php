@@ -181,6 +181,46 @@
             return array_column($characters, 'type_character', 'id_character');
         }
 
+        public function get_winner() {
+            $comparing = $this->input->post("comparing");
+            $max_points = -32000;
+            $max_type = 3;
+            for ($i = 0; $i < count($comparing); $i=$i+3) {
+                $id = $comparing[$i];
+                $points = $comparing[$i+1];
+                $type = $comparing[$i+2];
+                if ($type < $max_type) {
+                    $max_id = $id;
+                    $max_points = $points;
+                    $max_type = $type;
+                    $multiples = array();
+                    array_push($multiples, $id);
+                }
+                else {
+                    if ($type == $max_type) {
+                        if ($points > $max_points) {
+                            $max_points = $points;
+                            $multiples = array();
+                            array_push($multiples, $id);
+                        }
+                        else if ($points == $max_points) {
+                            array_push($multiples, $id);
+                        }
+                    }
+                }
+            }
+            if (count($multiples) == 1) {
+                $query = $this->db->query("SELECT id, name FROM characters WHERE id = $multiples[0];");
+                $winner = implode($query->result_array()[0]);
+            }
+            else {
+                $winner = $multiples[array_rand($multiples)];
+                $query = $this->db->query("SELECT id, name FROM characters WHERE id = $winner;");
+                $winner = implode($query->result_array()[0]);
+            }
+            return $winner;
+        }
+
         public function get_max() {
             $comparing = $this->input->post("comparing");
             $max_points = -32000;

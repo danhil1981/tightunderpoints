@@ -95,13 +95,22 @@
             return $this->db->affected_rows();
         }
 
+        public function officer_insert($id_item, $name_item, $id_boss, $value_item) {
+            $this->db->query("INSERT INTO items (id, name, id_boss, value) VALUES ('$id_item', '$name_item','$id_boss', '$value_item');");
+            $output = 0;
+            if ($this->db->affected_rows() == 1) {
+                $output = 1;
+            }
+            return $output;
+        }
+
         public function delete($id) {
             $this->db->query("DELETE FROM items WHERE id = $id ;");
             return $this->db->affected_rows();
         }
 
-        public function modify($id, $name, $id_boss, $value) {
-            $this->db->query("UPDATE items SET id = '$id', name = '$name', id_boss = '$id_boss', value = '$value' WHERE id = $id;");
+        public function modify($id_new, $id, $name, $id_boss, $value) {
+            $this->db->query("UPDATE items SET id = $id_new, name = '$name', id_boss = $id_boss, value = $value WHERE id = $id;");
             return $this->db->affected_rows();
         }
 

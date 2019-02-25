@@ -109,8 +109,7 @@
             return $this->db->affected_rows();
         }
 
-        public function officer_modify() {
-            $id_event = $this->input->post("id_event");
+        public function officer_modify($id_event) {
             $this->db->query("DELETE FROM attendance WHERE id_event = $id_event;");
             $characters = array();
             $substitutions = array();

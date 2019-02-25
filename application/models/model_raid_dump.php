@@ -3,7 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
     class Model_raid_dump extends CI_Model {
-        
+
         public function upload($id_event) {
             $config['upload_path']          = './assets/uploads/raid_dumps/';
             $config['allowed_types']        = 'txt';
@@ -14,9 +14,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             return $this->upload->do_upload('upload_characters');
         }
 
-        public function validate($name_file) {
+        public function validate($raid_dump) {
             $validated = true;
-            $raid_dump = file_get_contents('./assets/uploads/raid_dumps/'.$name_file);
             $rows = explode("\n", $raid_dump);
             foreach ($rows as $data) {
                 if (!empty($data)) {
@@ -29,8 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             return $validated;
         }
 
-        public function process($name_file) {
-            $raid_dump = file_get_contents('./assets/uploads/raid_dumps/'.$name_file);
+        public function process($raid_dump) {
             $info = array();
             $rows = explode("\n", $raid_dump);
             foreach ($rows as $row => $data) {
@@ -51,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     }
                 }
             }
-            return $list_characters; 
+            return $list_characters;
         }
 
     }

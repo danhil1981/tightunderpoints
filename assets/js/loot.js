@@ -1,5 +1,5 @@
 $(document).ready( function () {
-    path = window.location.href.substring(0,window.location.href.lastIndexOf('officers'));
+    path = window.location.href.substring(0,window.location.href.lastIndexOf('loot'));
     $("input[type=submit]").attr("disabled", "true");
     $("#insert_raid").attr("disabled", "true");
     $("#insert_item").attr("disabled", "true");
@@ -8,7 +8,7 @@ $(document).ready( function () {
         var description = $("#raid_description").val();
         var date = $("#raid_date").val();
         $.ajax({
-            url: path +'ajax/insert_raid/',
+            url: path +'ajax/officer_insert_raid/',
             data: { 'description':description, 'date':date },
             type: 'post',
             success: function(output) {
@@ -68,7 +68,7 @@ $(document).ready( function () {
         var id_boss = $("#event_boss_id").val();
         var id_raid = $("#raid_dropdown").val();
         $.ajax({
-            url: path +'ajax/insert_event/',
+            url: path +'ajax/officer_insert_event/',
             data: { 'time':time, 'date':date, 'id_boss':id_boss , 'id_raid':id_raid  },
             type: 'post',
             success: function(output) {
@@ -139,7 +139,7 @@ $(document).ready( function () {
         var id_boss = $("#boss_dropdown").val();
         var value_item = $("#value_item").val();
         $.ajax({
-            url: path +'ajax/insert_item/',
+            url: path +'ajax/officer_insert_item/',
             data: { 'id_item':id_item, 'name_item':name_item, 'id_boss':id_boss , 'value_item':value_item  },
             type: 'post',
             success: function(output) {

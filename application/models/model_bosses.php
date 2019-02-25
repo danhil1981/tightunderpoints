@@ -80,6 +80,27 @@
             return $drops;
         }
 
+        public function get_timers() {
+            $query = $this->db->query("SELECT
+                bosses.id AS 'id_boss',
+                bosses.name AS 'name_boss',
+                events.timestamp AS 'last_killed',
+                ADDTIME(ADDTIME(events.timestamp, bosses.respawn),-bosses.variance) AS 'start_window',
+                ADDTIME(ADDTIME(events.timestamp, bosses.respawn),bosses.variance) AS 'end_window'
+                FROM bosses
+                INNER JOIN events ON bosses.id = events.id_boss
+                WHERE events.timestamp = (SELECT MAX(events.timestamp) FROM events WHERE bosses.id = events.id_boss)
+                AND ADDTIME(ADDTIME(ADDTIME(events.timestamp, bosses.respawn),bosses.variance), '50 0:00:00') > NOW()
+            ;");
+            $timers = array();
+            if ($query->num_rows() > 0) {
+                foreach ($query->result_array() as $row) {
+                    $timers[] = $row;
+                }
+            }
+            return $timers;
+        }
+
         public function insert($name, $respawn, $variance, $value) {
             $this->db->query("INSERT INTO bosses (name, respawn, variance, value) VALUES ('$name', '$respawn', '$variance', '$value');");
             return $this->db->affected_rows();

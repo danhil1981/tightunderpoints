@@ -83,6 +83,18 @@
             return $this->db->affected_rows();
         }
 
+        public function officer_insert($time, $date, $id_boss, $id_raid) {
+            $timestamp = $date." ".$time;
+            $this->db->query("INSERT INTO events (timestamp, id_boss, id_raid ) VALUES ('$timestamp', '$id_boss', '$id_raid');");
+            $output = array();
+            if ($this->db->affected_rows() == 1) {
+                $output['id_event'] = $this->db->insert_id();
+                $output['timestamp'] = $timestamp;
+                $output['name_boss'] = $this->model_bosses->get_name($id_boss);
+            }
+            return $output;
+        }
+
         public function delete($id) {
             $this->db->query("DELETE FROM events WHERE id = $id ;");
             return $this->db->affected_rows();
