@@ -159,7 +159,7 @@
                                     <?php
                                         for ($i = 0; $i < count($bosses_list); $i++) {
                                             $boss = $bosses_list[$i];
-                                            echo "<tr><td class='align-middle><div class='btn boss boss_".$boss["id"]."'>".$boss["name"]."</div></td>";
+                                            echo "<tr><td class='align-middle'><div class='btn boss boss_".$boss["id"]."'>".$boss["name"]."</div></td>";
                                             echo "<td>".$boss["respawn"]."</td>";
                                             echo "<td class='align-middle'>";
                                                 $hms = explode(":", $boss["respawn"]);
