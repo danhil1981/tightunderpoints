@@ -19,7 +19,10 @@ $(document).ready(function () {
                 "targets": [4,5],
                 "orderable": false
             }
-        ]
+        ],
+        "language": {
+            "emptyTable": "No tracked events within the last 50 days"
+        }
     });
 
     $("#table_attendance").DataTable({
