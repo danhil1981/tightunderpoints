@@ -61,7 +61,7 @@
                             <tbody>
                                 <?php
                                     foreach ($list_names as $i => $value) {
-                                        echo "<tr><th scope='row' id='name_$i' class='align-middle'><div class='btn character character_'".$i."'>".$value."</div></td>";
+                                        echo "<tr><th scope='row' id='name_$i' class='align-middle'><div class='btn character character_".$i."'>".$value."</div></td>";
                                         echo "<td id='type_$i' class='align-middle'>";
                                             switch($list_types[$i]) {
                                                 case "1": echo "Main";
