@@ -47,7 +47,9 @@
         public function check_permission($type = 3) {
             $allowed = false;
             if (!isset($this->session->logged_in)) {
-                $this->index("<div class='badge badge-danger mx-auto'>You need to be logged in to access this page</div><br/>");
+                $data["view_name"] = "form_login";
+                $data["msg"] = "<div class='badge badge-danger mx-auto'>You need to be logged in to access this page</div><br/>";
+                $this->load->view("template", $data);
             }
             else {
                 if ($type < $this->session->type) {
