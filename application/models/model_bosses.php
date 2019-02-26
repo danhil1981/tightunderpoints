@@ -1,16 +1,19 @@
 <?php
 
-    defined('BASEPATH') OR exit('No direct script access allowed');
-
     Class Model_bosses extends CI_Model {
 
         public function get($id) {
-            $query = $this->db->query("SELECT * FROM bosses WHERE id = $id;");
+            $query = $this->db->query("SELECT
+                * FROM bosses
+                WHERE id = '$id'
+            ;");
             return $query->result_array()[0];
         }
 
         public function get_all() {
-            $query = $this->db->query("SELECT * FROM bosses;");
+            $query = $this->db->query("SELECT
+                * FROM bosses
+            ;");
             $bosses = array();
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
@@ -21,18 +24,26 @@
         }
 
         public function get_list() {
-            $query = $this->db->query("SELECT id AS id_boss, name AS name_boss FROM bosses;");
+            $query = $this->db->query("SELECT
+                id AS id_boss,
+                name AS name_boss
+                FROM bosses
+            ;");
             $bosses = array();
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $bosses[] = $row;
                 }
             }
-            return array_column($bosses, 'name_boss', 'id_boss');
+            return array_column($bosses, "name_boss", "id_boss");
         }
 
         public function get_name($id) {
-            $query = $this->db->query("SELECT name FROM bosses WHERE id = $id;");
+            $query = $this->db->query("SELECT
+                name
+                FROM bosses
+                WHERE id = '$id'
+            ;");
             return $query->row()->name;
         }
 
@@ -43,7 +54,7 @@
                 events.timestamp AS first_killed
                 FROM bosses
                 LEFT JOIN events ON bosses.id = events.id_boss
-                WHERE bosses.id = $id_boss
+                WHERE bosses.id = '$id_boss'
                 ORDER BY events.timestamp ASC LIMIT 1
             ;");
             $boss = $query->result_array()[0];
@@ -51,7 +62,7 @@
                 events.timestamp AS last_killed
                 FROM bosses
                 LEFT JOIN events ON bosses.id = events.id_boss
-                WHERE bosses.id = $id_boss
+                WHERE bosses.id = '$id_boss'
                 ORDER BY events.timestamp DESC LIMIT 1
             ;");
             if (isset($query->result_array()[0])) {
@@ -67,9 +78,8 @@
                 FROM bosses
                 INNER JOIN items ON bosses.id = items.id_boss
                 LEFT JOIN drops ON items.id = drops.id_item
-                WHERE bosses.id = $id_boss
+                WHERE bosses.id = '$id_boss'
                 GROUP BY items.name
-
             ;");
             $drops = array();
             if ($query->num_rows() > 0) {
@@ -89,8 +99,10 @@
                 ADDTIME(ADDTIME(events.timestamp, bosses.respawn),bosses.variance) AS 'end_window'
                 FROM bosses
                 INNER JOIN events ON bosses.id = events.id_boss
-                WHERE events.timestamp = (SELECT MAX(events.timestamp) FROM events WHERE bosses.id = events.id_boss)
-                AND ADDTIME(ADDTIME(ADDTIME(events.timestamp, bosses.respawn),bosses.variance), '50 0:00:00') > NOW()
+                WHERE events.timestamp =
+                    (SELECT MAX(events.timestamp) FROM events WHERE bosses.id = events.id_boss)
+                    AND
+                    (ADDTIME(ADDTIME(ADDTIME(events.timestamp, bosses.respawn),bosses.variance), '50 0:00:00') > NOW())
             ;");
             $timers = array();
             if ($query->num_rows() > 0) {
@@ -102,17 +114,29 @@
         }
 
         public function insert($name, $respawn, $variance, $value) {
-            $this->db->query("INSERT INTO bosses (name, respawn, variance, value) VALUES ('$name', '$respawn', '$variance', '$value');");
+            $this->db->query("INSERT
+                INTO bosses (name, respawn, variance, value)
+                VALUES ('$name', '$respawn', '$variance', '$value')
+            ;");
             return $this->db->affected_rows();
         }
 
         public function delete($id) {
-            $this->db->query("DELETE FROM bosses WHERE id = $id ;");
+            $this->db->query("DELETE
+                FROM bosses
+                WHERE id = '$id'
+            ;");
             return $this->db->affected_rows();
         }
 
         public function modify($id, $name, $respawn, $variance, $value) {
-            $this->db->query("UPDATE bosses SET name = '$name', respawn = '$respawn', variance = '$variance', value = '$value' WHERE id = $id;");
+            $this->db->query("UPDATE
+                bosses SET
+                name = '$name',
+                respawn = '$respawn',
+                variance = '$variance',
+                value = '$value'
+                WHERE id = '$id';");
             return $this->db->affected_rows();
         }
 

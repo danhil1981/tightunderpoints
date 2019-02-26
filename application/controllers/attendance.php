@@ -126,7 +126,8 @@
 
         public function officer_insert() {
             if ($this->check_permission(2)) {
-                $result_insert = $this->model_attendance->officer_insert();
+                $id_event = $this->input->post("id_event");
+                $result_insert = $this->model_attendance->officer_insert($id_event);
                 switch ($result_insert) {
                     case "0": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Error: Missing data</div><br/>");
                     break;

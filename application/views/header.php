@@ -5,7 +5,7 @@
         <title>Tight Underpoints</title>
         <meta name="author" content="Daniel Hilbrand"/>
         <meta name="generator" content="Visual Studio Code"/>
-        <meta name="description" content="Application for DKP Management"/>
+        <meta name="description" content="Tight Underpoints - An application for DKP Management"/>
         <meta name="language" content="EN"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/png" href="<?php echo base_url()?>assets/img/favicon.PNG">

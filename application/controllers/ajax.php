@@ -6,7 +6,8 @@
 
         public function get_max() {
             if ($this->check_permission(3)) {
-                print_r($this->model_characters->get_max());
+                $comparing = $this->input->post("comparing");
+                print_r($this->model_characters->get_max($comparing));
                 die;
             }
         }
@@ -72,7 +73,8 @@
 
         public function get_winner() {
             if ($this->check_permission(2)) {
-                print_r($this->model_characters->get_winner());
+                $comparing = $this->input->post("comparing");
+                print_r($this->model_characters->get_winner($comparing));
                 die;
             }
         }
@@ -101,9 +103,10 @@
             if ($this->check_permission(2)) {
                 $time = $this->input->post("time");
                 $date = $this->input->post("date");
+                $timestamp = $date." ".$time;
                 $id_boss = $this->input->post("id_boss");
                 $id_raid = $this->input->post("id_raid");
-                print_r(json_encode($this->model_events->officer_insert($time, $date, $id_boss, $id_raid)));
+                print_r(json_encode($this->model_events->officer_insert($timestamp, $id_boss, $id_raid)));
                 die;
             }
         }

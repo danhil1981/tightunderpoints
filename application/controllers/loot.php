@@ -84,14 +84,17 @@
 
         public function officer_insert() {
             if ($this->check_permission(2)) {
-                $result_insert = $this->model_loot->officer_insert();
+                $id_item = $this->input->post("id_item");
+                $id_event = $this->input->post("id_event");
+                $id_character = $this->input->post("id_character");
+                $result_insert = $this->model_loot->officer_insert($id_item, $id_event, $id_character);
                 switch ($result_insert) {
                     case "0": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error (drop)</div><br/>");
                     break;
                     case "1": $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error (loot)</div><br/>");
                     break;
                     default: $this->session->set_flashdata("msg","<div class='badge badge-success'>Drop and Loot Entries successfully created</div><br/>");
-                    $this->model_discord->loot_update();
+                    //$this->model_discord->loot_update();
                 }
                 $this->session->set_flashdata("table", "points");
                 redirect("officers");

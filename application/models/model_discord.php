@@ -1,15 +1,13 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
-
     class Model_discord extends CI_Model {
 
         public function loot_update() {
             $last_loot = $this->get_last_loot();
-            $name_character = $last_loot['name_character'];
-            $id_item = $last_loot['id_item'];
-            $name_item = html_entity_decode($last_loot['name_item'], ENT_QUOTES);
-            if (in_array(substr($name_item,0,1), array('A','E','I','O','U'))) {
+            $name_character = $last_loot["name_character"];
+            $id_item = $last_loot["id_item"];
+            $name_item = html_entity_decode($last_loot["name_item"], ENT_QUOTES);
+            if (in_array(substr($name_item,0,1), array("A","E","I","O","U"))) {
                 $article = "an";
             }
             else {
@@ -33,7 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         ]
                     ]
                 ]
-                
+
             ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
 
             $ch = curl_init();
@@ -53,11 +51,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
 
         public function get_last_loot() {
-            $query = $this->db->query("SELECT 
+            $query = $this->db->query("SELECT
                 characters.name AS name_character,
                 items.name AS name_item,
                 items.id AS id_item
-                FROM loot 
+                FROM loot
                 INNER JOIN drops ON loot.id_drop = drops.id
                 INNER JOIN events ON drops.id_event = events.id
                 INNER JOIN characters ON loot.id_character = characters.id

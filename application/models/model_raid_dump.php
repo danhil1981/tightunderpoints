@@ -1,17 +1,15 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
-
     class Model_raid_dump extends CI_Model {
 
         public function upload($id_event) {
-            $config['upload_path']          = './assets/uploads/raid_dumps/';
-            $config['allowed_types']        = 'txt';
-            $config['max_size']             = 100;
-            $config['file_name']            = $id_event;
-            $config['overwrite']            = TRUE;
+            $config["upload_path"]          = "./assets/uploads/raid_dumps/";
+            $config["allowed_types"]        = "txt";
+            $config["max_size"]             = 100;
+            $config["file_name"]            = $id_event;
+            $config["overwrite"]            = TRUE;
             $this->upload->initialize($config);
-            return $this->upload->do_upload('upload_characters');
+            return $this->upload->do_upload("upload_characters");
         }
 
         public function validate($raid_dump) {
@@ -34,17 +32,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             foreach ($rows as $row => $data) {
                 if (!empty($data)) {
                     $row_data = explode("\t", $data);
-                    $info[$row]['id_group'] = $row_data[0];
-                    $info[$row]['name_character'] = $row_data[1];
+                    $info[$row]["id_group"] = $row_data[0];
+                    $info[$row]["name_character"] = $row_data[1];
                 }
             }
             $list_characters = array();
             foreach ($info as $data) {
-                if ($data['id_group'] != '0') {
-                    $name = $data['name_character'];
-                    $query = $this->db->query("SELECT id FROM characters WHERE name = '$name';");
+                if ($data["id_group"] != "0") {
+                    $name = $data["name_character"];
+                    $query = $this->db->query("SELECT
+                        id
+                        FROM characters
+                        WHERE name = '$name'
+                    ;");
                     if (count($query->result_array()) != 0 ) {
-                        $id_character = $query->result_array()[0]['id'];
+                        $id_character = $query->result_array()[0]["id"];
                         array_push($list_characters, $id_character);
                     }
                 }

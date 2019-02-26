@@ -4,13 +4,13 @@
                     <h1 class="text-center text-white">New Event</h1>
                     <br/><br/>
                     <div id="messages" class="text-center"></div>
-                    <?php echo form_open_multipart('events/insert');?>
+                    <?php echo form_open("events/insert");?>
                     <?php $options = $boss_names;?>
                     <div class="form-group">
                         <div class="text-white">
                             Boss<br/><br/>
                         </div>
-                        <?php if(!isset($id_boss)) $id_boss = "";  echo form_dropdown('id_boss', $options, $id_boss, 'required class="form-control"');?>
+                        <?php if(!isset($id_boss)) $id_boss = "";  echo form_dropdown("id_boss", $options, $id_boss, "required class='form-control'");?>
                         <br/><br/>
                     </div>
                     <?php $options = $options = array(0 => "-- Not part of a raid --")+$raid_descriptions;?>
@@ -19,7 +19,7 @@
                             Raid<br/><br/>
                         </div>
                         <div class="form-inline d-block">
-                            <?php echo form_dropdown('id_raid', $options, '', 'required id="raid_dropdown" class="form-control float-left"');?>
+                            <?php echo form_dropdown("id_raid", $options, "", "required id='raid_dropdown' class='form-control float-left'");?>
                             <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#modal_raid">New Raid</button>
                         </div>
                         <br/><br/>
@@ -28,17 +28,17 @@
                         <div class="text-white">
                             Time<br/><br/>
                         </div>
-                        <?php $timezone  = +1; echo form_time('time',gmdate("H:i", time()+ 3600*($timezone+date("I"))), 'required class="form-control"')?>
+                        <?php $timezone  = +1; echo form_time("time",gmdate("H:i", time()+ 3600*($timezone+date("I"))), "required class='form-control'")?>
                     </div>
                     <div class="form-group">
                         <div class="text-white">
                             Date<br/><br/>
                         </div>
-                        <?php echo form_date('date',gmdate('Y-m-d'), 'required class="form-control"')?>
+                        <?php echo form_date("date",gmdate("Y-m-d"), "required class='form-control'")?>
                     </div>
-                    <?php echo form_hidden('source',$source);?>
-                    <?php echo form_submit('submit', 'Create', 'class="btn btn-success btn-sm"');?>
-                    <?php echo anchor($source, 'Cancel', 'class="btn btn-danger btn-sm"');?>
+                    <?php echo form_hidden("source",$source);?>
+                    <?php echo form_submit("submit", "Create", "class='btn btn-success btn-sm'");?>
+                    <?php echo anchor($source, "Cancel", "class='btn btn-danger btn-sm'");?>
                     <?php echo form_close();?>
                 </div>
             </div>
@@ -57,7 +57,7 @@
                                 <input type="text" id="raid_description" class="form-control" required="true"/>
                                 <br/>
                                 Date:
-                                <?php echo form_date('date',gmdate('Y-m-d'), 'id="raid_date" required class="form-control"')?>
+                                <?php echo form_date("date",gmdate("Y-m-d"), "id='raid_date' required class='form-control'")?>
                                 <br/>
                                 <button id="insert_raid" class="btn btn-success">Create</button>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
