@@ -103,14 +103,14 @@
                         redirect("officers");
                     }
                     else {
-                        $raid_dump = file_get_contents("./assets/uploads/raid_dumps/".$this->upload->data("file_name"));
-                        if (!$this->model_raid_dump->validate($raid_dump)) {
+                        $validated_raid_dump = $this->model_raid_dump->validate(file_get_contents("./assets/uploads/raid_dumps/".$this->upload->data("file_name")));
+                        if (!$validated_raid_dump) {
                             $this->session->set_flashdata("msg","<div class='badge badge-danger'>Incorrect file format</div><br/>");
                             $this->session->set_flashdata("table", "attendance");
                             redirect("officers");
                         }
                         else {
-                            $list_characters = $this->model_raid_dump->process($raid_dump);
+                            $list_characters = $this->model_raid_dump->process(file_get_contents("./assets/uploads/raid_dumps/".$this->upload->data("file_name")));
                             $data["list_characters"] = $list_characters;
                             unlink("./assets/uploads/raid_dumps/".$this->upload->data("file_name"));
                         }
@@ -172,14 +172,14 @@
                         redirect("officers");
                     }
                     else {
-                        $validated_raid_dump = $this->model_raid_dump->validate($this->upload->data("file_name"));
+                        $validated_raid_dump = $this->model_raid_dump->validate(file_get_contents("./assets/uploads/raid_dumps/".$this->upload->data("file_name")));
                         if (!$validated_raid_dump) {
                             $this->session->set_flashdata("msg","<div class='badge badge-danger'>Incorrect file format</div><br/>");
                             $this->session->set_flashdata("table", "attendance");
                             redirect("officers");
                         }
                         else {
-                            $list_characters = $this->model_raid_dump->process($this->upload->data("file_name"));
+                            $list_characters = $this->model_raid_dump->process(file_get_contents("./assets/uploads/raid_dumps/".$this->upload->data("file_name")));
                             $data["list_characters"] = $list_characters;
                             unlink("./assets/uploads/raid_dumps/".$this->upload->data("file_name"));
                         }
