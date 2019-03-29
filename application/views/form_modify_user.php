@@ -2,6 +2,9 @@
                 <div class="col-6 offset-3">
                     <h1 class="text-center text-white">Modify User</h1>
                     <br/><br/>
+                    <div class="text-center">
+                        <?php echo validation_errors();?>
+                    </div>
                     <?php echo form_open("users/modify");?>
                     <div class="form-group">
                         <div class="text-white">
@@ -14,7 +17,7 @@
                         <div class="text-white">
                             Password<br/><br/>
                         </div>
-                        <?php echo form_password("password",$user["password"],"required class='form-control'")?>
+                        <?php echo form_password("password",$user["password"],"required maxlength='32' class='form-control'")?>
                     </div>
                     <?php $options = array("1" => "Admin","2" => "Officer","3" => "Member");?>
                     <div class="form-group">

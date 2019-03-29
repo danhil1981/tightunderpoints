@@ -19,18 +19,24 @@
 
         public function insert() {
             if ($this->check_permission(1)) {
-                $name = $this->input->post("name");
-                $password = $this->input->post("password");
-                $type = $this->input->post("type");
-                $result_insert = $this->model_users->insert($name, $password, $type);
-                if ($result_insert == 0) {
-                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
+                if ($this->form_validation->run('users') == FALSE) {
+                    $data["view_name"] = "form_insert_user";
+                    $this->load->view("template", $data);
                 }
                 else {
-                    $this->session->set_flashdata("msg","<div class='badge badge-success'>User successfully created</div><br/>");
+                    $name = $this->input->post("name");
+                    $password = $this->input->post("password");
+                    $type = $this->input->post("type");
+                    $result_insert = $this->model_users->insert($name, $password, $type);
+                    if ($result_insert == 0) {
+                        $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
+                    }
+                    else {
+                        $this->session->set_flashdata("msg","<div class='badge badge-success'>User successfully created</div><br/>");
+                    }
+                    $this->session->set_flashdata("table", "users");
+                    redirect("admins");
                 }
-                $this->session->set_flashdata("table", "users");
-                redirect("admins");
             }
         }
 
@@ -58,19 +64,25 @@
 
         public function modify() {
             if ($this->check_permission(1)) {
-                $id = $this->input->post("id");
-                $name = $this->input->post("name");
-                $password = $this->input->post("password");
-                $type = $this->input->post("type");
-                $result = $this->model_users->modify($id, $name, $password, $type);
-                if ($result == 0) {
-                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
+                if ($this->form_validation->run('users') == FALSE) {
+                    $data["view_name"] = "form_modify_user";
+                    $this->load->view("template", $data);
                 }
                 else {
-                    $this->session->set_flashdata("msg","<div class='badge badge-success'>User successfully modified</div><br/>");
+                    $id = $this->input->post("id");
+                    $name = $this->input->post("name");
+                    $password = $this->input->post("password");
+                    $type = $this->input->post("type");
+                    $result = $this->model_users->modify($id, $name, $password, $type);
+                    if ($result == 0) {
+                        $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
+                    }
+                    else {
+                        $this->session->set_flashdata("msg","<div class='badge badge-success'>User successfully modified</div><br/>");
+                    }
+                    $this->session->set_flashdata("table", "users");
+                    redirect("admins");
                 }
-                $this->session->set_flashdata("table", "users");
-                redirect("admins");
             }
         }
 
