@@ -13,7 +13,7 @@
             else {
                 $article = "a";
             }
-            $url = "https://discordapp.com/api/webhooks/552444765245800458/Ri6qNk2d56kipD-POXw8anXt2vn1NJZw5rHr3B2-JkbwxtEedWKl1xDXfT22i_EH9dc4";
+            $url = $this->config->item('discord_webhook_address');
 
             $hookObject = json_encode([
                 "content" => ":gift: ".$name_character." has just won ".$article." ".$name_item.". Congratulations! :beers:",
