@@ -2,7 +2,7 @@
 
     class Model_discord extends CI_Model {
 
-        public function loot_update() {
+        public function loot_notification($discord_webhook_url) {
             $last_loot = $this->get_last_loot();
             $name_character = $last_loot["name_character"];
             $id_item = $last_loot["id_item"];
@@ -13,7 +13,6 @@
             else {
                 $article = "a";
             }
-            $url = $this->config->item('discord_webhook_address');
 
             $hookObject = json_encode([
                 "content" => ":gift: ".$name_character." has just won ".$article." ".$name_item.". Congratulations! :beers:",
@@ -37,7 +36,7 @@
             $ch = curl_init();
 
             curl_setopt_array( $ch, [
-                CURLOPT_URL => $url,
+                CURLOPT_URL => $discord_webhook_url,
                 CURLOPT_POST => true,
                 CURLOPT_POSTFIELDS => $hookObject,
                 CURLOPT_HTTPHEADER => [
