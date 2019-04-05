@@ -21,16 +21,16 @@
                         <div class="text-white">
                             Time<br/><br/>
                         </div>
-                        <?php echo form_time("time", substr($event["timestamp"],11,5), "required class='form-control'")?>
+                        <?php echo form_time("time", substr($event["timestamp"], 11, 5), "required class='form-control'")?>
                     </div>
                     <div class="form-group">
                         <div class="text-white">
                             Date<br/><br/>
                         </div>
-                        <?php echo form_date("date", substr($event["timestamp"],0,10), "required class='form-control'")?>
+                        <?php echo form_date("date", substr($event["timestamp"], 0, 10), "required class='form-control'")?>
                     </div>
                     <?php
-                        echo form_hidden("id",$event["id"]);
+                        echo form_hidden("id", $event["id"]);
                         echo form_submit("submit", "Modify", "class='btn btn-success btn-sm'");
                         echo anchor("admins", "Cancel", "class='btn btn-danger btn-sm'");
                         echo form_close();

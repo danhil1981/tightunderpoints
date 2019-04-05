@@ -7,7 +7,7 @@
                         <div class="text-white">
                             Name<br/><br/>
                         </div>
-                        <?php echo form_input("name",$boss["name"], "required maxlength='64' class='form-control'")?>
+                        <?php echo form_input("name", $boss["name"], "required maxlength='64' class='form-control'")?>
                         <br/>
                     </div>
                     <?php $options = array("2:00:00" => "2 Hours", "6:00:00" => "6 Hours", "8:00:00" => "8 Hours", "10:00:00" => "10 Hours", "12:00:00" => "12 Hours", "18:00:00" => "18 Hours", "24:00:00" => "1 Day", "48:00:00" => "2 Days", "72:00:00" => "3 Days", "120:00:00" => "5 Days", "132:00:00" => "5,5 Days", "168:00:00" => "1 Week");?>
@@ -34,7 +34,7 @@
                         <?php echo form_dropdown("value", $options, $boss["value"], "required class='form-control'");?>
                         <br/>
                     </div>
-                    <?php echo form_hidden("id",$boss["id"]);?>
+                    <?php echo form_hidden("id", $boss["id"]);?>
                     <?php echo form_submit("submit", "Modify", "class='btn btn-success btn-sm'");?>
                     <?php echo anchor("admins", "Cancel", "class='btn btn-danger btn-sm'");?>
                     <?php echo form_close();?>

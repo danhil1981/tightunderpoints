@@ -6,7 +6,9 @@
             <br/><br/>
             <div class="row" id="menu_buttons">
                 <div class="col-10 offset-1 text-center">
-                    <?php if(isset($this->session->msg)) echo $this->session->msg ?>
+                    <?php if (isset($this->session->msg)) {
+    echo $this->session->msg;
+} ?>
                     <br/><br/>
                     <button id="button_points" class="btn btn-light btn-sm">Points</button>
                     <button id="button_loot" class="btn btn-light btn-sm">Loot</button>
@@ -15,8 +17,12 @@
                     <button id="button_items" class="btn btn-light btn-sm">Items</button>
                     <button id="button_raids" class="btn btn-light btn-sm">Raids</button>
                     <button id="button_events" class="btn btn-light btn-sm">Events</button>
-                    <?php if($this->session->type < 2) echo anchor("admins", "Admin Panel", "class='btn btn-success btn-sm'") ?>
-                    <?php if($this->session->type < 3) echo anchor("officers", "Officer Panel", "class='btn btn-success btn-sm'") ?>
+                    <?php if ($this->session->type < 2) {
+    echo anchor("admins", "Admin Panel", "class='btn btn-success btn-sm'");
+} ?>
+                    <?php if ($this->session->type < 3) {
+    echo anchor("officers", "Officer Panel", "class='btn btn-success btn-sm'");
+} ?>
                     <a href="<?php echo site_url()?>" class="btn btn-danger btn-sm">Logout</a>
                     <br/><br/>
                 </div>
@@ -63,7 +69,7 @@
                                     foreach ($list_names as $i => $value) {
                                         echo "<tr><th scope='row' id='name_$i' class='align-middle'><div class='btn character character_".$i."'>".$value."</div></td>";
                                         echo "<td id='type_$i' class='align-middle'>";
-                                            switch($list_types[$i]) {
+                                        switch ($list_types[$i]) {
                                                 case "1": echo "Main";
                                                 break;
                                                 case "2": echo "Alt";
@@ -98,7 +104,7 @@
                                     for ($i = 0; $i < count($loot_list); $i++) {
                                         $loot_entry = $loot_list[$i];
                                         echo "<tr><td class='align-middle'>".$loot_entry["timestamp"]."</td>";
-                                        echo "<td class='align-middle'>".date("D j M, Y",strtotime($loot_entry["timestamp"]))."</td>";
+                                        echo "<td class='align-middle'>".date("D j M, Y", strtotime($loot_entry["timestamp"]))."</td>";
                                         echo "<td class='align-middle'><div class='btn item item_".$drop_list[$loot_entry["id_drop"]]."'>".$loot_entry["name_item"]."</div></td>";
                                         echo "<td class='align-middle'><div class='btn character character_".$loot_entry["id_character"]."'>".$loot_entry["name_character"]."</div></td>";
                                         echo "</tr>";
@@ -127,7 +133,7 @@
                                             echo "<td class='align-middle'>".$character["level"]."</td>";
                                             echo "<td class='align-middle'>".$character["class"]."</td>";
                                             echo "<td class='align-middle'>";
-                                                switch($character["type"]) {
+                                            switch ($character["type"]) {
                                                     case "1": echo "Main";
                                                     break;
                                                     case "2": echo "Alt";
@@ -162,29 +168,26 @@
                                             echo "<tr><td class='align-middle'><div class='btn boss boss_".$boss["id"]."'>".$boss["name"]."</div></td>";
                                             echo "<td>".$boss["respawn"]."</td>";
                                             echo "<td class='align-middle'>";
-                                                $hms = explode(":", $boss["respawn"]);
-                                                if ($hms[0] < 24) {
-                                                    echo $hms[0]." hours";
-                                                }
-                                                else {
-                                                    echo ($hms[0]/24)." days";
-                                                }
+                                            $hms = explode(":", $boss["respawn"]);
+                                            if ($hms[0] < 24) {
+                                                echo $hms[0]." hours";
+                                            } else {
+                                                echo($hms[0]/24)." days";
+                                            }
                                             echo "</td>";
                                             echo "<td>".$boss["variance"]."</td>";
                                             echo "<td class='align-middle'>";
-                                                $hms = explode(":", $boss["variance"]);
+                                            $hms = explode(":", $boss["variance"]);
 
-                                                if ($hms[0] < 24) {
-                                                    if ($hms[0] == 0) {
+                                            if ($hms[0] < 24) {
+                                                if ($hms[0] == 0) {
                                                     echo "none";
-                                                    }
-                                                    else {
-                                                        echo intval($hms[0])." hours";
-                                                    }
+                                                } else {
+                                                    echo intval($hms[0])." hours";
                                                 }
-                                                else {
-                                                    echo ($hms[0]/24)." days";
-                                                }
+                                            } else {
+                                                echo($hms[0]/24)." days";
+                                            }
                                             echo "</td>";
                                             echo "<td class='align-middle'>".$boss["value"]."</td>";
                                             echo "</tr>";
@@ -233,7 +236,7 @@
                                         for ($i = 0; $i < count($raids_list); $i++) {
                                             $raid = $raids_list[$i];
                                             echo "<tr><td class='align-middle'>".$raid["date"]."</td>";
-                                            echo "<td class='align-middle'>".date("D j M, Y",strtotime($raid["date"]))."</td>";
+                                            echo "<td class='align-middle'>".date("D j M, Y", strtotime($raid["date"]))."</td>";
                                             echo "<td class='align-middle'>".$raid["description"]."</td>";
                                             echo "</tr>";
                                         }
@@ -257,13 +260,12 @@
                                         for ($i = 0; $i < count($events_list); $i++) {
                                             $event = $events_list[$i];
                                             echo "<tr><td class='align-middle'>".$event["timestamp"]."</td>";
-                                            echo "<td class='align-middle'>".date("D j M, Y",strtotime($event["timestamp"]))."</td>";
+                                            echo "<td class='align-middle'>".date("D j M, Y", strtotime($event["timestamp"]))."</td>";
                                             echo "<td class='align-middle'><div class='btn boss boss_".$event["id_boss"]."'>".$event["name_boss"]."</div></td>";
                                             echo "<td class='align-middle'>";
                                             if (!isset($event["description_raid"])) {
                                                 echo "-- not part of a raid --";
-                                            }
-                                            else {
+                                            } else {
                                                 echo $event["description_raid"];
                                             }
                                             echo "</td>";
@@ -319,10 +321,9 @@
                 </div>
             </div>
             <?php
-                if(isset($this->session->table)) {
+                if (isset($this->session->table)) {
                     echo "<script>show('.$this->session->table.')</script>";
-                }
-                else {
+                } else {
                     echo "<script>show('points')</script>";
                 }
             ?>

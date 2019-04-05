@@ -1,8 +1,9 @@
 <?php
 
-    Class Model_items extends CI_Model {
-
-        public function get($id) {
+    class Model_items extends CI_Model
+    {
+        public function get($id)
+        {
             $query = $this->db->query("SELECT
                 * FROM items
                 WHERE id = '$id'
@@ -10,7 +11,8 @@
             return $query->result_array()[0];
         }
 
-        public function get_all() {
+        public function get_all()
+        {
             $query = $this->db->query("SELECT
                 items.id, items.name, items.id_boss, items.value,
                 bosses.name AS name_boss
@@ -26,7 +28,8 @@
             return $items;
         }
 
-        public function get_list() {
+        public function get_list()
+        {
             $query = $this->db->query("SELECT
                 id AS id_item,
                 name AS name_item
@@ -41,7 +44,8 @@
             return array_column($items, "name_item", "id_item");
         }
 
-        public function get_items($id_boss) {
+        public function get_items($id_boss)
+        {
             $query = $this->db->query("SELECT
                 id AS id_item,
                 name AS name_item
@@ -57,7 +61,8 @@
             return array_column($items, "name_item", "id_item");
         }
 
-        public function get_item_info($id_item) {
+        public function get_item_info($id_item)
+        {
             $query = $this->db->query("SELECT
 	            items.name AS name_item
                 FROM items
@@ -102,7 +107,8 @@
             return $item;
         }
 
-        public function insert($id, $name, $id_boss, $value) {
+        public function insert($id, $name, $id_boss, $value)
+        {
             $this->db->query("INSERT
                 INTO items (id, name, id_boss, value)
                 VALUES ('$id', '$name', '$id_boss', '$value')
@@ -110,7 +116,8 @@
             return $this->db->affected_rows();
         }
 
-        public function officer_insert($id_item, $name_item, $id_boss, $value_item) {
+        public function officer_insert($id_item, $name_item, $id_boss, $value_item)
+        {
             $this->db->query("INSERT
                 INTO items (id, name, id_boss, value)
                 VALUES ('$id_item', '$name_item','$id_boss', '$value_item')
@@ -122,7 +129,8 @@
             return $output;
         }
 
-        public function delete($id) {
+        public function delete($id)
+        {
             $this->db->query("DELETE
                 FROM items
                 WHERE id = '$id'
@@ -130,7 +138,8 @@
             return $this->db->affected_rows();
         }
 
-        public function modify($id_new, $id, $name, $id_boss, $value) {
+        public function modify($id_new, $id, $name, $id_boss, $value)
+        {
             $this->db->query("UPDATE
                 items SET
                 id = '$id_new',
@@ -141,7 +150,4 @@
             ;");
             return $this->db->affected_rows();
         }
-
     }
-
-?>

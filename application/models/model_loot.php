@@ -1,8 +1,9 @@
 <?php
 
-    Class Model_loot extends CI_Model {
-
-        public function get($id) {
+    class Model_loot extends CI_Model
+    {
+        public function get($id)
+        {
             $query = $this->db->query("SELECT
                 * FROM loot
                 WHERE id = '$id'
@@ -10,7 +11,8 @@
             return $query->result_array()[0];
         }
 
-        public function get_all() {
+        public function get_all()
+        {
             $query = $this->db->query("SELECT
                 loot.id, loot.id_drop, loot.id_character,
                 events.timestamp AS timestamp,
@@ -32,7 +34,8 @@
             return $loot;
         }
 
-        public function insert($id_drop, $id_character) {
+        public function insert($id_drop, $id_character)
+        {
             $this->db->query("INSERT
                 INTO loot (id_drop, id_character)
                 VALUES ('$id_drop', '$id_character')
@@ -40,27 +43,29 @@
             return $this->db->affected_rows();
         }
 
-        public function officer_insert($id_item, $id_event, $id_character) {
+        public function officer_insert($id_item, $id_event, $id_character)
+        {
             $output = 0;
             $this->db->query("INSERT
                 INTO drops (id_event, id_item)
                 VALUES ('$id_event', '$id_item')
             ;");
-            if($this->db->affected_rows() != 0) {
+            if ($this->db->affected_rows() != 0) {
                 $output = 1;
                 $id_drop = $this->db->insert_id();
                 $this->db->query("INSERT
                     INTO loot (id_drop, id_character)
                     VALUES ('$id_drop', '$id_character')
                 ;");
-                if($this->db->affected_rows() != 0) {
+                if ($this->db->affected_rows() != 0) {
                     $output = 2;
                 }
             }
             return $output;
         }
 
-        public function delete($id) {
+        public function delete($id)
+        {
             $this->db->query("DELETE
                 FROM loot
                 WHERE id = '$id'
@@ -68,7 +73,8 @@
             return $this->db->affected_rows();
         }
 
-        public function modify($id, $id_drop, $id_character) {
+        public function modify($id, $id_drop, $id_character)
+        {
             $this->db->query("UPDATE
                 loot SET
                 id_drop = '$id_drop',
@@ -77,7 +83,4 @@
             ;");
             return $this->db->affected_rows();
         }
-
     }
-
-?>

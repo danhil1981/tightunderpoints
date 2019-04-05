@@ -1,18 +1,20 @@
 <?php
 
-    class Model_raid_dump extends CI_Model {
-
-        public function upload($id_event) {
+    class Model_raid_dump extends CI_Model
+    {
+        public function upload($id_event)
+        {
             $config["upload_path"]          = "./assets/uploads/raid_dumps/";
             $config["allowed_types"]        = "txt";
             $config["max_size"]             = 100;
             $config["file_name"]            = $id_event;
-            $config["overwrite"]            = TRUE;
+            $config["overwrite"]            = true;
             $this->upload->initialize($config);
             return $this->upload->do_upload("upload_characters");
         }
 
-        public function validate($raid_dump) {
+        public function validate($raid_dump)
+        {
             $validated = true;
             $rows = explode("\n", $raid_dump);
             foreach ($rows as $data) {
@@ -26,7 +28,8 @@
             return $validated;
         }
 
-        public function process($raid_dump) {
+        public function process($raid_dump)
+        {
             $info = array();
             $rows = explode("\n", $raid_dump);
             foreach ($rows as $row => $data) {
@@ -45,7 +48,7 @@
                         FROM characters
                         WHERE name = '$name'
                     ;");
-                    if (count($query->result_array()) != 0 ) {
+                    if (count($query->result_array()) != 0) {
                         $id_character = $query->result_array()[0]["id"];
                         array_push($list_characters, $id_character);
                     }
@@ -53,7 +56,4 @@
             }
             return $list_characters;
         }
-
     }
-
-?>

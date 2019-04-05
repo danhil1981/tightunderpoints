@@ -2,12 +2,12 @@ $(document).ready(function () {
     character_list = [];
     $("#submit").attr("disabled", "true");
 
-    $("#add_character").click(function() {
+    $("#add_character").click(function () {
         var name = $("#character_dropdown option:selected").text();
         var id = $("#character_dropdown").val();
         $("#characters").removeClass("d-none").addClass("d-block");
-        $("#tcell_characters").append("<div class='btn btn-sm btn-secondary m-1' id='" + id + "'>" + name +"<button class='close text-white' id='" + id + name +"'><div class='small ml-1'>&times;</div></button></div>");
-        $("#character_dropdown option[value='"+id+"']").remove();
+        $("#tcell_characters").append("<div class='btn btn-sm btn-secondary m-1' id='" + id + "'>" + name + "<button class='close text-white' id='" + id + name + "'><div class='small ml-1'>&times;</div></button></div>");
+        $("#character_dropdown option[value='" + id + "']").remove();
         character_list.push(id);
         $("#list_characters").attr("value", character_list);
         $("#submit").removeAttr("disabled");
@@ -17,7 +17,7 @@ $(document).ready(function () {
     $("#tcell_characters").on("click", "button", function () {
         var id = parseInt(this.id);
         var name = this.id.substring(parseInt(this.id).toString().length);
-        $("#"+id).remove();
+        $("#" + id).remove();
         $("#character_dropdown").append($("<option></option>").val(id).html(name));
         $("#character_dropdown").html($("#character_dropdown option").sort(function (a, b) {
             return a.text == b.text ? 0 : a.text < b.text ? -1 : 1
@@ -33,7 +33,7 @@ $(document).ready(function () {
         return false;
     });
 
-    $("#upload_input").change(function(){
+    $("#upload_input").change(function () {
         $("#upload-file-info").html(this.files[0].name).removeClass("float-right").addClass("float-left");
         $(".manual_input").addClass("d-none");
         $("#label_characters").html("Logfile<br/><br/>");

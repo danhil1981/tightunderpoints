@@ -1,8 +1,9 @@
 <?php
 
-    Class Model_bosses extends CI_Model {
-
-        public function get($id) {
+    class Model_bosses extends CI_Model
+    {
+        public function get($id)
+        {
             $query = $this->db->query("SELECT
                 * FROM bosses
                 WHERE id = '$id'
@@ -10,7 +11,8 @@
             return $query->result_array()[0];
         }
 
-        public function get_all() {
+        public function get_all()
+        {
             $query = $this->db->query("SELECT
                 * FROM bosses
             ;");
@@ -23,7 +25,8 @@
             return $bosses;
         }
 
-        public function get_list() {
+        public function get_list()
+        {
             $query = $this->db->query("SELECT
                 id AS id_boss,
                 name AS name_boss
@@ -38,7 +41,8 @@
             return array_column($bosses, "name_boss", "id_boss");
         }
 
-        public function get_name($id) {
+        public function get_name($id)
+        {
             $query = $this->db->query("SELECT
                 name
                 FROM bosses
@@ -47,7 +51,8 @@
             return $query->row()->name;
         }
 
-        public function get_list_kills($id_boss) {
+        public function get_list_kills($id_boss)
+        {
             $query = $this->db->query("SELECT
                 bosses.name AS name_boss,
                 COUNT(events.id_boss) AS total_kills,
@@ -71,7 +76,8 @@
             return $boss;
         }
 
-        public function get_list_items($id_boss) {
+        public function get_list_items($id_boss)
+        {
             $query = $this->db->query("SELECT
                 items.name AS name_item,
                 COUNT(drops.id_item) AS number_drops
@@ -90,7 +96,8 @@
             return $drops;
         }
 
-        public function get_timers() {
+        public function get_timers()
+        {
             $query = $this->db->query("SELECT
                 bosses.id AS 'id_boss',
                 bosses.name AS 'name_boss',
@@ -113,7 +120,8 @@
             return $timers;
         }
 
-        public function insert($name, $respawn, $variance, $value) {
+        public function insert($name, $respawn, $variance, $value)
+        {
             $this->db->query("INSERT
                 INTO bosses (name, respawn, variance, value)
                 VALUES ('$name', '$respawn', '$variance', '$value')
@@ -121,7 +129,8 @@
             return $this->db->affected_rows();
         }
 
-        public function delete($id) {
+        public function delete($id)
+        {
             $this->db->query("DELETE
                 FROM bosses
                 WHERE id = '$id'
@@ -129,7 +138,8 @@
             return $this->db->affected_rows();
         }
 
-        public function modify($id, $name, $respawn, $variance, $value) {
+        public function modify($id, $name, $respawn, $variance, $value)
+        {
             $this->db->query("UPDATE
                 bosses SET
                 name = '$name',
@@ -139,7 +149,4 @@
                 WHERE id = '$id';");
             return $this->db->affected_rows();
         }
-
     }
-
-?>

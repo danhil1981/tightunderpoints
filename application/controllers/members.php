@@ -2,9 +2,10 @@
 
     include("Security.php");
 
-    Class Members extends Security {
-
-        public function index() {
+    class Members extends Security
+    {
+        public function index()
+        {
             if ($this->check_permission()) {
                 $data["list_names"] = $this->model_characters->get_list_names();
                 $data["list_types"] = $this->model_characters->get_list_types();
@@ -23,7 +24,4 @@
                 $this->load->view("template", $data);
             }
         }
-
     }
-
-?>

@@ -7,7 +7,7 @@
                         <div class="text-white">
                             Description<br/><br/>
                         </div>
-                        <?php echo form_input("description","", "required  maxlength='512' class='form-control'")?>
+                        <?php echo form_input("description", "", "required  maxlength='512' class='form-control'")?>
                     </div>
                     <div class="form-group">
                         <div class="text-white">

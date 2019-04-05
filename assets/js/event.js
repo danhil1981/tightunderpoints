@@ -7,13 +7,15 @@ $(document).ready(function () {
         var date = $("#raid_date").val();
         $.ajax({
             url: path + "ajax/officer_insert_raid/",
-            data: { "description": description, "date": date },
+            data: {
+                "description": description,
+                "date": date
+            },
             type: "post",
             success: function (output) {
                 if (parseInt(output) < 1) {
                     $("#messages").html("<br><br><div class='badge badge-success'>Database Error</div><br/>");
-                }
-                else {
+                } else {
                     $("#messages").html("<br><br><div class='badge badge-success'>Raid successfully created</div><br/>");
                     var id_raid = output;
                     var description_raid = date + " - " + description;
@@ -37,8 +39,7 @@ $(document).ready(function () {
     $("#raid_description").keyup(function () {
         if ($("#raid_description").val() != "") {
             $("#insert_raid").removeAttr("disabled");
-        }
-        else {
+        } else {
             $("#insert_raid").attr("disabled", "true");
         }
     });

@@ -1,38 +1,39 @@
-<?php 
+<?php
 
-    defined('BASEPATH') OR exit('No direct script access allowed');
+    defined('BASEPATH') or exit('No direct script access allowed');
 
-    if ( ! function_exists('form_date')) {
-        function form_date($data = "", $value = "", $extra = "") {
+    if (! function_exists('form_date')) {
+        function form_date($data = "", $value = "", $extra = "")
+        {
             $defaults = array(
                 'type' => 'date',
-                'name' => (( ! is_array($data)) ? $data : ""),
+                'name' => ((! is_array($data)) ? $data : ""),
                 'value' => $value
             );
             return "<input "._parse_form_attributes($data, $defaults).$extra." />";
         }
     }
 
-    if ( ! function_exists('form_number')) {
-        function form_number($data = "", $value = "", $extra = "") {
+    if (! function_exists('form_number')) {
+        function form_number($data = "", $value = "", $extra = "")
+        {
             $defaults = array(
                 'type' => 'number',
-                'name' => (( ! is_array($data)) ? $data : ""),
+                'name' => ((! is_array($data)) ? $data : ""),
                 'value' => $value
             );
             return "<input "._parse_form_attributes($data, $defaults).$extra." />";
         }
     }
 
-    if ( ! function_exists('form_time')) {
-        function form_time($data = "", $value = "", $extra = "") {
+    if (! function_exists('form_time')) {
+        function form_time($data = "", $value = "", $extra = "")
+        {
             $defaults = array(
                 'type' => 'time',
-                'name' => (( ! is_array($data)) ? $data : ""),
+                'name' => ((! is_array($data)) ? $data : ""),
                 'value' => $value
             );
             return "<input "._parse_form_attributes($data, $defaults).$extra." />";
         }
     }
-    
-?>

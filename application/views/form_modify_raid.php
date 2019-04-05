@@ -7,7 +7,7 @@
                         <div class="text-white">
                             Description<br/><br/>
                         </div>
-                        <?php echo form_input("description",$raid["description"],"required maxlength='32' class='form-control'")?>
+                        <?php echo form_input("description", $raid["description"], "required maxlength='32' class='form-control'")?>
                     </div>
                     <div class="form-group">
                         <div class="text-white">
@@ -16,7 +16,7 @@
                         <?php echo form_date("date", $raid["date"], "required class='form-control'")?>
                     </div>
                     <?php
-                        echo form_hidden("id",$raid["id"]);
+                        echo form_hidden("id", $raid["id"]);
                         echo form_submit("submit", "Modify", "class='btn btn-success btn-sm'");
                         echo anchor("admins", "Cancel", "class='btn btn-danger btn-sm'");
                         echo form_close();

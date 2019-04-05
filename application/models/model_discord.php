@@ -1,16 +1,16 @@
 <?php
 
-    class Model_discord extends CI_Model {
-
-        public function loot_notification($discord_webhook_url) {
+    class Model_discord extends CI_Model
+    {
+        public function loot_notification($discord_webhook_url)
+        {
             $last_loot = $this->get_last_loot();
             $name_character = $last_loot["name_character"];
             $id_item = $last_loot["id_item"];
             $name_item = html_entity_decode($last_loot["name_item"], ENT_QUOTES);
-            if (in_array(substr($name_item,0,1), array("A","E","I","O","U"))) {
+            if (in_array(substr($name_item, 0, 1), array("A","E","I","O","U"))) {
                 $article = "an";
-            }
-            else {
+            } else {
                 $article = "a";
             }
 
@@ -31,25 +31,26 @@
                     ]
                 ]
 
-            ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+            ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 
             $ch = curl_init();
 
-            curl_setopt_array( $ch, [
+            curl_setopt_array($ch, [
                 CURLOPT_URL => $discord_webhook_url,
                 CURLOPT_POST => true,
                 CURLOPT_POSTFIELDS => $hookObject,
                 CURLOPT_HTTPHEADER => [
-                    "Length" => strlen( $hookObject ),
+                    "Length" => strlen($hookObject),
                     "Content-Type" => "application/json"
                 ]
             ]);
 
-            $response = curl_exec( $ch );
-            curl_close( $ch );
+            $response = curl_exec($ch);
+            curl_close($ch);
         }
 
-        public function get_last_loot() {
+        public function get_last_loot()
+        {
             $query = $this->db->query("SELECT
                 characters.name AS name_character,
                 items.name AS name_item,
@@ -63,7 +64,4 @@
             ;");
             return $query->result_array()[0];
         }
-
     }
-
-?>

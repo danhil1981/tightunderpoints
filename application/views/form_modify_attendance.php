@@ -39,7 +39,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <?php echo form_hidden("id_event",$id_event);?>
+                    <?php echo form_hidden("id_event", $id_event);?>
                     <input type="hidden" name="list_characters" id="list_characters" value="<?php echo $list_characters_comma?>" />
                     <?php echo form_submit("submit", "Modify", "id='submit' class='btn btn-success btn-sm'");?>
                     <?php echo anchor("officers", "Cancel", "class='btn btn-danger btn-sm'");?>

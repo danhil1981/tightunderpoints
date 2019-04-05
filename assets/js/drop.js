@@ -5,7 +5,9 @@ $(document).ready(function () {
         var id_event = $("#event_dropdown").val();
         $.ajax({
             url: path + "ajax/get_drops/",
-            data: { "id_event": id_event },
+            data: {
+                "id_event": id_event
+            },
             type: "post",
             success: function (output) {
                 $("#item_dropdown option").remove();
@@ -21,11 +23,11 @@ $(document).ready(function () {
     });
 
     $("#event_dropdown").trigger("change");
-    
+
     if (Number.isInteger(+window.location.href.substr(-1))) {
         $("#item_dropdown").val($("#id_item").val());
     }
-    
+
 });
 
 function decodeHtml(html) {

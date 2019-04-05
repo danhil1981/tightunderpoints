@@ -8,9 +8,7 @@
                     <?php echo form_open("users/insert");?>
                     <div class="form-group">
                         <div class="text-white">
-                            Name
-                        <br/><br/>
-                        
+                            Name<br/><br/>
                         </div>
                         <?php echo form_input("name", "", "required pattern='^[A-Za-z]+$' title='1 word consisting of uppercase/lowercase letters' maxlength='32' class='form-control'")?>
                     </div>
@@ -25,7 +23,7 @@
                         <div class="text-white">
                             Type<br/><br/>
                         </div>
-                        <?php echo form_dropdown("type", $options, "required class='form-control'");?>
+                        <?php echo form_dropdown("type", $options, "", "required class='form-control'");?>
                     </div>
                     <?php
                         echo form_submit("submit", "Create", "class='btn btn-success btn-sm'");

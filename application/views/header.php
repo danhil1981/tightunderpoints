@@ -19,10 +19,10 @@
             <div class="row">
                 <div class="mx-auto">
                     <br/>
-                    <?php 
+                    <?php
                         if (isset($this->session->logged_in)) {
                             echo "<a href='".site_url();
-                                switch ($this->session->type) {
+                            switch ($this->session->type) {
                                     case 1:
                                         echo "admins'>";
                                         break;
@@ -35,7 +35,7 @@
                         }
                     ?>
                     <img src="<?php echo base_url()?>assets/img/logo.PNG" alt="Responsive Logo">
-                    <?php 
+                    <?php
                         if (isset($this->session->logged_in)) {
                             echo "</a>";
                         }

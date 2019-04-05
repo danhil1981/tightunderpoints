@@ -6,14 +6,18 @@
             <br/><br/>
             <div class="row" id="menu_buttons">
                 <div class="col-10 offset-1 text-center">
-                    <?php if(isset($this->session->msg)) echo $this->session->msg ?>
+                    <?php if (isset($this->session->msg)) {
+    echo $this->session->msg;
+} ?>
                     <br/><br/>
                     <button id="button_points" class="btn btn-light btn-sm">Points</button>
                     <button id="button_timers" class="btn btn-light btn-sm">Timers</button>
                     <button id="button_attendance" class="btn btn-light btn-sm">Attendance</button>
                     <button id="button_players" class="btn btn-light btn-sm">Players</button>
                     <button id="button_characters" class="btn btn-light btn-sm">Characters</button>
-                    <?php if($this->session->type < 2) echo anchor("admins", "Admin Panel", "class='btn btn-success btn-sm'")?>
+                    <?php if ($this->session->type < 2) {
+    echo anchor("admins", "Admin Panel", "class='btn btn-success btn-sm'");
+}?>
                     <?php echo anchor("members", "Member Panel", "class='btn btn-success btn-sm'");?>
                     <a href="<?php echo site_url()?>" class="btn btn-danger btn-sm">Logout</a>
                     <br/><br/>
@@ -62,7 +66,7 @@
                                     foreach ($list_names as $i => $value) {
                                         echo "<tr><td id='name_$i' class='align-middle'><div class='btn character character_".$i."'>".$value."</div></td>";
                                         echo "<td id='type_$i' class='align-middle'>";
-                                            switch($list_types[$i]) {
+                                        switch ($list_types[$i]) {
                                                 case "1": echo "Main";
                                                 break;
                                                 case "2": echo "Alt";
@@ -103,14 +107,12 @@
                                         echo "<td class='align-middle'>".$value["start_window"]."</td>";
                                         echo "<td class='align-middle'>".$value["end_window"]."</td>";
                                         echo "<td class='align-middle'>";
-                                        if (gmdate("Y-m-d H:i:s",time()+ 3600*($timezone+date("I"))) > $value["end_window"]) {
+                                        if (gmdate("Y-m-d H:i:s", time()+ 3600*($timezone+date("I"))) > $value["end_window"]) {
                                             echo "<div class='btn btn-sm btn-block btn-success'>UP</div></td><td class='align-middle'><a href='".site_url()."events/show_insert/officers/".$value["id_boss"]."' class='btn btn-sm btn-block btn-primary'>Create Event</a>";
-                                        }
-                                        else {
-                                            if (gmdate("Y-m-d H:i:s",time()+ 3600*($timezone+date("I"))) < $value["start_window"]) {
+                                        } else {
+                                            if (gmdate("Y-m-d H:i:s", time()+ 3600*($timezone+date("I"))) < $value["start_window"]) {
                                                 echo "<div class='btn btn-sm btn-block btn-danger'>DOWN</div></td><td>";
-                                            }
-                                            else {
+                                            } else {
                                                 echo "<div class='btn btn-sm btn-block btn-warning'>IN WINDOW</div></td><td class='align-middle'><a href='".site_url()."events/show_insert/officers/".$value["id_boss"]."' class='btn btn-sm btn-block  btn-primary'>Create Event</a>";
                                             }
                                         }
@@ -142,11 +144,10 @@
                                             $attendance_entry = $attendance_list[$j];
                                             $played_entry = $played_list[$j];
                                             if ($attendance_entry["id_event"] == $i) {
-                                                if($attendance_entry["name_character"] !== $played_entry["name_character"]) {
+                                                if ($attendance_entry["name_character"] !== $played_entry["name_character"]) {
                                                     echo "<div class='badge badge-secondary m-1'>".$attendance_entry["name_character"]." ";
                                                     echo "<div class='badge badge-primary'>".$played_entry["name_character"]."</div></div>";
-                                                }
-                                                else {
+                                                } else {
                                                     echo "<div class='badge badge-primary m-1'>".$attendance_entry["name_character"]."</div>";
                                                 }
                                                 $found = true;
@@ -155,8 +156,7 @@
                                         echo "</td>";
                                         if ($found == true) {
                                             echo "<td class='align-middle'><a href='".site_url()."attendance/show_officer_modify/".$i."' class='btn btn-warning btn-sm'>Modify List</a></td>";
-                                        }
-                                        else {
+                                        } else {
                                             echo "<td class='align-middle'><a href='".site_url()."attendance/show_officer_insert/".$i."' class='btn btn-success btn-sm'>Create List</a></td>";
                                         }
                                         echo "</tr>";
@@ -211,7 +211,7 @@
                                         echo "<td class='align-middle'>".$character["level"]."</td>";
                                         echo "<td class='align-middle'>".$character["class"]."</td>";
                                         echo "<td class='align-middle'>";
-                                            switch($character["type"]) {
+                                        switch ($character["type"]) {
                                                 case "1": echo "Main";
                                                 break;
                                                 case "2": echo "Alt";
@@ -261,10 +261,9 @@
                 </div>
             </div>
             <?php
-                if(isset($this->session->table)) {
+                if (isset($this->session->table)) {
                     echo "<script>show('".$this->session->table."')</script>";
-                }
-                else {
+                } else {
                     echo "<script>show('points')</script>";
                 }
             ?>

@@ -2,9 +2,10 @@
 
     include("Security.php");
 
-    Class Admins extends Security {
-
-        public function index() {
+    class Admins extends Security
+    {
+        public function index()
+        {
             if ($this->check_permission(1)) {
                 $data["users_list"] = $this->model_users->get_all();
                 $data["players_list"] = $this->model_players->get_all();
@@ -21,7 +22,4 @@
                 $this->load->view("template", $data);
             }
         }
-
     }
-
-?>

@@ -1,8 +1,9 @@
 <?php
 
-    class Model_players extends CI_Model {
-
-        public function get($id) {
+    class Model_players extends CI_Model
+    {
+        public function get($id)
+        {
             $query = $this->db->query("SELECT
                 * FROM players
                 WHERE id = '$id'
@@ -10,7 +11,8 @@
             return $query->result_array()[0];
         }
 
-        public function get_all() {
+        public function get_all()
+        {
             $query = $this->db->query("SELECT
                 * FROM players
             ;");
@@ -23,7 +25,8 @@
             return $players;
         }
 
-        public function get_list() {
+        public function get_list()
+        {
             $query = $this->db->query("SELECT
                 id AS id_player,
                 name AS name_player
@@ -39,7 +42,8 @@
             return array_column($players, "name_player", "id_player");
         }
 
-        public function insert($name) {
+        public function insert($name)
+        {
             $this->db->query("INSERT
                 INTO players (name)
                 VALUES ('$name')
@@ -47,7 +51,8 @@
             return $this->db->affected_rows();
         }
 
-        public function delete($id) {
+        public function delete($id)
+        {
             $this->db->query("DELETE
                 FROM players
                 WHERE id = '$id'
@@ -55,7 +60,8 @@
             return $this->db->affected_rows();
         }
 
-        public function modify($id, $name) {
+        public function modify($id, $name)
+        {
             $this->db->query("UPDATE
                 players SET
                 name = '$name'
@@ -63,7 +69,4 @@
             ;");
             return $this->db->affected_rows();
         }
-
     }
-
-?>

@@ -10,7 +10,7 @@
                             Character<br/><br/>
                         </div>
                         <div class="form-inline-block">
-                            <?php echo form_dropdown("id_character", $character_names, $id_character,"disabled class='form-control float-left'");?>
+                            <?php echo form_dropdown("id_character", $character_names, $id_character, "disabled class='form-control float-left'");?>
                         </div>
                         <br/><br/>
                     </div>
@@ -19,7 +19,7 @@
                             Raid<br/><br/>
                         </div>
                         <div class="form-inline d-block">
-                            <?php $options = array(0 => "-- Not part of a raid --")+$raid_descriptions;echo form_dropdown("id_raid", $options , "", "id='raid_dropdown' class='form-control float-left'");?>
+                            <?php $options = array(0 => "-- Not part of a raid --")+$raid_descriptions;echo form_dropdown("id_raid", $options, "", "id='raid_dropdown' class='form-control float-left'");?>
                             <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#modal_raid">New Raid</button>
                         </div>
                         <br/><br/>
@@ -29,7 +29,7 @@
                             Event<br/><br/>
                         </div>
                         <div class="form-inline d-block">
-                            <?php echo form_dropdown("id_event", $events_not_in_raid , "", "id='event_dropdown' class='form-control float-left'");?>
+                            <?php echo form_dropdown("id_event", $events_not_in_raid, "", "id='event_dropdown' class='form-control float-left'");?>
                             <button type="button" class="btn btn-primary float-right" id="new_event" data-toggle="modal" data-target="#modal_event">New Event</button>
                         </div>
                         <br/><br/>
@@ -39,12 +39,12 @@
                             Item<br/><br/>
                         </div>
                         <div class="form-inline d-block">
-                        <?php echo form_dropdown("id_item", "" , "", "id='item_dropdown' class='form-control float-left'");?>
+                        <?php echo form_dropdown("id_item", "", "", "id='item_dropdown' class='form-control float-left'");?>
                         <button type="button" class='btn btn-primary float-right' id="new_item" data-toggle="modal" data-target="#modal_item">New Item</button>
                         </div>
                         <br/><br/><br/>
                     </div>
-                    <?php echo form_hidden("id_character",$id_character);?>
+                    <?php echo form_hidden("id_character", $id_character);?>
                     <?php echo form_submit("submit", "Create", "class='btn btn-success btn-sm'");?>
                     <?php echo anchor("officers", "Cancel", "class='btn btn-danger btn-sm'");?>
                     <?php echo form_close();?>
@@ -66,7 +66,7 @@
                                 <input type="text" id="raid_description" class="form-control" required="true"/>
                                 <br/>
                                 Date:
-                                <?php echo form_date("date",gmdate("Y-m-d"), "id='raid_date' required class='form-control'")?>
+                                <?php echo form_date("date", gmdate("Y-m-d"), "id='raid_date' required class='form-control'")?>
                                 <br/>
                                 <button id="insert_raid" class="btn btn-success">Create</button>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
@@ -96,10 +96,10 @@
                                 ?>
                                 <br/>
                                 Time:
-                                <?php $timezone  = +1; echo form_time("time",gmdate("H:i", time()+ 3600*($timezone+date("I"))), "required id='event_time' class='form-control'")?>
+                                <?php $timezone  = +1; echo form_time("time", gmdate("H:i", time()+ 3600*($timezone+date("I"))), "required id='event_time' class='form-control'")?>
                                 <br/>
                                 Date:
-                                <?php echo form_date("date",gmdate("Y-m-d"), "required id='event_date' class='form-control'")?>
+                                <?php echo form_date("date", gmdate("Y-m-d"), "required id='event_date' class='form-control'")?>
                                 <br/>
                                 <button id="insert_event" class="btn btn-success">Create</button>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>

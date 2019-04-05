@@ -1,8 +1,9 @@
 <?php
 
-    class Model_raids extends CI_Model {
-
-        public function get($id) {
+    class Model_raids extends CI_Model
+    {
+        public function get($id)
+        {
             $query = $this->db->query("SELECT
                 * FROM raids
                 WHERE id = '$id'
@@ -10,7 +11,8 @@
             return $query->result_array()[0];
         }
 
-        public function get_all() {
+        public function get_all()
+        {
             $query = $this->db->query("SELECT
                 * FROM raids
             ;");
@@ -23,7 +25,8 @@
             return $raids;
         }
 
-        public function get_list() {
+        public function get_list()
+        {
             $query = $this->db->query("SELECT
                 id AS id_raid,
                 CONCAT(date, ' - ',description) AS description_raid
@@ -38,7 +41,8 @@
             return array_column($raids, "description_raid", "id_raid");
         }
 
-        public function insert($description, $date) {
+        public function insert($description, $date)
+        {
             $this->db->query("INSERT
                 INTO raids (description, date )
                 VALUES ('$description', '$date')
@@ -46,7 +50,8 @@
             return $this->db->affected_rows();
         }
 
-        public function officer_insert($description,$date) {
+        public function officer_insert($description, $date)
+        {
             $this->db->query("INSERT
                 INTO raids (description, date )
                 VALUES ('$description', '$date')
@@ -58,7 +63,8 @@
             return $output;
         }
 
-        public function delete($id) {
+        public function delete($id)
+        {
             $this->db->query("DELETE
                 FROM raids
                 WHERE id = '$id'
@@ -66,7 +72,8 @@
             return $this->db->affected_rows();
         }
 
-        public function modify($id, $description, $date) {
+        public function modify($id, $description, $date)
+        {
             $this->db->query("UPDATE
                 raids SET
                 description = '$description',
@@ -75,7 +82,4 @@
             ;");
             return $this->db->affected_rows();
         }
-
     }
-
-?>

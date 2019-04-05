@@ -19,7 +19,7 @@
                         <?php echo form_dropdown("id_character", $options, $loot_entry["id_character"], "required class='form-control'");?>
                         <br/><br/>
                     </div>
-                    <?php echo form_hidden("id",$loot_entry["id"]);?>
+                    <?php echo form_hidden("id", $loot_entry["id"]);?>
                     <?php echo form_submit("submit", "Modify", "class='btn btn-success btn-sm'");?>
                     <?php echo anchor("admins", "Cancel", "class='btn btn-danger btn-sm'");?>
                     <?php echo form_close();?>

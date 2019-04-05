@@ -21,7 +21,7 @@
                         <?php echo form_dropdown("id_item", $options, $drop["id_item"], "required id='item_dropdown' class='form-control'");?>
                         <br/><br/>
                     </div>
-                    <?php echo form_hidden("id",$drop["id"]);?>
+                    <?php echo form_hidden("id", $drop["id"]);?>
                     <input type="hidden" id="id_item" value="<?php echo $drop["id_item"]?>"/>
                     <?php echo form_submit("submit", "Modify", "class='btn btn-success btn-sm'");?>
                     <?php echo anchor("admins", "Cancel", "class='btn btn-danger btn-sm'");?>

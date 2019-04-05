@@ -10,7 +10,9 @@
                         <div class="text-white">
                             Boss<br/><br/>
                         </div>
-                        <?php if(!isset($id_boss)) $id_boss = "";  echo form_dropdown("id_boss", $options, $id_boss, "required class='form-control'");?>
+                        <?php if (!isset($id_boss)) {
+    $id_boss = "";
+}  echo form_dropdown("id_boss", $options, $id_boss, "required class='form-control'");?>
                         <br/><br/>
                     </div>
                     <?php $options = $options = array(0 => "-- Not part of a raid --")+$raid_descriptions;?>
@@ -28,15 +30,15 @@
                         <div class="text-white">
                             Time<br/><br/>
                         </div>
-                        <?php $timezone  = +1; echo form_time("time",gmdate("H:i", time()+ 3600*($timezone+date("I"))), "required class='form-control'")?>
+                        <?php $timezone  = +1; echo form_time("time", gmdate("H:i", time()+ 3600*($timezone+date("I"))), "required class='form-control'")?>
                     </div>
                     <div class="form-group">
                         <div class="text-white">
                             Date<br/><br/>
                         </div>
-                        <?php echo form_date("date",gmdate("Y-m-d"), "required class='form-control'")?>
+                        <?php echo form_date("date", gmdate("Y-m-d"), "required class='form-control'")?>
                     </div>
-                    <?php echo form_hidden("source",$source);?>
+                    <?php echo form_hidden("source", $source);?>
                     <?php echo form_submit("submit", "Create", "class='btn btn-success btn-sm'");?>
                     <?php echo anchor($source, "Cancel", "class='btn btn-danger btn-sm'");?>
                     <?php echo form_close();?>
@@ -57,7 +59,7 @@
                                 <input type="text" id="raid_description" class="form-control" required="true"/>
                                 <br/>
                                 Date:
-                                <?php echo form_date("date",gmdate("Y-m-d"), "id='raid_date' required class='form-control'")?>
+                                <?php echo form_date("date", gmdate("Y-m-d"), "id='raid_date' required class='form-control'")?>
                                 <br/>
                                 <button id="insert_raid" class="btn btn-success">Create</button>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>

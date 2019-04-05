@@ -1,8 +1,9 @@
 <?php
 
-    Class Model_attendance extends CI_Model {
-
-        public function get($id) {
+    class Model_attendance extends CI_Model
+    {
+        public function get($id)
+        {
             $query = $this->db->query("SELECT
                 * FROM attendance
                 WHERE id = '$id'
@@ -10,7 +11,8 @@
             return $query->result_array()[0];
         }
 
-        public function get_all() {
+        public function get_all()
+        {
             $query = $this->db->query("SELECT
                 attendance.id, attendance.id_event, attendance.id_character,
                 characters.name AS name_character,
@@ -29,7 +31,8 @@
             return $attendance;
         }
 
-        public function get_characters($id_event) {
+        public function get_characters($id_event)
+        {
             $query = $this->db->query("SELECT
                 attendance.id_character AS id_character,
                 characters.name as name_character
@@ -45,7 +48,8 @@
             return array_column($characters, "name_character", "id_character");
         }
 
-        public function get_played() {
+        public function get_played()
+        {
             $query = $this->db->query("SELECT
                 attendance.id_event,
                 characters.name AS name_character
@@ -63,7 +67,8 @@
             return $attendance;
         }
 
-        public function insert($id_event, $id_character, $id_points) {
+        public function insert($id_event, $id_character, $id_points)
+        {
             $this->db->query("INSERT
                 INTO attendance (id_event, id_character, id_points)
                 VALUES ('$id_event', '$id_character', '$id_points')
@@ -71,24 +76,23 @@
             return $this->db->affected_rows();
         }
 
-        public function officer_insert($id_event) {
+        public function officer_insert($id_event)
+        {
             $characters = array();
             $substitutions = array();
             $output = 0;
-            foreach($_POST as $key => $value) {
+            foreach ($_POST as $key => $value) {
                 if (strpos($key, "character_") === 0) {
-                    array_push($characters,substr($key,10));
-                }
-                else if (strpos($key, "id_substituting_") === 0) {
+                    array_push($characters, substr($key, 10));
+                } elseif (strpos($key, "id_substituting_") === 0) {
                     if ($value == 0) {
-                        array_push($substitutions,substr($key,16));
-                    }
-                    else {
-                        array_push($substitutions,$value);
+                        array_push($substitutions, substr($key, 16));
+                    } else {
+                        array_push($substitutions, $value);
                     }
                 }
             }
-            if(count($substitutions) == count($characters)) {
+            if (count($substitutions) == count($characters)) {
                 $output = 1;
             }
             $count_inserts = count($characters);
@@ -106,7 +110,8 @@
             return $output;
         }
 
-        public function delete($id) {
+        public function delete($id)
+        {
             $this->db->query("DELETE
                 FROM attendance
                 WHERE id = '$id'
@@ -114,7 +119,8 @@
             return $this->db->affected_rows();
         }
 
-        public function modify($id, $id_event, $id_character, $id_points) {
+        public function modify($id, $id_event, $id_character, $id_points)
+        {
             $this->db->query("UPDATE
                 attendance SET
                 id_event = '$id_event',
@@ -125,7 +131,8 @@
             return $this->db->affected_rows();
         }
 
-        public function officer_modify($id_event) {
+        public function officer_modify($id_event)
+        {
             $this->db->query("DELETE
                 FROM attendance
                 WHERE id_event = '$id_event'
@@ -133,20 +140,18 @@
             $characters = array();
             $substitutions = array();
             $output = 0;
-            foreach($_POST as $key => $value) {
+            foreach ($_POST as $key => $value) {
                 if (strpos($key, "character_") === 0) {
-                    array_push($characters,substr($key,10));
-                }
-                else if (strpos($key, "id_substituting_") === 0) {
+                    array_push($characters, substr($key, 10));
+                } elseif (strpos($key, "id_substituting_") === 0) {
                     if ($value == 0) {
-                        array_push($substitutions,substr($key,16));
-                    }
-                    else {
-                        array_push($substitutions,$value);
+                        array_push($substitutions, substr($key, 16));
+                    } else {
+                        array_push($substitutions, $value);
                     }
                 }
             }
-            if(count($substitutions) == count($characters)) {
+            if (count($substitutions) == count($characters)) {
                 $output = 1;
             }
             $count_inserts = count($characters);
@@ -163,7 +168,4 @@
             }
             return $output;
         }
-
     }
-
-?>

@@ -3,23 +3,19 @@ $(document).ready(function () {
     $("#table_points").DataTable({
         "lengthMenu": [50, 100, 500],
         "order": [0, "asc"],
-        "columnDefs": [
-            {
-                "targets": [7],
-                "orderable": false
-            }
-        ]
+        "columnDefs": [{
+            "targets": [7],
+            "orderable": false
+        }]
     });
 
     $("#table_timers").DataTable({
         "lengthMenu": [50, 100, 500],
         "order": [3, "asc"],
-        "columnDefs": [
-            {
-                "targets": [4,5],
-                "orderable": false
-            }
-        ],
+        "columnDefs": [{
+            "targets": [4, 5],
+            "orderable": false
+        }],
         "language": {
             "emptyTable": "No tracked events within the last 50 days"
         }
@@ -28,34 +24,28 @@ $(document).ready(function () {
     $("#table_attendance").DataTable({
         "lengthMenu": [50, 100, 500],
         "order": [0, "asc"],
-        "columnDefs": [
-            {
-                "targets": [2],
-                "orderable": false
-            }
-        ]
+        "columnDefs": [{
+            "targets": [2],
+            "orderable": false
+        }]
     });
 
     $("#table_players").DataTable({
         "lengthMenu": [50, 100, 500],
         "order": [0, "asc"],
-        "columnDefs": [
-            {
-                "targets": [1,2],
-                "orderable": false
-            }
-        ]
+        "columnDefs": [{
+            "targets": [1, 2],
+            "orderable": false
+        }]
     });
 
     $("#table_characters").DataTable({
         "lengthMenu": [50, 100, 500],
         "order": [0, "asc"],
-        "columnDefs": [
-            {
-                "targets": [5,6],
-                "orderable": false
-            }
-        ]
+        "columnDefs": [{
+            "targets": [5, 6],
+            "orderable": false
+        }]
     });
 
     $("#points").on("click", "button", function () {
@@ -66,27 +56,29 @@ $(document).ready(function () {
         var points = parseInt($("#points_" + id).html());
         var type = $("#type_" + id).html();
         switch (type) {
-            case "Main": type = 1;
-            break;
-            case "Alt": type = 2;
-            break;
-            default: type = 3;
+            case "Main":
+                type = 1;
+                break;
+            case "Alt":
+                type = 2;
+                break;
+            default:
+                type = 3;
         }
-        comparing.push(id,points,type);
-        $("#compare_tbody").append("<tr id='row_" + id + "'><td>" + $("#name_" + id).html() + "</td><td>" + $("#type_" + id).html() + "</td><td>" + $("#points_" + id).html()
-            + "</td><td><button id='remove_" + id +"' class='btn btn-warning btn-sm font-weight-bold'>&times;</button></td></tr>");
+        comparing.push(id, points, type);
+        $("#compare_tbody").append("<tr id='row_" + id + "'><td>" + $("#name_" + id).html() + "</td><td>" + $("#type_" + id).html() + "</td><td>" + $("#points_" + id).html() +
+            "</td><td><button id='remove_" + id + "' class='btn btn-warning btn-sm font-weight-bold'>&times;</button></td></tr>");
         get_winner();
     });
 
     $("#compare").on("click", "button", function () {
         var id = parseInt(this.id.slice(7));
-        $("#row_"+id).remove();
+        $("#row_" + id).remove();
         $("#compare_" + id).removeClass("d-none");
         comparing.splice(comparing.indexOf(id), 3);
         if (comparing.length > 0) {
             get_winner();
-        }
-        else {
+        } else {
             $("#compare").removeClass("d-block").addClass("d-none");
             $("#winner").removeClass("d-block").addClass("d-none");
         }
@@ -96,7 +88,7 @@ $(document).ready(function () {
         $("#menu_buttons button").removeClass("btn-primary").addClass("btn-light");
         $(this).removeClass("btn-light").addClass("btn-primary");
         $("#tables").children().removeClass("d-block").addClass("d-none");
-        $("#"+this.id.slice(7)).removeClass("d-none").addClass("d-block");
+        $("#" + this.id.slice(7)).removeClass("d-none").addClass("d-block");
         $("#winner").removeClass("d-block").addClass("d-none");
         $("#compare").removeClass("d-block").addClass("d-none");
         comparing = [];
@@ -108,14 +100,21 @@ $(document).ready(function () {
         var id_character = ($(this).attr('class').slice(24));
         $.ajax({
             url: "ajax/get_character_info/",
-            data: { "id_character": id_character },
+            data: {
+                "id_character": id_character
+            },
             type: "post",
             success: function (output) {
                 var data = JSON.parse(output);
                 switch (data["type_character"]) {
-                    case "1": var type = "Main"; break;
-                    case "2": var type = "Alt"; break;
-                    default: var type = "Bot";
+                    case "1":
+                        var type = "Main";
+                        break;
+                    case "2":
+                        var type = "Alt";
+                        break;
+                    default:
+                        var type = "Bot";
                 }
                 let timestamp_last_event;
                 let boss_last_event;
@@ -125,21 +124,18 @@ $(document).ready(function () {
                     if (data["timestamp_last_botted"] == undefined) {
                         timestamp_last_event = "n/a";
                         boss_last_event = "";
-                    }
-                    else {
+                    } else {
                         timestamp_last_event = data["timestamp_last_botted"];
                         boss_last_event = "(" + data["boss_last_event"] + ")";
                     }
-                }
-                else {
+                } else {
                     timestamp_last_event = data["timestamp_last_event"];
                     boss_last_event = "(" + data["boss_last_event"] + ")";
                 }
                 if (data["timestamp_last_loot"] == undefined) {
                     timestamp_last_loot = "n/a";
                     item_last_loot = "";
-                }
-                else {
+                } else {
                     timestamp_last_loot = data["timestamp_last_loot"];
                     item_last_loot = "(" + data["item_last_loot"] + ")";
                 }
@@ -158,7 +154,9 @@ $(document).ready(function () {
         var id_boss = ($(this).attr("class").slice(14));;
         $.ajax({
             url: "ajax/get_list_kills/",
-            data: { "id_boss": id_boss },
+            data: {
+                "id_boss": id_boss
+            },
             type: "post",
             success: function (output) {
                 var data = JSON.parse(output);
@@ -172,7 +170,9 @@ $(document).ready(function () {
                 $("#content_boss").html("Tracked kills: " + data["total_kills"] + "<br/>First killed: " + data["first_killed"] + "<br/>Last killed: " + data["last_killed"] + "<br/>");
                 $.ajax({
                     url: "ajax/get_list_items/",
-                    data: { "id_boss": id_boss },
+                    data: {
+                        "id_boss": id_boss
+                    },
                     type: "post",
                     success: function (output) {
                         var data2 = JSON.parse(output);
@@ -206,14 +206,16 @@ $(document).ready(function () {
 });
 
 function show(table) {
-    $("#button_"+table).removeClass("btn-light").addClass("btn-primary");
-    $("#"+table).removeClass("d-none").addClass("d-block");
+    $("#button_" + table).removeClass("btn-light").addClass("btn-primary");
+    $("#" + table).removeClass("d-none").addClass("d-block");
 }
 
 function get_winner() {
     $.ajax({
         url: "ajax/get_winner/",
-        data: { "comparing": comparing },
+        data: {
+            "comparing": comparing
+        },
         type: "post",
         success: function (output) {
             $("#winner_tbody").html("<tr><th>Winner:</th><td>" + output.substring(parseInt(output).toString().length) + "</td><td><a href='loot/show_officer_insert/" + parseInt(output) + "' class='btn btn-block btn-sm btn-success'>Loot</a></td></tr>");

@@ -1,7 +1,9 @@
             <?php $this->session->userdata = array(); ?>
             <div class="row">
                 <div class="col-10 offset-1 text-center">
-                    <?php if(isset($msg)) echo $msg;?>
+                    <?php if (isset($msg)) {
+    echo $msg;
+}?>
                 </div>
             </div>
             <div class="row">

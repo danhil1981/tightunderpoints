@@ -6,7 +6,9 @@
             <br/><br/>
             <div class="row" id="menu_buttons">
                 <div class="col-10 offset-1 text-center">
-                    <?php if(isset($this->session->msg)) echo $this->session->msg ?>
+                    <?php if (isset($this->session->msg)) {
+    echo $this->session->msg;
+} ?>
                     <br/><br/>
                     <button id="button_users" class="btn btn-light btn-sm">Users</button>
                     <button id="button_players" class="btn btn-light btn-sm">Players</button>
@@ -44,7 +46,7 @@
                                         echo "<tr><th scope='row' class='align-middle'>".$user["id"]."</th>";
                                         echo "<td class='align-middle'>".$user["name"]."</td>";
                                         echo "<td class='align-middle'>";
-                                        switch($user["type"]) {
+                                        switch ($user["type"]) {
                                             case "1": echo "Admin"; break;
                                             case "2": echo "Officer"; break;
                                             default: echo "Member";
@@ -109,7 +111,7 @@
                                         echo "<td class='align-middle'>".$character["level"]."</td>";
                                         echo "<td class='align-middle'>".$character["class"]."</td>";
                                         echo "<td class='align-middle'>";
-                                            switch($character["type"]) {
+                                        switch ($character["type"]) {
                                                 case "1": echo "Main";
                                                 break;
                                                 case "2": echo "Alt";
@@ -340,10 +342,9 @@
                 </div>
             </div>
             <?php
-                if(isset($this->session->table)) {
+                if (isset($this->session->table)) {
                     echo "<script>show('".$this->session->table."')</script>";
-                }
-                else {
+                } else {
                     echo "<script>show('users')</script>";
                 }
             ?>

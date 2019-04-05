@@ -2,9 +2,10 @@
 
     include("Security.php");
 
-    Class Events extends Security {
-
-        public function show_insert($source = "admins", $id_boss = null) {
+    class Events extends Security
+    {
+        public function show_insert($source = "admins", $id_boss = null)
+        {
             if ($this->check_permission(2)) {
                 $data["view_name"] = "form_insert_event";
                 $data["raid_descriptions"] = $this->model_raids->get_list();
@@ -17,7 +18,8 @@
             }
         }
 
-        public function insert() {
+        public function insert()
+        {
             if ($this->check_permission(2)) {
                 $source = $this->input->post("source");
                 $time = $this->input->post("time");
@@ -27,10 +29,9 @@
                 $id_raid = $this->input->post("id_raid");
                 $result_insert = $this->model_events->insert($timestamp, $id_boss, $id_raid);
                 if ($result_insert == 0) {
-                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
-                }
-                else {
-                    $this->session->set_flashdata("msg","<div class='badge badge-success'>Event successfully created</div><br/>");
+                    $this->session->set_flashdata("msg", "<div class='badge badge-danger'>Database Error</div><br/>");
+                } else {
+                    $this->session->set_flashdata("msg", "<div class='badge badge-success'>Event successfully created</div><br/>");
                 }
 
                 if ($source == "officers") {
@@ -42,21 +43,22 @@
             }
         }
 
-        public function delete($id) {
+        public function delete($id)
+        {
             if ($this->check_permission(1)) {
                 $result = $this->model_events->delete($id);
                 if ($result == 0) {
-                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
-                }
-                else {
-                    $this->session->set_flashdata("msg","<div class='badge badge-success'>Event successfully deleted</div><br/>");
+                    $this->session->set_flashdata("msg", "<div class='badge badge-danger'>Database Error</div><br/>");
+                } else {
+                    $this->session->set_flashdata("msg", "<div class='badge badge-success'>Event successfully deleted</div><br/>");
                 }
                 $this->session->set_flashdata("table", "events");
                 redirect("admins");
             }
         }
 
-        public function show_modify($id) {
+        public function show_modify($id)
+        {
             if ($this->check_permission(1)) {
                 $data["view_name"] = "form_modify_event";
                 $data["event"] = $this->model_events->get($id);
@@ -66,7 +68,8 @@
             }
         }
 
-        public function modify() {
+        public function modify()
+        {
             if ($this->check_permission(1)) {
                 $id = $this->input->post("id");
                 $time = $this->input->post("time");
@@ -76,16 +79,12 @@
                 $id_raid = $this->input->post("id_raid");
                 $result = $this->model_events->modify($id, $timestamp, $id_boss, $id_raid);
                 if ($result == 0) {
-                    $this->session->set_flashdata("msg","<div class='badge badge-danger'>Database Error</div><br/>");
-                }
-                else {
-                    $this->session->set_flashdata("msg","<div class='badge badge-success'>Event successfully modified</div><br/>");
+                    $this->session->set_flashdata("msg", "<div class='badge badge-danger'>Database Error</div><br/>");
+                } else {
+                    $this->session->set_flashdata("msg", "<div class='badge badge-success'>Event successfully modified</div><br/>");
                 }
                 $this->session->set_flashdata("table", "events");
                 redirect("admins");
             }
         }
-
     }
-
-?>

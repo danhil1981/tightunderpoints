@@ -7,10 +7,10 @@
                         <div class="text-white">
                             Name<br/><br/>
                         </div>
-                        <?php echo form_input("name","","required pattern='^[A-Za-z]+$' maxlength='32' title='1 word consisting of uppercase/lowercase letters' class='form-control'")?>
+                        <?php echo form_input("name", "", "required pattern='^[A-Za-z]+$' maxlength='32' title='1 word consisting of uppercase/lowercase letters' class='form-control'")?>
                         <br/>
                     </div>
-                    <?php $options = array_combine(range(1,65),range(1,65));?>
+                    <?php $options = array_combine(range(1, 65), range(1, 65));?>
                     <div class="form-group">
                         <div class="text-white">
                             Level<br/><br/>
@@ -42,7 +42,7 @@
                         <?php echo form_dropdown("id_player", $options, "", "required class='form-control'");?>
                         <br/><br/>
                     </div>
-                    <?php echo form_hidden("source",$source);?>
+                    <?php echo form_hidden("source", $source);?>
                     <?php echo form_submit("submit", "Create", "class='btn btn-success btn-sm'");?>
                     <?php echo anchor($source, "Cancel", "class='btn btn-danger btn-sm'");?>
                     <?php echo form_close();?>

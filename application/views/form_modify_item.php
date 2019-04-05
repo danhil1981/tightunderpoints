@@ -7,14 +7,14 @@
                         <div class="text-white">
                             Id<br/><br/>
                         </div>
-                        <?php echo form_number("id_new",$item["id"],"required class='form-control'")?>
+                        <?php echo form_number("id_new", $item["id"], "required class='form-control'")?>
                         <br/>
                     </div>
                     <div class="form-group">
                         <div class="text-white">
                             Name<br/><br/>
                         </div>
-                        <?php echo form_input("name",$item["name"],"required maxlength='64' class='form-control'")?>
+                        <?php echo form_input("name", $item["name"], "required maxlength='64' class='form-control'")?>
                         <br/>
                     </div>
                     <?php $options = $boss_names;?>
@@ -33,7 +33,7 @@
                         <?php echo form_dropdown("value", $options, $item["value"], "required class='form-control'");?>
                         <br/>
                     </div>
-                    <?php echo form_hidden("id",$item["id"]);?>
+                    <?php echo form_hidden("id", $item["id"]);?>
                     <?php echo form_submit("submit", "Modify", "class='btn btn-success btn-sm'");?>
                     <?php echo anchor("admins", "Cancel", "class='btn btn-danger btn-sm'");?>
                     <?php echo form_close();?>

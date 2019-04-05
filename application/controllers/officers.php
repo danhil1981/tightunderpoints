@@ -2,9 +2,10 @@
 
     include("Security.php");
 
-    Class Officers extends Security {
-
-        public function index() {
+    class Officers extends Security
+    {
+        public function index()
+        {
             if ($this->check_permission(2)) {
                 $data["list_names"] = $this->model_characters->get_list_names();
                 $data["list_types"] = $this->model_characters->get_list_types();
@@ -22,7 +23,4 @@
                 $this->load->view("template", $data);
             }
         }
-
     }
-
-?>

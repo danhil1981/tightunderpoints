@@ -7,14 +7,14 @@
                         <div class="text-white">
                             Id<br/><br/>
                         </div>
-                        <?php echo form_number("id","","min='1' max='32768' required class='form-control'")?>
+                        <?php echo form_number("id", "", "min='1' max='32768' required class='form-control'")?>
                         <br/>
                     </div>
                     <div class="form-group">
                         <div class="text-white">
                             Name<br/><br/>
                         </div>
-                        <?php echo form_input("name","", "required maxlength='64' class='form-control'")?>
+                        <?php echo form_input("name", "", "required maxlength='64' class='form-control'")?>
                         <br/>
                     </div>
                     <?php $options = $boss_names;?>
