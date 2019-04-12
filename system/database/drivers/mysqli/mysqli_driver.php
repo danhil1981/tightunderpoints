@@ -52,7 +52,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_mysqli_driver extends CI_DB
 {
-
     /**
      * Database driver
      *
@@ -124,7 +123,7 @@ class CI_DB_mysqli_driver extends CI_DB
             $socket = $this->hostname;
         } else {
             $hostname = ($persistent === true)
-                ? 'p:'.$this->hostname : $this->hostname;
+                ? 'p:' . $this->hostname : $this->hostname;
             $port = empty($this->port) ? null : $this->port;
             $socket = null;
         }
@@ -154,14 +153,14 @@ class CI_DB_mysqli_driver extends CI_DB
         }
 
         if (is_array($this->encrypt)) {
-            $ssl = array();
-            empty($this->encrypt['ssl_key'])    or $ssl['key']    = $this->encrypt['ssl_key'];
-            empty($this->encrypt['ssl_cert'])   or $ssl['cert']   = $this->encrypt['ssl_cert'];
-            empty($this->encrypt['ssl_ca'])     or $ssl['ca']     = $this->encrypt['ssl_ca'];
+            $ssl = [];
+            empty($this->encrypt['ssl_key']) or $ssl['key'] = $this->encrypt['ssl_key'];
+            empty($this->encrypt['ssl_cert']) or $ssl['cert'] = $this->encrypt['ssl_cert'];
+            empty($this->encrypt['ssl_ca']) or $ssl['ca'] = $this->encrypt['ssl_ca'];
             empty($this->encrypt['ssl_capath']) or $ssl['capath'] = $this->encrypt['ssl_capath'];
             empty($this->encrypt['ssl_cipher']) or $ssl['cipher'] = $this->encrypt['ssl_cipher'];
 
-            if (! empty($ssl)) {
+            if (!empty($ssl)) {
                 if (isset($this->encrypt['ssl_verify'])) {
                     if ($this->encrypt['ssl_verify']) {
                         defined('MYSQLI_OPT_SSL_VERIFY_SERVER_CERT') && $this->_mysqli->options(MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true);
@@ -179,9 +178,9 @@ class CI_DB_mysqli_driver extends CI_DB
 
                 $client_flags |= MYSQLI_CLIENT_SSL;
                 $this->_mysqli->ssl_set(
-                    isset($ssl['key'])    ? $ssl['key']    : null,
-                    isset($ssl['cert'])   ? $ssl['cert']   : null,
-                    isset($ssl['ca'])     ? $ssl['ca']     : null,
+                    isset($ssl['key']) ? $ssl['key'] : null,
+                    isset($ssl['cert']) ? $ssl['cert'] : null,
+                    isset($ssl['ca']) ? $ssl['ca'] : null,
                     isset($ssl['capath']) ? $ssl['capath'] : null,
                     isset($ssl['cipher']) ? $ssl['cipher'] : null
                 );
@@ -240,7 +239,7 @@ class CI_DB_mysqli_driver extends CI_DB
 
         if ($this->conn_id->select_db($database)) {
             $this->database = $database;
-            $this->data_cache = array();
+            $this->data_cache = [];
             return true;
         }
 
@@ -304,7 +303,7 @@ class CI_DB_mysqli_driver extends CI_DB
         // mysqli_affected_rows() returns 0 for "DELETE FROM TABLE" queries. This hack
         // modifies the query so that it a proper number of affected rows is returned.
         if ($this->delete_hack === true && preg_match('/^\s*DELETE\s+FROM\s+(\S+)\s*$/i', $sql)) {
-            return trim($sql).' WHERE 1=1';
+            return trim($sql) . ' WHERE 1=1';
         }
 
         return $sql;
@@ -408,10 +407,10 @@ class CI_DB_mysqli_driver extends CI_DB
      */
     protected function _list_tables($prefix_limit = false)
     {
-        $sql = 'SHOW TABLES FROM '.$this->escape_identifiers($this->database);
+        $sql = 'SHOW TABLES FROM ' . $this->escape_identifiers($this->database);
 
         if ($prefix_limit !== false && $this->dbprefix !== '') {
-            return $sql." LIKE '".$this->escape_like_str($this->dbprefix)."%'";
+            return $sql . " LIKE '" . $this->escape_like_str($this->dbprefix) . "%'";
         }
 
         return $sql;
@@ -429,7 +428,7 @@ class CI_DB_mysqli_driver extends CI_DB
      */
     protected function _list_columns($table = '')
     {
-        return 'SHOW COLUMNS FROM '.$this->protect_identifiers($table, true, null, false);
+        return 'SHOW COLUMNS FROM ' . $this->protect_identifiers($table, true, null, false);
     }
 
     // --------------------------------------------------------------------
@@ -442,15 +441,15 @@ class CI_DB_mysqli_driver extends CI_DB
      */
     public function field_data($table)
     {
-        if (($query = $this->query('SHOW COLUMNS FROM '.$this->protect_identifiers($table, true, null, false))) === false) {
+        if (($query = $this->query('SHOW COLUMNS FROM ' . $this->protect_identifiers($table, true, null, false))) === false) {
             return false;
         }
         $query = $query->result_object();
 
-        $retval = array();
+        $retval = [];
         for ($i = 0, $c = count($query); $i < $c; $i++) {
-            $retval[$i]			= new stdClass();
-            $retval[$i]->name		= $query[$i]->Field;
+            $retval[$i] = new stdClass();
+            $retval[$i]->name = $query[$i]->Field;
 
             sscanf(
                 $query[$i]->Type,
@@ -459,8 +458,8 @@ class CI_DB_mysqli_driver extends CI_DB
                 $retval[$i]->max_length
             );
 
-            $retval[$i]->default		= $query[$i]->Default;
-            $retval[$i]->primary_key	= (int) ($query[$i]->Key === 'PRI');
+            $retval[$i]->default = $query[$i]->Default;
+            $retval[$i]->primary_key = (int) ($query[$i]->Key === 'PRI');
         }
 
         return $retval;
@@ -478,14 +477,14 @@ class CI_DB_mysqli_driver extends CI_DB
      */
     public function error()
     {
-        if (! empty($this->_mysqli->connect_errno)) {
-            return array(
-                'code'    => $this->_mysqli->connect_errno,
-                'message' => $this->_mysqli->connect_error
-            );
+        if (!empty($this->_mysqli->connect_errno)) {
+            return [
+                'code' => $this->_mysqli->connect_errno,
+                'message' => $this->_mysqli->connect_error,
+            ];
         }
 
-        return array('code' => $this->conn_id->errno, 'message' => $this->conn_id->error);
+        return ['code' => $this->conn_id->errno, 'message' => $this->conn_id->error];
     }
 
     // --------------------------------------------------------------------
@@ -500,8 +499,8 @@ class CI_DB_mysqli_driver extends CI_DB
      */
     protected function _from_tables()
     {
-        if (! empty($this->qb_join) && count($this->qb_from) > 1) {
-            return '('.implode(', ', $this->qb_from).')';
+        if (!empty($this->qb_join) && count($this->qb_from) > 1) {
+            return '(' . implode(', ', $this->qb_from) . ')';
         }
 
         return implode(', ', $this->qb_from);

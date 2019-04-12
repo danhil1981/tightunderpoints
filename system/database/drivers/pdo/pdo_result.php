@@ -50,7 +50,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_pdo_result extends CI_DB_result
 {
-
     /**
      * Number of rows in the result set
      *
@@ -94,7 +93,7 @@ class CI_DB_pdo_result extends CI_DB_result
      */
     public function list_fields()
     {
-        $field_names = array();
+        $field_names = [];
         for ($i = 0, $c = $this->num_fields(); $i < $c; $i++) {
             // Might trigger an E_WARNING due to not all subdrivers
             // supporting getColumnMeta()
@@ -117,16 +116,16 @@ class CI_DB_pdo_result extends CI_DB_result
     public function field_data()
     {
         try {
-            $retval = array();
+            $retval = [];
 
             for ($i = 0, $c = $this->num_fields(); $i < $c; $i++) {
                 $field = $this->result_id->getColumnMeta($i);
 
-                $retval[$i]			= new stdClass();
-                $retval[$i]->name		= $field['name'];
-                $retval[$i]->type		= $field['native_type'];
-                $retval[$i]->max_length		= ($field['len'] > 0) ? $field['len'] : null;
-                $retval[$i]->primary_key	= (int) (! empty($field['flags']) && in_array('primary_key', $field['flags'], true));
+                $retval[$i] = new stdClass();
+                $retval[$i]->name = $field['name'];
+                $retval[$i]->type = $field['native_type'];
+                $retval[$i]->max_length = ($field['len'] > 0) ? $field['len'] : null;
+                $retval[$i]->primary_key = (int) (!empty($field['flags']) && in_array('primary_key', $field['flags'], true));
             }
 
             return $retval;

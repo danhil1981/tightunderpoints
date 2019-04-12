@@ -13,10 +13,10 @@
 
         public function get_all()
         {
-            $query = $this->db->query("SELECT
+            $query = $this->db->query('SELECT
                 * FROM bosses
-            ;");
-            $bosses = array();
+            ;');
+            $bosses = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $bosses[] = $row;
@@ -27,18 +27,18 @@
 
         public function get_list()
         {
-            $query = $this->db->query("SELECT
+            $query = $this->db->query('SELECT
                 id AS id_boss,
                 name AS name_boss
                 FROM bosses
-            ;");
-            $bosses = array();
+            ;');
+            $bosses = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $bosses[] = $row;
                 }
             }
-            return array_column($bosses, "name_boss", "id_boss");
+            return array_column($bosses, 'name_boss', 'id_boss');
         }
 
         public function get_name($id)
@@ -87,7 +87,7 @@
                 WHERE bosses.id = '$id_boss'
                 GROUP BY items.name
             ;");
-            $drops = array();
+            $drops = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $drops[] = $row;
@@ -111,7 +111,7 @@
                     AND
                     (ADDTIME(ADDTIME(ADDTIME(events.timestamp, bosses.respawn),bosses.variance), '50 0:00:00') > NOW())
             ;");
-            $timers = array();
+            $timers = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $timers[] = $row;

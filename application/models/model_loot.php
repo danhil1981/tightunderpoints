@@ -25,7 +25,7 @@
                 INNER JOIN items ON drops.id_item = items.id
                 INNER JOIN events ON drops.id_event = events.id
             ;");
-            $loot = array();
+            $loot = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $loot[] = $row;

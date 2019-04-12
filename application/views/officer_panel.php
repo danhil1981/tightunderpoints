@@ -16,9 +16,9 @@
                     <button id="button_players" class="btn btn-light btn-sm">Players</button>
                     <button id="button_characters" class="btn btn-light btn-sm">Characters</button>
                     <?php if ($this->session->type < 2) {
-    echo anchor("admins", "Admin Panel", "class='btn btn-success btn-sm'");
+    echo anchor('admins', 'Admin Panel', "class='btn btn-success btn-sm'");
 }?>
-                    <?php echo anchor("members", "Member Panel", "class='btn btn-success btn-sm'");?>
+                    <?php echo anchor('members', 'Member Panel', "class='btn btn-success btn-sm'");?>
                     <a href="<?php echo site_url()?>" class="btn btn-danger btn-sm">Logout</a>
                     <br/><br/>
                 </div>
@@ -64,22 +64,22 @@
                             <tbody>
                                 <?php
                                     foreach ($list_names as $i => $value) {
-                                        echo "<tr><td id='name_$i' class='align-middle'><div class='btn character character_".$i."'>".$value."</div></td>";
+                                        echo "<tr><td id='name_$i' class='align-middle'><div class='btn character character_" . $i . "'>" . $value . '</div></td>';
                                         echo "<td id='type_$i' class='align-middle'>";
                                         switch ($list_types[$i]) {
-                                                case "1": echo "Main";
+                                                case '1': echo 'Main';
                                                 break;
-                                                case "2": echo "Alt";
+                                                case '2': echo 'Alt';
                                                 break;
-                                                default: echo "Bot";
+                                                default: echo 'Bot';
                                             }
-                                        echo "</td>";
-                                        echo "<td class='align-middle'>".$list_total_earned[$i]."</td>";
-                                        echo "<td class='align-middle'>".$list_total_spent[$i]."</td>";
-                                        echo "<td class='align-middle'>".$list_last50_earned[$i]."</td>";
-                                        echo "<td class='align-middle'>".$list_last50_spent[$i]."</td>";
-                                        echo "<td id='points_$i' class='align-middle'>".($list_last50_earned[$i]-$list_last50_spent[$i])."</td>";
-                                        echo "<td class='align-middle'><button class='btn btn-sm btn-primary' id='compare_".$i."'>Compare</button></td></tr>";
+                                        echo '</td>';
+                                        echo "<td class='align-middle'>" . $list_total_earned[$i] . '</td>';
+                                        echo "<td class='align-middle'>" . $list_total_spent[$i] . '</td>';
+                                        echo "<td class='align-middle'>" . $list_last50_earned[$i] . '</td>';
+                                        echo "<td class='align-middle'>" . $list_last50_spent[$i] . '</td>';
+                                        echo "<td id='points_$i' class='align-middle'>" . ($list_last50_earned[$i] - $list_last50_spent[$i]) . '</td>';
+                                        echo "<td class='align-middle'><button class='btn btn-sm btn-primary' id='compare_" . $i . "'>Compare</button></td></tr>";
                                     }
                                 ?>
                             </tbody>
@@ -100,23 +100,23 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    $timezone  = +1;
+                                    $timezone = +1;
                                     foreach ($timers as $value) {
-                                        echo "<tr><td class='align-middle'><div class='btn boss boss_".$value["id_boss"]."'>".$value["name_boss"]."</div></td>";
-                                        echo "<td class='align-middle'>".$value["last_killed"]."</td>";
-                                        echo "<td class='align-middle'>".$value["start_window"]."</td>";
-                                        echo "<td class='align-middle'>".$value["end_window"]."</td>";
+                                        echo "<tr><td class='align-middle'><div class='btn boss boss_" . $value['id_boss'] . "'>" . $value['name_boss'] . '</div></td>';
+                                        echo "<td class='align-middle'>" . $value['last_killed'] . '</td>';
+                                        echo "<td class='align-middle'>" . $value['start_window'] . '</td>';
+                                        echo "<td class='align-middle'>" . $value['end_window'] . '</td>';
                                         echo "<td class='align-middle'>";
-                                        if (gmdate("Y-m-d H:i:s", time()+ 3600*($timezone+date("I"))) > $value["end_window"]) {
-                                            echo "<div class='btn btn-sm btn-block btn-success'>UP</div></td><td class='align-middle'><a href='".site_url()."events/show_insert/officers/".$value["id_boss"]."' class='btn btn-sm btn-block btn-primary'>Create Event</a>";
+                                        if (gmdate('Y-m-d H:i:s', time() + 3600 * ($timezone + date('I'))) > $value['end_window']) {
+                                            echo "<div class='btn btn-sm btn-block btn-success'>UP</div></td><td class='align-middle'><a href='" . site_url() . 'events/show_insert/officers/' . $value['id_boss'] . "' class='btn btn-sm btn-block btn-primary'>Create Event</a>";
                                         } else {
-                                            if (gmdate("Y-m-d H:i:s", time()+ 3600*($timezone+date("I"))) < $value["start_window"]) {
+                                            if (gmdate('Y-m-d H:i:s', time() + 3600 * ($timezone + date('I'))) < $value['start_window']) {
                                                 echo "<div class='btn btn-sm btn-block btn-danger'>DOWN</div></td><td>";
                                             } else {
-                                                echo "<div class='btn btn-sm btn-block btn-warning'>IN WINDOW</div></td><td class='align-middle'><a href='".site_url()."events/show_insert/officers/".$value["id_boss"]."' class='btn btn-sm btn-block  btn-primary'>Create Event</a>";
+                                                echo "<div class='btn btn-sm btn-block btn-warning'>IN WINDOW</div></td><td class='align-middle'><a href='" . site_url() . 'events/show_insert/officers/' . $value['id_boss'] . "' class='btn btn-sm btn-block  btn-primary'>Create Event</a>";
                                             }
                                         }
-                                        echo "</td></tr>";
+                                        echo '</td></tr>';
                                     }
                                 ?>
                             </tbody>
@@ -137,29 +137,29 @@
                             <tbody>
                                 <?php
                                     foreach ($events as $i => $value) {
-                                        echo "<tr><td class='align-middle'>".$value."</td>";
+                                        echo "<tr><td class='align-middle'>" . $value . '</td>';
                                         echo "<td class='align-middle'>";
                                         $found = false;
                                         for ($j = 0; $j < count($attendance_list); $j++) {
                                             $attendance_entry = $attendance_list[$j];
                                             $played_entry = $played_list[$j];
-                                            if ($attendance_entry["id_event"] == $i) {
-                                                if ($attendance_entry["name_character"] !== $played_entry["name_character"]) {
-                                                    echo "<div class='badge badge-secondary m-1'>".$attendance_entry["name_character"]." ";
-                                                    echo "<div class='badge badge-primary'>".$played_entry["name_character"]."</div></div>";
+                                            if ($attendance_entry['id_event'] == $i) {
+                                                if ($attendance_entry['name_character'] !== $played_entry['name_character']) {
+                                                    echo "<div class='badge badge-secondary m-1'>" . $attendance_entry['name_character'] . ' ';
+                                                    echo "<div class='badge badge-primary'>" . $played_entry['name_character'] . '</div></div>';
                                                 } else {
-                                                    echo "<div class='badge badge-primary m-1'>".$attendance_entry["name_character"]."</div>";
+                                                    echo "<div class='badge badge-primary m-1'>" . $attendance_entry['name_character'] . '</div>';
                                                 }
                                                 $found = true;
                                             }
                                         }
-                                        echo "</td>";
+                                        echo '</td>';
                                         if ($found == true) {
-                                            echo "<td class='align-middle'><a href='".site_url()."attendance/show_officer_modify/".$i."' class='btn btn-warning btn-sm'>Modify List</a></td>";
+                                            echo "<td class='align-middle'><a href='" . site_url() . 'attendance/show_officer_modify/' . $i . "' class='btn btn-warning btn-sm'>Modify List</a></td>";
                                         } else {
-                                            echo "<td class='align-middle'><a href='".site_url()."attendance/show_officer_insert/".$i."' class='btn btn-success btn-sm'>Create List</a></td>";
+                                            echo "<td class='align-middle'><a href='" . site_url() . 'attendance/show_officer_insert/' . $i . "' class='btn btn-success btn-sm'>Create List</a></td>";
                                         }
-                                        echo "</tr>";
+                                        echo '</tr>';
                                     }
                                 ?>
                             </tbody>
@@ -179,9 +179,9 @@
                                 <?php
                                     for ($i = 0; $i < count($players_list); $i++) {
                                         $player = $players_list[$i];
-                                        echo "<tr><td class='align-middle'>".$player["name"]."</td>";
-                                        echo "<td class='align-middle'><a href='".site_url()."players/delete/".$player["id"]."/officers' class='btn btn-danger btn-sm'>Delete</a></td>";
-                                        echo "<td class='align-middle'><a href='".site_url()."players/show_modify/".$player["id"]."/officers' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
+                                        echo "<tr><td class='align-middle'>" . $player['name'] . '</td>';
+                                        echo "<td class='align-middle'><a href='" . site_url() . 'players/delete/' . $player['id'] . "/officers' class='btn btn-danger btn-sm'>Delete</a></td>";
+                                        echo "<td class='align-middle'><a href='" . site_url() . 'players/show_modify/' . $player['id'] . "/officers' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
                                     }
                                 ?>
                             </tbody>
@@ -207,21 +207,21 @@
                                 <?php
                                     for ($i = 0; $i < count($characters_list); $i++) {
                                         $character = $characters_list[$i];
-                                        echo "<tr><td class='align-middle'><div class='btn character character_".$character["id"]."'>".$character["name"]."</div></td>";
-                                        echo "<td class='align-middle'>".$character["level"]."</td>";
-                                        echo "<td class='align-middle'>".$character["class"]."</td>";
+                                        echo "<tr><td class='align-middle'><div class='btn character character_" . $character['id'] . "'>" . $character['name'] . '</div></td>';
+                                        echo "<td class='align-middle'>" . $character['level'] . '</td>';
+                                        echo "<td class='align-middle'>" . $character['class'] . '</td>';
                                         echo "<td class='align-middle'>";
-                                        switch ($character["type"]) {
-                                                case "1": echo "Main";
+                                        switch ($character['type']) {
+                                                case '1': echo 'Main';
                                                 break;
-                                                case "2": echo "Alt";
+                                                case '2': echo 'Alt';
                                                 break;
-                                                default: echo "Bot";
+                                                default: echo 'Bot';
                                             }
-                                        echo "</td>";
-                                        echo "<td class='align-middle'>".$character["name_player"]."</td>";
-                                        echo "<td class='align-middle'><a href='".site_url()."characters/delete/".$character["id"]."/officers' class='btn btn-danger btn-sm'>Delete</a></td>";
-                                        echo "<td class='align-middle'><a href='".site_url()."characters/show_modify/".$character["id"]."/officers' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
+                                        echo '</td>';
+                                        echo "<td class='align-middle'>" . $character['name_player'] . '</td>';
+                                        echo "<td class='align-middle'><a href='" . site_url() . 'characters/delete/' . $character['id'] . "/officers' class='btn btn-danger btn-sm'>Delete</a></td>";
+                                        echo "<td class='align-middle'><a href='" . site_url() . 'characters/show_modify/' . $character['id'] . "/officers' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
                                     }
                                 ?>
                             </tbody>
@@ -262,7 +262,7 @@
             </div>
             <?php
                 if (isset($this->session->table)) {
-                    echo "<script>show('".$this->session->table."')</script>";
+                    echo "<script>show('" . $this->session->table . "')</script>";
                 } else {
                     echo "<script>show('points')</script>";
                 }

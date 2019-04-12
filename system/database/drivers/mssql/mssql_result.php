@@ -50,7 +50,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_mssql_result extends CI_DB_result
 {
-
     /**
      * Number of rows in the result set
      *
@@ -86,7 +85,7 @@ class CI_DB_mssql_result extends CI_DB_result
      */
     public function list_fields()
     {
-        $field_names = array();
+        $field_names = [];
         mssql_field_seek($this->result_id, 0);
         while ($field = mssql_fetch_field($this->result_id)) {
             $field_names[] = $field->name;
@@ -106,14 +105,14 @@ class CI_DB_mssql_result extends CI_DB_result
      */
     public function field_data()
     {
-        $retval = array();
+        $retval = [];
         for ($i = 0, $c = $this->num_fields(); $i < $c; $i++) {
             $field = mssql_fetch_field($this->result_id, $i);
 
-            $retval[$i]		= new stdClass();
-            $retval[$i]->name	= $field->name;
-            $retval[$i]->type	= $field->type;
-            $retval[$i]->max_length	= $field->max_length;
+            $retval[$i] = new stdClass();
+            $retval[$i]->name = $field->name;
+            $retval[$i]->type = $field->type;
+            $retval[$i]->max_length = $field->max_length;
         }
 
         return $retval;
@@ -179,7 +178,7 @@ class CI_DB_mssql_result extends CI_DB_result
     {
         $row = mssql_fetch_object($this->result_id);
 
-        if ($class_name === 'stdClass' or ! $row) {
+        if ($class_name === 'stdClass' or !$row) {
             return $row;
         }
 

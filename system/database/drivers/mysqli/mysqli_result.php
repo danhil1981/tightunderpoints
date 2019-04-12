@@ -50,7 +50,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_mysqli_result extends CI_DB_result
 {
-
     /**
      * Number of rows in the result set
      *
@@ -86,7 +85,7 @@ class CI_DB_mysqli_result extends CI_DB_result
      */
     public function list_fields()
     {
-        $field_names = array();
+        $field_names = [];
         $this->result_id->field_seek(0);
         while ($field = $this->result_id->fetch_field()) {
             $field_names[] = $field->name;
@@ -106,15 +105,15 @@ class CI_DB_mysqli_result extends CI_DB_result
      */
     public function field_data()
     {
-        $retval = array();
+        $retval = [];
         $field_data = $this->result_id->fetch_fields();
         for ($i = 0, $c = count($field_data); $i < $c; $i++) {
-            $retval[$i]			= new stdClass();
-            $retval[$i]->name		= $field_data[$i]->name;
-            $retval[$i]->type		= static::_get_field_type($field_data[$i]->type);
-            $retval[$i]->max_length		= $field_data[$i]->max_length;
-            $retval[$i]->primary_key	= (int) ($field_data[$i]->flags & MYSQLI_PRI_KEY_FLAG);
-            $retval[$i]->default		= $field_data[$i]->def;
+            $retval[$i] = new stdClass();
+            $retval[$i]->name = $field_data[$i]->name;
+            $retval[$i]->type = static::_get_field_type($field_data[$i]->type);
+            $retval[$i]->max_length = $field_data[$i]->max_length;
+            $retval[$i]->primary_key = (int) ($field_data[$i]->flags & MYSQLI_PRI_KEY_FLAG);
+            $retval[$i]->default = $field_data[$i]->def;
         }
 
         return $retval;
@@ -135,33 +134,33 @@ class CI_DB_mysqli_result extends CI_DB_result
     private static function _get_field_type($type)
     {
         static $map;
-        isset($map) or $map = array(
-            MYSQLI_TYPE_DECIMAL     => 'decimal',
-            MYSQLI_TYPE_BIT         => 'bit',
-            MYSQLI_TYPE_TINY        => 'tinyint',
-            MYSQLI_TYPE_SHORT       => 'smallint',
-            MYSQLI_TYPE_INT24       => 'mediumint',
-            MYSQLI_TYPE_LONG        => 'int',
-            MYSQLI_TYPE_LONGLONG    => 'bigint',
-            MYSQLI_TYPE_FLOAT       => 'float',
-            MYSQLI_TYPE_DOUBLE      => 'double',
-            MYSQLI_TYPE_TIMESTAMP   => 'timestamp',
-            MYSQLI_TYPE_DATE        => 'date',
-            MYSQLI_TYPE_TIME        => 'time',
-            MYSQLI_TYPE_DATETIME    => 'datetime',
-            MYSQLI_TYPE_YEAR        => 'year',
-            MYSQLI_TYPE_NEWDATE     => 'date',
-            MYSQLI_TYPE_INTERVAL    => 'interval',
-            MYSQLI_TYPE_ENUM        => 'enum',
-            MYSQLI_TYPE_SET         => 'set',
-            MYSQLI_TYPE_TINY_BLOB   => 'tinyblob',
+        isset($map) or $map = [
+            MYSQLI_TYPE_DECIMAL => 'decimal',
+            MYSQLI_TYPE_BIT => 'bit',
+            MYSQLI_TYPE_TINY => 'tinyint',
+            MYSQLI_TYPE_SHORT => 'smallint',
+            MYSQLI_TYPE_INT24 => 'mediumint',
+            MYSQLI_TYPE_LONG => 'int',
+            MYSQLI_TYPE_LONGLONG => 'bigint',
+            MYSQLI_TYPE_FLOAT => 'float',
+            MYSQLI_TYPE_DOUBLE => 'double',
+            MYSQLI_TYPE_TIMESTAMP => 'timestamp',
+            MYSQLI_TYPE_DATE => 'date',
+            MYSQLI_TYPE_TIME => 'time',
+            MYSQLI_TYPE_DATETIME => 'datetime',
+            MYSQLI_TYPE_YEAR => 'year',
+            MYSQLI_TYPE_NEWDATE => 'date',
+            MYSQLI_TYPE_INTERVAL => 'interval',
+            MYSQLI_TYPE_ENUM => 'enum',
+            MYSQLI_TYPE_SET => 'set',
+            MYSQLI_TYPE_TINY_BLOB => 'tinyblob',
             MYSQLI_TYPE_MEDIUM_BLOB => 'mediumblob',
-            MYSQLI_TYPE_BLOB        => 'blob',
-            MYSQLI_TYPE_LONG_BLOB   => 'longblob',
-            MYSQLI_TYPE_STRING      => 'char',
-            MYSQLI_TYPE_VAR_STRING  => 'varchar',
-            MYSQLI_TYPE_GEOMETRY    => 'geometry'
-        );
+            MYSQLI_TYPE_BLOB => 'blob',
+            MYSQLI_TYPE_LONG_BLOB => 'longblob',
+            MYSQLI_TYPE_STRING => 'char',
+            MYSQLI_TYPE_VAR_STRING => 'varchar',
+            MYSQLI_TYPE_GEOMETRY => 'geometry',
+        ];
 
         return isset($map[$type]) ? $map[$type] : $type;
     }

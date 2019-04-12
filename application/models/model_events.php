@@ -13,15 +13,15 @@
 
         public function get_all()
         {
-            $query = $this->db->query("SELECT
+            $query = $this->db->query('SELECT
                 events.id, events.timestamp, events.id_boss, events.id_raid,
                 bosses.name AS name_boss,
                 raids.description AS description_raid
                 FROM events
                 LEFT JOIN bosses ON events.id_boss = bosses.id
                 LEFT JOIN raids ON events.id_raid = raids.id
-            ;");
-            $events = array();
+            ;');
+            $events = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $events[] = $row;
@@ -38,13 +38,13 @@
                 FROM events
                 INNER JOIN bosses ON events.id_boss = bosses.id
             ;");
-            $bosses = array();
+            $bosses = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $bosses[] = $row;
                 }
             }
-            return array_column($bosses, "name_event", "id_event");
+            return array_column($bosses, 'name_event', 'id_event');
         }
 
         public function get_events_in_raid($id_raid)
@@ -56,13 +56,13 @@
                 INNER JOIN events ON events.id_boss = bosses.id
                 WHERE id_raid = '$id_raid'
             ;");
-            $events_in_raid = array();
+            $events_in_raid = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $events_in_raid[] = $row;
                 }
             }
-            return array_column($events_in_raid, "name_event", "id_event");
+            return array_column($events_in_raid, 'name_event', 'id_event');
         }
 
         public function get_events_not_in_raid()
@@ -74,13 +74,13 @@
                 INNER JOIN events ON events.id_boss = bosses.id
                 WHERE id_raid = 0
             ;");
-            $events_not_raid = array();
+            $events_not_raid = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $events_not_raid[] = $row;
                 }
             }
-            return array_column($events_not_raid, "name_event", "id_event");
+            return array_column($events_not_raid, 'name_event', 'id_event');
         }
 
         public function get_boss($id_event)
@@ -108,11 +108,11 @@
                 INTO events (timestamp, id_boss, id_raid )
                 VALUES ('$timestamp', '$id_boss', '$id_raid')
             ;");
-            $output = array();
+            $output = [];
             if ($this->db->affected_rows() == 1) {
-                $output["id_event"] = $this->db->insert_id();
-                $output["timestamp"] = $timestamp;
-                $output["name_boss"] = $this->model_bosses->get_name($id_boss);
+                $output['id_event'] = $this->db->insert_id();
+                $output['timestamp'] = $timestamp;
+                $output['name_boss'] = $this->model_bosses->get_name($id_boss);
             }
             return $output;
         }

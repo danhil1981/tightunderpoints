@@ -52,7 +52,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_sqlite3_driver extends CI_DB
 {
-
     /**
      * Database driver
      *
@@ -67,7 +66,7 @@ class CI_DB_sqlite3_driver extends CI_DB
      *
      * @var	array
      */
-    protected $_random_keyword = array('RANDOM()', 'RANDOM()');
+    protected $_random_keyword = ['RANDOM()', 'RANDOM()'];
 
     // --------------------------------------------------------------------
 
@@ -84,7 +83,7 @@ class CI_DB_sqlite3_driver extends CI_DB
         }
 
         try {
-            return (! $this->password)
+            return (!$this->password)
                 ? new SQLite3($this->database)
                 : new SQLite3($this->database, SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE, $this->password);
         } catch (Exception $e) {
@@ -211,8 +210,8 @@ class CI_DB_sqlite3_driver extends CI_DB
     protected function _list_tables($prefix_limit = false)
     {
         return 'SELECT "NAME" FROM "SQLITE_MASTER" WHERE "TYPE" = \'table\''
-            .(($prefix_limit !== false && $this->dbprefix != '')
-                ? ' AND "NAME" LIKE \''.$this->escape_like_str($this->dbprefix).'%\' '.sprintf($this->_like_escape_str, $this->_like_escape_chr)
+            . (($prefix_limit !== false && $this->dbprefix != '')
+                ? ' AND "NAME" LIKE \'' . $this->escape_like_str($this->dbprefix) . '%\' ' . sprintf($this->_like_escape_str, $this->_like_escape_chr)
                 : '');
     }
 
@@ -231,11 +230,11 @@ class CI_DB_sqlite3_driver extends CI_DB
             return $this->data_cache['field_names'][$table];
         }
 
-        if (($result = $this->query('PRAGMA TABLE_INFO('.$this->protect_identifiers($table, true, null, false).')')) === false) {
+        if (($result = $this->query('PRAGMA TABLE_INFO(' . $this->protect_identifiers($table, true, null, false) . ')')) === false) {
             return false;
         }
 
-        $this->data_cache['field_names'][$table] = array();
+        $this->data_cache['field_names'][$table] = [];
         foreach ($result->result_array() as $row) {
             $this->data_cache['field_names'][$table][] = $row['name'];
         }
@@ -253,7 +252,7 @@ class CI_DB_sqlite3_driver extends CI_DB
      */
     public function field_data($table)
     {
-        if (($query = $this->query('PRAGMA TABLE_INFO('.$this->protect_identifiers($table, true, null, false).')')) === false) {
+        if (($query = $this->query('PRAGMA TABLE_INFO(' . $this->protect_identifiers($table, true, null, false) . ')')) === false) {
             return false;
         }
 
@@ -262,14 +261,14 @@ class CI_DB_sqlite3_driver extends CI_DB
             return false;
         }
 
-        $retval = array();
+        $retval = [];
         for ($i = 0, $c = count($query); $i < $c; $i++) {
-            $retval[$i]			= new stdClass();
-            $retval[$i]->name		= $query[$i]['name'];
-            $retval[$i]->type		= $query[$i]['type'];
-            $retval[$i]->max_length		= null;
-            $retval[$i]->default		= $query[$i]['dflt_value'];
-            $retval[$i]->primary_key	= isset($query[$i]['pk']) ? (int) $query[$i]['pk'] : 0;
+            $retval[$i] = new stdClass();
+            $retval[$i]->name = $query[$i]['name'];
+            $retval[$i]->type = $query[$i]['type'];
+            $retval[$i]->max_length = null;
+            $retval[$i]->default = $query[$i]['dflt_value'];
+            $retval[$i]->primary_key = isset($query[$i]['pk']) ? (int) $query[$i]['pk'] : 0;
         }
 
         return $retval;
@@ -287,7 +286,7 @@ class CI_DB_sqlite3_driver extends CI_DB
      */
     public function error()
     {
-        return array('code' => $this->conn_id->lastErrorCode(), 'message' => $this->conn_id->lastErrorMsg());
+        return ['code' => $this->conn_id->lastErrorCode(), 'message' => $this->conn_id->lastErrorMsg()];
     }
 
     // --------------------------------------------------------------------
@@ -304,7 +303,7 @@ class CI_DB_sqlite3_driver extends CI_DB
      */
     protected function _replace($table, $keys, $values)
     {
-        return 'INSERT OR '.parent::_replace($table, $keys, $values);
+        return 'INSERT OR ' . parent::_replace($table, $keys, $values);
     }
 
     // --------------------------------------------------------------------
@@ -322,7 +321,7 @@ class CI_DB_sqlite3_driver extends CI_DB
      */
     protected function _truncate($table)
     {
-        return 'DELETE FROM '.$table;
+        return 'DELETE FROM ' . $table;
     }
 
     // --------------------------------------------------------------------

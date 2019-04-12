@@ -52,7 +52,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_pdo_4d_driver extends CI_DB_pdo_driver
 {
-
     /**
      * Sub-driver
      *
@@ -65,7 +64,7 @@ class CI_DB_pdo_4d_driver extends CI_DB_pdo_driver
      *
      * @var	string[]
      */
-    protected $_escape_char = array('[', ']');
+    protected $_escape_char = ['[', ']'];
 
     // --------------------------------------------------------------------
 
@@ -82,13 +81,13 @@ class CI_DB_pdo_4d_driver extends CI_DB_pdo_driver
         parent::__construct($params);
 
         if (empty($this->dsn)) {
-            $this->dsn = '4D:host='.(empty($this->hostname) ? '127.0.0.1' : $this->hostname);
+            $this->dsn = '4D:host=' . (empty($this->hostname) ? '127.0.0.1' : $this->hostname);
 
-            empty($this->port) or $this->dsn .= ';port='.$this->port;
-            empty($this->database) or $this->dsn .= ';dbname='.$this->database;
-            empty($this->char_set) or $this->dsn .= ';charset='.$this->char_set;
-        } elseif (! empty($this->char_set) && strpos($this->dsn, 'charset=', 3) === false) {
-            $this->dsn .= ';charset='.$this->char_set;
+            empty($this->port) or $this->dsn .= ';port=' . $this->port;
+            empty($this->database) or $this->dsn .= ';dbname=' . $this->database;
+            empty($this->char_set) or $this->dsn .= ';charset=' . $this->char_set;
+        } elseif (!empty($this->char_set) && strpos($this->dsn, 'charset=', 3) === false) {
+            $this->dsn .= ';charset=' . $this->char_set;
         }
     }
 
@@ -104,11 +103,11 @@ class CI_DB_pdo_4d_driver extends CI_DB_pdo_driver
      */
     protected function _list_tables($prefix_limit = false)
     {
-        $sql = 'SELECT '.$this->escape_identifiers('TABLE_NAME').' FROM '.$this->escape_identifiers('_USER_TABLES');
+        $sql = 'SELECT ' . $this->escape_identifiers('TABLE_NAME') . ' FROM ' . $this->escape_identifiers('_USER_TABLES');
 
         if ($prefix_limit === true && $this->dbprefix !== '') {
-            $sql .= ' WHERE '.$this->escape_identifiers('TABLE_NAME')." LIKE '".$this->escape_like_str($this->dbprefix)."%' "
-                .sprintf($this->_like_escape_str, $this->_like_escape_chr);
+            $sql .= ' WHERE ' . $this->escape_identifiers('TABLE_NAME') . " LIKE '" . $this->escape_like_str($this->dbprefix) . "%' "
+                . sprintf($this->_like_escape_str, $this->_like_escape_chr);
         }
 
         return $sql;
@@ -126,8 +125,8 @@ class CI_DB_pdo_4d_driver extends CI_DB_pdo_driver
      */
     protected function _list_columns($table = '')
     {
-        return 'SELECT '.$this->escape_identifiers('COLUMN_NAME').' FROM '.$this->escape_identifiers('_USER_COLUMNS')
-            .' WHERE '.$this->escape_identifiers('TABLE_NAME').' = '.$this->escape($table);
+        return 'SELECT ' . $this->escape_identifiers('COLUMN_NAME') . ' FROM ' . $this->escape_identifiers('_USER_COLUMNS')
+            . ' WHERE ' . $this->escape_identifiers('TABLE_NAME') . ' = ' . $this->escape($table);
     }
 
     // --------------------------------------------------------------------
@@ -142,7 +141,7 @@ class CI_DB_pdo_4d_driver extends CI_DB_pdo_driver
      */
     protected function _field_data($table)
     {
-        return 'SELECT * FROM '.$this->protect_identifiers($table, true, null, false).' LIMIT 1';
+        return 'SELECT * FROM ' . $this->protect_identifiers($table, true, null, false) . ' LIMIT 1';
     }
 
     // --------------------------------------------------------------------
@@ -159,7 +158,7 @@ class CI_DB_pdo_4d_driver extends CI_DB_pdo_driver
     protected function _update($table, $values)
     {
         $this->qb_limit = false;
-        $this->qb_orderby = array();
+        $this->qb_orderby = [];
         return parent::_update($table, $values);
     }
 
@@ -191,6 +190,6 @@ class CI_DB_pdo_4d_driver extends CI_DB_pdo_driver
      */
     protected function _limit($sql)
     {
-        return $sql.' LIMIT '.$this->qb_limit.($this->qb_offset ? ' OFFSET '.$this->qb_offset : '');
+        return $sql . ' LIMIT ' . $this->qb_limit . ($this->qb_offset ? ' OFFSET ' . $this->qb_offset : '');
     }
 }

@@ -49,7 +49,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('form_open')) {
+if (!function_exists('form_open')) {
     /**
      * Form Declaration
      *
@@ -60,12 +60,12 @@ if (! function_exists('form_open')) {
      * @param	array	a key/value pair hidden data
      * @return	string
      */
-    function form_open($action = '', $attributes = array(), $hidden = array())
+    function form_open($action = '', $attributes = [], $hidden = [])
     {
-        $CI =& get_instance();
+        $CI = &get_instance();
 
         // If no action is provided then set to the current url
-        if (! $action) {
+        if (!$action) {
             $action = $CI->config->site_url($CI->uri->uri_string());
         }
         // If an action is not a full URL then turn it into one
@@ -80,19 +80,19 @@ if (! function_exists('form_open')) {
         }
 
         if (stripos($attributes, 'accept-charset=') === false) {
-            $attributes .= ' accept-charset="'.strtolower(config_item('charset')).'"';
+            $attributes .= ' accept-charset="' . strtolower(config_item('charset')) . '"';
         }
 
-        $form = '<form action="'.$action.'"'.$attributes.">\n";
+        $form = '<form action="' . $action . '"' . $attributes . ">\n";
 
         if (is_array($hidden)) {
             foreach ($hidden as $name => $value) {
-                $form .= '<input type="hidden" name="'.$name.'" value="'.html_escape($value).'" />'."\n";
+                $form .= '<input type="hidden" name="' . $name . '" value="' . html_escape($value) . '" />' . "\n";
             }
         }
 
         // Add CSRF field if enabled, but leave it out for GET requests and requests to external websites
-        if ($CI->config->item('csrf_protection') === true && strpos($action, $CI->config->base_url()) !== false && ! stripos($form, 'method="get"')) {
+        if ($CI->config->item('csrf_protection') === true && strpos($action, $CI->config->base_url()) !== false && !stripos($form, 'method="get"')) {
             // Prepend/append random-length "white noise" around the CSRF
             // token input, as a form of protection against BREACH attacks
             if (false !== ($noise = $CI->security->get_random_bytes(1))) {
@@ -104,9 +104,9 @@ if (! function_exists('form_open')) {
             // Prepend if $noise has a negative value, append if positive, do nothing for zero
             $prepend = $append = '';
             if ($noise < 0) {
-                $prepend = str_repeat(" ", abs($noise));
+                $prepend = str_repeat(' ', abs($noise));
             } elseif ($noise > 0) {
-                $append  = str_repeat(" ", $noise);
+                $append = str_repeat(' ', $noise);
             }
 
             $form .= sprintf(
@@ -125,7 +125,7 @@ if (! function_exists('form_open')) {
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('form_open_multipart')) {
+if (!function_exists('form_open_multipart')) {
     /**
      * Form Declaration - Multipart type
      *
@@ -136,7 +136,7 @@ if (! function_exists('form_open_multipart')) {
      * @param	array	a key/value pair hidden data
      * @return	string
      */
-    function form_open_multipart($action = '', $attributes = array(), $hidden = array())
+    function form_open_multipart($action = '', $attributes = [], $hidden = [])
     {
         if (is_string($attributes)) {
             $attributes .= ' enctype="multipart/form-data"';
@@ -150,7 +150,7 @@ if (! function_exists('form_open_multipart')) {
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('form_hidden')) {
+if (!function_exists('form_hidden')) {
     /**
      * Hidden Input Field
      *
@@ -178,12 +178,12 @@ if (! function_exists('form_hidden')) {
             return $form;
         }
 
-        if (! is_array($value)) {
-            $form .= '<input type="hidden" name="'.$name.'" value="'.html_escape($value)."\" />\n";
+        if (!is_array($value)) {
+            $form .= '<input type="hidden" name="' . $name . '" value="' . html_escape($value) . "\" />\n";
         } else {
             foreach ($value as $k => $v) {
                 $k = is_int($k) ? '' : $k;
-                form_hidden($name.'['.$k.']', $v, true);
+                form_hidden($name . '[' . $k . ']', $v, true);
             }
         }
 
@@ -193,7 +193,7 @@ if (! function_exists('form_hidden')) {
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('form_input')) {
+if (!function_exists('form_input')) {
     /**
      * Text Input Field
      *
@@ -204,19 +204,19 @@ if (! function_exists('form_input')) {
      */
     function form_input($data = '', $value = '', $extra = '')
     {
-        $defaults = array(
+        $defaults = [
             'type' => 'text',
             'name' => is_array($data) ? '' : $data,
-            'value' => $value
-        );
+            'value' => $value,
+        ];
 
-        return '<input '._parse_form_attributes($data, $defaults)._attributes_to_string($extra)." />\n";
+        return '<input ' . _parse_form_attributes($data, $defaults) . _attributes_to_string($extra) . " />\n";
     }
 }
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('form_password')) {
+if (!function_exists('form_password')) {
     /**
      * Password Field
      *
@@ -229,7 +229,7 @@ if (! function_exists('form_password')) {
      */
     function form_password($data = '', $value = '', $extra = '')
     {
-        is_array($data) or $data = array('name' => $data);
+        is_array($data) or $data = ['name' => $data];
         $data['type'] = 'password';
         return form_input($data, $value, $extra);
     }
@@ -237,7 +237,7 @@ if (! function_exists('form_password')) {
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('form_upload')) {
+if (!function_exists('form_upload')) {
     /**
      * Upload Field
      *
@@ -250,17 +250,17 @@ if (! function_exists('form_upload')) {
      */
     function form_upload($data = '', $value = '', $extra = '')
     {
-        $defaults = array('type' => 'file', 'name' => '');
-        is_array($data) or $data = array('name' => $data);
+        $defaults = ['type' => 'file', 'name' => ''];
+        is_array($data) or $data = ['name' => $data];
         $data['type'] = 'file';
 
-        return '<input '._parse_form_attributes($data, $defaults)._attributes_to_string($extra)." />\n";
+        return '<input ' . _parse_form_attributes($data, $defaults) . _attributes_to_string($extra) . " />\n";
     }
 }
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('form_textarea')) {
+if (!function_exists('form_textarea')) {
     /**
      * Textarea field
      *
@@ -271,28 +271,28 @@ if (! function_exists('form_textarea')) {
      */
     function form_textarea($data = '', $value = '', $extra = '')
     {
-        $defaults = array(
+        $defaults = [
             'name' => is_array($data) ? '' : $data,
             'cols' => '40',
-            'rows' => '10'
-        );
+            'rows' => '10',
+        ];
 
-        if (! is_array($data) or ! isset($data['value'])) {
+        if (!is_array($data) or !isset($data['value'])) {
             $val = $value;
         } else {
             $val = $data['value'];
             unset($data['value']); // textareas don't use the value attribute
         }
 
-        return '<textarea '._parse_form_attributes($data, $defaults)._attributes_to_string($extra).'>'
-            .html_escape($val)
-            ."</textarea>\n";
+        return '<textarea ' . _parse_form_attributes($data, $defaults) . _attributes_to_string($extra) . '>'
+            . html_escape($val)
+            . "</textarea>\n";
     }
 }
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('form_multiselect')) {
+if (!function_exists('form_multiselect')) {
     /**
      * Multi-select menu
      *
@@ -302,7 +302,7 @@ if (! function_exists('form_multiselect')) {
      * @param	mixed
      * @return	string
      */
-    function form_multiselect($name = '', $options = array(), $selected = array(), $extra = '')
+    function form_multiselect($name = '', $options = [], $selected = [], $extra = '')
     {
         $extra = _attributes_to_string($extra);
         if (stripos($extra, 'multiple') === false) {
@@ -315,7 +315,7 @@ if (! function_exists('form_multiselect')) {
 
 // --------------------------------------------------------------------
 
-if (! function_exists('form_dropdown')) {
+if (!function_exists('form_dropdown')) {
     /**
      * Drop-down Menu
      *
@@ -325,9 +325,9 @@ if (! function_exists('form_dropdown')) {
      * @param	mixed	$extra
      * @return	string
      */
-    function form_dropdown($data = '', $options = array(), $selected = array(), $extra = '')
+    function form_dropdown($data = '', $options = [], $selected = [], $extra = '')
     {
-        $defaults = array();
+        $defaults = [];
 
         if (is_array($data)) {
             if (isset($data['selected'])) {
@@ -340,20 +340,20 @@ if (! function_exists('form_dropdown')) {
                 unset($data['options']); // select tags don't use an options attribute
             }
         } else {
-            $defaults = array('name' => $data);
+            $defaults = ['name' => $data];
         }
 
-        is_array($selected) or $selected = array($selected);
-        is_array($options) or $options = array($options);
+        is_array($selected) or $selected = [$selected];
+        is_array($options) or $options = [$options];
 
         // If no selected state was submitted we will attempt to set it automatically
         if (empty($selected)) {
             if (is_array($data)) {
                 if (isset($data['name'], $_POST[$data['name']])) {
-                    $selected = array($_POST[$data['name']]);
+                    $selected = [$_POST[$data['name']]];
                 }
             } elseif (isset($_POST[$data])) {
-                $selected = array($_POST[$data]);
+                $selected = [$_POST[$data]];
             }
         }
 
@@ -361,7 +361,7 @@ if (! function_exists('form_dropdown')) {
 
         $multiple = (count($selected) > 1 && stripos($extra, 'multiple') === false) ? ' multiple="multiple"' : '';
 
-        $form = '<select '.rtrim(_parse_form_attributes($data, $defaults)).$extra.$multiple.">\n";
+        $form = '<select ' . rtrim(_parse_form_attributes($data, $defaults)) . $extra . $multiple . ">\n";
 
         foreach ($options as $key => $val) {
             $key = (string) $key;
@@ -371,29 +371,29 @@ if (! function_exists('form_dropdown')) {
                     continue;
                 }
 
-                $form .= '<optgroup label="'.$key."\">\n";
+                $form .= '<optgroup label="' . $key . "\">\n";
 
                 foreach ($val as $optgroup_key => $optgroup_val) {
                     $sel = in_array($optgroup_key, $selected) ? ' selected="selected"' : '';
-                    $form .= '<option value="'.html_escape($optgroup_key).'"'.$sel.'>'
-                        .(string) $optgroup_val."</option>\n";
+                    $form .= '<option value="' . html_escape($optgroup_key) . '"' . $sel . '>'
+                        . (string) $optgroup_val . "</option>\n";
                 }
 
                 $form .= "</optgroup>\n";
             } else {
-                $form .= '<option value="'.html_escape($key).'"'
-                    .(in_array($key, $selected) ? ' selected="selected"' : '').'>'
-                    .(string) $val."</option>\n";
+                $form .= '<option value="' . html_escape($key) . '"'
+                    . (in_array($key, $selected) ? ' selected="selected"' : '') . '>'
+                    . (string) $val . "</option>\n";
             }
         }
 
-        return $form."</select>\n";
+        return $form . "</select>\n";
     }
 }
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('form_checkbox')) {
+if (!function_exists('form_checkbox')) {
     /**
      * Checkbox Field
      *
@@ -405,7 +405,7 @@ if (! function_exists('form_checkbox')) {
      */
     function form_checkbox($data = '', $value = '', $checked = false, $extra = '')
     {
-        $defaults = array('type' => 'checkbox', 'name' => (! is_array($data) ? $data : ''), 'value' => $value);
+        $defaults = ['type' => 'checkbox', 'name' => (!is_array($data) ? $data : ''), 'value' => $value];
 
         if (is_array($data) && array_key_exists('checked', $data)) {
             $checked = $data['checked'];
@@ -423,13 +423,13 @@ if (! function_exists('form_checkbox')) {
             unset($defaults['checked']);
         }
 
-        return '<input '._parse_form_attributes($data, $defaults)._attributes_to_string($extra)." />\n";
+        return '<input ' . _parse_form_attributes($data, $defaults) . _attributes_to_string($extra) . " />\n";
     }
 }
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('form_radio')) {
+if (!function_exists('form_radio')) {
     /**
      * Radio Button
      *
@@ -441,7 +441,7 @@ if (! function_exists('form_radio')) {
      */
     function form_radio($data = '', $value = '', $checked = false, $extra = '')
     {
-        is_array($data) or $data = array('name' => $data);
+        is_array($data) or $data = ['name' => $data];
         $data['type'] = 'radio';
 
         return form_checkbox($data, $value, $checked, $extra);
@@ -450,7 +450,7 @@ if (! function_exists('form_radio')) {
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('form_submit')) {
+if (!function_exists('form_submit')) {
     /**
      * Submit Button
      *
@@ -461,19 +461,19 @@ if (! function_exists('form_submit')) {
      */
     function form_submit($data = '', $value = '', $extra = '')
     {
-        $defaults = array(
+        $defaults = [
             'type' => 'submit',
             'name' => is_array($data) ? '' : $data,
-            'value' => $value
-        );
+            'value' => $value,
+        ];
 
-        return '<input '._parse_form_attributes($data, $defaults)._attributes_to_string($extra)." />\n";
+        return '<input ' . _parse_form_attributes($data, $defaults) . _attributes_to_string($extra) . " />\n";
     }
 }
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('form_reset')) {
+if (!function_exists('form_reset')) {
     /**
      * Reset Button
      *
@@ -484,19 +484,19 @@ if (! function_exists('form_reset')) {
      */
     function form_reset($data = '', $value = '', $extra = '')
     {
-        $defaults = array(
+        $defaults = [
             'type' => 'reset',
             'name' => is_array($data) ? '' : $data,
-            'value' => $value
-        );
+            'value' => $value,
+        ];
 
-        return '<input '._parse_form_attributes($data, $defaults)._attributes_to_string($extra)." />\n";
+        return '<input ' . _parse_form_attributes($data, $defaults) . _attributes_to_string($extra) . " />\n";
     }
 }
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('form_button')) {
+if (!function_exists('form_button')) {
     /**
      * Form Button
      *
@@ -507,25 +507,25 @@ if (! function_exists('form_button')) {
      */
     function form_button($data = '', $content = '', $extra = '')
     {
-        $defaults = array(
+        $defaults = [
             'name' => is_array($data) ? '' : $data,
-            'type' => 'button'
-        );
+            'type' => 'button',
+        ];
 
         if (is_array($data) && isset($data['content'])) {
             $content = $data['content'];
             unset($data['content']); // content is not an attribute
         }
 
-        return '<button '._parse_form_attributes($data, $defaults)._attributes_to_string($extra).'>'
-            .$content
-            ."</button>\n";
+        return '<button ' . _parse_form_attributes($data, $defaults) . _attributes_to_string($extra) . '>'
+            . $content
+            . "</button>\n";
     }
 }
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('form_label')) {
+if (!function_exists('form_label')) {
     /**
      * Form Label Tag
      *
@@ -534,23 +534,23 @@ if (! function_exists('form_label')) {
      * @param	mixed	Additional attributes
      * @return	string
      */
-    function form_label($label_text = '', $id = '', $attributes = array())
+    function form_label($label_text = '', $id = '', $attributes = [])
     {
         $label = '<label';
 
         if ($id !== '') {
-            $label .= ' for="'.$id.'"';
+            $label .= ' for="' . $id . '"';
         }
 
         $label .= _attributes_to_string($attributes);
 
-        return $label.'>'.$label_text.'</label>';
+        return $label . '>' . $label_text . '</label>';
     }
 }
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('form_fieldset')) {
+if (!function_exists('form_fieldset')) {
     /**
      * Fieldset Tag
      *
@@ -561,11 +561,11 @@ if (! function_exists('form_fieldset')) {
      * @param	array	Additional attributes
      * @return	string
      */
-    function form_fieldset($legend_text = '', $attributes = array())
+    function form_fieldset($legend_text = '', $attributes = [])
     {
-        $fieldset = '<fieldset'._attributes_to_string($attributes).">\n";
+        $fieldset = '<fieldset' . _attributes_to_string($attributes) . ">\n";
         if ($legend_text !== '') {
-            return $fieldset.'<legend>'.$legend_text."</legend>\n";
+            return $fieldset . '<legend>' . $legend_text . "</legend>\n";
         }
 
         return $fieldset;
@@ -574,7 +574,7 @@ if (! function_exists('form_fieldset')) {
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('form_fieldset_close')) {
+if (!function_exists('form_fieldset_close')) {
     /**
      * Fieldset Close Tag
      *
@@ -583,13 +583,13 @@ if (! function_exists('form_fieldset_close')) {
      */
     function form_fieldset_close($extra = '')
     {
-        return '</fieldset>'.$extra;
+        return '</fieldset>' . $extra;
     }
 }
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('form_close')) {
+if (!function_exists('form_close')) {
     /**
      * Form Close Tag
      *
@@ -598,13 +598,13 @@ if (! function_exists('form_close')) {
      */
     function form_close($extra = '')
     {
-        return '</form>'.$extra;
+        return '</form>' . $extra;
     }
 }
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('form_prep')) {
+if (!function_exists('form_prep')) {
     /**
      * Form Prep
      *
@@ -622,7 +622,7 @@ if (! function_exists('form_prep')) {
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('set_value')) {
+if (!function_exists('set_value')) {
     /**
      * Form Value
      *
@@ -637,7 +637,7 @@ if (! function_exists('set_value')) {
      */
     function set_value($field, $default = '', $html_escape = true)
     {
-        $CI =& get_instance();
+        $CI = &get_instance();
 
         $value = (isset($CI->form_validation) && is_object($CI->form_validation) && $CI->form_validation->has_rule($field))
             ? $CI->form_validation->set_value($field, $default)
@@ -650,7 +650,7 @@ if (! function_exists('set_value')) {
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('set_select')) {
+if (!function_exists('set_select')) {
     /**
      * Set Select
      *
@@ -664,7 +664,7 @@ if (! function_exists('set_select')) {
      */
     function set_select($field, $value = '', $default = false)
     {
-        $CI =& get_instance();
+        $CI = &get_instance();
 
         if (isset($CI->form_validation) && is_object($CI->form_validation) && $CI->form_validation->has_rule($field)) {
             return $CI->form_validation->set_select($field, $value, $default);
@@ -690,7 +690,7 @@ if (! function_exists('set_select')) {
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('set_checkbox')) {
+if (!function_exists('set_checkbox')) {
     /**
      * Set Checkbox
      *
@@ -704,7 +704,7 @@ if (! function_exists('set_checkbox')) {
      */
     function set_checkbox($field, $value = '', $default = false)
     {
-        $CI =& get_instance();
+        $CI = &get_instance();
 
         if (isset($CI->form_validation) && is_object($CI->form_validation) && $CI->form_validation->has_rule($field)) {
             return $CI->form_validation->set_checkbox($field, $value, $default);
@@ -736,7 +736,7 @@ if (! function_exists('set_checkbox')) {
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('set_radio')) {
+if (!function_exists('set_radio')) {
     /**
      * Set Radio
      *
@@ -750,7 +750,7 @@ if (! function_exists('set_radio')) {
      */
     function set_radio($field, $value = '', $default = false)
     {
-        $CI =& get_instance();
+        $CI = &get_instance();
 
         if (isset($CI->form_validation) && is_object($CI->form_validation) && $CI->form_validation->has_rule($field)) {
             return $CI->form_validation->set_radio($field, $value, $default);
@@ -782,7 +782,7 @@ if (! function_exists('set_radio')) {
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('form_error')) {
+if (!function_exists('form_error')) {
     /**
      * Form Error
      *
@@ -796,7 +796,7 @@ if (! function_exists('form_error')) {
      */
     function form_error($field = '', $prefix = '', $suffix = '')
     {
-        if (false === ($OBJ =& _get_validation_object())) {
+        if (false === ($OBJ = &_get_validation_object())) {
             return '';
         }
 
@@ -806,7 +806,7 @@ if (! function_exists('form_error')) {
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('validation_errors')) {
+if (!function_exists('validation_errors')) {
     /**
      * Validation Error String
      *
@@ -819,7 +819,7 @@ if (! function_exists('validation_errors')) {
      */
     function validation_errors($prefix = '', $suffix = '')
     {
-        if (false === ($OBJ =& _get_validation_object())) {
+        if (false === ($OBJ = &_get_validation_object())) {
             return '';
         }
 
@@ -829,7 +829,7 @@ if (! function_exists('validation_errors')) {
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('_parse_form_attributes')) {
+if (!function_exists('_parse_form_attributes')) {
     /**
      * Parse the form attributes
      *
@@ -859,11 +859,11 @@ if (! function_exists('_parse_form_attributes')) {
         foreach ($default as $key => $val) {
             if ($key === 'value') {
                 $val = html_escape($val);
-            } elseif ($key === 'name' && ! strlen($default['name'])) {
+            } elseif ($key === 'name' && !strlen($default['name'])) {
                 continue;
             }
 
-            $att .= $key.'="'.$val.'" ';
+            $att .= $key . '="' . $val . '" ';
         }
 
         return $att;
@@ -872,7 +872,7 @@ if (! function_exists('_parse_form_attributes')) {
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('_attributes_to_string')) {
+if (!function_exists('_attributes_to_string')) {
     /**
      * Attributes To String
      *
@@ -895,14 +895,14 @@ if (! function_exists('_attributes_to_string')) {
             $atts = '';
 
             foreach ($attributes as $key => $val) {
-                $atts .= ' '.$key.'="'.$val.'"';
+                $atts .= ' ' . $key . '="' . $val . '"';
             }
 
             return $atts;
         }
 
         if (is_string($attributes)) {
-            return ' '.$attributes;
+            return ' ' . $attributes;
         }
 
         return false;
@@ -911,7 +911,7 @@ if (! function_exists('_attributes_to_string')) {
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('_get_validation_object')) {
+if (!function_exists('_get_validation_object')) {
     /**
      * Validation Object
      *
@@ -922,13 +922,13 @@ if (! function_exists('_get_validation_object')) {
      */
     function &_get_validation_object()
     {
-        $CI =& get_instance();
+        $CI = &get_instance();
 
         // We set this as a variable since we're returning by reference.
         $return = false;
 
         if (false !== ($object = $CI->load->is_loaded('Form_validation'))) {
-            if (! isset($CI->$object) or ! is_object($CI->$object)) {
+            if (!isset($CI->$object) or !is_object($CI->$object)) {
                 return $return;
             }
 

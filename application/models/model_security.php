@@ -14,11 +14,11 @@
             if ($query->num_rows() == 1) {
                 $validated = true;
                 $type = implode($query->result_array()[0]);
-                $session_data = array(
+                $session_data = [
                     'logged_in' => true,
                     'username' => $username,
-                    'type' => $type
-                );
+                    'type' => $type,
+                ];
                 $this->session->set_userdata($session_data);
             }
             return $validated;

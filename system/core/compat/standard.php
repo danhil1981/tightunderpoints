@@ -55,7 +55,7 @@ if (is_php('5.5')) {
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('array_column')) {
+if (!function_exists('array_column')) {
     /**
      * array_column()
      *
@@ -67,7 +67,7 @@ if (! function_exists('array_column')) {
      */
     function array_column(array $array, $column_key, $index_key = null)
     {
-        if (! in_array($type = gettype($column_key), array('integer', 'string', 'NULL'), true)) {
+        if (!in_array($type = gettype($column_key), ['integer', 'string', 'NULL'], true)) {
             if ($type === 'double') {
                 $column_key = (int) $column_key;
             } elseif ($type === 'object' && method_exists($column_key, '__toString')) {
@@ -78,7 +78,7 @@ if (! function_exists('array_column')) {
             }
         }
 
-        if (! in_array($type = gettype($index_key), array('integer', 'string', 'NULL'), true)) {
+        if (!in_array($type = gettype($index_key), ['integer', 'string', 'NULL'], true)) {
             if ($type === 'double') {
                 $index_key = (int) $index_key;
             } elseif ($type === 'object' && method_exists($index_key, '__toString')) {
@@ -89,7 +89,7 @@ if (! function_exists('array_column')) {
             }
         }
 
-        $result = array();
+        $result = [];
         foreach ($array as &$a) {
             if ($column_key === null) {
                 $value = $a;
@@ -99,7 +99,7 @@ if (! function_exists('array_column')) {
                 continue;
             }
 
-            if ($index_key === null or ! array_key_exists($index_key, $a)) {
+            if ($index_key === null or !array_key_exists($index_key, $a)) {
                 $result[] = $value;
             } else {
                 $result[$a[$index_key]] = $value;
@@ -118,7 +118,7 @@ if (is_php('5.4')) {
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('hex2bin')) {
+if (!function_exists('hex2bin')) {
     /**
      * hex2bin()
      *
@@ -128,11 +128,11 @@ if (! function_exists('hex2bin')) {
      */
     function hex2bin($data)
     {
-        if (in_array($type = gettype($data), array('array', 'double', 'object', 'resource'), true)) {
+        if (in_array($type = gettype($data), ['array', 'double', 'object', 'resource'], true)) {
             if ($type === 'object' && method_exists($data, '__toString')) {
                 $data = (string) $data;
             } else {
-                trigger_error('hex2bin() expects parameter 1 to be string, '.$type.' given', E_USER_WARNING);
+                trigger_error('hex2bin() expects parameter 1 to be string, ' . $type . ' given', E_USER_WARNING);
                 return null;
             }
         }
@@ -140,7 +140,7 @@ if (! function_exists('hex2bin')) {
         if (strlen($data) % 2 !== 0) {
             trigger_error('Hexadecimal input string must have an even length', E_USER_WARNING);
             return false;
-        } elseif (! preg_match('/^[0-9a-f]*$/i', $data)) {
+        } elseif (!preg_match('/^[0-9a-f]*$/i', $data)) {
             trigger_error('Input string must be hexadecimal string', E_USER_WARNING);
             return false;
         }

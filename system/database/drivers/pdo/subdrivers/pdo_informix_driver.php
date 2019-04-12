@@ -52,7 +52,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_pdo_informix_driver extends CI_DB_pdo_driver
 {
-
     /**
      * Sub-driver
      *
@@ -67,7 +66,7 @@ class CI_DB_pdo_informix_driver extends CI_DB_pdo_driver
      *
      * @var	array
      */
-    protected $_random_keyword = array('ASC', 'ASC'); // Currently not supported
+    protected $_random_keyword = ['ASC', 'ASC']; // Currently not supported
 
     // --------------------------------------------------------------------
 
@@ -89,31 +88,31 @@ class CI_DB_pdo_informix_driver extends CI_DB_pdo_driver
             // Pre-defined DSN
             if (empty($this->hostname) && empty($this->host) && empty($this->port) && empty($this->service)) {
                 if (isset($this->DSN)) {
-                    $this->dsn .= 'DSN='.$this->DSN;
-                } elseif (! empty($this->database)) {
-                    $this->dsn .= 'DSN='.$this->database;
+                    $this->dsn .= 'DSN=' . $this->DSN;
+                } elseif (!empty($this->database)) {
+                    $this->dsn .= 'DSN=' . $this->database;
                 }
 
                 return;
             }
 
             if (isset($this->host)) {
-                $this->dsn .= 'host='.$this->host;
+                $this->dsn .= 'host=' . $this->host;
             } else {
-                $this->dsn .= 'host='.(empty($this->hostname) ? '127.0.0.1' : $this->hostname);
+                $this->dsn .= 'host=' . (empty($this->hostname) ? '127.0.0.1' : $this->hostname);
             }
 
             if (isset($this->service)) {
-                $this->dsn .= '; service='.$this->service;
-            } elseif (! empty($this->port)) {
-                $this->dsn .= '; service='.$this->port;
+                $this->dsn .= '; service=' . $this->service;
+            } elseif (!empty($this->port)) {
+                $this->dsn .= '; service=' . $this->port;
             }
 
-            empty($this->database) or $this->dsn .= '; database='.$this->database;
-            empty($this->server) or $this->dsn .= '; server='.$this->server;
+            empty($this->database) or $this->dsn .= '; database=' . $this->database;
+            empty($this->server) or $this->dsn .= '; server=' . $this->server;
 
-            $this->dsn .= '; protocol='.(isset($this->protocol) ? $this->protocol : 'onsoctcp')
-                .'; EnableScrollableCursors=1';
+            $this->dsn .= '; protocol=' . (isset($this->protocol) ? $this->protocol : 'onsoctcp')
+                . '; EnableScrollableCursors=1';
         }
     }
 
@@ -130,11 +129,11 @@ class CI_DB_pdo_informix_driver extends CI_DB_pdo_driver
     protected function _list_tables($prefix_limit = false)
     {
         $sql = 'SELECT "tabname" FROM "systables"
-			WHERE "tabid" > 99 AND "tabtype" = \'T\' AND LOWER("owner") = '.$this->escape(strtolower($this->username));
+			WHERE "tabid" > 99 AND "tabtype" = \'T\' AND LOWER("owner") = ' . $this->escape(strtolower($this->username));
 
         if ($prefix_limit === true && $this->dbprefix !== '') {
-            $sql .= ' AND "tabname" LIKE \''.$this->escape_like_str($this->dbprefix)."%' "
-                .sprintf($this->_like_escape_str, $this->_like_escape_chr);
+            $sql .= ' AND "tabname" LIKE \'' . $this->escape_like_str($this->dbprefix) . "%' "
+                . sprintf($this->_like_escape_str, $this->_like_escape_chr);
         }
 
         return $sql;
@@ -161,8 +160,8 @@ class CI_DB_pdo_informix_driver extends CI_DB_pdo_driver
         return 'SELECT "colname" FROM "systables", "syscolumns"
 			WHERE "systables"."tabid" = "syscolumns"."tabid"
 				AND "systables"."tabtype" = \'T\'
-				AND LOWER("systables"."owner") = '.$this->escape(strtolower($owner)).'
-				AND LOWER("systables"."tabname") = '.$this->escape(strtolower($table));
+				AND LOWER("systables"."owner") = ' . $this->escape(strtolower($owner)) . '
+				AND LOWER("systables"."tabname") = ' . $this->escape(strtolower($table));
     }
 
     // --------------------------------------------------------------------
@@ -215,8 +214,8 @@ class CI_DB_pdo_informix_driver extends CI_DB_pdo_driver
 				AND "systables"."tabid" = "sysdefaults"."tabid"
 				AND "syscolumns"."colno" = "sysdefaults"."colno"
 				AND "systables"."tabtype" = \'T\'
-				AND LOWER("systables"."owner") = '.$this->escape(strtolower($this->username)).'
-				AND LOWER("systables"."tabname") = '.$this->escape(strtolower($table)).'
+				AND LOWER("systables"."owner") = ' . $this->escape(strtolower($this->username)) . '
+				AND LOWER("systables"."tabname") = ' . $this->escape(strtolower($table)) . '
 			ORDER BY "syscolumns"."colno"';
 
         return (($query = $this->query($sql)) !== false)
@@ -238,7 +237,7 @@ class CI_DB_pdo_informix_driver extends CI_DB_pdo_driver
     protected function _update($table, $values)
     {
         $this->qb_limit = false;
-        $this->qb_orderby = array();
+        $this->qb_orderby = [];
         return parent::_update($table, $values);
     }
 
@@ -257,7 +256,7 @@ class CI_DB_pdo_informix_driver extends CI_DB_pdo_driver
      */
     protected function _truncate($table)
     {
-        return 'TRUNCATE TABLE ONLY '.$table;
+        return 'TRUNCATE TABLE ONLY ' . $table;
     }
 
     // --------------------------------------------------------------------
@@ -288,7 +287,7 @@ class CI_DB_pdo_informix_driver extends CI_DB_pdo_driver
      */
     protected function _limit($sql)
     {
-        $select = 'SELECT '.($this->qb_offset ? 'SKIP '.$this->qb_offset : '').'FIRST '.$this->qb_limit.' ';
+        $select = 'SELECT ' . ($this->qb_offset ? 'SKIP ' . $this->qb_offset : '') . 'FIRST ' . $this->qb_limit . ' ';
         return preg_replace('/^(SELECT\s)/i', $select, $sql, 1);
     }
 }

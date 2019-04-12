@@ -51,13 +51,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_Benchmark
 {
-
     /**
      * List of all benchmark markers
      *
      * @var	array
      */
-    public $marker = array();
+    public $marker = [];
 
     /**
      * Set a benchmark marker
@@ -99,11 +98,11 @@ class CI_Benchmark
             return '{elapsed_time}';
         }
 
-        if (! isset($this->marker[$point1])) {
+        if (!isset($this->marker[$point1])) {
             return '';
         }
 
-        if (! isset($this->marker[$point2])) {
+        if (!isset($this->marker[$point2])) {
             $this->marker[$point2] = microtime(true);
         }
 

@@ -49,7 +49,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('force_download')) {
+if (!function_exists('force_download')) {
     /**
      * Force Download
      *
@@ -65,7 +65,7 @@ if (! function_exists('force_download')) {
         if ($filename === '' or $data === '') {
             return;
         } elseif ($data === null) {
-            if (! @is_file($filename) or ($filesize = @filesize($filename)) === false) {
+            if (!@is_file($filename) or ($filesize = @filesize($filename)) === false) {
                 return;
             }
 
@@ -91,7 +91,7 @@ if (! function_exists('force_download')) {
             }
 
             // Load the mime types
-            $mimes =& get_mimes();
+            $mimes = &get_mimes();
 
             // Only change the default MIME if we can find one
             if (isset($mimes[$extension])) {
@@ -120,11 +120,11 @@ if (! function_exists('force_download')) {
         }
 
         // Generate the server headers
-        header('Content-Type: '.$mime);
-        header('Content-Disposition: attachment; filename="'.$filename.'"');
+        header('Content-Type: ' . $mime);
+        header('Content-Disposition: attachment; filename="' . $filename . '"');
         header('Expires: 0');
         header('Content-Transfer-Encoding: binary');
-        header('Content-Length: '.$filesize);
+        header('Content-Length: ' . $filesize);
         header('Cache-Control: private, no-transform, no-store, must-revalidate');
 
         // If we have raw data - just dump it
@@ -133,7 +133,7 @@ if (! function_exists('force_download')) {
         }
 
         // Flush 1MB chunks of data
-        while (! feof($fp) && ($data = fread($fp, 1048576)) !== false) {
+        while (!feof($fp) && ($data = fread($fp, 1048576)) !== false) {
             echo $data;
         }
 

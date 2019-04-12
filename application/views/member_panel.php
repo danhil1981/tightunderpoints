@@ -18,10 +18,10 @@
                     <button id="button_raids" class="btn btn-light btn-sm">Raids</button>
                     <button id="button_events" class="btn btn-light btn-sm">Events</button>
                     <?php if ($this->session->type < 2) {
-    echo anchor("admins", "Admin Panel", "class='btn btn-success btn-sm'");
+    echo anchor('admins', 'Admin Panel', "class='btn btn-success btn-sm'");
 } ?>
                     <?php if ($this->session->type < 3) {
-    echo anchor("officers", "Officer Panel", "class='btn btn-success btn-sm'");
+    echo anchor('officers', 'Officer Panel', "class='btn btn-success btn-sm'");
 } ?>
                     <a href="<?php echo site_url()?>" class="btn btn-danger btn-sm">Logout</a>
                     <br/><br/>
@@ -67,21 +67,21 @@
                             <tbody>
                                 <?php
                                     foreach ($list_names as $i => $value) {
-                                        echo "<tr><th scope='row' id='name_$i' class='align-middle'><div class='btn character character_".$i."'>".$value."</div></td>";
+                                        echo "<tr><th scope='row' id='name_$i' class='align-middle'><div class='btn character character_" . $i . "'>" . $value . '</div></td>';
                                         echo "<td id='type_$i' class='align-middle'>";
                                         switch ($list_types[$i]) {
-                                                case "1": echo "Main";
+                                                case '1': echo 'Main';
                                                 break;
-                                                case "2": echo "Alt";
+                                                case '2': echo 'Alt';
                                                 break;
-                                                default: echo "Bot";
+                                                default: echo 'Bot';
                                             }
-                                        echo "</td>";
-                                        echo "<td class='align-middle'>".$list_total_earned[$i]."</td>";
-                                        echo "<td class='align-middle'>".$list_total_spent[$i]."</td>";
-                                        echo "<td class='align-middle'>".$list_last50_earned[$i]."</td>";
-                                        echo "<td class='align-middle'>".$list_last50_spent[$i]."</td>";
-                                        echo "<td id='points_$i' class='align-middle'>".($list_last50_earned[$i]-$list_last50_spent[$i])."</td>";
+                                        echo '</td>';
+                                        echo "<td class='align-middle'>" . $list_total_earned[$i] . '</td>';
+                                        echo "<td class='align-middle'>" . $list_total_spent[$i] . '</td>';
+                                        echo "<td class='align-middle'>" . $list_last50_earned[$i] . '</td>';
+                                        echo "<td class='align-middle'>" . $list_last50_spent[$i] . '</td>';
+                                        echo "<td id='points_$i' class='align-middle'>" . ($list_last50_earned[$i] - $list_last50_spent[$i]) . '</td>';
                                         echo "<td class='align-middle'><button class='btn btn-sm btn-primary' id='compare_$i'>Compare</button></td></tr>";
                                     }
                                 ?>
@@ -103,11 +103,11 @@
                                 <?php
                                     for ($i = 0; $i < count($loot_list); $i++) {
                                         $loot_entry = $loot_list[$i];
-                                        echo "<tr><td class='align-middle'>".$loot_entry["timestamp"]."</td>";
-                                        echo "<td class='align-middle'>".date("D j M, Y", strtotime($loot_entry["timestamp"]))."</td>";
-                                        echo "<td class='align-middle'><div class='btn item item_".$drop_list[$loot_entry["id_drop"]]."'>".$loot_entry["name_item"]."</div></td>";
-                                        echo "<td class='align-middle'><div class='btn character character_".$loot_entry["id_character"]."'>".$loot_entry["name_character"]."</div></td>";
-                                        echo "</tr>";
+                                        echo "<tr><td class='align-middle'>" . $loot_entry['timestamp'] . '</td>';
+                                        echo "<td class='align-middle'>" . date('D j M, Y', strtotime($loot_entry['timestamp'])) . '</td>';
+                                        echo "<td class='align-middle'><div class='btn item item_" . $drop_list[$loot_entry['id_drop']] . "'>" . $loot_entry['name_item'] . '</div></td>';
+                                        echo "<td class='align-middle'><div class='btn character character_" . $loot_entry['id_character'] . "'>" . $loot_entry['name_character'] . '</div></td>';
+                                        echo '</tr>';
                                     }
                                 ?>
                             </tbody>
@@ -129,20 +129,20 @@
                                     <?php
                                         for ($i = 0; $i < count($characters_list); $i++) {
                                             $character = $characters_list[$i];
-                                            echo "<tr><td class='align-middle'><div class='btn character character_".$character["id"]."'>".$character["name"]."</div></td>";
-                                            echo "<td class='align-middle'>".$character["level"]."</td>";
-                                            echo "<td class='align-middle'>".$character["class"]."</td>";
+                                            echo "<tr><td class='align-middle'><div class='btn character character_" . $character['id'] . "'>" . $character['name'] . '</div></td>';
+                                            echo "<td class='align-middle'>" . $character['level'] . '</td>';
+                                            echo "<td class='align-middle'>" . $character['class'] . '</td>';
                                             echo "<td class='align-middle'>";
-                                            switch ($character["type"]) {
-                                                    case "1": echo "Main";
+                                            switch ($character['type']) {
+                                                    case '1': echo 'Main';
                                                     break;
-                                                    case "2": echo "Alt";
+                                                    case '2': echo 'Alt';
                                                     break;
-                                                    default: echo "Bot";
+                                                    default: echo 'Bot';
                                                 }
-                                            echo "</td>";
-                                            echo "<td class='align-middle'>".$character["name_player"]."</td>";
-                                            echo "</tr>";
+                                            echo '</td>';
+                                            echo "<td class='align-middle'>" . $character['name_player'] . '</td>';
+                                            echo '</tr>';
                                         }
                                     ?>
                                 </tbody>
@@ -165,32 +165,32 @@
                                     <?php
                                         for ($i = 0; $i < count($bosses_list); $i++) {
                                             $boss = $bosses_list[$i];
-                                            echo "<tr><td class='align-middle'><div class='btn boss boss_".$boss["id"]."'>".$boss["name"]."</div></td>";
-                                            echo "<td>".$boss["respawn"]."</td>";
+                                            echo "<tr><td class='align-middle'><div class='btn boss boss_" . $boss['id'] . "'>" . $boss['name'] . '</div></td>';
+                                            echo '<td>' . $boss['respawn'] . '</td>';
                                             echo "<td class='align-middle'>";
-                                            $hms = explode(":", $boss["respawn"]);
+                                            $hms = explode(':', $boss['respawn']);
                                             if ($hms[0] < 24) {
-                                                echo $hms[0]." hours";
+                                                echo $hms[0] . ' hours';
                                             } else {
-                                                echo($hms[0]/24)." days";
+                                                echo($hms[0] / 24) . ' days';
                                             }
-                                            echo "</td>";
-                                            echo "<td>".$boss["variance"]."</td>";
+                                            echo '</td>';
+                                            echo '<td>' . $boss['variance'] . '</td>';
                                             echo "<td class='align-middle'>";
-                                            $hms = explode(":", $boss["variance"]);
+                                            $hms = explode(':', $boss['variance']);
 
                                             if ($hms[0] < 24) {
                                                 if ($hms[0] == 0) {
-                                                    echo "none";
+                                                    echo 'none';
                                                 } else {
-                                                    echo intval($hms[0])." hours";
+                                                    echo intval($hms[0]) . ' hours';
                                                 }
                                             } else {
-                                                echo($hms[0]/24)." days";
+                                                echo($hms[0] / 24) . ' days';
                                             }
-                                            echo "</td>";
-                                            echo "<td class='align-middle'>".$boss["value"]."</td>";
-                                            echo "</tr>";
+                                            echo '</td>';
+                                            echo "<td class='align-middle'>" . $boss['value'] . '</td>';
+                                            echo '</tr>';
                                         }
                                     ?>
                                 </tbody>
@@ -211,11 +211,11 @@
                                     <?php
                                         for ($i = 0; $i < count($items_list); $i++) {
                                             $item = $items_list[$i];
-                                            echo "<tr><td class='align-middle'><div class='btn item item_".$item["id"]."'>".$item["name"]."</div></td>";
-                                            echo "<td class='align-middle'><div class='btn boss boss_".$item["id_boss"]."'>".$item["name_boss"]."</div></td>";
-                                            echo "<td class='align-middle'>".$item["value"]."</td>";
-                                            echo "<td class='align-middle'><a href='http://allaclone.p2002.com/item.php?id=".$item["id"]."' target='_blank' class='btn btn-primary btn-sm'>Allaclone</a></td>";
-                                            echo "</tr>";
+                                            echo "<tr><td class='align-middle'><div class='btn item item_" . $item['id'] . "'>" . $item['name'] . '</div></td>';
+                                            echo "<td class='align-middle'><div class='btn boss boss_" . $item['id_boss'] . "'>" . $item['name_boss'] . '</div></td>';
+                                            echo "<td class='align-middle'>" . $item['value'] . '</td>';
+                                            echo "<td class='align-middle'><a href='http://allaclone.p2002.com/item.php?id=" . $item['id'] . "' target='_blank' class='btn btn-primary btn-sm'>Allaclone</a></td>";
+                                            echo '</tr>';
                                         }
                                     ?>
                                 </tbody>
@@ -235,10 +235,10 @@
                                     <?php
                                         for ($i = 0; $i < count($raids_list); $i++) {
                                             $raid = $raids_list[$i];
-                                            echo "<tr><td class='align-middle'>".$raid["date"]."</td>";
-                                            echo "<td class='align-middle'>".date("D j M, Y", strtotime($raid["date"]))."</td>";
-                                            echo "<td class='align-middle'>".$raid["description"]."</td>";
-                                            echo "</tr>";
+                                            echo "<tr><td class='align-middle'>" . $raid['date'] . '</td>';
+                                            echo "<td class='align-middle'>" . date('D j M, Y', strtotime($raid['date'])) . '</td>';
+                                            echo "<td class='align-middle'>" . $raid['description'] . '</td>';
+                                            echo '</tr>';
                                         }
                                     ?>
                                 </tbody>
@@ -259,17 +259,17 @@
                                     <?php
                                         for ($i = 0; $i < count($events_list); $i++) {
                                             $event = $events_list[$i];
-                                            echo "<tr><td class='align-middle'>".$event["timestamp"]."</td>";
-                                            echo "<td class='align-middle'>".date("D j M, Y", strtotime($event["timestamp"]))."</td>";
-                                            echo "<td class='align-middle'><div class='btn boss boss_".$event["id_boss"]."'>".$event["name_boss"]."</div></td>";
+                                            echo "<tr><td class='align-middle'>" . $event['timestamp'] . '</td>';
+                                            echo "<td class='align-middle'>" . date('D j M, Y', strtotime($event['timestamp'])) . '</td>';
+                                            echo "<td class='align-middle'><div class='btn boss boss_" . $event['id_boss'] . "'>" . $event['name_boss'] . '</div></td>';
                                             echo "<td class='align-middle'>";
-                                            if (!isset($event["description_raid"])) {
-                                                echo "-- not part of a raid --";
+                                            if (!isset($event['description_raid'])) {
+                                                echo '-- not part of a raid --';
                                             } else {
-                                                echo $event["description_raid"];
+                                                echo $event['description_raid'];
                                             }
-                                            echo "</td>";
-                                            echo "</tr>";
+                                            echo '</td>';
+                                            echo '</tr>';
                                         }
                                     ?>
                                 </tbody>

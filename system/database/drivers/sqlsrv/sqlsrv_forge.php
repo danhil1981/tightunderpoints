@@ -46,32 +46,31 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_sqlsrv_forge extends CI_DB_forge
 {
-
     /**
      * CREATE TABLE IF statement
      *
      * @var	string
      */
-    protected $_create_table_if	= "IF NOT EXISTS (SELECT * FROM sysobjects WHERE ID = object_id(N'%s') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)\nCREATE TABLE";
+    protected $_create_table_if = "IF NOT EXISTS (SELECT * FROM sysobjects WHERE ID = object_id(N'%s') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)\nCREATE TABLE";
 
     /**
      * DROP TABLE IF statement
      *
      * @var	string
      */
-    protected $_drop_table_if	= "IF EXISTS (SELECT * FROM sysobjects WHERE ID = object_id(N'%s') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)\nDROP TABLE";
+    protected $_drop_table_if = "IF EXISTS (SELECT * FROM sysobjects WHERE ID = object_id(N'%s') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)\nDROP TABLE";
 
     /**
      * UNSIGNED support
      *
      * @var	array
      */
-    protected $_unsigned		= array(
-        'TINYINT'	=> 'SMALLINT',
-        'SMALLINT'	=> 'INT',
-        'INT'		=> 'BIGINT',
-        'REAL'		=> 'FLOAT'
-    );
+    protected $_unsigned = [
+        'TINYINT' => 'SMALLINT',
+        'SMALLINT' => 'INT',
+        'INT' => 'BIGINT',
+        'REAL' => 'FLOAT',
+    ];
 
     // --------------------------------------------------------------------
 
@@ -85,14 +84,14 @@ class CI_DB_sqlsrv_forge extends CI_DB_forge
      */
     protected function _alter_table($alter_type, $table, $field)
     {
-        if (in_array($alter_type, array('ADD', 'DROP'), true)) {
+        if (in_array($alter_type, ['ADD', 'DROP'], true)) {
             return parent::_alter_table($alter_type, $table, $field);
         }
 
-        $sql = 'ALTER TABLE '.$this->db->escape_identifiers($table).' ALTER COLUMN ';
-        $sqls = array();
+        $sql = 'ALTER TABLE ' . $this->db->escape_identifiers($table) . ' ALTER COLUMN ';
+        $sqls = [];
         for ($i = 0, $c = count($field); $i < $c; $i++) {
-            $sqls[] = $sql.$this->_process_column($field[$i]);
+            $sqls[] = $sql . $this->_process_column($field[$i]);
         }
 
         return $sqls;
@@ -137,7 +136,7 @@ class CI_DB_sqlsrv_forge extends CI_DB_forge
      */
     protected function _attr_auto_increment(&$attributes, &$field)
     {
-        if (! empty($attributes['AUTO_INCREMENT']) && $attributes['AUTO_INCREMENT'] === true && stripos($field['type'], 'int') !== false) {
+        if (!empty($attributes['AUTO_INCREMENT']) && $attributes['AUTO_INCREMENT'] === true && stripos($field['type'], 'int') !== false) {
             $field['auto_increment'] = ' IDENTITY(1,1)';
         }
     }

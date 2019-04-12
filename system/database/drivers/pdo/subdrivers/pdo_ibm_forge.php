@@ -46,31 +46,30 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_pdo_ibm_forge extends CI_DB_pdo_forge
 {
-
     /**
      * RENAME TABLE IF statement
      *
      * @var	string
      */
-    protected $_rename_table	= 'RENAME TABLE %s TO %s';
+    protected $_rename_table = 'RENAME TABLE %s TO %s';
 
     /**
      * UNSIGNED support
      *
      * @var	array
      */
-    protected $_unsigned		= array(
-        'SMALLINT'	=> 'INTEGER',
-        'INT'		=> 'BIGINT',
-        'INTEGER'	=> 'BIGINT'
-    );
+    protected $_unsigned = [
+        'SMALLINT' => 'INTEGER',
+        'INT' => 'BIGINT',
+        'INTEGER' => 'BIGINT',
+    ];
 
     /**
      * DEFAULT value representation in CREATE/ALTER TABLE statements
      *
      * @var	string
      */
-    protected $_default		= false;
+    protected $_default = false;
 
     // --------------------------------------------------------------------
 
@@ -127,7 +126,7 @@ class CI_DB_pdo_ibm_forge extends CI_DB_pdo_forge
      */
     protected function _attr_unique(&$attributes, &$field)
     {
-        if (! empty($attributes['UNIQUE']) && $attributes['UNIQUE'] === true) {
+        if (!empty($attributes['UNIQUE']) && $attributes['UNIQUE'] === true) {
             $field['unique'] = ' UNIQUE';
 
             // UNIQUE must be used with NOT NULL

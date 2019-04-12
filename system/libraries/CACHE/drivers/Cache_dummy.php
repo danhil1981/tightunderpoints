@@ -48,7 +48,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_Cache_dummy extends CI_Driver
 {
-
     /**
      * Get
      *

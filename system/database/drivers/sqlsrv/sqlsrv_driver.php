@@ -52,7 +52,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_sqlsrv_driver extends CI_DB
 {
-
     /**
      * Database driver
      *
@@ -79,7 +78,7 @@ class CI_DB_sqlsrv_driver extends CI_DB
      *
      * @var	array
      */
-    protected $_random_keyword = array('NEWID()', 'RAND(%d)');
+    protected $_random_keyword = ['NEWID()', 'RAND(%d)'];
 
     /**
      * Quoted identifier flag
@@ -121,18 +120,18 @@ class CI_DB_sqlsrv_driver extends CI_DB
      */
     public function db_connect($pooling = false)
     {
-        $charset = in_array(strtolower($this->char_set), array('utf-8', 'utf8'), true)
+        $charset = in_array(strtolower($this->char_set), ['utf-8', 'utf8'], true)
             ? 'UTF-8' : SQLSRV_ENC_CHAR;
 
-        $connection = array(
-            'UID'			=> empty($this->username) ? '' : $this->username,
-            'PWD'			=> empty($this->password) ? '' : $this->password,
-            'Database'		=> $this->database,
-            'ConnectionPooling'	=> ($pooling === true) ? 1 : 0,
-            'CharacterSet'		=> $charset,
-            'Encrypt'		=> ($this->encrypt === true) ? 1 : 0,
-            'ReturnDatesAsStrings'	=> 1
-        );
+        $connection = [
+            'UID' => empty($this->username) ? '' : $this->username,
+            'PWD' => empty($this->password) ? '' : $this->password,
+            'Database' => $this->database,
+            'ConnectionPooling' => ($pooling === true) ? 1 : 0,
+            'CharacterSet' => $charset,
+            'Encrypt' => ($this->encrypt === true) ? 1 : 0,
+            'ReturnDatesAsStrings' => 1,
+        ];
 
         // If the username and password are both empty, assume this is a
         // 'Windows Authentication Mode' connection.
@@ -145,7 +144,7 @@ class CI_DB_sqlsrv_driver extends CI_DB
             $query = $this->query('SELECT CASE WHEN (@@OPTIONS | 256) = @@OPTIONS THEN 1 ELSE 0 END AS qi');
             $query = $query->row_array();
             $this->_quoted_identifier = empty($query) ? false : (bool) $query['qi'];
-            $this->_escape_char = ($this->_quoted_identifier) ? '"' : array('[', ']');
+            $this->_escape_char = ($this->_quoted_identifier) ? '"' : ['[', ']'];
         }
 
         return $this->conn_id;
@@ -165,9 +164,9 @@ class CI_DB_sqlsrv_driver extends CI_DB
             $database = $this->database;
         }
 
-        if ($this->_execute('USE '.$this->escape_identifiers($database))) {
+        if ($this->_execute('USE ' . $this->escape_identifiers($database))) {
             $this->database = $database;
-            $this->data_cache = array();
+            $this->data_cache = [];
             return true;
         }
 
@@ -186,7 +185,7 @@ class CI_DB_sqlsrv_driver extends CI_DB
     {
         return ($this->scrollable === false or $this->is_write_type($sql))
             ? sqlsrv_query($this->conn_id, $sql)
-            : sqlsrv_query($this->conn_id, $sql, null, array('Scrollable' => $this->scrollable));
+            : sqlsrv_query($this->conn_id, $sql, null, ['Scrollable' => $this->scrollable]);
     }
 
     // --------------------------------------------------------------------
@@ -264,7 +263,7 @@ class CI_DB_sqlsrv_driver extends CI_DB
             return $this->data_cache['version'];
         }
 
-        if (! $this->conn_id or ($info = sqlsrv_server_info($this->conn_id)) === false) {
+        if (!$this->conn_id or ($info = sqlsrv_server_info($this->conn_id)) === false) {
             return false;
         }
 
@@ -283,16 +282,16 @@ class CI_DB_sqlsrv_driver extends CI_DB
      */
     protected function _list_tables($prefix_limit = false)
     {
-        $sql = 'SELECT '.$this->escape_identifiers('name')
-            .' FROM '.$this->escape_identifiers('sysobjects')
-            .' WHERE '.$this->escape_identifiers('type')." = 'U'";
+        $sql = 'SELECT ' . $this->escape_identifiers('name')
+            . ' FROM ' . $this->escape_identifiers('sysobjects')
+            . ' WHERE ' . $this->escape_identifiers('type') . " = 'U'";
 
         if ($prefix_limit === true && $this->dbprefix !== '') {
-            $sql .= ' AND '.$this->escape_identifiers('name')." LIKE '".$this->escape_like_str($this->dbprefix)."%' "
-                .sprintf($this->_escape_like_str, $this->_escape_like_chr);
+            $sql .= ' AND ' . $this->escape_identifiers('name') . " LIKE '" . $this->escape_like_str($this->dbprefix) . "%' "
+                . sprintf($this->_escape_like_str, $this->_escape_like_chr);
         }
 
-        return $sql.' ORDER BY '.$this->escape_identifiers('name');
+        return $sql . ' ORDER BY ' . $this->escape_identifiers('name');
     }
 
     // --------------------------------------------------------------------
@@ -309,7 +308,7 @@ class CI_DB_sqlsrv_driver extends CI_DB
     {
         return 'SELECT COLUMN_NAME
 			FROM INFORMATION_SCHEMA.Columns
-			WHERE UPPER(TABLE_NAME) = '.$this->escape(strtoupper($table));
+			WHERE UPPER(TABLE_NAME) = ' . $this->escape(strtoupper($table));
     }
 
     // --------------------------------------------------------------------
@@ -324,20 +323,20 @@ class CI_DB_sqlsrv_driver extends CI_DB
     {
         $sql = 'SELECT COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, NUMERIC_PRECISION, COLUMN_DEFAULT
 			FROM INFORMATION_SCHEMA.Columns
-			WHERE UPPER(TABLE_NAME) = '.$this->escape(strtoupper($table));
+			WHERE UPPER(TABLE_NAME) = ' . $this->escape(strtoupper($table));
 
         if (($query = $this->query($sql)) === false) {
             return false;
         }
         $query = $query->result_object();
 
-        $retval = array();
+        $retval = [];
         for ($i = 0, $c = count($query); $i < $c; $i++) {
-            $retval[$i]			= new stdClass();
-            $retval[$i]->name		= $query[$i]->COLUMN_NAME;
-            $retval[$i]->type		= $query[$i]->DATA_TYPE;
-            $retval[$i]->max_length		= ($query[$i]->CHARACTER_MAXIMUM_LENGTH > 0) ? $query[$i]->CHARACTER_MAXIMUM_LENGTH : $query[$i]->NUMERIC_PRECISION;
-            $retval[$i]->default		= $query[$i]->COLUMN_DEFAULT;
+            $retval[$i] = new stdClass();
+            $retval[$i]->name = $query[$i]->COLUMN_NAME;
+            $retval[$i]->type = $query[$i]->DATA_TYPE;
+            $retval[$i]->max_length = ($query[$i]->CHARACTER_MAXIMUM_LENGTH > 0) ? $query[$i]->CHARACTER_MAXIMUM_LENGTH : $query[$i]->NUMERIC_PRECISION;
+            $retval[$i]->default = $query[$i]->COLUMN_DEFAULT;
         }
 
         return $retval;
@@ -355,16 +354,16 @@ class CI_DB_sqlsrv_driver extends CI_DB
      */
     public function error()
     {
-        $error = array('code' => '00000', 'message' => '');
+        $error = ['code' => '00000', 'message' => ''];
         $sqlsrv_errors = sqlsrv_errors(SQLSRV_ERR_ERRORS);
 
-        if (! is_array($sqlsrv_errors)) {
+        if (!is_array($sqlsrv_errors)) {
             return $error;
         }
 
         $sqlsrv_error = array_shift($sqlsrv_errors);
         if (isset($sqlsrv_error['SQLSTATE'])) {
-            $error['code'] = isset($sqlsrv_error['code']) ? $sqlsrv_error['SQLSTATE'].'/'.$sqlsrv_error['code'] : $sqlsrv_error['SQLSTATE'];
+            $error['code'] = isset($sqlsrv_error['code']) ? $sqlsrv_error['SQLSTATE'] . '/' . $sqlsrv_error['code'] : $sqlsrv_error['SQLSTATE'];
         } elseif (isset($sqlsrv_error['code'])) {
             $error['code'] = $sqlsrv_error['code'];
         }
@@ -390,7 +389,7 @@ class CI_DB_sqlsrv_driver extends CI_DB
     protected function _update($table, $values)
     {
         $this->qb_limit = false;
-        $this->qb_orderby = array();
+        $this->qb_orderby = [];
         return parent::_update($table, $values);
     }
 
@@ -409,7 +408,7 @@ class CI_DB_sqlsrv_driver extends CI_DB
      */
     protected function _truncate($table)
     {
-        return 'TRUNCATE TABLE '.$table;
+        return 'TRUNCATE TABLE ' . $table;
     }
 
     // --------------------------------------------------------------------
@@ -425,7 +424,7 @@ class CI_DB_sqlsrv_driver extends CI_DB
     protected function _delete($table)
     {
         if ($this->qb_limit) {
-            return 'WITH ci_delete AS (SELECT TOP '.$this->qb_limit.' * FROM '.$table.$this->_compile_wh('qb_where').') DELETE FROM ci_delete';
+            return 'WITH ci_delete AS (SELECT TOP ' . $this->qb_limit . ' * FROM ' . $table . $this->_compile_wh('qb_where') . ') DELETE FROM ci_delete';
         }
 
         return parent::_delete($table);
@@ -448,13 +447,13 @@ class CI_DB_sqlsrv_driver extends CI_DB
             // SQL Server OFFSET-FETCH can be used only with the ORDER BY clause
             empty($this->qb_orderby) && $sql .= ' ORDER BY 1';
 
-            return $sql.' OFFSET '.(int) $this->qb_offset.' ROWS FETCH NEXT '.$this->qb_limit.' ROWS ONLY';
+            return $sql . ' OFFSET ' . (int) $this->qb_offset . ' ROWS FETCH NEXT ' . $this->qb_limit . ' ROWS ONLY';
         }
 
         $limit = $this->qb_offset + $this->qb_limit;
 
         // An ORDER BY clause is required for ROW_NUMBER() to work
-        if ($this->qb_offset && ! empty($this->qb_orderby)) {
+        if ($this->qb_offset && !empty($this->qb_orderby)) {
             $orderby = $this->_compile_order_by();
 
             // We have to strip the ORDER BY clause
@@ -465,23 +464,23 @@ class CI_DB_sqlsrv_driver extends CI_DB
                 $select = '*'; // Inevitable
             } else {
                 // Use only field names and their aliases, everything else is out of our scope.
-                $select = array();
+                $select = [];
                 $field_regexp = ($this->_quoted_identifier)
                     ? '("[^\"]+")' : '(\[[^\]]+\])';
                 for ($i = 0, $c = count($this->qb_select); $i < $c; $i++) {
-                    $select[] = preg_match('/(?:\s|\.)'.$field_regexp.'$/i', $this->qb_select[$i], $m)
+                    $select[] = preg_match('/(?:\s|\.)' . $field_regexp . '$/i', $this->qb_select[$i], $m)
                         ? $m[1] : $this->qb_select[$i];
                 }
                 $select = implode(', ', $select);
             }
 
-            return 'SELECT '.$select." FROM (\n\n"
-                .preg_replace('/^(SELECT( DISTINCT)?)/i', '\\1 ROW_NUMBER() OVER('.trim($orderby).') AS '.$this->escape_identifiers('CI_rownum').', ', $sql)
-                ."\n\n) ".$this->escape_identifiers('CI_subquery')
-                ."\nWHERE ".$this->escape_identifiers('CI_rownum').' BETWEEN '.($this->qb_offset + 1).' AND '.$limit;
+            return 'SELECT ' . $select . " FROM (\n\n"
+                . preg_replace('/^(SELECT( DISTINCT)?)/i', '\\1 ROW_NUMBER() OVER(' . trim($orderby) . ') AS ' . $this->escape_identifiers('CI_rownum') . ', ', $sql)
+                . "\n\n) " . $this->escape_identifiers('CI_subquery')
+                . "\nWHERE " . $this->escape_identifiers('CI_rownum') . ' BETWEEN ' . ($this->qb_offset + 1) . ' AND ' . $limit;
         }
 
-        return preg_replace('/(^\SELECT (DISTINCT)?)/i', '\\1 TOP '.$limit.' ', $sql);
+        return preg_replace('/(^\SELECT (DISTINCT)?)/i', '\\1 TOP ' . $limit . ' ', $sql);
     }
 
     // --------------------------------------------------------------------

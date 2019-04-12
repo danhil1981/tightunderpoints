@@ -48,7 +48,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_cubrid_result extends CI_DB_result
 {
-
     /**
      * Number of rows in the result set
      *
@@ -98,14 +97,14 @@ class CI_DB_cubrid_result extends CI_DB_result
      */
     public function field_data()
     {
-        $retval = array();
+        $retval = [];
 
         for ($i = 0, $c = $this->num_fields(); $i < $c; $i++) {
-            $retval[$i]			= new stdClass();
-            $retval[$i]->name		= cubrid_field_name($this->result_id, $i);
-            $retval[$i]->type		= cubrid_field_type($this->result_id, $i);
-            $retval[$i]->max_length		= cubrid_field_len($this->result_id, $i);
-            $retval[$i]->primary_key	= (int) (strpos(cubrid_field_flags($this->result_id, $i), 'primary_key') !== false);
+            $retval[$i] = new stdClass();
+            $retval[$i]->name = cubrid_field_name($this->result_id, $i);
+            $retval[$i]->type = cubrid_field_type($this->result_id, $i);
+            $retval[$i]->max_length = cubrid_field_len($this->result_id, $i);
+            $retval[$i]->primary_key = (int) (strpos(cubrid_field_flags($this->result_id, $i), 'primary_key') !== false);
         }
 
         return $retval;

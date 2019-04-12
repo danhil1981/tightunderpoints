@@ -48,27 +48,26 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_odbc_forge extends CI_DB_forge
 {
-
     /**
      * CREATE TABLE IF statement
      *
      * @var	string
      */
-    protected $_create_table_if	= false;
+    protected $_create_table_if = false;
 
     /**
      * DROP TABLE IF statement
      *
      * @var	string
      */
-    protected $_drop_table_if	= false;
+    protected $_drop_table_if = false;
 
     /**
      * UNSIGNED support
      *
      * @var	bool|array
      */
-    protected $_unsigned		= false;
+    protected $_unsigned = false;
 
     // --------------------------------------------------------------------
 

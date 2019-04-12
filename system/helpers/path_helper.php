@@ -49,7 +49,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('set_realpath')) {
+if (!function_exists('set_realpath')) {
     /**
      * Set Realpath
      *
@@ -67,11 +67,11 @@ if (! function_exists('set_realpath')) {
         // Resolve the path
         if (realpath($path) !== false) {
             $path = realpath($path);
-        } elseif ($check_existance && ! is_dir($path) && ! is_file($path)) {
-            show_error('Not a valid path: '.$path);
+        } elseif ($check_existance && !is_dir($path) && !is_file($path)) {
+            show_error('Not a valid path: ' . $path);
         }
 
         // Add a trailing slash, if this is a directory
-        return is_dir($path) ? rtrim($path, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR : $path;
+        return is_dir($path) ? rtrim($path, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR : $path;
     }
 }

@@ -48,14 +48,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_odbc_utility extends CI_DB_utility
 {
-
     /**
      * Export
      *
      * @param	array	$params	Preferences
      * @return	mixed
      */
-    protected function _backup($params = array())
+    protected function _backup($params = [])
     {
         // Currently unsupported
         return $this->db->display_error('db_unsupported_feature');

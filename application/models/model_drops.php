@@ -22,7 +22,7 @@
                 INNER JOIN items ON drops.id_item = items.id
                 INNER JOIN bosses ON events.id_boss = bosses.id
             ;");
-            $drops = array();
+            $drops = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $drops[] = $row;
@@ -40,30 +40,30 @@
                 INNER JOIN events ON drops.id_event = events.id
                 INNER JOIN items ON drops.id_item = items.id
             ;");
-            $drops = array();
+            $drops = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $drops[] = $row;
                 }
             }
-            return array_column($drops, "name_drop", "id_drop");
+            return array_column($drops, 'name_drop', 'id_drop');
         }
 
         public function get_drops_items()
         {
-            $query = $this->db->query("SELECT
+            $query = $this->db->query('SELECT
                 drops.id AS id_drop,
                 items.id AS id_item
                 FROM drops
                 INNER JOIN items ON drops.id_item = items.id
-            ;");
-            $drops_items = array();
+            ;');
+            $drops_items = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $drops_items[] = $row;
                 }
             }
-            return array_column($drops_items, "id_item", "id_drop");
+            return array_column($drops_items, 'id_item', 'id_drop');
         }
 
         public function insert($id_event, $id_item)

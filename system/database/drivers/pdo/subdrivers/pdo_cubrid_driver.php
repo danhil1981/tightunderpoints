@@ -52,7 +52,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_pdo_cubrid_driver extends CI_DB_pdo_driver
 {
-
     /**
      * Sub-driver
      *
@@ -72,7 +71,7 @@ class CI_DB_pdo_cubrid_driver extends CI_DB_pdo_driver
      *
      * @var array
      */
-    protected $_random_keyword = array('RANDOM()', 'RANDOM(%d)');
+    protected $_random_keyword = ['RANDOM()', 'RANDOM(%d)'];
 
     // --------------------------------------------------------------------
 
@@ -89,11 +88,11 @@ class CI_DB_pdo_cubrid_driver extends CI_DB_pdo_driver
         parent::__construct($params);
 
         if (empty($this->dsn)) {
-            $this->dsn = 'cubrid:host='.(empty($this->hostname) ? '127.0.0.1' : $this->hostname);
+            $this->dsn = 'cubrid:host=' . (empty($this->hostname) ? '127.0.0.1' : $this->hostname);
 
-            empty($this->port) or $this->dsn .= ';port='.$this->port;
-            empty($this->database) or $this->dsn .= ';dbname='.$this->database;
-            empty($this->char_set) or $this->dsn .= ';charset='.$this->char_set;
+            empty($this->port) or $this->dsn .= ';port=' . $this->port;
+            empty($this->database) or $this->dsn .= ';dbname=' . $this->database;
+            empty($this->char_set) or $this->dsn .= ';charset=' . $this->char_set;
         }
     }
 
@@ -112,7 +111,7 @@ class CI_DB_pdo_cubrid_driver extends CI_DB_pdo_driver
         $sql = 'SHOW TABLES';
 
         if ($prefix_limit === true && $this->dbprefix !== '') {
-            return $sql." LIKE '".$this->escape_like_str($this->dbprefix)."%'";
+            return $sql . " LIKE '" . $this->escape_like_str($this->dbprefix) . "%'";
         }
 
         return $sql;
@@ -130,7 +129,7 @@ class CI_DB_pdo_cubrid_driver extends CI_DB_pdo_driver
      */
     protected function _list_columns($table = '')
     {
-        return 'SHOW COLUMNS FROM '.$this->protect_identifiers($table, true, null, false);
+        return 'SHOW COLUMNS FROM ' . $this->protect_identifiers($table, true, null, false);
     }
 
     // --------------------------------------------------------------------
@@ -143,15 +142,15 @@ class CI_DB_pdo_cubrid_driver extends CI_DB_pdo_driver
      */
     public function field_data($table)
     {
-        if (($query = $this->query('SHOW COLUMNS FROM '.$this->protect_identifiers($table, true, null, false))) === false) {
+        if (($query = $this->query('SHOW COLUMNS FROM ' . $this->protect_identifiers($table, true, null, false))) === false) {
             return false;
         }
         $query = $query->result_object();
 
-        $retval = array();
+        $retval = [];
         for ($i = 0, $c = count($query); $i < $c; $i++) {
-            $retval[$i]			= new stdClass();
-            $retval[$i]->name		= $query[$i]->Field;
+            $retval[$i] = new stdClass();
+            $retval[$i]->name = $query[$i]->Field;
 
             sscanf(
                 $query[$i]->Type,
@@ -160,8 +159,8 @@ class CI_DB_pdo_cubrid_driver extends CI_DB_pdo_driver
                 $retval[$i]->max_length
             );
 
-            $retval[$i]->default		= $query[$i]->Default;
-            $retval[$i]->primary_key	= (int) ($query[$i]->Key === 'PRI');
+            $retval[$i]->default = $query[$i]->Default;
+            $retval[$i]->primary_key = (int) ($query[$i]->Key === 'PRI');
         }
 
         return $retval;
@@ -182,7 +181,7 @@ class CI_DB_pdo_cubrid_driver extends CI_DB_pdo_driver
      */
     protected function _truncate($table)
     {
-        return 'TRUNCATE '.$table;
+        return 'TRUNCATE ' . $table;
     }
 
     // --------------------------------------------------------------------
@@ -197,8 +196,8 @@ class CI_DB_pdo_cubrid_driver extends CI_DB_pdo_driver
      */
     protected function _from_tables()
     {
-        if (! empty($this->qb_join) && count($this->qb_from) > 1) {
-            return '('.implode(', ', $this->qb_from).')';
+        if (!empty($this->qb_join) && count($this->qb_from) > 1) {
+            return '(' . implode(', ', $this->qb_from) . ')';
         }
 
         return implode(', ', $this->qb_from);

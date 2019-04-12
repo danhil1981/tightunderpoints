@@ -52,7 +52,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_sqlite_driver extends CI_DB
 {
-
     /**
      * Database driver
      *
@@ -67,7 +66,7 @@ class CI_DB_sqlite_driver extends CI_DB
      *
      * @var	array
      */
-    protected $_random_keyword = array('RANDOM()', 'RANDOM()');
+    protected $_random_keyword = ['RANDOM()', 'RANDOM()'];
 
     // --------------------------------------------------------------------
 
@@ -206,7 +205,7 @@ class CI_DB_sqlite_driver extends CI_DB
         $sql = "SELECT name FROM sqlite_master WHERE type='table'";
 
         if ($prefix_limit !== false && $this->dbprefix != '') {
-            return $sql." AND 'name' LIKE '".$this->escape_like_str($this->dbprefix)."%' ".sprintf($this->_like_escape_str, $this->_like_escape_chr);
+            return $sql . " AND 'name' LIKE '" . $this->escape_like_str($this->dbprefix) . "%' " . sprintf($this->_like_escape_str, $this->_like_escape_chr);
         }
 
         return $sql;
@@ -238,7 +237,7 @@ class CI_DB_sqlite_driver extends CI_DB
      */
     public function field_data($table)
     {
-        if (($query = $this->query('PRAGMA TABLE_INFO('.$this->protect_identifiers($table, true, null, false).')')) === false) {
+        if (($query = $this->query('PRAGMA TABLE_INFO(' . $this->protect_identifiers($table, true, null, false) . ')')) === false) {
             return false;
         }
 
@@ -247,14 +246,14 @@ class CI_DB_sqlite_driver extends CI_DB
             return false;
         }
 
-        $retval = array();
+        $retval = [];
         for ($i = 0, $c = count($query); $i < $c; $i++) {
-            $retval[$i]			= new stdClass();
-            $retval[$i]->name		= $query[$i]['name'];
-            $retval[$i]->type		= $query[$i]['type'];
-            $retval[$i]->max_length		= null;
-            $retval[$i]->default		= $query[$i]['dflt_value'];
-            $retval[$i]->primary_key	= isset($query[$i]['pk']) ? (int) $query[$i]['pk'] : 0;
+            $retval[$i] = new stdClass();
+            $retval[$i]->name = $query[$i]['name'];
+            $retval[$i]->type = $query[$i]['type'];
+            $retval[$i]->max_length = null;
+            $retval[$i]->default = $query[$i]['dflt_value'];
+            $retval[$i]->primary_key = isset($query[$i]['pk']) ? (int) $query[$i]['pk'] : 0;
         }
 
         return $retval;
@@ -272,7 +271,7 @@ class CI_DB_sqlite_driver extends CI_DB
      */
     public function error()
     {
-        $error = array('code' => sqlite_last_error($this->conn_id));
+        $error = ['code' => sqlite_last_error($this->conn_id)];
         $error['message'] = sqlite_error_string($error['code']);
         return $error;
     }
@@ -291,7 +290,7 @@ class CI_DB_sqlite_driver extends CI_DB
      */
     protected function _replace($table, $keys, $values)
     {
-        return 'INSERT OR '.parent::_replace($table, $keys, $values);
+        return 'INSERT OR ' . parent::_replace($table, $keys, $values);
     }
 
     // --------------------------------------------------------------------
@@ -309,7 +308,7 @@ class CI_DB_sqlite_driver extends CI_DB
      */
     protected function _truncate($table)
     {
-        return 'DELETE FROM '.$table;
+        return 'DELETE FROM ' . $table;
     }
 
     // --------------------------------------------------------------------

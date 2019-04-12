@@ -52,7 +52,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_pdo_odbc_driver extends CI_DB_pdo_driver
 {
-
     /**
      * Sub-driver
      *
@@ -90,7 +89,7 @@ class CI_DB_pdo_odbc_driver extends CI_DB_pdo_driver
      *
      * @var	array
      */
-    protected $_random_keyword = array('RND()', 'RND(%d)');
+    protected $_random_keyword = ['RND()', 'RND(%d)'];
 
     // --------------------------------------------------------------------
 
@@ -112,36 +111,36 @@ class CI_DB_pdo_odbc_driver extends CI_DB_pdo_driver
             // Pre-defined DSN
             if (empty($this->hostname) && empty($this->HOSTNAME) && empty($this->port) && empty($this->PORT)) {
                 if (isset($this->DSN)) {
-                    $this->dsn .= 'DSN='.$this->DSN;
-                } elseif (! empty($this->database)) {
-                    $this->dsn .= 'DSN='.$this->database;
+                    $this->dsn .= 'DSN=' . $this->DSN;
+                } elseif (!empty($this->database)) {
+                    $this->dsn .= 'DSN=' . $this->database;
                 }
 
                 return;
             }
 
             // If the DSN is not pre-configured - try to build an IBM DB2 connection string
-            $this->dsn .= 'DRIVER='.(isset($this->DRIVER) ? '{'.$this->DRIVER.'}' : '{IBM DB2 ODBC DRIVER}').';';
+            $this->dsn .= 'DRIVER=' . (isset($this->DRIVER) ? '{' . $this->DRIVER . '}' : '{IBM DB2 ODBC DRIVER}') . ';';
 
             if (isset($this->DATABASE)) {
-                $this->dsn .= 'DATABASE='.$this->DATABASE.';';
-            } elseif (! empty($this->database)) {
-                $this->dsn .= 'DATABASE='.$this->database.';';
+                $this->dsn .= 'DATABASE=' . $this->DATABASE . ';';
+            } elseif (!empty($this->database)) {
+                $this->dsn .= 'DATABASE=' . $this->database . ';';
             }
 
             if (isset($this->HOSTNAME)) {
-                $this->dsn .= 'HOSTNAME='.$this->HOSTNAME.';';
+                $this->dsn .= 'HOSTNAME=' . $this->HOSTNAME . ';';
             } else {
-                $this->dsn .= 'HOSTNAME='.(empty($this->hostname) ? '127.0.0.1;' : $this->hostname.';');
+                $this->dsn .= 'HOSTNAME=' . (empty($this->hostname) ? '127.0.0.1;' : $this->hostname . ';');
             }
 
             if (isset($this->PORT)) {
-                $this->dsn .= 'PORT='.$this->port.';';
-            } elseif (! empty($this->port)) {
-                $this->dsn .= ';PORT='.$this->port.';';
+                $this->dsn .= 'PORT=' . $this->port . ';';
+            } elseif (!empty($this->port)) {
+                $this->dsn .= ';PORT=' . $this->port . ';';
             }
 
-            $this->dsn .= 'PROTOCOL='.(isset($this->PROTOCOL) ? $this->PROTOCOL.';' : 'TCPIP;');
+            $this->dsn .= 'PROTOCOL=' . (isset($this->PROTOCOL) ? $this->PROTOCOL . ';' : 'TCPIP;');
         }
     }
 
@@ -187,11 +186,11 @@ class CI_DB_pdo_odbc_driver extends CI_DB_pdo_driver
      */
     protected function _list_tables($prefix_limit = false)
     {
-        $sql = "SELECT table_name FROM information_schema.tables WHERE table_schema = '".$this->schema."'";
+        $sql = "SELECT table_name FROM information_schema.tables WHERE table_schema = '" . $this->schema . "'";
 
         if ($prefix_limit !== false && $this->dbprefix !== '') {
-            return $sql." AND table_name LIKE '".$this->escape_like_str($this->dbprefix)."%' "
-                .sprintf($this->_like_escape_str, $this->_like_escape_chr);
+            return $sql . " AND table_name LIKE '" . $this->escape_like_str($this->dbprefix) . "%' "
+                . sprintf($this->_like_escape_str, $this->_like_escape_chr);
         }
 
         return $sql;
@@ -209,6 +208,6 @@ class CI_DB_pdo_odbc_driver extends CI_DB_pdo_driver
      */
     protected function _list_columns($table = '')
     {
-        return 'SELECT column_name FROM information_schema.columns WHERE table_name = '.$this->escape($table);
+        return 'SELECT column_name FROM information_schema.columns WHERE table_name = ' . $this->escape($table);
     }
 }

@@ -22,7 +22,7 @@
                 INNER JOIN events ON attendance.id_event = events.id
                 INNER JOIN bosses ON events.id_boss = bosses.id
             ;");
-            $attendance = array();
+            $attendance = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $attendance[] = $row;
@@ -39,26 +39,26 @@
                 FROM attendance
                 INNER JOIN characters ON attendance.id_character = characters.id
                 WHERE id_event = '$id_event';");
-            $characters = array();
+            $characters = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $characters[] = $row;
                 }
             }
-            return array_column($characters, "name_character", "id_character");
+            return array_column($characters, 'name_character', 'id_character');
         }
 
         public function get_played()
         {
-            $query = $this->db->query("SELECT
+            $query = $this->db->query('SELECT
                 attendance.id_event,
                 characters.name AS name_character
                 FROM attendance
                 INNER JOIN characters ON attendance.id_points = characters.id
                 INNER JOIN events ON attendance.id_event = events.id
                 INNER JOIN bosses ON events.id_boss = bosses.id
-            ;");
-            $attendance = array();
+            ;');
+            $attendance = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $attendance[] = $row;
@@ -78,13 +78,13 @@
 
         public function officer_insert($id_event)
         {
-            $characters = array();
-            $substitutions = array();
+            $characters = [];
+            $substitutions = [];
             $output = 0;
             foreach ($_POST as $key => $value) {
-                if (strpos($key, "character_") === 0) {
+                if (strpos($key, 'character_') === 0) {
                     array_push($characters, substr($key, 10));
-                } elseif (strpos($key, "id_substituting_") === 0) {
+                } elseif (strpos($key, 'id_substituting_') === 0) {
                     if ($value == 0) {
                         array_push($substitutions, substr($key, 16));
                     } else {
@@ -137,13 +137,13 @@
                 FROM attendance
                 WHERE id_event = '$id_event'
             ;");
-            $characters = array();
-            $substitutions = array();
+            $characters = [];
+            $substitutions = [];
             $output = 0;
             foreach ($_POST as $key => $value) {
-                if (strpos($key, "character_") === 0) {
+                if (strpos($key, 'character_') === 0) {
                     array_push($characters, substr($key, 10));
-                } elseif (strpos($key, "id_substituting_") === 0) {
+                } elseif (strpos($key, 'id_substituting_') === 0) {
                     if ($value == 0) {
                         array_push($substitutions, substr($key, 16));
                     } else {

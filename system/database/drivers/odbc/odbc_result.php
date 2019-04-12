@@ -50,7 +50,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_odbc_result extends CI_DB_result
 {
-
     /**
      * Number of rows in the result set
      *
@@ -97,7 +96,7 @@ class CI_DB_odbc_result extends CI_DB_result
      */
     public function list_fields()
     {
-        $field_names = array();
+        $field_names = [];
         $num_fields = $this->num_fields();
 
         if ($num_fields > 0) {
@@ -120,14 +119,14 @@ class CI_DB_odbc_result extends CI_DB_result
      */
     public function field_data()
     {
-        $retval = array();
+        $retval = [];
         for ($i = 0, $odbc_index = 1, $c = $this->num_fields(); $i < $c; $i++, $odbc_index++) {
-            $retval[$i]			= new stdClass();
-            $retval[$i]->name		= odbc_field_name($this->result_id, $odbc_index);
-            $retval[$i]->type		= odbc_field_type($this->result_id, $odbc_index);
-            $retval[$i]->max_length		= odbc_field_len($this->result_id, $odbc_index);
-            $retval[$i]->primary_key	= 0;
-            $retval[$i]->default		= '';
+            $retval[$i] = new stdClass();
+            $retval[$i]->name = odbc_field_name($this->result_id, $odbc_index);
+            $retval[$i]->type = odbc_field_type($this->result_id, $odbc_index);
+            $retval[$i]->max_length = odbc_field_len($this->result_id, $odbc_index);
+            $retval[$i]->primary_key = 0;
+            $retval[$i]->default = '';
         }
 
         return $retval;
@@ -176,7 +175,7 @@ class CI_DB_odbc_result extends CI_DB_result
     {
         $row = odbc_fetch_object($this->result_id);
 
-        if ($class_name === 'stdClass' or ! $row) {
+        if ($class_name === 'stdClass' or !$row) {
             return $row;
         }
 
@@ -191,7 +190,7 @@ class CI_DB_odbc_result extends CI_DB_result
 
 // --------------------------------------------------------------------
 
-if (! function_exists('odbc_fetch_array')) {
+if (!function_exists('odbc_fetch_array')) {
     /**
      * ODBC Fetch array
      *
@@ -204,14 +203,14 @@ if (! function_exists('odbc_fetch_array')) {
      */
     function odbc_fetch_array(&$result, $rownumber = 1)
     {
-        $rs = array();
-        if (! odbc_fetch_into($result, $rs, $rownumber)) {
+        $rs = [];
+        if (!odbc_fetch_into($result, $rs, $rownumber)) {
             return false;
         }
 
-        $rs_assoc = array();
+        $rs_assoc = [];
         foreach ($rs as $k => $v) {
-            $field_name = odbc_field_name($result, $k+1);
+            $field_name = odbc_field_name($result, $k + 1);
             $rs_assoc[$field_name] = $v;
         }
 
@@ -221,7 +220,7 @@ if (! function_exists('odbc_fetch_array')) {
 
 // --------------------------------------------------------------------
 
-if (! function_exists('odbc_fetch_object')) {
+if (!function_exists('odbc_fetch_object')) {
     /**
      * ODBC Fetch object
      *
@@ -234,14 +233,14 @@ if (! function_exists('odbc_fetch_object')) {
      */
     function odbc_fetch_object(&$result, $rownumber = 1)
     {
-        $rs = array();
-        if (! odbc_fetch_into($result, $rs, $rownumber)) {
+        $rs = [];
+        if (!odbc_fetch_into($result, $rs, $rownumber)) {
             return false;
         }
 
         $rs_object = new stdClass();
         foreach ($rs as $k => $v) {
-            $field_name = odbc_field_name($result, $k+1);
+            $field_name = odbc_field_name($result, $k + 1);
             $rs_object->$field_name = $v;
         }
 

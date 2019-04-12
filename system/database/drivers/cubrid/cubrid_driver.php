@@ -52,7 +52,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_cubrid_driver extends CI_DB
 {
-
     /**
      * Database driver
      *
@@ -81,7 +80,7 @@ class CI_DB_cubrid_driver extends CI_DB
      *
      * @var	array
      */
-    protected $_random_keyword = array('RANDOM()', 'RANDOM(%d)');
+    protected $_random_keyword = ['RANDOM()', 'RANDOM(%d)'];
 
     // --------------------------------------------------------------------
 
@@ -158,7 +157,7 @@ class CI_DB_cubrid_driver extends CI_DB
             return $this->data_cache['version'];
         }
 
-        return (! $this->conn_id or ($version = cubrid_get_server_info($this->conn_id)) === false)
+        return (!$this->conn_id or ($version = cubrid_get_server_info($this->conn_id)) === false)
             ? false
             : $this->data_cache['version'] = $version;
     }
@@ -203,11 +202,11 @@ class CI_DB_cubrid_driver extends CI_DB
      */
     protected function _trans_commit()
     {
-        if (! cubrid_commit($this->conn_id)) {
+        if (!cubrid_commit($this->conn_id)) {
             return false;
         }
 
-        if ($this->auto_commit && ! cubrid_get_autocommit($this->conn_id)) {
+        if ($this->auto_commit && !cubrid_get_autocommit($this->conn_id)) {
             return cubrid_set_autocommit($this->conn_id, CUBRID_AUTOCOMMIT_TRUE);
         }
 
@@ -223,11 +222,11 @@ class CI_DB_cubrid_driver extends CI_DB
      */
     protected function _trans_rollback()
     {
-        if (! cubrid_rollback($this->conn_id)) {
+        if (!cubrid_rollback($this->conn_id)) {
             return false;
         }
 
-        if ($this->auto_commit && ! cubrid_get_autocommit($this->conn_id)) {
+        if ($this->auto_commit && !cubrid_get_autocommit($this->conn_id)) {
             cubrid_set_autocommit($this->conn_id, CUBRID_AUTOCOMMIT_TRUE);
         }
 
@@ -286,7 +285,7 @@ class CI_DB_cubrid_driver extends CI_DB
         $sql = 'SHOW TABLES';
 
         if ($prefix_limit !== false && $this->dbprefix !== '') {
-            return $sql." LIKE '".$this->escape_like_str($this->dbprefix)."%'";
+            return $sql . " LIKE '" . $this->escape_like_str($this->dbprefix) . "%'";
         }
 
         return $sql;
@@ -304,7 +303,7 @@ class CI_DB_cubrid_driver extends CI_DB
      */
     protected function _list_columns($table = '')
     {
-        return 'SHOW COLUMNS FROM '.$this->protect_identifiers($table, true, null, false);
+        return 'SHOW COLUMNS FROM ' . $this->protect_identifiers($table, true, null, false);
     }
 
     // --------------------------------------------------------------------
@@ -317,15 +316,15 @@ class CI_DB_cubrid_driver extends CI_DB
      */
     public function field_data($table)
     {
-        if (($query = $this->query('SHOW COLUMNS FROM '.$this->protect_identifiers($table, true, null, false))) === false) {
+        if (($query = $this->query('SHOW COLUMNS FROM ' . $this->protect_identifiers($table, true, null, false))) === false) {
             return false;
         }
         $query = $query->result_object();
 
-        $retval = array();
+        $retval = [];
         for ($i = 0, $c = count($query); $i < $c; $i++) {
-            $retval[$i]			= new stdClass();
-            $retval[$i]->name		= $query[$i]->Field;
+            $retval[$i] = new stdClass();
+            $retval[$i]->name = $query[$i]->Field;
 
             sscanf(
                 $query[$i]->Type,
@@ -334,8 +333,8 @@ class CI_DB_cubrid_driver extends CI_DB
                 $retval[$i]->max_length
             );
 
-            $retval[$i]->default		= $query[$i]->Default;
-            $retval[$i]->primary_key	= (int) ($query[$i]->Key === 'PRI');
+            $retval[$i]->default = $query[$i]->Default;
+            $retval[$i]->primary_key = (int) ($query[$i]->Key === 'PRI');
         }
 
         return $retval;
@@ -353,7 +352,7 @@ class CI_DB_cubrid_driver extends CI_DB
      */
     public function error()
     {
-        return array('code' => cubrid_errno($this->conn_id), 'message' => cubrid_error($this->conn_id));
+        return ['code' => cubrid_errno($this->conn_id), 'message' => cubrid_error($this->conn_id)];
     }
 
     // --------------------------------------------------------------------
@@ -368,8 +367,8 @@ class CI_DB_cubrid_driver extends CI_DB
      */
     protected function _from_tables()
     {
-        if (! empty($this->qb_join) && count($this->qb_from) > 1) {
-            return '('.implode(', ', $this->qb_from).')';
+        if (!empty($this->qb_join) && count($this->qb_from) > 1) {
+            return '(' . implode(', ', $this->qb_from) . ')';
         }
 
         return implode(', ', $this->qb_from);

@@ -46,27 +46,26 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_sqlite_forge extends CI_DB_forge
 {
-
     /**
      * CREATE TABLE IF statement
      *
      * @var	string
      */
-    protected $_create_table_if	= false;
+    protected $_create_table_if = false;
 
     /**
      * UNSIGNED support
      *
      * @var	bool|array
      */
-    protected $_unsigned		= false;
+    protected $_unsigned = false;
 
     /**
      * NULL value representation in CREATE/ALTER TABLE statements
      *
      * @var	string
      */
-    protected $_null		= 'NULL';
+    protected $_null = 'NULL';
 
     // --------------------------------------------------------------------
 
@@ -93,9 +92,9 @@ class CI_DB_sqlite_forge extends CI_DB_forge
      */
     public function drop_database($db_name)
     {
-        if (! file_exists($this->db->database) or ! @unlink($this->db->database)) {
+        if (!file_exists($this->db->database) or !@unlink($this->db->database)) {
             return ($this->db->db_debug) ? $this->db->display_error('db_unable_to_drop') : false;
-        } elseif (! empty($this->db->data_cache['db_names'])) {
+        } elseif (!empty($this->db->data_cache['db_names'])) {
             $key = array_search(strtolower($this->db->database), array_map('strtolower', $this->db->data_cache['db_names']), true);
             if ($key !== false) {
                 unset($this->db->data_cache['db_names'][$key]);
@@ -146,11 +145,11 @@ class CI_DB_sqlite_forge extends CI_DB_forge
     protected function _process_column($field)
     {
         return $this->db->escape_identifiers($field['name'])
-            .' '.$field['type']
-            .$field['auto_increment']
-            .$field['null']
-            .$field['unique']
-            .$field['default'];
+            . ' ' . $field['type']
+            . $field['auto_increment']
+            . $field['null']
+            . $field['unique']
+            . $field['default'];
     }
 
     // --------------------------------------------------------------------
@@ -185,14 +184,14 @@ class CI_DB_sqlite_forge extends CI_DB_forge
      */
     protected function _attr_auto_increment(&$attributes, &$field)
     {
-        if (! empty($attributes['AUTO_INCREMENT']) && $attributes['AUTO_INCREMENT'] === true && stripos($field['type'], 'int') !== false) {
+        if (!empty($attributes['AUTO_INCREMENT']) && $attributes['AUTO_INCREMENT'] === true && stripos($field['type'], 'int') !== false) {
             $field['type'] = 'INTEGER PRIMARY KEY';
             $field['default'] = '';
             $field['null'] = '';
             $field['unique'] = '';
             $field['auto_increment'] = ' AUTOINCREMENT';
 
-            $this->primary_keys = array();
+            $this->primary_keys = [];
         }
     }
 }

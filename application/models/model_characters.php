@@ -13,13 +13,13 @@
 
         public function get_all()
         {
-            $query = $this->db->query("SELECT
+            $query = $this->db->query('SELECT
                 characters.id, characters.name, characters.level, characters.class, characters.type, characters.id_player,
                 players.name AS name_player
                 FROM characters
                 LEFT JOIN players ON characters.id_player = players.id
-            ;");
-            $characters = array();
+            ;');
+            $characters = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $characters[] = $row;
@@ -40,41 +40,41 @@
 
         public function get_list_names()
         {
-            $query = $this->db->query("SELECT
+            $query = $this->db->query('SELECT
                 id AS id_character,
                 name AS name_character
                 FROM characters
-            ;");
-            $characters = array();
+            ;');
+            $characters = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $characters[] = $row;
                 }
             }
-            return array_column($characters, "name_character", "id_character");
+            return array_column($characters, 'name_character', 'id_character');
         }
 
         public function get_list_mains()
         {
-            $query = $this->db->query("SELECT
+            $query = $this->db->query('SELECT
                 id AS id_character,
                 name AS name_character
                 FROM characters
                 WHERE type = 1
                 ORDER BY name ASC
-            ;");
-            $characters = array();
+            ;');
+            $characters = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $characters[] = $row;
                 }
             }
-            return array_column($characters, "name_character", "id_character");
+            return array_column($characters, 'name_character', 'id_character');
         }
 
         public function get_list_total_earned()
         {
-            $query = $this->db->query("SELECT
+            $query = $this->db->query('SELECT
                 characters.id AS id_character,
                 IFNULL(SUM(bosses.value),0) AS total_earned
                 FROM characters
@@ -82,32 +82,32 @@
                 LEFT JOIN events ON attendance.id_event = events.id
                 LEFT JOIN bosses ON events.id_boss = bosses.id
                 GROUP BY characters.id
-            ;");
-            $list_total_earned = array();
+            ;');
+            $list_total_earned = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $list_total_earned[] = $row;
                 }
             }
-            return array_column($list_total_earned, "total_earned", "id_character");
+            return array_column($list_total_earned, 'total_earned', 'id_character');
         }
 
         public function get_list_last50_earned()
         {
-            $query = $this->db->query("SELECT
+            $query = $this->db->query('SELECT
 	            characters.id AS id_character,
                 0 AS last50_earned
                 FROM characters
                 ORDER BY id
-            ;");
-            $characters = array();
+            ;');
+            $characters = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $characters[] = $row;
                 }
             }
-            $characters = array_column($characters, "last50_earned", "id_character");
-            $query = $this->db->query("SELECT
+            $characters = array_column($characters, 'last50_earned', 'id_character');
+            $query = $this->db->query('SELECT
                 characters.id AS id_character,
                 IFNULL(SUM(bosses.value),0) AS last50_earned
                 FROM characters
@@ -116,15 +116,15 @@
                 INNER JOIN bosses ON events.id_boss = bosses.id
                 WHERE events.timestamp >= DATE_SUB(NOW(), INTERVAL 50 DAY)
                 GROUP BY characters.id
-            ;");
-            $characters_with_points = array();
+            ;');
+            $characters_with_points = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $characters_with_points[] = $row;
                 }
             }
-            $characters_with_points = array_column($characters_with_points, "last50_earned", "id_character");
-            $list_last50_earned = array();
+            $characters_with_points = array_column($characters_with_points, 'last50_earned', 'id_character');
+            $list_last50_earned = [];
             foreach ($characters as $i => $id[0]) {
                 if (isset($characters_with_points[$i])) {
                     $list_last50_earned[$i] = $characters[$i] + $characters_with_points[$i];
@@ -137,7 +137,7 @@
 
         public function get_list_total_spent()
         {
-            $query = $this->db->query("SELECT
+            $query = $this->db->query('SELECT
                 characters.id AS id_character,
                 IFNULL(SUM(items.value),0) AS total_spent
                 FROM characters
@@ -145,32 +145,32 @@
                 LEFT JOIN drops ON loot.id_drop = drops.id
                 LEFT JOIN items ON drops.id_item = items.id
                 GROUP BY characters.id
-            ;");
-            $characters = array();
+            ;');
+            $characters = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $characters[] = $row;
                 }
             }
-            return array_column($characters, "total_spent", "id_character");
+            return array_column($characters, 'total_spent', 'id_character');
         }
 
         public function get_list_last50_spent()
         {
-            $query = $this->db->query("SELECT
+            $query = $this->db->query('SELECT
 	            characters.id as id_character,
                 0 AS last50_spent
                 FROM characters
                 ORDER BY id
-            ;");
-            $characters = array();
+            ;');
+            $characters = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $characters[] = $row;
                 }
             }
-            $characters = array_column($characters, "last50_spent", "id_character");
-            $query = $this->db->query("SELECT
+            $characters = array_column($characters, 'last50_spent', 'id_character');
+            $query = $this->db->query('SELECT
                 characters.id AS id_character,
                 IFNULL(SUM(items.value),0) AS last50_spent
                 FROM characters
@@ -180,15 +180,15 @@
                 INNER JOIN events on drops.id_event = events.id
                 WHERE events.timestamp >= DATE_SUB(NOW(), INTERVAL 50 DAY)
                 GROUP BY characters.id
-            ;");
-            $characters_with_points = array();
+            ;');
+            $characters_with_points = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $characters_with_points[] = $row;
                 }
             }
-            $characters_with_points = array_column($characters_with_points, "last50_spent", "id_character");
-            $list_last50_spent = array();
+            $characters_with_points = array_column($characters_with_points, 'last50_spent', 'id_character');
+            $list_last50_spent = [];
             foreach ($characters as $i => $id[0]) {
                 if (isset($characters_with_points[$i])) {
                     $list_last50_spent[$i] = $characters[$i] + $characters_with_points[$i];
@@ -201,39 +201,39 @@
 
         public function get_list_types()
         {
-            $query = $this->db->query("SELECT
+            $query = $this->db->query('SELECT
                 id AS id_character,
                 type AS type_character
                 FROM characters
-            ;");
-            $characters = array();
+            ;');
+            $characters = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $characters[] = $row;
                 }
             }
-            return array_column($characters, "type_character", "id_character");
+            return array_column($characters, 'type_character', 'id_character');
         }
 
         public function get_winner($comparing)
         {
             $max_points = -32000;
             $max_type = 3;
-            for ($i = 0; $i < count($comparing); $i=$i+3) {
+            for ($i = 0; $i < count($comparing); $i = $i + 3) {
                 $id = $comparing[$i];
-                $points = $comparing[$i+1];
-                $type = $comparing[$i+2];
+                $points = $comparing[$i + 1];
+                $type = $comparing[$i + 2];
                 if ($type < $max_type) {
                     $max_id = $id;
                     $max_points = $points;
                     $max_type = $type;
-                    $multiples = array();
+                    $multiples = [];
                     array_push($multiples, $id);
                 } else {
                     if ($type == $max_type) {
                         if ($points > $max_points) {
                             $max_points = $points;
-                            $multiples = array();
+                            $multiples = [];
                             array_push($multiples, $id);
                         } elseif ($points == $max_points) {
                             array_push($multiples, $id);
@@ -264,20 +264,20 @@
         {
             $max_points = -32000;
             $max_type = 3;
-            for ($i = 0; $i < count($comparing); $i+=3) {
+            for ($i = 0; $i < count($comparing); $i += 3) {
                 $id = $comparing[$i];
-                $points = $comparing[$i+1];
-                $type = $comparing[$i+2];
+                $points = $comparing[$i + 1];
+                $type = $comparing[$i + 2];
                 if ($type < $max_type) {
                     $max_points = $points;
                     $max_type = $type;
-                    $multiples = array();
+                    $multiples = [];
                     array_push($multiples, $id);
                 } else {
                     if ($type == $max_type) {
                         if ($points > $max_points) {
                             $max_points = $points;
-                            $multiples = array();
+                            $multiples = [];
                             array_push($multiples, $id);
                         } elseif ($points == $max_points) {
                             array_push($multiples, $id);
@@ -305,7 +305,7 @@
                         }
                     }
                 }
-                $names = implode(', ', array_column($name, "name"));
+                $names = implode(', ', array_column($name, 'name'));
             }
             return $names;
         }

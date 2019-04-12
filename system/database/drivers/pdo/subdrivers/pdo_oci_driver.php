@@ -52,7 +52,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_pdo_oci_driver extends CI_DB_pdo_driver
 {
-
     /**
      * Sub-driver
      *
@@ -69,14 +68,14 @@ class CI_DB_pdo_oci_driver extends CI_DB_pdo_driver
      *
      * @var	string[]
      */
-    protected $_reserved_identifiers = array('*', 'rownum');
+    protected $_reserved_identifiers = ['*', 'rownum'];
 
     /**
      * ORDER BY random keyword
      *
      * @var	array
      */
-    protected $_random_keyword = array('ASC', 'ASC'); // Currently not supported
+    protected $_random_keyword = ['ASC', 'ASC']; // Currently not supported
 
     /**
      * COUNT string
@@ -110,15 +109,15 @@ class CI_DB_pdo_oci_driver extends CI_DB_pdo_driver
             if (empty($this->hostname) && empty($this->port)) {
                 $this->dsn .= $this->database;
             } else {
-                $this->dsn .= '//'.(empty($this->hostname) ? '127.0.0.1' : $this->hostname)
-                    .(empty($this->port) ? '' : ':'.$this->port).'/';
+                $this->dsn .= '//' . (empty($this->hostname) ? '127.0.0.1' : $this->hostname)
+                    . (empty($this->port) ? '' : ':' . $this->port) . '/';
 
                 empty($this->database) or $this->dsn .= $this->database;
             }
 
-            empty($this->char_set) or $this->dsn .= ';charset='.$this->char_set;
-        } elseif (! empty($this->char_set) && strpos($this->dsn, 'charset=', 4) === false) {
-            $this->dsn .= ';charset='.$this->char_set;
+            empty($this->char_set) or $this->dsn .= ';charset=' . $this->char_set;
+        } elseif (!empty($this->char_set) && strpos($this->dsn, 'charset=', 4) === false) {
+            $this->dsn .= ';charset=' . $this->char_set;
         }
     }
 
@@ -158,8 +157,8 @@ class CI_DB_pdo_oci_driver extends CI_DB_pdo_driver
         $sql = 'SELECT "TABLE_NAME" FROM "ALL_TABLES"';
 
         if ($prefix_limit === true && $this->dbprefix !== '') {
-            return $sql.' WHERE "TABLE_NAME" LIKE \''.$this->escape_like_str($this->dbprefix)."%' "
-                .sprintf($this->_like_escape_str, $this->_like_escape_chr);
+            return $sql . ' WHERE "TABLE_NAME" LIKE \'' . $this->escape_like_str($this->dbprefix) . "%' "
+                . sprintf($this->_like_escape_str, $this->_like_escape_chr);
         }
 
         return $sql;
@@ -184,8 +183,8 @@ class CI_DB_pdo_oci_driver extends CI_DB_pdo_driver
         }
 
         return 'SELECT COLUMN_NAME FROM ALL_TAB_COLUMNS
-			WHERE UPPER(OWNER) = '.$this->escape(strtoupper($owner)).'
-				AND UPPER(TABLE_NAME) = '.$this->escape(strtoupper($table));
+			WHERE UPPER(OWNER) = ' . $this->escape(strtoupper($owner)) . '
+				AND UPPER(TABLE_NAME) = ' . $this->escape(strtoupper($table));
     }
 
     // --------------------------------------------------------------------
@@ -206,32 +205,32 @@ class CI_DB_pdo_oci_driver extends CI_DB_pdo_driver
 
         $sql = 'SELECT COLUMN_NAME, DATA_TYPE, CHAR_LENGTH, DATA_PRECISION, DATA_LENGTH, DATA_DEFAULT, NULLABLE
 			FROM ALL_TAB_COLUMNS
-			WHERE UPPER(OWNER) = '.$this->escape(strtoupper($owner)).'
-				AND UPPER(TABLE_NAME) = '.$this->escape(strtoupper($table));
+			WHERE UPPER(OWNER) = ' . $this->escape(strtoupper($owner)) . '
+				AND UPPER(TABLE_NAME) = ' . $this->escape(strtoupper($table));
 
         if (($query = $this->query($sql)) === false) {
             return false;
         }
         $query = $query->result_object();
 
-        $retval = array();
+        $retval = [];
         for ($i = 0, $c = count($query); $i < $c; $i++) {
-            $retval[$i]			= new stdClass();
-            $retval[$i]->name		= $query[$i]->COLUMN_NAME;
-            $retval[$i]->type		= $query[$i]->DATA_TYPE;
+            $retval[$i] = new stdClass();
+            $retval[$i]->name = $query[$i]->COLUMN_NAME;
+            $retval[$i]->type = $query[$i]->DATA_TYPE;
 
             $length = ($query[$i]->CHAR_LENGTH > 0)
                 ? $query[$i]->CHAR_LENGTH : $query[$i]->DATA_PRECISION;
             if ($length === null) {
                 $length = $query[$i]->DATA_LENGTH;
             }
-            $retval[$i]->max_length		= $length;
+            $retval[$i]->max_length = $length;
 
             $default = $query[$i]->DATA_DEFAULT;
             if ($default === null && $query[$i]->NULLABLE === 'N') {
                 $default = '';
             }
-            $retval[$i]->default		= $query[$i]->COLUMN_DEFAULT;
+            $retval[$i]->default = $query[$i]->COLUMN_DEFAULT;
         }
 
         return $retval;
@@ -253,10 +252,10 @@ class CI_DB_pdo_oci_driver extends CI_DB_pdo_driver
         $sql = "INSERT ALL\n";
 
         for ($i = 0, $c = count($values); $i < $c; $i++) {
-            $sql .= '	INTO '.$table.' ('.$keys.') VALUES '.$values[$i]."\n";
+            $sql .= '	INTO ' . $table . ' (' . $keys . ') VALUES ' . $values[$i] . "\n";
         }
 
-        return $sql.'SELECT * FROM dual';
+        return $sql . 'SELECT * FROM dual';
     }
 
     // --------------------------------------------------------------------
@@ -295,10 +294,10 @@ class CI_DB_pdo_oci_driver extends CI_DB_pdo_driver
             // OFFSET-FETCH can be used only with the ORDER BY clause
             empty($this->qb_orderby) && $sql .= ' ORDER BY 1';
 
-            return $sql.' OFFSET '.(int) $this->qb_offset.' ROWS FETCH NEXT '.$this->qb_limit.' ROWS ONLY';
+            return $sql . ' OFFSET ' . (int) $this->qb_offset . ' ROWS FETCH NEXT ' . $this->qb_limit . ' ROWS ONLY';
         }
 
-        return 'SELECT * FROM (SELECT inner_query.*, rownum rnum FROM ('.$sql.') inner_query WHERE rownum < '.($this->qb_offset + $this->qb_limit + 1).')'
-            .($this->qb_offset ? ' WHERE rnum >= '.($this->qb_offset + 1): '');
+        return 'SELECT * FROM (SELECT inner_query.*, rownum rnum FROM (' . $sql . ') inner_query WHERE rownum < ' . ($this->qb_offset + $this->qb_limit + 1) . ')'
+            . ($this->qb_offset ? ' WHERE rnum >= ' . ($this->qb_offset + 1) : '');
     }
 }

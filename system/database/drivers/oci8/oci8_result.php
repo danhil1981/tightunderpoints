@@ -48,7 +48,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_oci8_result extends CI_DB_result
 {
-
     /**
      * Statement ID
      *
@@ -92,7 +91,7 @@ class CI_DB_oci8_result extends CI_DB_result
         $this->stmt_id = $driver_object->stmt_id;
         $this->curs_id = $driver_object->curs_id;
         $this->limit_used = $driver_object->limit_used;
-        $this->commit_mode =& $driver_object->commit_mode;
+        $this->commit_mode = &$driver_object->commit_mode;
         $driver_object->stmt_id = false;
     }
 
@@ -122,7 +121,7 @@ class CI_DB_oci8_result extends CI_DB_result
      */
     public function list_fields()
     {
-        $field_names = array();
+        $field_names = [];
         for ($c = 1, $fieldCount = $this->num_fields(); $c <= $fieldCount; $c++) {
             $field_names[] = oci_field_name($this->stmt_id, $c);
         }
@@ -140,12 +139,12 @@ class CI_DB_oci8_result extends CI_DB_result
      */
     public function field_data()
     {
-        $retval = array();
+        $retval = [];
         for ($c = 1, $fieldCount = $this->num_fields(); $c <= $fieldCount; $c++) {
-            $F		= new stdClass();
-            $F->name	= oci_field_name($this->stmt_id, $c);
-            $F->type	= oci_field_type($this->stmt_id, $c);
-            $F->max_length	= oci_field_size($this->stmt_id, $c);
+            $F = new stdClass();
+            $F->name = oci_field_name($this->stmt_id, $c);
+            $F->type = oci_field_type($this->stmt_id, $c);
+            $F->max_length = oci_field_size($this->stmt_id, $c);
 
             $retval[] = $F;
         }
@@ -208,7 +207,7 @@ class CI_DB_oci8_result extends CI_DB_result
             ? oci_fetch_object($this->curs_id)
             : oci_fetch_object($this->stmt_id);
 
-        if ($class_name === 'stdClass' or ! $row) {
+        if ($class_name === 'stdClass' or !$row) {
             return $row;
         }
 

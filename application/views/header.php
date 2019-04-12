@@ -21,7 +21,7 @@
                     <br/>
                     <?php
                         if (isset($this->session->logged_in)) {
-                            echo "<a href='".site_url();
+                            echo "<a href='" . site_url();
                             switch ($this->session->type) {
                                     case 1:
                                         echo "admins'>";
@@ -37,7 +37,7 @@
                     <img src="<?php echo base_url()?>assets/img/logo.PNG" alt="Responsive Logo">
                     <?php
                         if (isset($this->session->logged_in)) {
-                            echo "</a>";
+                            echo '</a>';
                         }
                     ?>
                 </div>

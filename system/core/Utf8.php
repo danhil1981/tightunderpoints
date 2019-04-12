@@ -50,7 +50,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_Utf8
 {
-
     /**
      * Class constructor
      *

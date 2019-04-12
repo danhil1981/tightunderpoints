@@ -48,7 +48,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_Cache_memcached extends CI_Driver
 {
-
     /**
      * Holds the memcached object
      *
@@ -61,13 +60,13 @@ class CI_Cache_memcached extends CI_Driver
      *
      * @var array
      */
-    protected $_config = array(
-        'default' => array(
-            'host'		=> '127.0.0.1',
-            'port'		=> 11211,
-            'weight'	=> 1
-        )
-    );
+    protected $_config = [
+        'default' => [
+            'host' => '127.0.0.1',
+            'port' => 11211,
+            'weight' => 1,
+        ],
+    ];
 
     // ------------------------------------------------------------------------
 
@@ -81,7 +80,7 @@ class CI_Cache_memcached extends CI_Driver
     public function __construct()
     {
         // Try to load memcached server info from the config file.
-        $CI =& get_instance();
+        $CI = &get_instance();
         $defaults = $this->_config['default'];
 
         if ($CI->config->load('memcached', true, true)) {
@@ -149,7 +148,7 @@ class CI_Cache_memcached extends CI_Driver
     public function save($id, $data, $ttl = 60, $raw = false)
     {
         if ($raw !== true) {
-            $data = array($data, time(), $ttl);
+            $data = [$data, time(), $ttl];
         }
 
         if ($this->_memcached instanceof Memcached) {
@@ -252,11 +251,11 @@ class CI_Cache_memcached extends CI_Driver
 
         list($data, $time, $ttl) = $stored;
 
-        return array(
-            'expire'	=> $time + $ttl,
-            'mtime'		=> $time,
-            'data'		=> $data
-        );
+        return [
+            'expire' => $time + $ttl,
+            'mtime' => $time,
+            'data' => $data,
+        ];
     }
 
     // ------------------------------------------------------------------------

@@ -46,7 +46,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_cubrid_utility extends CI_DB_utility
 {
-
     /**
      * List databases
      *
@@ -69,7 +68,7 @@ class CI_DB_cubrid_utility extends CI_DB_utility
      * @param	array	Preferences
      * @return	mixed
      */
-    protected function _backup($params = array())
+    protected function _backup($params = [])
     {
         // No SQL based support in CUBRID as of version 8.4.0. Database or
         // table backup can be performed using CUBRID Manager

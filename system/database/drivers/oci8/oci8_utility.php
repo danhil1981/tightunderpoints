@@ -46,13 +46,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_oci8_utility extends CI_DB_utility
 {
-
     /**
      * List databases statement
      *
      * @var	string
      */
-    protected $_list_databases	= 'SELECT username FROM dba_users'; // Schemas are actual usernames
+    protected $_list_databases = 'SELECT username FROM dba_users'; // Schemas are actual usernames
 
     /**
      * Export
@@ -60,7 +59,7 @@ class CI_DB_oci8_utility extends CI_DB_utility
      * @param	array	$params	Preferences
      * @return	mixed
      */
-    protected function _backup($params = array())
+    protected function _backup($params = [])
     {
         // Currently unsupported
         return $this->db->display_error('db_unsupported_feature');

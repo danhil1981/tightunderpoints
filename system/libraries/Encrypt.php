@@ -50,27 +50,26 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_Encrypt
 {
-
     /**
      * Reference to the user's encryption key
      *
      * @var string
      */
-    public $encryption_key		= '';
+    public $encryption_key = '';
 
     /**
      * Type of hash operation
      *
      * @var string
      */
-    protected $_hash_type		= 'sha1';
+    protected $_hash_type = 'sha1';
 
     /**
      * Flag for the existence of mcrypt
      *
      * @var bool
      */
-    protected $_mcrypt_exists	= false;
+    protected $_mcrypt_exists = false;
 
     /**
      * Current cipher to be used with mcrypt
@@ -120,7 +119,7 @@ class CI_Encrypt
 
             $key = config_item('encryption_key');
 
-            if (! self::strlen($key)) {
+            if (!self::strlen($key)) {
                 show_error('In order to use the encryption class requires that you set an encryption key in your config file.');
             }
         }
@@ -289,7 +288,7 @@ class CI_Encrypt
     {
         $init_size = mcrypt_get_iv_size($this->_get_cipher(), $this->_get_mode());
         $init_vect = mcrypt_create_iv($init_size, MCRYPT_DEV_URANDOM);
-        return $this->_add_cipher_noise($init_vect.mcrypt_encrypt($this->_get_cipher(), $key, $data, $this->_get_mode(), $init_vect), $key);
+        return $this->_add_cipher_noise($init_vect . mcrypt_encrypt($this->_get_cipher(), $key, $data, $this->_get_mode(), $init_vect), $key);
     }
 
     // --------------------------------------------------------------------
@@ -311,7 +310,7 @@ class CI_Encrypt
         }
 
         $init_vect = self::substr($data, 0, $init_size);
-        $data      = self::substr($data, $init_size);
+        $data = self::substr($data, $init_size);
 
         return rtrim(mcrypt_decrypt($this->_get_cipher(), $key, $data, $this->_get_mode(), $init_vect), "\0");
     }

@@ -48,7 +48,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_Session
 {
-
     /**
      * Userdata array
      *
@@ -68,7 +67,7 @@ class CI_Session
      * @param	array	$params	Configuration parameters
      * @return	void
      */
-    public function __construct(array $params = array())
+    public function __construct(array $params = [])
     {
         // No sessions under CLI
         if (is_cli()) {
@@ -77,7 +76,7 @@ class CI_Session
         } elseif ((bool) ini_get('session.auto_start')) {
             log_message('error', 'Session: session.auto_start is enabled in php.ini. Aborting.');
             return;
-        } elseif (! empty($params['driver'])) {
+        } elseif (!empty($params['driver'])) {
             $this->_driver = $params['driver'];
             unset($params['driver']);
         } elseif ($driver = config_item('sess_driver')) {
@@ -101,26 +100,26 @@ class CI_Session
                 session_set_save_handler($class, true);
             } else {
                 session_set_save_handler(
-                    array($class, 'open'),
-                    array($class, 'close'),
-                    array($class, 'read'),
-                    array($class, 'write'),
-                    array($class, 'destroy'),
-                    array($class, 'gc')
+                    [$class, 'open'],
+                    [$class, 'close'],
+                    [$class, 'read'],
+                    [$class, 'write'],
+                    [$class, 'destroy'],
+                    [$class, 'gc']
                 );
 
                 register_shutdown_function('session_write_close');
             }
         } else {
-            log_message('error', "Session: Driver '".$this->_driver."' doesn't implement SessionHandlerInterface. Aborting.");
+            log_message('error', "Session: Driver '" . $this->_driver . "' doesn't implement SessionHandlerInterface. Aborting.");
             return;
         }
 
         // Sanitize the cookie, because apparently PHP doesn't do that for userspace handlers
         if (isset($_COOKIE[$this->_config['cookie_name']])
             && (
-                ! is_string($_COOKIE[$this->_config['cookie_name']])
-                or ! preg_match('#\A'.$this->_sid_regexp.'\z#', $_COOKIE[$this->_config['cookie_name']])
+                !is_string($_COOKIE[$this->_config['cookie_name']])
+                or !preg_match('#\A' . $this->_sid_regexp . '\z#', $_COOKIE[$this->_config['cookie_name']])
             )
         ) {
             unset($_COOKIE[$this->_config['cookie_name']]);
@@ -132,7 +131,7 @@ class CI_Session
         if ((empty($_SERVER['HTTP_X_REQUESTED_WITH']) or strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) !== 'xmlhttprequest')
             && ($regenerate_time = config_item('sess_time_to_update')) > 0
         ) {
-            if (! isset($_SESSION['__ci_last_regenerate'])) {
+            if (!isset($_SESSION['__ci_last_regenerate'])) {
                 $_SESSION['__ci_last_regenerate'] = time();
             } elseif ($_SESSION['__ci_last_regenerate'] < (time() - $regenerate_time)) {
                 $this->sess_regenerate((bool) config_item('sess_regenerate_destroy'));
@@ -154,7 +153,7 @@ class CI_Session
 
         $this->_ci_init_vars();
 
-        log_message('info', "Session: Class initialized using '".$this->_driver."' driver.");
+        log_message('info', "Session: Class initialized using '" . $this->_driver . "' driver.");
     }
 
     // ------------------------------------------------------------------------
@@ -172,52 +171,50 @@ class CI_Session
     protected function _ci_load_classes($driver)
     {
         // PHP 5.4 compatibility
-        interface_exists('SessionHandlerInterface', false) or require_once(BASEPATH.'libraries/SessionHandlerInterface.php');
+        interface_exists('SessionHandlerInterface', false) or require_once BASEPATH . 'libraries/SessionHandlerInterface.php';
 
         $prefix = config_item('subclass_prefix');
 
-        if (! class_exists('CI_Session_driver', false)) {
-            require_once(
-                file_exists(APPPATH.'libraries/Session_driver.php')
-                    ? APPPATH.'libraries/Session_driver.php'
-                    : BASEPATH.'libraries/Session_driver.php'
-            );
+        if (!class_exists('CI_Session_driver', false)) {
+            require_once file_exists(APPPATH . 'libraries/Session_driver.php')
+                    ? APPPATH . 'libraries/Session_driver.php'
+                    : BASEPATH . 'libraries/Session_driver.php';
 
-            if (file_exists($file_path = APPPATH.'libraries/'.$prefix.'Session_driver.php')) {
-                require_once($file_path);
+            if (file_exists($file_path = APPPATH . 'libraries/' . $prefix . 'Session_driver.php')) {
+                require_once $file_path;
             }
         }
 
-        $class = 'Session_'.$driver.'_driver';
+        $class = 'Session_' . $driver . '_driver';
 
         // Allow custom drivers without the CI_ or MY_ prefix
-        if (! class_exists($class, false) && file_exists($file_path = APPPATH.'libraries/drivers/'.$class.'.php')) {
-            require_once($file_path);
+        if (!class_exists($class, false) && file_exists($file_path = APPPATH . 'libraries/drivers/' . $class . '.php')) {
+            require_once $file_path;
             if (class_exists($class, false)) {
                 return $class;
             }
         }
 
-        if (! class_exists('CI_'.$class, false)) {
-            if (file_exists($file_path = APPPATH.'libraries/drivers/'.$class.'.php') or file_exists($file_path = BASEPATH.'libraries/drivers/'.$class.'.php')) {
-                require_once($file_path);
+        if (!class_exists('CI_' . $class, false)) {
+            if (file_exists($file_path = APPPATH . 'libraries/drivers/' . $class . '.php') or file_exists($file_path = BASEPATH . 'libraries/drivers/' . $class . '.php')) {
+                require_once $file_path;
             }
 
-            if (! class_exists('CI_'.$class, false) && ! class_exists($class, false)) {
-                throw new UnexpectedValueException("Session: Configured driver '".$driver."' was not found. Aborting.");
+            if (!class_exists('CI_' . $class, false) && !class_exists($class, false)) {
+                throw new UnexpectedValueException("Session: Configured driver '" . $driver . "' was not found. Aborting.");
             }
         }
 
-        if (! class_exists($prefix.$class, false) && file_exists($file_path = APPPATH.'libraries/drivers/'.$prefix.$class.'.php')) {
-            require_once($file_path);
-            if (class_exists($prefix.$class, false)) {
-                return $prefix.$class;
+        if (!class_exists($prefix . $class, false) && file_exists($file_path = APPPATH . 'libraries/drivers/' . $prefix . $class . '.php')) {
+            require_once $file_path;
+            if (class_exists($prefix . $class, false)) {
+                return $prefix . $class;
             }
 
-            log_message('debug', 'Session: '.$prefix.$class.".php found but it doesn't declare class ".$prefix.$class.'.');
+            log_message('debug', 'Session: ' . $prefix . $class . ".php found but it doesn't declare class " . $prefix . $class . '.');
         }
 
-        return 'CI_'.$class;
+        return 'CI_' . $class;
     }
 
     // ------------------------------------------------------------------------
@@ -237,7 +234,7 @@ class CI_Session
         if (isset($params['cookie_lifetime'])) {
             $params['cookie_lifetime'] = (int) $params['cookie_lifetime'];
         } else {
-            $params['cookie_lifetime'] = (! isset($expiration) && config_item('sess_expire_on_close'))
+            $params['cookie_lifetime'] = (!isset($expiration) && config_item('sess_expire_on_close'))
                 ? 0 : (int) $expiration;
         }
 
@@ -309,7 +306,7 @@ class CI_Session
                 }
 
                 $bits = 160;
-            } elseif (! in_array($hash_function, hash_algos(), true)) {
+            } elseif (!in_array($hash_function, hash_algos(), true)) {
                 ini_set('session.hash_function', 1);
                 $bits = 160;
             } elseif (($bits = strlen(hash($hash_function, 'dummy', false)) * 4) < 160) {
@@ -318,10 +315,10 @@ class CI_Session
             }
 
             $bits_per_character = (int) ini_get('session.hash_bits_per_character');
-            $sid_length         = (int) ceil($bits / $bits_per_character);
+            $sid_length = (int) ceil($bits / $bits_per_character);
         } else {
             $bits_per_character = (int) ini_get('session.sid_bits_per_character');
-            $sid_length         = (int) ini_get('session.sid_length');
+            $sid_length = (int) ini_get('session.sid_length');
             if (($bits = $sid_length * $bits_per_character) < 160) {
                 // Add as many more characters as necessary to reach at least 160 bits
                 $sid_length += (int) ceil((160 % $bits) / $bits_per_character);
@@ -342,7 +339,7 @@ class CI_Session
                 break;
         }
 
-        $this->_sid_regexp .= '{'.$sid_length.'}';
+        $this->_sid_regexp .= '{' . $sid_length . '}';
     }
 
     // ------------------------------------------------------------------------
@@ -357,7 +354,7 @@ class CI_Session
      */
     protected function _ci_init_vars()
     {
-        if (! empty($_SESSION['__ci_vars'])) {
+        if (!empty($_SESSION['__ci_vars'])) {
             $current_time = time();
 
             foreach ($_SESSION['__ci_vars'] as $key => &$value) {
@@ -376,7 +373,7 @@ class CI_Session
             }
         }
 
-        $this->userdata =& $_SESSION;
+        $this->userdata = &$_SESSION;
     }
 
     // ------------------------------------------------------------------------
@@ -391,7 +388,7 @@ class CI_Session
     {
         if (is_array($key)) {
             for ($i = 0, $c = count($key); $i < $c; $i++) {
-                if (! isset($_SESSION[$key[$i]])) {
+                if (!isset($_SESSION[$key[$i]])) {
                     return false;
                 }
             }
@@ -405,7 +402,7 @@ class CI_Session
             return true;
         }
 
-        if (! isset($_SESSION[$key])) {
+        if (!isset($_SESSION[$key])) {
             return false;
         }
 
@@ -422,11 +419,11 @@ class CI_Session
      */
     public function get_flash_keys()
     {
-        if (! isset($_SESSION['__ci_vars'])) {
-            return array();
+        if (!isset($_SESSION['__ci_vars'])) {
+            return [];
         }
 
-        $keys = array();
+        $keys = [];
         foreach (array_keys($_SESSION['__ci_vars']) as $key) {
             is_int($_SESSION['__ci_vars'][$key]) or $keys[] = $key;
         }
@@ -448,10 +445,10 @@ class CI_Session
             return;
         }
 
-        is_array($key) or $key = array($key);
+        is_array($key) or $key = [$key];
 
         foreach ($key as $k) {
-            if (isset($_SESSION['__ci_vars'][$k]) && ! is_int($_SESSION['__ci_vars'][$k])) {
+            if (isset($_SESSION['__ci_vars'][$k]) && !is_int($_SESSION['__ci_vars'][$k])) {
                 unset($_SESSION['__ci_vars'][$k]);
             }
         }
@@ -475,7 +472,7 @@ class CI_Session
         $ttl += time();
 
         if (is_array($key)) {
-            $temp = array();
+            $temp = [];
 
             foreach ($key as $k => $v) {
                 // Do we have a key => ttl pair, or just a key?
@@ -486,7 +483,7 @@ class CI_Session
                     $v += time();
                 }
 
-                if (! isset($_SESSION[$k])) {
+                if (!isset($_SESSION[$k])) {
                     return false;
                 }
 
@@ -500,7 +497,7 @@ class CI_Session
             return true;
         }
 
-        if (! isset($_SESSION[$key])) {
+        if (!isset($_SESSION[$key])) {
             return false;
         }
 
@@ -517,11 +514,11 @@ class CI_Session
      */
     public function get_temp_keys()
     {
-        if (! isset($_SESSION['__ci_vars'])) {
-            return array();
+        if (!isset($_SESSION['__ci_vars'])) {
+            return [];
         }
 
-        $keys = array();
+        $keys = [];
         foreach (array_keys($_SESSION['__ci_vars']) as $key) {
             is_int($_SESSION['__ci_vars'][$key]) && $keys[] = $key;
         }
@@ -543,7 +540,7 @@ class CI_Session
             return;
         }
 
-        is_array($key) or $key = array($key);
+        is_array($key) or $key = [$key];
 
         foreach ($key as $k) {
             if (isset($_SESSION['__ci_vars'][$k]) && is_int($_SESSION['__ci_vars'][$k])) {
@@ -667,18 +664,18 @@ class CI_Session
         if (isset($key)) {
             return isset($_SESSION[$key]) ? $_SESSION[$key] : null;
         } elseif (empty($_SESSION)) {
-            return array();
+            return [];
         }
 
-        $userdata = array();
+        $userdata = [];
         $_exclude = array_merge(
-            array('__ci_vars'),
+            ['__ci_vars'],
             $this->get_flash_keys(),
             $this->get_temp_keys()
         );
 
         foreach (array_keys($_SESSION) as $key) {
-            if (! in_array($key, $_exclude, true)) {
+            if (!in_array($key, $_exclude, true)) {
                 $userdata[$key] = $_SESSION[$key];
             }
         }
@@ -775,14 +772,14 @@ class CI_Session
     public function flashdata($key = null)
     {
         if (isset($key)) {
-            return (isset($_SESSION['__ci_vars'], $_SESSION['__ci_vars'][$key], $_SESSION[$key]) && ! is_int($_SESSION['__ci_vars'][$key]))
+            return (isset($_SESSION['__ci_vars'], $_SESSION['__ci_vars'][$key], $_SESSION[$key]) && !is_int($_SESSION['__ci_vars'][$key]))
                 ? $_SESSION[$key]
                 : null;
         }
 
-        $flashdata = array();
+        $flashdata = [];
 
-        if (! empty($_SESSION['__ci_vars'])) {
+        if (!empty($_SESSION['__ci_vars'])) {
             foreach ($_SESSION['__ci_vars'] as $key => &$value) {
                 is_int($value) or $flashdata[$key] = $_SESSION[$key];
             }
@@ -841,9 +838,9 @@ class CI_Session
                 : null;
         }
 
-        $tempdata = array();
+        $tempdata = [];
 
-        if (! empty($_SESSION['__ci_vars'])) {
+        if (!empty($_SESSION['__ci_vars'])) {
             foreach ($_SESSION['__ci_vars'] as $key => &$value) {
                 is_int($value) && $tempdata[$key] = $_SESSION[$key];
             }

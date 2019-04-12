@@ -50,7 +50,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_Input
 {
-
     /**
      * IP address of the current user
      *
@@ -102,7 +101,7 @@ class CI_Input
      *
      * @var array
      */
-    protected $headers = array();
+    protected $headers = [];
 
     /**
      * Raw input stream data
@@ -138,23 +137,23 @@ class CI_Input
      */
     public function __construct()
     {
-        $this->_allow_get_array		= (config_item('allow_get_array') !== false);
-        $this->_enable_xss		= (config_item('global_xss_filtering') === true);
-        $this->_enable_csrf		= (config_item('csrf_protection') === true);
-        $this->_standardize_newlines	= (bool) config_item('standardize_newlines');
+        $this->_allow_get_array = (config_item('allow_get_array') !== false);
+        $this->_enable_xss = (config_item('global_xss_filtering') === true);
+        $this->_enable_csrf = (config_item('csrf_protection') === true);
+        $this->_standardize_newlines = (bool) config_item('standardize_newlines');
 
-        $this->security =& load_class('Security', 'core');
+        $this->security = &load_class('Security', 'core');
 
         // Do we need the UTF-8 class?
         if (UTF8_ENABLED === true) {
-            $this->uni =& load_class('Utf8', 'core');
+            $this->uni = &load_class('Utf8', 'core');
         }
 
         // Sanitize global arrays
         $this->_sanitize_globals();
 
         // CSRF Protection check
-        if ($this->_enable_csrf === true && ! is_cli()) {
+        if ($this->_enable_csrf === true && !is_cli()) {
             $this->security->csrf_verify();
         }
 
@@ -182,7 +181,7 @@ class CI_Input
 
         // allow fetching multiple keys at once
         if (is_array($index)) {
-            $output = array();
+            $output = [];
             foreach ($index as $key) {
                 $output[$key] = $this->_fetch_from_array($array, $key, $xss_clean);
             }
@@ -318,10 +317,10 @@ class CI_Input
     {
         // Prior to PHP 5.6, the input stream can only be read once,
         // so we'll need to check if we have already done that first.
-        if (! is_array($this->_input_stream)) {
+        if (!is_array($this->_input_stream)) {
             // $this->raw_input_stream will trigger __get().
             parse_str($this->raw_input_stream, $this->_input_stream);
-            is_array($this->_input_stream) or $this->_input_stream = array();
+            is_array($this->_input_stream) or $this->_input_stream = [];
         }
 
         return $this->_fetch_from_array($this->_input_stream, $index, $xss_clean);
@@ -349,7 +348,7 @@ class CI_Input
     {
         if (is_array($name)) {
             // always leave 'name' in last place, as the loop will break otherwise, due to $$item
-            foreach (array('value', 'expire', 'domain', 'path', 'prefix', 'secure', 'httponly', 'name') as $item) {
+            foreach (['value', 'expire', 'domain', 'path', 'prefix', 'secure', 'httponly', 'name'] as $item) {
                 if (isset($name[$item])) {
                     $$item = $name[$item];
                 }
@@ -376,13 +375,13 @@ class CI_Input
             ? (bool) config_item('cookie_httponly')
             : (bool) $httponly;
 
-        if (! is_numeric($expire)) {
+        if (!is_numeric($expire)) {
             $expire = time() - 86500;
         } else {
             $expire = ($expire > 0) ? time() + $expire : 0;
         }
 
-        setcookie($prefix.$name, $value, $expire, $path, $domain, $secure, $httponly);
+        setcookie($prefix . $name, $value, $expire, $path, $domain, $secure, $httponly);
     }
 
     // --------------------------------------------------------------------
@@ -401,21 +400,21 @@ class CI_Input
         }
 
         $proxy_ips = config_item('proxy_ips');
-        if (! empty($proxy_ips) && ! is_array($proxy_ips)) {
+        if (!empty($proxy_ips) && !is_array($proxy_ips)) {
             $proxy_ips = explode(',', str_replace(' ', '', $proxy_ips));
         }
 
         $this->ip_address = $this->server('REMOTE_ADDR');
 
         if ($proxy_ips) {
-            foreach (array('HTTP_X_FORWARDED_FOR', 'HTTP_CLIENT_IP', 'HTTP_X_CLIENT_IP', 'HTTP_X_CLUSTER_CLIENT_IP') as $header) {
+            foreach (['HTTP_X_FORWARDED_FOR', 'HTTP_CLIENT_IP', 'HTTP_X_CLIENT_IP', 'HTTP_X_CLUSTER_CLIENT_IP'] as $header) {
                 if (($spoof = $this->server($header)) !== null) {
                     // Some proxies typically list the whole chain of IP
                     // addresses through which the client has reached us.
                     // e.g. client_ip, proxy_ip1, proxy_ip2, etc.
                     sscanf($spoof, '%[^,]', $spoof);
 
-                    if (! $this->valid_ip($spoof)) {
+                    if (!$this->valid_ip($spoof)) {
                         $spoof = null;
                     } else {
                         break;
@@ -446,7 +445,7 @@ class CI_Input
                     }
 
                     // Convert the REMOTE_ADDR IP address to binary, if needed
-                    if (! isset($ip, $sprintf)) {
+                    if (!isset($ip, $sprintf)) {
                         if ($separator === ':') {
                             // Make sure we're have the "full" IPv6 format
                             $ip = explode(
@@ -493,7 +492,7 @@ class CI_Input
             }
         }
 
-        if (! $this->valid_ip($this->ip_address)) {
+        if (!$this->valid_ip($this->ip_address)) {
             return $this->ip_address = '0.0.0.0';
         }
 
@@ -555,7 +554,7 @@ class CI_Input
     {
         // Is $_GET data allowed? If not we'll set the $_GET to an empty array
         if ($this->_allow_get_array === false) {
-            $_GET = array();
+            $_GET = [];
         } elseif (is_array($_GET)) {
             foreach ($_GET as $key => $val) {
                 $_GET[$this->_clean_input_keys($key)] = $this->_clean_input_data($val);
@@ -611,7 +610,7 @@ class CI_Input
     protected function _clean_input_data($str)
     {
         if (is_array($str)) {
-            $new_array = array();
+            $new_array = [];
             foreach (array_keys($str) as $key) {
                 $new_array[$this->_clean_input_keys($key)] = $this->_clean_input_data($str[$key]);
             }
@@ -623,7 +622,7 @@ class CI_Input
            NOTE: In PHP 5.4 get_magic_quotes_gpc() will always return 0 and
                  it will probably not exist in future versions at all.
         */
-        if (! is_php('5.4') && get_magic_quotes_gpc()) {
+        if (!is_php('5.4') && get_magic_quotes_gpc()) {
             $str = stripslashes($str);
         }
 
@@ -660,7 +659,7 @@ class CI_Input
      */
     protected function _clean_input_keys($str, $fatal = true)
     {
-        if (! preg_match('/^[a-z0-9:_\/|-]+$/i', $str)) {
+        if (!preg_match('/^[a-z0-9:_\/|-]+$/i', $str)) {
             if ($fatal === true) {
                 return false;
             } else {
@@ -689,7 +688,7 @@ class CI_Input
     public function request_headers($xss_clean = false)
     {
         // If header is already defined, return it immediately
-        if (! empty($this->headers)) {
+        if (!empty($this->headers)) {
             return $this->_fetch_from_array($this->headers, null, $xss_clean);
         }
 
@@ -728,7 +727,7 @@ class CI_Input
     {
         static $headers;
 
-        if (! isset($headers)) {
+        if (!isset($headers)) {
             empty($this->headers) && $this->request_headers();
             foreach ($this->headers as $key => $value) {
                 $headers[strtolower($key)] = $value;
@@ -737,7 +736,7 @@ class CI_Input
 
         $index = strtolower($index);
 
-        if (! isset($headers[$index])) {
+        if (!isset($headers[$index])) {
             return null;
         }
 
@@ -757,7 +756,7 @@ class CI_Input
      */
     public function is_ajax_request()
     {
-        return (! empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest');
+        return (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest');
     }
 
     // --------------------------------------------------------------------

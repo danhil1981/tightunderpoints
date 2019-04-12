@@ -51,13 +51,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_Driver_Library
 {
-
     /**
      * Array of drivers that are available to use with the driver class
      *
      * @var array
      */
-    protected $valid_drivers = array();
+    protected $valid_drivers = [];
 
     /**
      * Name of the current class - usually the driver class
@@ -94,18 +93,18 @@ class CI_Driver_Library
         // Get CodeIgniter instance and subclass prefix
         $prefix = config_item('subclass_prefix');
 
-        if (! isset($this->lib_name)) {
+        if (!isset($this->lib_name)) {
             // Get library name without any prefix
-            $this->lib_name = str_replace(array('CI_', $prefix), '', get_class($this));
+            $this->lib_name = str_replace(['CI_', $prefix], '', get_class($this));
         }
 
         // The child will be prefixed with the parent lib
-        $child_name = $this->lib_name.'_'.$child;
+        $child_name = $this->lib_name . '_' . $child;
 
         // See if requested child is a valid driver
-        if (! in_array($child, $this->valid_drivers)) {
+        if (!in_array($child, $this->valid_drivers)) {
             // The requested driver isn't valid!
-            $msg = 'Invalid driver requested: '.$child_name;
+            $msg = 'Invalid driver requested: ' . $child_name;
             log_message('error', $msg);
             show_error($msg);
         }
@@ -115,25 +114,25 @@ class CI_Driver_Library
         $paths = $CI->load->get_package_paths(true);
 
         // Is there an extension?
-        $class_name = $prefix.$child_name;
+        $class_name = $prefix . $child_name;
         $found = class_exists($class_name, false);
-        if (! $found) {
+        if (!$found) {
             // Check for subclass file
             foreach ($paths as $path) {
                 // Does the file exist?
-                $file = $path.'libraries/'.$this->lib_name.'/drivers/'.$prefix.$child_name.'.php';
+                $file = $path . 'libraries/' . $this->lib_name . '/drivers/' . $prefix . $child_name . '.php';
                 if (file_exists($file)) {
                     // Yes - require base class from BASEPATH
-                    $basepath = BASEPATH.'libraries/'.$this->lib_name.'/drivers/'.$child_name.'.php';
-                    if (! file_exists($basepath)) {
-                        $msg = 'Unable to load the requested class: CI_'.$child_name;
+                    $basepath = BASEPATH . 'libraries/' . $this->lib_name . '/drivers/' . $child_name . '.php';
+                    if (!file_exists($basepath)) {
+                        $msg = 'Unable to load the requested class: CI_' . $child_name;
                         log_message('error', $msg);
                         show_error($msg);
                     }
 
                     // Include both sources and mark found
-                    include_once($basepath);
-                    include_once($file);
+                    include_once $basepath;
+                    include_once $file;
                     $found = true;
                     break;
                 }
@@ -141,17 +140,17 @@ class CI_Driver_Library
         }
 
         // Do we need to search for the class?
-        if (! $found) {
+        if (!$found) {
             // Use standard class name
-            $class_name = 'CI_'.$child_name;
-            if (! class_exists($class_name, false)) {
+            $class_name = 'CI_' . $child_name;
+            if (!class_exists($class_name, false)) {
                 // Check package paths
                 foreach ($paths as $path) {
                     // Does the file exist?
-                    $file = $path.'libraries/'.$this->lib_name.'/drivers/'.$child_name.'.php';
+                    $file = $path . 'libraries/' . $this->lib_name . '/drivers/' . $child_name . '.php';
                     if (file_exists($file)) {
                         // Include source
-                        include_once($file);
+                        include_once $file;
                         break;
                     }
                 }
@@ -159,11 +158,11 @@ class CI_Driver_Library
         }
 
         // Did we finally find the class?
-        if (! class_exists($class_name, false)) {
+        if (!class_exists($class_name, false)) {
             if (class_exists($child_name, false)) {
                 $class_name = $child_name;
             } else {
-                $msg = 'Unable to load the requested driver: '.$class_name;
+                $msg = 'Unable to load the requested driver: ' . $class_name;
                 log_message('error', $msg);
                 show_error($msg);
             }
@@ -193,7 +192,6 @@ class CI_Driver_Library
  */
 class CI_Driver
 {
-
     /**
      * Instance of the parent class
      *
@@ -206,14 +204,14 @@ class CI_Driver
      *
      * @var array
      */
-    protected $_methods = array();
+    protected $_methods = [];
 
     /**
      * List of properties in the parent class
      *
      * @var array
      */
-    protected $_properties = array();
+    protected $_properties = [];
 
     /**
      * Array of methods and properties for the parent class(es)
@@ -221,7 +219,7 @@ class CI_Driver
      * @static
      * @var	array
      */
-    protected static $_reflections = array();
+    protected static $_reflections = [];
 
     /**
      * Decorate
@@ -240,7 +238,7 @@ class CI_Driver
 
         $class_name = get_class($parent);
 
-        if (! isset(self::$_reflections[$class_name])) {
+        if (!isset(self::$_reflections[$class_name])) {
             $r = new ReflectionObject($parent);
 
             foreach ($r->getMethods() as $method) {
@@ -255,7 +253,7 @@ class CI_Driver
                 }
             }
 
-            self::$_reflections[$class_name] = array($this->_methods, $this->_properties);
+            self::$_reflections[$class_name] = [$this->_methods, $this->_properties];
         } else {
             list($this->_methods, $this->_properties) = self::$_reflections[$class_name];
         }
@@ -272,13 +270,13 @@ class CI_Driver
      * @param	array
      * @return	mixed
      */
-    public function __call($method, $args = array())
+    public function __call($method, $args = [])
     {
         if (in_array($method, $this->_methods)) {
-            return call_user_func_array(array($this->_parent, $method), $args);
+            return call_user_func_array([$this->_parent, $method], $args);
         }
 
-        throw new BadMethodCallException('No such method: '.$method.'()');
+        throw new BadMethodCallException('No such method: ' . $method . '()');
     }
 
     // --------------------------------------------------------------------

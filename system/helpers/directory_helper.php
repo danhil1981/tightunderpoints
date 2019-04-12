@@ -49,7 +49,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('directory_map')) {
+if (!function_exists('directory_map')) {
     /**
      * Create a Directory Map
      *
@@ -66,9 +66,9 @@ if (! function_exists('directory_map')) {
     function directory_map($source_dir, $directory_depth = 0, $hidden = false)
     {
         if ($fp = @opendir($source_dir)) {
-            $filedata	= array();
-            $new_depth	= $directory_depth - 1;
-            $source_dir	= rtrim($source_dir, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR;
+            $filedata = [];
+            $new_depth = $directory_depth - 1;
+            $source_dir = rtrim($source_dir, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
 
             while (false !== ($file = readdir($fp))) {
                 // Remove '.', '..', and hidden files [optional]
@@ -76,10 +76,10 @@ if (! function_exists('directory_map')) {
                     continue;
                 }
 
-                is_dir($source_dir.$file) && $file .= DIRECTORY_SEPARATOR;
+                is_dir($source_dir . $file) && $file .= DIRECTORY_SEPARATOR;
 
-                if (($directory_depth < 1 or $new_depth > 0) && is_dir($source_dir.$file)) {
-                    $filedata[$file] = directory_map($source_dir.$file, $new_depth, $hidden);
+                if (($directory_depth < 1 or $new_depth > 0) && is_dir($source_dir . $file)) {
+                    $filedata[$file] = directory_map($source_dir . $file, $new_depth, $hidden);
                 } else {
                     $filedata[] = $file;
                 }

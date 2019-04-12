@@ -50,7 +50,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_User_agent
 {
-
     /**
      * Current user-agent
      *
@@ -84,42 +83,42 @@ class CI_User_agent
      *
      * @var array
      */
-    public $languages = array();
+    public $languages = [];
 
     /**
      * Character sets accepted by the current user agent
      *
      * @var array
      */
-    public $charsets = array();
+    public $charsets = [];
 
     /**
      * List of platforms to compare against current user agent
      *
      * @var array
      */
-    public $platforms = array();
+    public $platforms = [];
 
     /**
      * List of browsers to compare against current user agent
      *
      * @var array
      */
-    public $browsers = array();
+    public $browsers = [];
 
     /**
      * List of mobile browsers to compare against current user agent
      *
      * @var array
      */
-    public $mobiles = array();
+    public $mobiles = [];
 
     /**
      * List of robots to compare against current user agent
      *
      * @var array
      */
-    public $robots = array();
+    public $robots = [];
 
     /**
      * Current user-agent platform
@@ -193,12 +192,12 @@ class CI_User_agent
      */
     protected function _load_agent_file()
     {
-        if (($found = file_exists(APPPATH.'config/user_agents.php'))) {
-            include(APPPATH.'config/user_agents.php');
+        if (($found = file_exists(APPPATH . 'config/user_agents.php'))) {
+            include APPPATH . 'config/user_agents.php';
         }
 
-        if (file_exists(APPPATH.'config/'.ENVIRONMENT.'/user_agents.php')) {
-            include(APPPATH.'config/'.ENVIRONMENT.'/user_agents.php');
+        if (file_exists(APPPATH . 'config/' . ENVIRONMENT . '/user_agents.php')) {
+            include APPPATH . 'config/' . ENVIRONMENT . '/user_agents.php';
             $found = true;
         }
 
@@ -246,7 +245,7 @@ class CI_User_agent
     {
         $this->_set_platform();
 
-        foreach (array('_set_robot', '_set_browser', '_set_mobile') as $function) {
+        foreach (['_set_robot', '_set_browser', '_set_mobile'] as $function) {
             if ($this->$function() === true) {
                 break;
             }
@@ -264,7 +263,7 @@ class CI_User_agent
     {
         if (is_array($this->platforms) && count($this->platforms) > 0) {
             foreach ($this->platforms as $key => $val) {
-                if (preg_match('|'.preg_quote($key).'|i', $this->agent)) {
+                if (preg_match('|' . preg_quote($key) . '|i', $this->agent)) {
                     $this->platform = $val;
                     return true;
                 }
@@ -286,7 +285,7 @@ class CI_User_agent
     {
         if (is_array($this->browsers) && count($this->browsers) > 0) {
             foreach ($this->browsers as $key => $val) {
-                if (preg_match('|'.$key.'.*?([0-9\.]+)|i', $this->agent, $match)) {
+                if (preg_match('|' . $key . '.*?([0-9\.]+)|i', $this->agent, $match)) {
                     $this->is_browser = true;
                     $this->version = $match[1];
                     $this->browser = $val;
@@ -310,7 +309,7 @@ class CI_User_agent
     {
         if (is_array($this->robots) && count($this->robots) > 0) {
             foreach ($this->robots as $key => $val) {
-                if (preg_match('|'.preg_quote($key).'|i', $this->agent)) {
+                if (preg_match('|' . preg_quote($key) . '|i', $this->agent)) {
                     $this->is_robot = true;
                     $this->robot = $val;
                     $this->_set_mobile();
@@ -353,12 +352,12 @@ class CI_User_agent
      */
     protected function _set_languages()
     {
-        if ((count($this->languages) === 0) && ! empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+        if ((count($this->languages) === 0) && !empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
             $this->languages = explode(',', preg_replace('/(;\s?q=[0-9\.]+)|\s/i', '', strtolower(trim($_SERVER['HTTP_ACCEPT_LANGUAGE']))));
         }
 
         if (count($this->languages) === 0) {
-            $this->languages = array('Undefined');
+            $this->languages = ['Undefined'];
         }
     }
 
@@ -371,12 +370,12 @@ class CI_User_agent
      */
     protected function _set_charsets()
     {
-        if ((count($this->charsets) === 0) && ! empty($_SERVER['HTTP_ACCEPT_CHARSET'])) {
+        if ((count($this->charsets) === 0) && !empty($_SERVER['HTTP_ACCEPT_CHARSET'])) {
             $this->charsets = explode(',', preg_replace('/(;\s?q=.+)|\s/i', '', strtolower(trim($_SERVER['HTTP_ACCEPT_CHARSET']))));
         }
 
         if (count($this->charsets) === 0) {
-            $this->charsets = array('Undefined');
+            $this->charsets = ['Undefined'];
         }
     }
 
@@ -390,7 +389,7 @@ class CI_User_agent
      */
     public function is_browser($key = null)
     {
-        if (! $this->is_browser) {
+        if (!$this->is_browser) {
             return false;
         }
 
@@ -413,7 +412,7 @@ class CI_User_agent
      */
     public function is_robot($key = null)
     {
-        if (! $this->is_robot) {
+        if (!$this->is_robot) {
             return false;
         }
 
@@ -436,7 +435,7 @@ class CI_User_agent
      */
     public function is_mobile($key = null)
     {
-        if (! $this->is_mobile) {
+        if (!$this->is_mobile) {
             return false;
         }
 
@@ -458,7 +457,7 @@ class CI_User_agent
      */
     public function is_referral()
     {
-        if (! isset($this->referer)) {
+        if (!isset($this->referer)) {
             if (empty($_SERVER['HTTP_REFERER'])) {
                 $this->referer = false;
             } else {
@@ -531,6 +530,7 @@ class CI_User_agent
     {
         return $this->robot;
     }
+
     // --------------------------------------------------------------------
 
     /**
@@ -635,7 +635,7 @@ class CI_User_agent
         // Set the new user-agent string and parse it, unless empty
         $this->agent = $string;
 
-        if (! empty($string)) {
+        if (!empty($string)) {
             $this->_compile_data();
         }
     }

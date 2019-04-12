@@ -49,7 +49,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 // ------------------------------------------------------------------------
 
-if (! function_exists('xml_convert')) {
+if (!function_exists('xml_convert')) {
     /**
      * Convert Reserved XML characters to Entities
      *
@@ -63,23 +63,23 @@ if (! function_exists('xml_convert')) {
 
         // Replace entities to temporary markers so that
         // ampersands won't get messed up
-        $str = preg_replace('/&#(\d+);/', $temp.'\\1;', $str);
+        $str = preg_replace('/&#(\d+);/', $temp . '\\1;', $str);
 
         if ($protect_all === true) {
-            $str = preg_replace('/&(\w+);/', $temp.'\\1;', $str);
+            $str = preg_replace('/&(\w+);/', $temp . '\\1;', $str);
         }
 
         $str = str_replace(
-            array('&', '<', '>', '"', "'", '-'),
-            array('&amp;', '&lt;', '&gt;', '&quot;', '&apos;', '&#45;'),
+            ['&', '<', '>', '"', "'", '-'],
+            ['&amp;', '&lt;', '&gt;', '&quot;', '&apos;', '&#45;'],
             $str
         );
 
         // Decode the temp markers back to entities
-        $str = preg_replace('/'.$temp.'(\d+);/', '&#\\1;', $str);
+        $str = preg_replace('/' . $temp . '(\d+);/', '&#\\1;', $str);
 
         if ($protect_all === true) {
-            return preg_replace('/'.$temp.'(\w+);/', '&\\1;', $str);
+            return preg_replace('/' . $temp . '(\w+);/', '&\\1;', $str);
         }
 
         return $str;

@@ -54,13 +54,13 @@ class CI_Cache_redis extends CI_Driver
      * @static
      * @var	array
      */
-    protected static $_default_config = array(
+    protected static $_default_config = [
         'socket_type' => 'tcp',
         'host' => '127.0.0.1',
         'password' => null,
         'port' => 6379,
-        'timeout' => 0
-    );
+        'timeout' => 0,
+    ];
 
     /**
      * Redis connection
@@ -74,7 +74,7 @@ class CI_Cache_redis extends CI_Driver
      *
      * @var	array
      */
-    protected $_serialized = array();
+    protected $_serialized = [];
 
     // ------------------------------------------------------------------------
 
@@ -91,12 +91,12 @@ class CI_Cache_redis extends CI_Driver
      */
     public function __construct()
     {
-        if (! $this->is_supported()) {
+        if (!$this->is_supported()) {
             log_message('error', 'Cache: Failed to create Redis object; extension not loaded?');
             return;
         }
 
-        $CI =& get_instance();
+        $CI = &get_instance();
 
         if ($CI->config->load('redis', true, true)) {
             $config = array_merge(self::$_default_config, $CI->config->item('redis'));
@@ -113,15 +113,15 @@ class CI_Cache_redis extends CI_Driver
                 $success = $this->_redis->connect($config['host'], $config['port'], $config['timeout']);
             }
 
-            if (! $success) {
+            if (!$success) {
                 log_message('error', 'Cache: Redis connection failed. Check your configuration.');
             }
 
-            if (isset($config['password']) && ! $this->_redis->auth($config['password'])) {
+            if (isset($config['password']) && !$this->_redis->auth($config['password'])) {
                 log_message('error', 'Cache: Redis authentication failed.');
             }
         } catch (RedisException $e) {
-            log_message('error', 'Cache: Redis connection refused ('.$e->getMessage().')');
+            log_message('error', 'Cache: Redis connection refused (' . $e->getMessage() . ')');
         }
 
         // Initialize the index of serialized values.
@@ -162,7 +162,7 @@ class CI_Cache_redis extends CI_Driver
     public function save($id, $data, $ttl = 60, $raw = false)
     {
         if (is_array($data) or is_object($data)) {
-            if (! $this->_redis->sIsMember('_ci_redis_serialized', $id) && ! $this->_redis->sAdd('_ci_redis_serialized', $id)) {
+            if (!$this->_redis->sIsMember('_ci_redis_serialized', $id) && !$this->_redis->sAdd('_ci_redis_serialized', $id)) {
                 return false;
             }
 
@@ -268,10 +268,10 @@ class CI_Cache_redis extends CI_Driver
         $value = $this->get($key);
 
         if ($value !== false) {
-            return array(
+            return [
                 'expire' => time() + $this->_redis->ttl($key),
-                'data' => $value
-            );
+                'data' => $value,
+            ];
         }
 
         return false;

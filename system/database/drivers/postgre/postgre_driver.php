@@ -52,7 +52,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_postgre_driver extends CI_DB
 {
-
     /**
      * Database driver
      *
@@ -74,7 +73,7 @@ class CI_DB_postgre_driver extends CI_DB
      *
      * @var	array
      */
-    protected $_random_keyword = array('RANDOM()', 'RANDOM()');
+    protected $_random_keyword = ['RANDOM()', 'RANDOM()'];
 
     // --------------------------------------------------------------------
 
@@ -90,7 +89,7 @@ class CI_DB_postgre_driver extends CI_DB
     {
         parent::__construct($params);
 
-        if (! empty($this->dsn)) {
+        if (!empty($this->dsn)) {
             return;
         }
 
@@ -101,23 +100,23 @@ class CI_DB_postgre_driver extends CI_DB
             $this->port = '';
         }
 
-        $this->hostname === '' or $this->dsn = 'host='.$this->hostname.' ';
+        $this->hostname === '' or $this->dsn = 'host=' . $this->hostname . ' ';
 
-        if (! empty($this->port) && ctype_digit($this->port)) {
-            $this->dsn .= 'port='.$this->port.' ';
+        if (!empty($this->port) && ctype_digit($this->port)) {
+            $this->dsn .= 'port=' . $this->port . ' ';
         }
 
         if ($this->username !== '') {
-            $this->dsn .= 'user='.$this->username.' ';
+            $this->dsn .= 'user=' . $this->username . ' ';
 
             /* An empty password is valid!
              *
              * $db['password'] = NULL must be done in order to ignore it.
              */
-            $this->password === null or $this->dsn .= "password='".$this->password."' ";
+            $this->password === null or $this->dsn .= "password='" . $this->password . "' ";
         }
 
-        $this->database === '' or $this->dsn .= 'dbname='.$this->database.' ';
+        $this->database === '' or $this->dsn .= 'dbname=' . $this->database . ' ';
 
         /* We don't have these options as elements in our standard configuration
          * array, but they might be set by parse_url() if the configuration was
@@ -125,9 +124,9 @@ class CI_DB_postgre_driver extends CI_DB
          *
          * postgre://username:password@localhost:5432/database?connect_timeout=5&sslmode=1
          */
-        foreach (array('connect_timeout', 'options', 'sslmode', 'service') as $key) {
+        foreach (['connect_timeout', 'options', 'sslmode', 'service'] as $key) {
             if (isset($this->$key) && is_string($this->$key) && $this->$key !== '') {
-                $this->dsn .= $key."='".$this->$key."' ";
+                $this->dsn .= $key . "='" . $this->$key . "' ";
             }
         }
 
@@ -156,7 +155,7 @@ class CI_DB_postgre_driver extends CI_DB
                 return false;
             }
 
-            empty($this->schema) or $this->simple_query('SET search_path TO '.$this->schema.',public');
+            empty($this->schema) or $this->simple_query('SET search_path TO ' . $this->schema . ',public');
         }
 
         return $this->conn_id;
@@ -205,7 +204,7 @@ class CI_DB_postgre_driver extends CI_DB
             return $this->data_cache['version'];
         }
 
-        if (! $this->conn_id or ($pg_version = pg_version($this->conn_id)) === false) {
+        if (!$this->conn_id or ($pg_version = pg_version($this->conn_id)) === false) {
             return false;
         }
 
@@ -342,14 +341,14 @@ class CI_DB_postgre_driver extends CI_DB
     {
         $v = $this->version();
 
-        $table	= (func_num_args() > 0) ? func_get_arg(0) : null;
-        $column	= (func_num_args() > 1) ? func_get_arg(1) : null;
+        $table = (func_num_args() > 0) ? func_get_arg(0) : null;
+        $column = (func_num_args() > 1) ? func_get_arg(1) : null;
 
         if ($table === null && $v >= '8.1') {
             $sql = 'SELECT LASTVAL() AS ins_id';
         } elseif ($table !== null) {
             if ($column !== null && $v >= '8.0') {
-                $sql = 'SELECT pg_get_serial_sequence(\''.$table."', '".$column."') AS seq";
+                $sql = 'SELECT pg_get_serial_sequence(\'' . $table . "', '" . $column . "') AS seq";
                 $query = $this->query($sql);
                 $query = $query->row();
                 $seq = $query->seq;
@@ -358,7 +357,7 @@ class CI_DB_postgre_driver extends CI_DB
                 $seq = $table;
             }
 
-            $sql = 'SELECT CURRVAL(\''.$seq."') AS ins_id";
+            $sql = 'SELECT CURRVAL(\'' . $seq . "') AS ins_id";
         } else {
             return pg_last_oid($this->result_id);
         }
@@ -380,12 +379,12 @@ class CI_DB_postgre_driver extends CI_DB
      */
     protected function _list_tables($prefix_limit = false)
     {
-        $sql = 'SELECT "table_name" FROM "information_schema"."tables" WHERE "table_schema" = \''.$this->schema."'";
+        $sql = 'SELECT "table_name" FROM "information_schema"."tables" WHERE "table_schema" = \'' . $this->schema . "'";
 
         if ($prefix_limit !== false && $this->dbprefix !== '') {
-            return $sql.' AND "table_name" LIKE \''
-                .$this->escape_like_str($this->dbprefix)."%' "
-                .sprintf($this->_like_escape_str, $this->_like_escape_chr);
+            return $sql . ' AND "table_name" LIKE \''
+                . $this->escape_like_str($this->dbprefix) . "%' "
+                . sprintf($this->_like_escape_str, $this->_like_escape_chr);
         }
 
         return $sql;
@@ -405,7 +404,7 @@ class CI_DB_postgre_driver extends CI_DB
     {
         return 'SELECT "column_name"
 			FROM "information_schema"."columns"
-			WHERE LOWER("table_name") = '.$this->escape(strtolower($table));
+			WHERE LOWER("table_name") = ' . $this->escape(strtolower($table));
     }
 
     // --------------------------------------------------------------------
@@ -420,20 +419,20 @@ class CI_DB_postgre_driver extends CI_DB
     {
         $sql = 'SELECT "column_name", "data_type", "character_maximum_length", "numeric_precision", "column_default"
 			FROM "information_schema"."columns"
-			WHERE LOWER("table_name") = '.$this->escape(strtolower($table));
+			WHERE LOWER("table_name") = ' . $this->escape(strtolower($table));
 
         if (($query = $this->query($sql)) === false) {
             return false;
         }
         $query = $query->result_object();
 
-        $retval = array();
+        $retval = [];
         for ($i = 0, $c = count($query); $i < $c; $i++) {
-            $retval[$i]			= new stdClass();
-            $retval[$i]->name		= $query[$i]->column_name;
-            $retval[$i]->type		= $query[$i]->data_type;
-            $retval[$i]->max_length		= ($query[$i]->character_maximum_length > 0) ? $query[$i]->character_maximum_length : $query[$i]->numeric_precision;
-            $retval[$i]->default		= $query[$i]->column_default;
+            $retval[$i] = new stdClass();
+            $retval[$i]->name = $query[$i]->column_name;
+            $retval[$i]->type = $query[$i]->data_type;
+            $retval[$i]->max_length = ($query[$i]->character_maximum_length > 0) ? $query[$i]->character_maximum_length : $query[$i]->numeric_precision;
+            $retval[$i]->default = $query[$i]->column_default;
         }
 
         return $retval;
@@ -451,7 +450,7 @@ class CI_DB_postgre_driver extends CI_DB
      */
     public function error()
     {
-        return array('code' => '', 'message' => pg_last_error($this->conn_id));
+        return ['code' => '', 'message' => pg_last_error($this->conn_id)];
     }
 
     // --------------------------------------------------------------------
@@ -468,14 +467,14 @@ class CI_DB_postgre_driver extends CI_DB
     {
         $direction = strtoupper(trim($direction));
         if ($direction === 'RANDOM') {
-            if (! is_float($orderby) && ctype_digit((string) $orderby)) {
+            if (!is_float($orderby) && ctype_digit((string) $orderby)) {
                 $orderby = ($orderby > 1)
-                    ? (float) '0.'.$orderby
+                    ? (float) '0.' . $orderby
                     : (float) $orderby;
             }
 
             if (is_float($orderby)) {
-                $this->simple_query('SET SEED '.$orderby);
+                $this->simple_query('SET SEED ' . $orderby);
             }
 
             $orderby = $this->_random_keyword[0];
@@ -500,7 +499,7 @@ class CI_DB_postgre_driver extends CI_DB
     protected function _update($table, $values)
     {
         $this->qb_limit = false;
-        $this->qb_orderby = array();
+        $this->qb_orderby = [];
         return parent::_update($table, $values);
     }
 
@@ -518,27 +517,27 @@ class CI_DB_postgre_driver extends CI_DB
      */
     protected function _update_batch($table, $values, $index)
     {
-        $ids = array();
+        $ids = [];
         foreach ($values as $key => $val) {
             $ids[] = $val[$index]['value'];
 
             foreach (array_keys($val) as $field) {
                 if ($field !== $index) {
-                    $final[$val[$field]['field']][] = 'WHEN '.$val[$index]['value'].' THEN '.$val[$field]['value'];
+                    $final[$val[$field]['field']][] = 'WHEN ' . $val[$index]['value'] . ' THEN ' . $val[$field]['value'];
                 }
             }
         }
 
         $cases = '';
         foreach ($final as $k => $v) {
-            $cases .= $k.' = (CASE '.$val[$index]['field']."\n"
-                .implode("\n", $v)."\n"
-                .'ELSE '.$k.' END), ';
+            $cases .= $k . ' = (CASE ' . $val[$index]['field'] . "\n"
+                . implode("\n", $v) . "\n"
+                . 'ELSE ' . $k . ' END), ';
         }
 
-        $this->where($val[$index]['field'].' IN('.implode(',', $ids).')', null, false);
+        $this->where($val[$index]['field'] . ' IN(' . implode(',', $ids) . ')', null, false);
 
-        return 'UPDATE '.$table.' SET '.substr($cases, 0, -2).$this->_compile_wh('qb_where');
+        return 'UPDATE ' . $table . ' SET ' . substr($cases, 0, -2) . $this->_compile_wh('qb_where');
     }
 
     // --------------------------------------------------------------------
@@ -569,7 +568,7 @@ class CI_DB_postgre_driver extends CI_DB
      */
     protected function _limit($sql)
     {
-        return $sql.' LIMIT '.$this->qb_limit.($this->qb_offset ? ' OFFSET '.$this->qb_offset : '');
+        return $sql . ' LIMIT ' . $this->qb_limit . ($this->qb_offset ? ' OFFSET ' . $this->qb_offset : '');
     }
 
     // --------------------------------------------------------------------

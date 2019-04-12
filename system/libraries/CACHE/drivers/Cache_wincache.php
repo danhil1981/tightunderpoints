@@ -51,7 +51,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_Cache_wincache extends CI_Driver
 {
-
     /**
      * Class constructor
      *
@@ -62,7 +61,7 @@ class CI_Cache_wincache extends CI_Driver
      */
     public function __construct()
     {
-        if (! $this->is_supported()) {
+        if (!$this->is_supported()) {
             log_message('error', 'Cache: Failed to initialize Wincache; extension not loaded/enabled?');
         }
     }
@@ -189,12 +188,12 @@ class CI_Cache_wincache extends CI_Driver
             $ttl = $stored['ucache_entries'][1]['ttl_seconds'];
             $hitcount = $stored['ucache_entries'][1]['hitcount'];
 
-            return array(
-                'expire'	=> $ttl - $age,
-                'hitcount'	=> $hitcount,
-                'age'		=> $age,
-                'ttl'		=> $ttl
-            );
+            return [
+                'expire' => $ttl - $age,
+                'hitcount' => $hitcount,
+                'age' => $age,
+                'ttl' => $ttl,
+            ];
         }
 
         return false;

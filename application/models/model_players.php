@@ -13,10 +13,10 @@
 
         public function get_all()
         {
-            $query = $this->db->query("SELECT
+            $query = $this->db->query('SELECT
                 * FROM players
-            ;");
-            $players = array();
+            ;');
+            $players = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $players[] = $row;
@@ -27,19 +27,19 @@
 
         public function get_list()
         {
-            $query = $this->db->query("SELECT
+            $query = $this->db->query('SELECT
                 id AS id_player,
                 name AS name_player
                 FROM players
                 ORDER BY name ASC
-            ;");
-            $players = array();
+            ;');
+            $players = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $players[] = $row;
                 }
             }
-            return array_column($players, "name_player", "id_player");
+            return array_column($players, 'name_player', 'id_player');
         }
 
         public function insert($name)

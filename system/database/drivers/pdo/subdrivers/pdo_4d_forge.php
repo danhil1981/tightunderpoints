@@ -46,60 +46,59 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_pdo_4d_forge extends CI_DB_pdo_forge
 {
-
     /**
      * CREATE DATABASE statement
      *
      * @var	string
      */
-    protected $_create_database	= 'CREATE SCHEMA %s';
+    protected $_create_database = 'CREATE SCHEMA %s';
 
     /**
      * DROP DATABASE statement
      *
      * @var	string
      */
-    protected $_drop_database	= 'DROP SCHEMA %s';
+    protected $_drop_database = 'DROP SCHEMA %s';
 
     /**
      * CREATE TABLE IF statement
      *
      * @var	string
      */
-    protected $_create_table_if	= 'CREATE TABLE IF NOT EXISTS';
+    protected $_create_table_if = 'CREATE TABLE IF NOT EXISTS';
 
     /**
      * RENAME TABLE statement
      *
      * @var	string
      */
-    protected $_rename_table	= false;
+    protected $_rename_table = false;
 
     /**
      * DROP TABLE IF statement
      *
      * @var	string
      */
-    protected $_drop_table_if	= 'DROP TABLE IF EXISTS';
+    protected $_drop_table_if = 'DROP TABLE IF EXISTS';
 
     /**
      * UNSIGNED support
      *
      * @var	array
      */
-    protected $_unsigned		= array(
-        'INT16'		=> 'INT',
-        'SMALLINT'	=> 'INT',
-        'INT'		=> 'INT64',
-        'INT32'		=> 'INT64'
-    );
+    protected $_unsigned = [
+        'INT16' => 'INT',
+        'SMALLINT' => 'INT',
+        'INT' => 'INT64',
+        'INT32' => 'INT64',
+    ];
 
     /**
      * DEFAULT value representation in CREATE/ALTER TABLE statements
      *
      * @var	string
      */
-    protected $_default		= false;
+    protected $_default = false;
 
     // --------------------------------------------------------------------
 
@@ -113,7 +112,7 @@ class CI_DB_pdo_4d_forge extends CI_DB_pdo_forge
      */
     protected function _alter_table($alter_type, $table, $field)
     {
-        if (in_array($alter_type, array('ADD', 'DROP'), true)) {
+        if (in_array($alter_type, ['ADD', 'DROP'], true)) {
             return parent::_alter_table($alter_type, $table, $field);
         }
 
@@ -132,10 +131,10 @@ class CI_DB_pdo_4d_forge extends CI_DB_pdo_forge
     protected function _process_column($field)
     {
         return $this->db->escape_identifiers($field['name'])
-            .' '.$field['type'].$field['length']
-            .$field['null']
-            .$field['unique']
-            .$field['auto_increment'];
+            . ' ' . $field['type'] . $field['length']
+            . $field['null']
+            . $field['unique']
+            . $field['auto_increment'];
     }
 
     // --------------------------------------------------------------------
@@ -180,7 +179,7 @@ class CI_DB_pdo_4d_forge extends CI_DB_pdo_forge
      */
     protected function _attr_unique(&$attributes, &$field)
     {
-        if (! empty($attributes['UNIQUE']) && $attributes['UNIQUE'] === true) {
+        if (!empty($attributes['UNIQUE']) && $attributes['UNIQUE'] === true) {
             $field['unique'] = ' UNIQUE';
 
             // UNIQUE must be used with NOT NULL
@@ -199,7 +198,7 @@ class CI_DB_pdo_4d_forge extends CI_DB_pdo_forge
      */
     protected function _attr_auto_increment(&$attributes, &$field)
     {
-        if (! empty($attributes['AUTO_INCREMENT']) && $attributes['AUTO_INCREMENT'] === true) {
+        if (!empty($attributes['AUTO_INCREMENT']) && $attributes['AUTO_INCREMENT'] === true) {
             if (stripos($field['type'], 'int') !== false) {
                 $field['auto_increment'] = ' AUTO_INCREMENT';
             } elseif (strcasecmp($field['type'], 'UUID') === 0) {

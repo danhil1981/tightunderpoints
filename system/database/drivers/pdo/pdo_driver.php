@@ -52,7 +52,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_pdo_driver extends CI_DB
 {
-
     /**
      * Database driver
      *
@@ -65,7 +64,7 @@ class CI_DB_pdo_driver extends CI_DB
      *
      * @var	array
      */
-    public $options = array();
+    public $options = [];
 
     // --------------------------------------------------------------------
 
@@ -93,11 +92,11 @@ class CI_DB_pdo_driver extends CI_DB
             $this->hostname = null;
             $this->subdriver = $match[1];
             return;
-        } elseif (in_array($this->subdriver, array('mssql', 'sybase'), true)) {
+        } elseif (in_array($this->subdriver, ['mssql', 'sybase'], true)) {
             $this->subdriver = 'dblib';
         } elseif ($this->subdriver === '4D') {
             $this->subdriver = '4d';
-        } elseif (! in_array($this->subdriver, array('4d', 'cubrid', 'dblib', 'firebird', 'ibm', 'informix', 'mysql', 'oci', 'odbc', 'pgsql', 'sqlite', 'sqlsrv'), true)) {
+        } elseif (!in_array($this->subdriver, ['4d', 'cubrid', 'dblib', 'firebird', 'ibm', 'informix', 'mysql', 'oci', 'odbc', 'pgsql', 'sqlite', 'sqlsrv'], true)) {
             log_message('error', 'PDO: Invalid or non-existent subdriver');
 
             if ($this->db_debug) {
@@ -259,7 +258,7 @@ class CI_DB_pdo_driver extends CI_DB
      */
     protected function _field_data($table)
     {
-        return 'SELECT TOP 1 * FROM '.$this->protect_identifiers($table);
+        return 'SELECT TOP 1 * FROM ' . $this->protect_identifiers($table);
     }
 
     // --------------------------------------------------------------------
@@ -274,14 +273,14 @@ class CI_DB_pdo_driver extends CI_DB
      */
     public function error()
     {
-        $error = array('code' => '00000', 'message' => '');
+        $error = ['code' => '00000', 'message' => ''];
         $pdo_error = $this->conn_id->errorInfo();
 
         if (empty($pdo_error[0])) {
             return $error;
         }
 
-        $error['code'] = isset($pdo_error[1]) ? $pdo_error[0].'/'.$pdo_error[1] : $pdo_error[0];
+        $error['code'] = isset($pdo_error[1]) ? $pdo_error[0] . '/' . $pdo_error[1] : $pdo_error[0];
         if (isset($pdo_error[2])) {
             $error['message'] = $pdo_error[2];
         }
@@ -304,6 +303,6 @@ class CI_DB_pdo_driver extends CI_DB
      */
     protected function _truncate($table)
     {
-        return 'TRUNCATE TABLE '.$table;
+        return 'TRUNCATE TABLE ' . $table;
     }
 }

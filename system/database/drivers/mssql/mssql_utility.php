@@ -48,20 +48,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_DB_mssql_utility extends CI_DB_utility
 {
-
     /**
      * List databases statement
      *
      * @var	string
      */
-    protected $_list_databases	= 'EXEC sp_helpdb'; // Can also be: EXEC sp_databases
+    protected $_list_databases = 'EXEC sp_helpdb'; // Can also be: EXEC sp_databases
 
     /**
      * OPTIMIZE TABLE statement
      *
      * @var	string
      */
-    protected $_optimize_table	= 'ALTER INDEX all ON %s REORGANIZE';
+    protected $_optimize_table = 'ALTER INDEX all ON %s REORGANIZE';
 
     /**
      * Export
@@ -69,7 +68,7 @@ class CI_DB_mssql_utility extends CI_DB_utility
      * @param	array	$params	Preferences
      * @return	bool
      */
-    protected function _backup($params = array())
+    protected function _backup($params = [])
     {
         // Currently unsupported
         return $this->db->display_error('db_unsupported_feature');

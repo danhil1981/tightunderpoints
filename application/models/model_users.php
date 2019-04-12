@@ -13,10 +13,10 @@
 
         public function get_all()
         {
-            $query = $this->db->query("SELECT
+            $query = $this->db->query('SELECT
                 * FROM users
-            ;");
-            $users = array();
+            ;');
+            $users = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $users[] = $row;

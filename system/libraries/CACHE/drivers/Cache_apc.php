@@ -48,7 +48,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_Cache_apc extends CI_Driver
 {
-
     /**
      * Class constructor
      *
@@ -59,7 +58,7 @@ class CI_Cache_apc extends CI_Driver
      */
     public function __construct()
     {
-        if (! $this->is_supported()) {
+        if (!$this->is_supported()) {
             log_message('error', 'Cache: Failed to initialize APC; extension not loaded/enabled?');
         }
     }
@@ -185,12 +184,12 @@ class CI_Cache_apc extends CI_Driver
                 continue;
             }
 
-            $success  = false;
-            $metadata = array(
+            $success = false;
+            $metadata = [
                 'expire' => ($entry['ttl'] ? $entry['mtime'] + $entry['ttl'] : 0),
-                'mtime'  => $entry['ttl'],
-                'data'   => apc_fetch($id, $success)
-            );
+                'mtime' => $entry['ttl'],
+                'data' => apc_fetch($id, $success),
+            ];
 
             return ($success === true) ? $metadata : false;
         }

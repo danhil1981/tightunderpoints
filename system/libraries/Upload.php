@@ -48,7 +48,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class CI_Upload
 {
-
     /**
      * Maximum file size
      *
@@ -215,7 +214,7 @@ class CI_Upload
      *
      * @var	array
      */
-    public $error_msg = array();
+    public $error_msg = [];
 
     /**
      * Remove spaces flag
@@ -273,7 +272,7 @@ class CI_Upload
      *
      * @var	array
      */
-    protected $_mimes = array();
+    protected $_mimes = [];
 
     /**
      * CI Singleton
@@ -290,12 +289,12 @@ class CI_Upload
      * @param	array	$config
      * @return	void
      */
-    public function __construct($config = array())
+    public function __construct($config = [])
     {
         empty($config) or $this->initialize($config, false);
 
-        $this->_mimes =& get_mimes();
-        $this->_CI =& get_instance();
+        $this->_mimes = &get_mimes();
+        $this->_CI = &get_instance();
 
         log_message('info', 'Upload Class Initialized');
     }
@@ -309,7 +308,7 @@ class CI_Upload
      * @param	bool	$reset
      * @return	CI_Upload
      */
-    public function initialize(array $config = array(), $reset = true)
+    public function initialize(array $config = [], $reset = true)
     {
         $reflection = new ReflectionClass($this);
 
@@ -321,8 +320,8 @@ class CI_Upload
                 }
 
                 if (isset($config[$key])) {
-                    if ($reflection->hasMethod('set_'.$key)) {
-                        $this->{'set_'.$key}($config[$key]);
+                    if ($reflection->hasMethod('set_' . $key)) {
+                        $this->{'set_' . $key}($config[$key]);
                     } else {
                         $this->$key = $config[$key];
                     }
@@ -333,8 +332,8 @@ class CI_Upload
         } else {
             foreach ($config as $key => &$value) {
                 if ($key[0] !== '_' && $reflection->hasProperty($key)) {
-                    if ($reflection->hasMethod('set_'.$key)) {
-                        $this->{'set_'.$key}($value);
+                    if ($reflection->hasMethod('set_' . $key)) {
+                        $this->{'set_' . $key}($value);
                     } else {
                         $this->$key = $value;
                     }
@@ -367,7 +366,7 @@ class CI_Upload
             $_file = $_FILES;
             for ($i = 0; $i < $c; $i++) {
                 // We can't track numeric iterations, only full field names are accepted
-                if (($field = trim($matches[0][$i], '[]')) === '' or ! isset($_file[$field])) {
+                if (($field = trim($matches[0][$i], '[]')) === '' or !isset($_file[$field])) {
                     $_file = null;
                     break;
                 }
@@ -376,19 +375,19 @@ class CI_Upload
             }
         }
 
-        if (! isset($_file)) {
+        if (!isset($_file)) {
             $this->set_error('upload_no_file_selected', 'debug');
             return false;
         }
 
         // Is the upload path valid?
-        if (! $this->validate_upload_path()) {
+        if (!$this->validate_upload_path()) {
             // errors will already be set by validate_upload_path() so just return FALSE
             return false;
         }
 
         // Was the file able to be uploaded? If not, determine the reason why.
-        if (! is_uploaded_file($_file['tmp_name'])) {
+        if (!is_uploaded_file($_file['tmp_name'])) {
             $error = isset($_file['error']) ? $_file['error'] : 4;
 
             switch ($error) {
@@ -433,11 +432,11 @@ class CI_Upload
         $this->file_type = preg_replace('/^(.+?);.*$/', '\\1', $this->file_type);
         $this->file_type = strtolower(trim(stripslashes($this->file_type), '"'));
         $this->file_name = $this->_prep_filename($_file['name']);
-        $this->file_ext	 = $this->get_extension($this->file_name);
+        $this->file_ext = $this->get_extension($this->file_name);
         $this->client_name = $this->file_name;
 
         // Is the file type allowed to be uploaded?
-        if (! $this->is_allowed_filetype()) {
+        if (!$this->is_allowed_filetype()) {
             $this->set_error('upload_invalid_filetype', 'debug');
             return false;
         }
@@ -451,10 +450,10 @@ class CI_Upload
                 $this->file_name .= $this->file_ext;
             } else {
                 // An extension was provided, let's have it!
-                $this->file_ext	= $this->get_extension($this->_file_name_override);
+                $this->file_ext = $this->get_extension($this->_file_name_override);
             }
 
-            if (! $this->is_allowed_filetype(true)) {
+            if (!$this->is_allowed_filetype(true)) {
                 $this->set_error('upload_invalid_filetype', 'debug');
                 return false;
             }
@@ -462,18 +461,18 @@ class CI_Upload
 
         // Convert the file size to kilobytes
         if ($this->file_size > 0) {
-            $this->file_size = round($this->file_size/1024, 2);
+            $this->file_size = round($this->file_size / 1024, 2);
         }
 
         // Is the file size within the allowed maximum?
-        if (! $this->is_allowed_filesize()) {
+        if (!$this->is_allowed_filesize()) {
             $this->set_error('upload_invalid_filesize', 'info');
             return false;
         }
 
         // Are the image dimensions within the allowed size?
         // Note: This can fail if the server has an open_basedir restriction.
-        if (! $this->is_allowed_dimensions()) {
+        if (!$this->is_allowed_dimensions()) {
             $this->set_error('upload_invalid_dimensions', 'info');
             return false;
         }
@@ -493,7 +492,7 @@ class CI_Upload
 
         if ($this->file_ext_tolower && ($ext_length = strlen($this->file_ext))) {
             // file_ext was previously lower-cased by a get_extension() call
-            $this->file_name = substr($this->file_name, 0, -$ext_length).$this->file_ext;
+            $this->file_name = substr($this->file_name, 0, -$ext_length) . $this->file_ext;
         }
 
         /*
@@ -525,8 +524,8 @@ class CI_Upload
          * we'll use move_uploaded_file(). One of the two should
          * reliably work in most environments
          */
-        if (! @copy($this->file_temp, $this->upload_path.$this->file_name)) {
-            if (! @move_uploaded_file($this->file_temp, $this->upload_path.$this->file_name)) {
+        if (!@copy($this->file_temp, $this->upload_path . $this->file_name)) {
+            if (!@move_uploaded_file($this->file_temp, $this->upload_path . $this->file_name)) {
                 $this->set_error('upload_destination_error', 'error');
                 return false;
             }
@@ -538,7 +537,7 @@ class CI_Upload
          * file was an image). We use this information
          * in the "data" function.
          */
-        $this->set_image_properties($this->upload_path.$this->file_name);
+        $this->set_image_properties($this->upload_path . $this->file_name);
 
         return true;
     }
@@ -556,24 +555,24 @@ class CI_Upload
      */
     public function data($index = null)
     {
-        $data = array(
-                'file_name'		=> $this->file_name,
-                'file_type'		=> $this->file_type,
-                'file_path'		=> $this->upload_path,
-                'full_path'		=> $this->upload_path.$this->file_name,
-                'raw_name'		=> substr($this->file_name, 0, -strlen($this->file_ext)),
-                'orig_name'		=> $this->orig_name,
-                'client_name'		=> $this->client_name,
-                'file_ext'		=> $this->file_ext,
-                'file_size'		=> $this->file_size,
-                'is_image'		=> $this->is_image(),
-                'image_width'		=> $this->image_width,
-                'image_height'		=> $this->image_height,
-                'image_type'		=> $this->image_type,
-                'image_size_str'	=> $this->image_size_str,
-            );
+        $data = [
+            'file_name' => $this->file_name,
+            'file_type' => $this->file_type,
+            'file_path' => $this->upload_path,
+            'full_path' => $this->upload_path . $this->file_name,
+            'raw_name' => substr($this->file_name, 0, -strlen($this->file_ext)),
+            'orig_name' => $this->orig_name,
+            'client_name' => $this->client_name,
+            'file_ext' => $this->file_ext,
+            'file_size' => $this->file_size,
+            'is_image' => $this->is_image(),
+            'image_width' => $this->image_width,
+            'image_height' => $this->image_height,
+            'image_type' => $this->image_type,
+            'image_size_str' => $this->image_size_str,
+        ];
 
-        if (! empty($index)) {
+        if (!empty($index)) {
             return isset($data[$index]) ? $data[$index] : null;
         }
 
@@ -591,7 +590,7 @@ class CI_Upload
     public function set_upload_path($path)
     {
         // Make sure it has a trailing slash
-        $this->upload_path = rtrim($path, '/').'/';
+        $this->upload_path = rtrim($path, '/') . '/';
         return $this;
     }
 
@@ -611,10 +610,10 @@ class CI_Upload
     public function set_filename($path, $filename)
     {
         if ($this->encrypt_name === true) {
-            $filename = md5(uniqid(mt_rand())).$this->file_ext;
+            $filename = md5(uniqid(mt_rand())) . $this->file_ext;
         }
 
-        if ($this->overwrite === true or ! file_exists($path.$filename)) {
+        if ($this->overwrite === true or !file_exists($path . $filename)) {
             return $filename;
         }
 
@@ -622,8 +621,8 @@ class CI_Upload
 
         $new_filename = '';
         for ($i = 1; $i < $this->max_filename_increment; $i++) {
-            if (! file_exists($path.$filename.$i.$this->file_ext)) {
-                $new_filename = $filename.$i.$this->file_ext;
+            if (!file_exists($path . $filename . $i . $this->file_ext)) {
+                $new_filename = $filename . $i . $this->file_ext;
                 break;
             }
         }
@@ -766,12 +765,12 @@ class CI_Upload
     {
         if ($this->is_image() && function_exists('getimagesize')) {
             if (false !== ($D = @getimagesize($path))) {
-                $types = array(1 => 'gif', 2 => 'jpeg', 3 => 'png');
+                $types = [1 => 'gif', 2 => 'jpeg', 3 => 'png'];
 
-                $this->image_width	= $D[0];
-                $this->image_height	= $D[1];
-                $this->image_type	= isset($types[$D[2]]) ? $types[$D[2]] : 'unknown';
-                $this->image_size_str	= $D[3]; // string containing height and width
+                $this->image_width = $D[0];
+                $this->image_height = $D[1];
+                $this->image_type = isset($types[$D[2]]) ? $types[$D[2]] : 'unknown';
+                $this->image_size_str = $D[3]; // string containing height and width
             }
         }
 
@@ -807,8 +806,8 @@ class CI_Upload
         // IE will sometimes return odd mime-types during upload, so here we just standardize all
         // jpegs or pngs to the same file type.
 
-        $png_mimes  = array('image/x-png');
-        $jpeg_mimes = array('image/jpg', 'image/jpe', 'image/jpeg', 'image/pjpeg');
+        $png_mimes = ['image/x-png'];
+        $jpeg_mimes = ['image/jpg', 'image/jpe', 'image/jpeg', 'image/pjpeg'];
 
         if (in_array($this->file_type, $png_mimes)) {
             $this->file_type = 'image/png';
@@ -816,7 +815,7 @@ class CI_Upload
             $this->file_type = 'image/jpeg';
         }
 
-        $img_mimes = array('image/gif',	'image/jpeg', 'image/png');
+        $img_mimes = ['image/gif',	'image/jpeg', 'image/png'];
 
         return in_array($this->file_type, $img_mimes, true);
     }
@@ -835,19 +834,19 @@ class CI_Upload
             return true;
         }
 
-        if (empty($this->allowed_types) or ! is_array($this->allowed_types)) {
+        if (empty($this->allowed_types) or !is_array($this->allowed_types)) {
             $this->set_error('upload_no_file_types', 'debug');
             return false;
         }
 
         $ext = strtolower(ltrim($this->file_ext, '.'));
 
-        if (! in_array($ext, $this->allowed_types, true)) {
+        if (!in_array($ext, $this->allowed_types, true)) {
             return false;
         }
 
         // Images get some additional checks
-        if (in_array($ext, array('gif', 'jpg', 'jpeg', 'jpe', 'png'), true) && @getimagesize($this->file_temp) === false) {
+        if (in_array($ext, ['gif', 'jpg', 'jpeg', 'jpe', 'png'], true) && @getimagesize($this->file_temp) === false) {
             return false;
         }
 
@@ -885,7 +884,7 @@ class CI_Upload
      */
     public function is_allowed_dimensions()
     {
-        if (! $this->is_image()) {
+        if (!$this->is_image()) {
             return true;
         }
 
@@ -932,12 +931,12 @@ class CI_Upload
             $this->upload_path = str_replace('\\', '/', realpath($this->upload_path));
         }
 
-        if (! is_dir($this->upload_path)) {
+        if (!is_dir($this->upload_path)) {
             $this->set_error('upload_no_filepath', 'error');
             return false;
         }
 
-        if (! is_really_writable($this->upload_path)) {
+        if (!is_really_writable($this->upload_path)) {
             $this->set_error('upload_not_writable', 'error');
             return false;
         }
@@ -963,7 +962,7 @@ class CI_Upload
         }
 
         $ext = ($this->file_ext_tolower) ? strtolower(end($x)) : end($x);
-        return '.'.$ext;
+        return '.' . $ext;
     }
 
     // --------------------------------------------------------------------
@@ -983,12 +982,12 @@ class CI_Upload
 
         $ext = '';
         if (strpos($filename, '.') !== false) {
-            $parts		= explode('.', $filename);
-            $ext		= '.'.array_pop($parts);
-            $filename	= implode('.', $parts);
+            $parts = explode('.', $filename);
+            $ext = '.' . array_pop($parts);
+            $filename = implode('.', $parts);
         }
 
-        return substr($filename, 0, ($length - strlen($ext))).$ext;
+        return substr($filename, 0, ($length - strlen($ext))) . $ext;
     }
 
     // --------------------------------------------------------------------
@@ -1012,7 +1011,7 @@ class CI_Upload
 
         if (memory_get_usage() && ($memory_limit = ini_get('memory_limit')) > 0) {
             $memory_limit = str_split($memory_limit, strspn($memory_limit, '1234567890'));
-            if (! empty($memory_limit[1])) {
+            if (!empty($memory_limit[1])) {
                 switch ($memory_limit[1][0]) {
                     case 'g':
                     case 'G':
@@ -1051,7 +1050,7 @@ class CI_Upload
             // title is basically just in SVG, but we filter it anyhow
 
             // if it's an image or no "triggers" detected in the first 256 bytes - we're good
-            return ! preg_match('/<(a|body|head|html|img|plaintext|pre|script|table|title)[\s>]/i', $opening_bytes);
+            return !preg_match('/<(a|body|head|html|img|plaintext|pre|script|table|title)[\s>]/i', $opening_bytes);
         }
 
         if (($data = @file_get_contents($file)) === false) {
@@ -1073,7 +1072,7 @@ class CI_Upload
     {
         $this->_CI->lang->load('upload');
 
-        is_array($msg) or $msg = array($msg);
+        is_array($msg) or $msg = [$msg];
         foreach ($msg as $val) {
             $msg = ($this->_CI->lang->line($val) === false) ? $val : $this->_CI->lang->line($val);
             $this->error_msg[] = $msg;
@@ -1094,7 +1093,7 @@ class CI_Upload
      */
     public function display_errors($open = '<p>', $close = '</p>')
     {
-        return (count($this->error_msg) > 0) ? $open.implode($close.$open, $this->error_msg).$close : '';
+        return (count($this->error_msg) > 0) ? $open . implode($close . $open, $this->error_msg) . $close : '';
     }
 
     // --------------------------------------------------------------------
@@ -1118,7 +1117,7 @@ class CI_Upload
 
         $ext = substr($filename, $ext_pos);
         $filename = substr($filename, 0, $ext_pos);
-        return str_replace('.', '_', $filename).$ext;
+        return str_replace('.', '_', $filename) . $ext;
     }
 
     // --------------------------------------------------------------------
@@ -1175,8 +1174,8 @@ class CI_Upload
          */
         if (DIRECTORY_SEPARATOR !== '\\') {
             $cmd = function_exists('escapeshellarg')
-                ? 'file --brief --mime '.escapeshellarg($file['tmp_name']).' 2>&1'
-                : 'file --brief --mime '.$file['tmp_name'].' 2>&1';
+                ? 'file --brief --mime ' . escapeshellarg($file['tmp_name']) . ' 2>&1'
+                : 'file --brief --mime ' . $file['tmp_name'] . ' 2>&1';
 
             if (function_usable('exec')) {
                 /* This might look confusing, as $mime is being populated with all of the output when set in the second parameter.
@@ -1191,7 +1190,7 @@ class CI_Upload
                 }
             }
 
-            if (! ini_get('safe_mode') && function_usable('shell_exec')) {
+            if (!ini_get('safe_mode') && function_usable('shell_exec')) {
                 $mime = @shell_exec($cmd);
                 if (strlen($mime) > 0) {
                     $mime = explode("\n", trim($mime));

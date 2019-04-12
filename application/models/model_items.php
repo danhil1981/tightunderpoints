@@ -13,13 +13,13 @@
 
         public function get_all()
         {
-            $query = $this->db->query("SELECT
+            $query = $this->db->query('SELECT
                 items.id, items.name, items.id_boss, items.value,
                 bosses.name AS name_boss
                 FROM items
                 LEFT JOIN bosses ON items.id_boss = bosses.id
-            ;");
-            $items = array();
+            ;');
+            $items = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $items[] = $row;
@@ -30,18 +30,18 @@
 
         public function get_list()
         {
-            $query = $this->db->query("SELECT
+            $query = $this->db->query('SELECT
                 id AS id_item,
                 name AS name_item
                 FROM items
-            ;");
-            $items = array();
+            ;');
+            $items = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $items[] = $row;
                 }
             }
-            return array_column($items, "name_item", "id_item");
+            return array_column($items, 'name_item', 'id_item');
         }
 
         public function get_items($id_boss)
@@ -52,13 +52,13 @@
                 FROM items
                 WHERE id_boss = '$id_boss'
             ;");
-            $items = array();
+            $items = [];
             if ($query->num_rows() > 0) {
                 foreach ($query->result_array() as $row) {
                     $items[] = $row;
                 }
             }
-            return array_column($items, "name_item", "id_item");
+            return array_column($items, 'name_item', 'id_item');
         }
 
         public function get_item_info($id_item)
