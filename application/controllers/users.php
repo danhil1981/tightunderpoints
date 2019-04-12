@@ -26,6 +26,10 @@
             if ($this->check_permission(1)) {
                 if ($this->form_validation->run('users') == false) {
                     $data['view_name'] = 'form_insert_user';
+                    $data['msg'] = validation_errors();
+                    $data['user']['name'] = $this->input->post('name');
+                    $data['user']['password'] = $this->input->post('password');
+                    $data['user']['type'] = $this->input->post('type');
                     $this->load->view('template', $data);
                 } else {
                     $name = $this->input->post('name');
@@ -71,6 +75,11 @@
             if ($this->check_permission(1)) {
                 if ($this->form_validation->run('users') == false) {
                     $data['view_name'] = 'form_modify_user';
+                    $data['msg'] = validation_errors();
+                    $data['user']['id'] = $this->input->post('id');
+                    $data['user']['name'] = $this->input->post('name');
+                    $data['user']['password'] = $this->input->post('password');
+                    $data['user']['type'] = $this->input->post('type');
                     $this->load->view('template', $data);
                 } else {
                     $id = $this->input->post('id');
