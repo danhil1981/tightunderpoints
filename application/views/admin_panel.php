@@ -1,15 +1,19 @@
-            <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/custom.css">
-            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+            <link rel="stylesheet" type="text/css"
+                href="<?php echo base_url()?>assets/css/custom.css">
+            <link rel="stylesheet" type="text/css"
+                href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
             <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-            <script src="<?php echo base_url()?>assets/js/admin_panel.js"></script>
+            <script src="<?php echo base_url()?>assets/js/admin_panel.js">
+            </script>
             <h1 class="text-center text-white">Admin Panel</h1>
-            <br/><br/>
+            <br /><br />
             <div class="row" id="menu_buttons">
                 <div class="col-10 offset-1 text-center">
-                    <?php if (isset($this->session->msg)) {
-    echo $this->session->msg;
-} ?>
-                    <br/><br/>
+                    <?php
+                        if (isset($this->session->msg)) {
+                            echo $this->session->msg;
+                        } ?>
+                    <br /><br />
                     <button id="button_users" class="btn btn-light btn-sm">Users</button>
                     <button id="button_players" class="btn btn-light btn-sm">Players</button>
                     <button id="button_characters" class="btn btn-light btn-sm">Characters</button>
@@ -22,14 +26,16 @@
                     <button id="button_loot" class="btn btn-light btn-sm">Loot</button>
                     <?php echo anchor('officers', 'Officer Panel', "class='btn btn-success btn-sm'");?>
                     <?php echo anchor('members', 'Member Panel', "class='btn btn-success btn-sm'");?>
-                    <a href="<?php echo site_url()?>" class="btn btn-danger btn-sm">Logout</a>
-                    <br/><br/>
+                    <a href="<?php echo site_url()?>"
+                        class="btn btn-danger btn-sm">Logout</a>
+                    <br /><br />
                 </div>
             </div>
             <div class="row">
                 <div class="col-8 offset-2" id="tables">
                     <div id="users" class="d-none">
-                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center" id="table_users">
+                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
+                            id="table_users">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -58,12 +64,14 @@
                                 ?>
                             </tbody>
                         </table>
-                        <br/>
-                        <a href="<?php echo site_url()?>users/show_insert/" class="btn btn-success btn-sm">New User</a>
-                        <br/><br/>
+                        <br />
+                        <a href="<?php echo site_url()?>users/show_insert/"
+                            class="btn btn-success btn-sm">New User</a>
+                        <br /><br />
                     </div>
                     <div id="players" class="d-none">
-                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center" id="table_players">
+                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
+                            id="table_players">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -84,12 +92,14 @@
                                 ?>
                             </tbody>
                         </table>
-                        <br/>
-                        <a href="<?php echo site_url()?>players/show_insert/" class="btn btn-success btn-sm">New Player</a>
-                        <br/><br/>
+                        <br />
+                        <a href="<?php echo site_url()?>players/show_insert/"
+                            class="btn btn-success btn-sm">New Player</a>
+                        <br /><br />
                     </div>
                     <div id="characters" class="d-none">
-                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center" id="table_characters">
+                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
+                            id="table_characters">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -126,12 +136,14 @@
                                 ?>
                             </tbody>
                         </table>
-                        <br/>
-                        <a href="<?php echo site_url()?>characters/show_insert/" class="btn btn-success btn-sm">New Character</a>
-                        <br/><br/>
+                        <br />
+                        <a href="<?php echo site_url()?>characters/show_insert/"
+                            class="btn btn-success btn-sm">New Character</a>
+                        <br /><br />
                     </div>
                     <div id="bosses" class="d-none">
-                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center" id="table_bosses">
+                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
+                            id="table_bosses">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -158,12 +170,14 @@
                                 ?>
                             </tbody>
                         </table>
-                        <br/>
-                        <a href="<?php echo site_url()?>bosses/show_insert/" class="btn btn-success btn-sm">New Boss</a>
-                        <br/><br/>
+                        <br />
+                        <a href="<?php echo site_url()?>bosses/show_insert/"
+                            class="btn btn-success btn-sm">New Boss</a>
+                        <br /><br />
                     </div>
                     <div id="items" class="d-none">
-                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center" id="table_items">
+                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
+                            id="table_items">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -190,12 +204,14 @@
                                 ?>
                             </tbody>
                         </table>
-                        <br/>
-                        <a href="<?php echo site_url()?>items/show_insert/" class="btn btn-success btn-sm">New Item</a>
-                        <br/><br/>
+                        <br />
+                        <a href="<?php echo site_url()?>items/show_insert/"
+                            class="btn btn-success btn-sm">New Item</a>
+                        <br /><br />
                     </div>
                     <div id="raids" class="d-none">
-                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center" id="table_raids">
+                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
+                            id="table_raids">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -218,12 +234,14 @@
                                 ?>
                             </tbody>
                         </table>
-                        <br/>
-                        <a href="<?php echo site_url()?>raids/show_insert/" class="btn btn-success btn-sm">New Raid</a>
-                        <br/><br/>
+                        <br />
+                        <a href="<?php echo site_url()?>raids/show_insert/"
+                            class="btn btn-success btn-sm">New Raid</a>
+                        <br /><br />
                     </div>
                     <div id="events" class="d-none">
-                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center" id="table_events">
+                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
+                            id="table_events">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -248,12 +266,14 @@
                                 ?>
                             </tbody>
                         </table>
-                        <br/>
-                        <a href="<?php echo site_url()?>events/show_insert/" class="btn btn-success btn-sm">New Event</a>
-                        <br/><br/>
+                        <br />
+                        <a href="<?php echo site_url()?>events/show_insert/"
+                            class="btn btn-success btn-sm">New Event</a>
+                        <br /><br />
                     </div>
-                     <div id="drops" class="d-none">
-                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center" id="table_drops">
+                    <div id="drops" class="d-none">
+                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
+                            id="table_drops">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -276,12 +296,14 @@
                                 ?>
                             </tbody>
                         </table>
-                        <br/>
-                        <a href="<?php echo site_url()?>drops/show_insert/" class="btn btn-success btn-sm">New Drop</a>
-                        <br/><br/>
+                        <br />
+                        <a href="<?php echo site_url()?>drops/show_insert/"
+                            class="btn btn-success btn-sm">New Drop</a>
+                        <br /><br />
                     </div>
                     <div id="attendance" class="d-none">
-                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center" id="table_attendance">
+                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
+                            id="table_attendance">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -307,12 +329,14 @@
                                 ?>
                             </tbody>
                         </table>
-                        <br/>
-                        <a href="<?php echo site_url()?>attendance/show_insert/" class="btn btn-success btn-sm">New Attendance Entry</a>
-                        <br/><br/>
+                        <br />
+                        <a href="<?php echo site_url()?>attendance/show_insert/"
+                            class="btn btn-success btn-sm">New Attendance Entry</a>
+                        <br /><br />
                     </div>
                     <div id="loot" class="d-none">
-                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center" id="table_loot">
+                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
+                            id="table_loot">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -335,9 +359,10 @@
                                 ?>
                             </tbody>
                         </table>
-                        <br/>
-                        <a href="<?php echo site_url()?>loot/show_insert/" class="btn btn-success btn-sm">New Loot Entry</a>
-                        <br/><br/>
+                        <br />
+                        <a href="<?php echo site_url()?>loot/show_insert/"
+                            class="btn btn-success btn-sm">New Loot Entry</a>
+                        <br /><br />
                     </div>
                 </div>
             </div>
@@ -347,4 +372,3 @@
                 } else {
                     echo "<script>show('users')</script>";
                 }
-            ?>

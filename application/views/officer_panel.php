@@ -1,31 +1,38 @@
-            <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/custom.css">
-            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+            <link rel="stylesheet" type="text/css"
+                href="<?php echo base_url()?>assets/css/custom.css">
+            <link rel="stylesheet" type="text/css"
+                href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
             <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-            <script src="<?php echo base_url()?>assets/js/officer_panel.js"></script>
+            <script src="<?php echo base_url()?>assets/js/officer_panel.js">
+            </script>
             <h1 class="text-center text-white">Officer Panel</h1>
-            <br/><br/>
+            <br /><br />
             <div class="row" id="menu_buttons">
                 <div class="col-10 offset-1 text-center">
-                    <?php if (isset($this->session->msg)) {
-    echo $this->session->msg;
-} ?>
-                    <br/><br/>
+                    <?php
+                        if (isset($this->session->msg)) {
+                            echo $this->session->msg;
+                        }
+                    ?>
+                    <br /><br />
                     <button id="button_points" class="btn btn-light btn-sm">Points</button>
                     <button id="button_timers" class="btn btn-light btn-sm">Timers</button>
                     <button id="button_attendance" class="btn btn-light btn-sm">Attendance</button>
                     <button id="button_players" class="btn btn-light btn-sm">Players</button>
                     <button id="button_characters" class="btn btn-light btn-sm">Characters</button>
                     <?php if ($this->session->type < 2) {
-    echo anchor('admins', 'Admin Panel', "class='btn btn-success btn-sm'");
-}?>
+                        echo anchor('admins', 'Admin Panel', "class='btn btn-success btn-sm'");
+                    }?>
                     <?php echo anchor('members', 'Member Panel', "class='btn btn-success btn-sm'");?>
-                    <a href="<?php echo site_url()?>" class="btn btn-danger btn-sm">Logout</a>
-                    <br/><br/>
+                    <a href="<?php echo site_url()?>"
+                        class="btn btn-danger btn-sm">Logout</a>
+                    <br /><br />
                 </div>
             </div>
             <div class="row">
                 <div class="col-4 offset-4 d-none" id="compare">
-                    <table class="table table-dark table-striped table-bordered table-hover table-sm text-center" id="table_compare">
+                    <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
+                        id="table_compare">
                         <thead>
                             <tr>
                                 <th scope="col">Name</th>
@@ -38,17 +45,19 @@
                         </tbody>
                     </table>
                 </div>
-                <br/>
+                <br />
                 <div class="col-4 offset-4 d-none" id="winner">
-                    <table class="table table-dark table-striped table-bordered table-hover table-sm text-center" id="table_winner">
+                    <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
+                        id="table_winner">
                         <tbody id="winner_tbody">
                         </tbody>
                     </table>
                 </div>
-                <br/>
+                <br />
                 <div class="col-8 offset-2" id="tables">
                     <div id="points" class="d-none">
-                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center" id="table_points">
+                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
+                            id="table_points">
                             <thead>
                                 <tr>
                                     <th scope="col">Name</th>
@@ -84,10 +93,11 @@
                                 ?>
                             </tbody>
                         </table>
-                        <br/><br/>
+                        <br /><br />
                     </div>
                     <div id="timers" class="d-none">
-                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center" id="table_timers">
+                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
+                            id="table_timers">
                             <thead>
                                 <tr>
                                     <th scope="col">Boss</th>
@@ -121,12 +131,14 @@
                                 ?>
                             </tbody>
                         </table>
-                        <br/>
-                        <a href="<?php echo site_url()?>events/show_insert/officers" class="btn btn-success btn-sm">New Event</a>
-                        <br/><br/>
+                        <br />
+                        <a href="<?php echo site_url()?>events/show_insert/officers"
+                            class="btn btn-success btn-sm">New Event</a>
+                        <br /><br />
                     </div>
                     <div id="attendance" class="d-none">
-                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center" id="table_attendance">
+                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
+                            id="table_attendance">
                             <thead>
                                 <tr>
                                     <th scope="col">Event</th>
@@ -164,10 +176,11 @@
                                 ?>
                             </tbody>
                         </table>
-                        <br/><br/>
+                        <br /><br />
                     </div>
                     <div id="players" class="d-none">
-                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center" id="table_players">
+                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
+                            id="table_players">
                             <thead>
                                 <tr>
                                     <th scope="col">Name</th>
@@ -186,12 +199,14 @@
                                 ?>
                             </tbody>
                         </table>
-                        <br/>
-                        <a href="<?php echo site_url()?>players/show_insert/officers/" class="btn btn-success btn-sm">New Player</a>
-                        <br/><br/>
+                        <br />
+                        <a href="<?php echo site_url()?>players/show_insert/officers/"
+                            class="btn btn-success btn-sm">New Player</a>
+                        <br /><br />
                     </div>
                     <div id="characters" class="d-none">
-                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center" id="table_characters">
+                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
+                            id="table_characters">
                             <thead>
                                 <tr>
                                     <th scope="col">Name</th>
@@ -226,19 +241,21 @@
                                 ?>
                             </tbody>
                         </table>
-                        <br/>
-                        <a href="<?php echo site_url()?>characters/show_insert/officers/" class="btn btn-success btn-sm">New Character</a>
-                        <br/><br/>
+                        <br />
+                        <a href="<?php echo site_url()?>characters/show_insert/officers/"
+                            class="btn btn-success btn-sm">New Character</a>
+                        <br /><br />
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="modal_character" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="modal_character" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content bg-dark text-white">
                         <div class="modal-header">
                             <h5 class="modal-title text-primary" id="title_character"></h5>
                             <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                                <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body text-center" id="content_character">
@@ -246,13 +263,14 @@
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="modal_boss" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="modal_boss" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content bg-dark text-white">
                         <div class="modal-header">
                             <h5 class="modal-title text-primary" id="title_boss"></h5>
                             <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                                <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body text-center" id="content_boss">
@@ -266,4 +284,3 @@
                 } else {
                     echo "<script>show('points')</script>";
                 }
-            ?>
