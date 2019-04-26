@@ -46,6 +46,18 @@
                 'rules' => 'required|max_length[64]',
             ],
         ],
+        'items_modify' => [
+            [
+                'field' => 'id_new',
+                'label' => 'ID',
+                'rules' => 'required|integer|greater_than[0]|less_than[32769]',
+            ],
+            [
+                'field' => 'name',
+                'label' => 'Name',
+                'rules' => 'required|max_length[64]',
+            ],
+        ],
         'raids' => [
             [
                 'field' => 'description',
