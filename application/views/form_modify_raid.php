@@ -1,17 +1,24 @@
             <div class="row">
                 <div class="col-6 offset-3">
                     <h1 class="text-center text-white">Modify Raid</h1>
-                    <br/><br/>
+                    <br /><br />
+                    <div class="text-center">
+                        <?php
+                            if (isset($msg)) {
+                                echo $msg;
+                            }
+                        ?>
+                    </div>
                     <?php echo form_open('raids/modify');?>
                     <div class="form-group">
                         <div class="text-white">
-                            Description<br/><br/>
+                            Description<br /><br />
                         </div>
                         <?php echo form_input('description', $raid['description'], "required maxlength='32' class='form-control'")?>
                     </div>
                     <div class="form-group">
                         <div class="text-white">
-                            Date<br/><br/>
+                            Date<br /><br />
                         </div>
                         <?php echo form_date('date', $raid['date'], "required class='form-control'")?>
                     </div>

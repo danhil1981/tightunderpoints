@@ -15,16 +15,23 @@
         public function insert()
         {
             if ($this->check_permission(1)) {
-                $description = quotes_to_entities($this->input->post('description'));
-                $date = $this->input->post('date');
-                $result_insert = $this->model_raids->insert($description, $date);
-                if ($result_insert == 0) {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div><br/>");
+                if ($this->form_validation->run('raids') == false) {
+                    $data['view_name'] = 'form_insert_raid';
+                    $data['msg'] = validation_errors();
+                    $data['raid']['description'] = $this->input->post('description');
+                    $this->load->view('template', $data);
                 } else {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-success'>Raid successfully created</div><br/>");
+                    $description = quotes_to_entities($this->input->post('description'));
+                    $date = $this->input->post('date');
+                    $result_insert = $this->model_raids->insert($description, $date);
+                    if ($result_insert == 0) {
+                        $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div><br/>");
+                    } else {
+                        $this->session->set_flashdata('msg', "<div class='badge badge-success'>Raid successfully created</div><br/>");
+                    }
+                    $this->session->set_flashdata('table', 'raids');
+                    redirect('admins');
                 }
-                $this->session->set_flashdata('table', 'raids');
-                redirect('admins');
             }
         }
 
@@ -54,17 +61,26 @@
         public function modify()
         {
             if ($this->check_permission(1)) {
-                $id = $this->input->post('id');
-                $description = quotes_to_entities($this->input->post('description'));
-                $date = $this->input->post('date');
-                $result = $this->model_raids->modify($id, $description, $date);
-                if ($result == 0) {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div><br/>");
+                if ($this->form_validation->run('raids') == false) {
+                    $data['view_name'] = 'form_modify_raid';
+                    $data['msg'] = validation_errors();
+                    $data['raid']['id'] = $this->input->post('id');
+                    $data['raid']['description'] = $this->input->post('description');
+                    $data['raid']['date'] = $this->input->post('date');
+                    $this->load->view('template', $data);
                 } else {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-success'>Raid successfully modified</div><br/>");
+                    $id = $this->input->post('id');
+                    $description = quotes_to_entities($this->input->post('description'));
+                    $date = $this->input->post('date');
+                    $result = $this->model_raids->modify($id, $description, $date);
+                    if ($result == 0) {
+                        $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div><br/>");
+                    } else {
+                        $this->session->set_flashdata('msg', "<div class='badge badge-success'>Raid successfully modified</div><br/>");
+                    }
+                    $this->session->set_flashdata('table', 'raids');
+                    redirect('admins');
                 }
-                $this->session->set_flashdata('table', 'raids');
-                redirect('admins');
             }
         }
     }
