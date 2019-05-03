@@ -33,40 +33,19 @@
             </div>
             <div class="row">
                 <div class="col-8 offset-2" id="tables">
-                    <?php include 'tables/table_users.php'?>
-                    <?php include 'tables/table_players.php'?>
-                    <?php include 'tables/table_characters.php'?>
-                    <?php include 'tables/table_bosses.php'?>
-                    <?php include 'tables/table_items.php'?>
-                    <?php include 'tables/table_raids.php'?>
-                    <?php include 'tables/table_events.php'?>
-                    <?php include 'tables/table_drops.php'?>
-                    <?php include 'tables/table_attendance.php'?>
-                    <?php include 'tables/table_loot.php'?>
+                    <?php include 'tables/users.php'?>
+                    <?php include 'tables/players.php'?>
+                    <?php include 'tables/characters.php'?>
+                    <?php include 'tables/bosses.php'?>
+                    <?php include 'tables/items.php'?>
+                    <?php include 'tables/raids.php'?>
+                    <?php include 'tables/events.php'?>
+                    <?php include 'tables/drops.php'?>
+                    <?php include 'tables/attendance.php'?>
+                    <?php include 'tables/loot.php'?>
                 </div>
             </div>
-            <div class="modal fade" id="modal_delete_confirmation" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content bg-dark text-white">
-                        <div class="modal-header">
-                            <h5 class="modal-title w-100 text-center" id="exampleModalLabel">EMPTY</h5>
-                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body text-center">
-                        </div>
-                        <div class="modal-footer justify-content-center">
-                            <form id="form_delete_confirmation" action="EMPTY" method="GET">
-                                <button type="submit" class="btn btn-danger d-inline-block">Delete</button>
-                                <button type="button" class="btn btn-warning d-inline-block"
-                                    data-dismiss="modal">Cancel</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php include 'modals/delete_confirmation.php';?>
             <?php
                 if (isset($this->session->table)) {
                     echo "<script>show('" . $this->session->table . "')</script>";
