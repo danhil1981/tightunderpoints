@@ -71,6 +71,16 @@ $(document).ready(function () {
         $("#tables").children().removeClass("d-block").addClass("d-none");
         $("#" + this.id.slice(7)).removeClass("d-none").addClass("d-block");
     });
+
+    $('#modal_delete_confirmation').on('show.bs.modal', function (e) {
+        $(this).find('#form_delete_confirmation').attr('action', $(e.relatedTarget).data('href'));
+        $(this).find('.modal-title').html($(e.relatedTarget).data('env') + ' Deletion Confirmation');
+        $(this).find('.modal-body').html(
+            'Are you sure you want to delete the ' +
+            $(e.relatedTarget).data('env') +
+            '<br /><strong>' + $(e.relatedTarget).data('title') + '</strong> ?'
+        );
+    });
 });
 
 function show(table) {
