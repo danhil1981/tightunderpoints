@@ -1,8 +1,4 @@
-            <link rel="stylesheet" type="text/css"
-                href="<?php echo base_url()?>assets/css/custom.css">
-            <link rel="stylesheet" type="text/css"
-                href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-            <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+            <?php include 'assets/datatables.php';?>
             <script src="<?php echo base_url()?>assets/js/member_panel.js">
             </script>
             <h1 class="text-center text-white">Member Panel</h1>
@@ -15,25 +11,26 @@
                         }
                     ?>
                     <br /><br />
-                    <button id="button_points" class="btn btn-light btn-sm">Points</button>
-                    <button id="button_loot" class="btn btn-light btn-sm">Loot</button>
-                    <button id="button_roster" class="btn btn-light btn-sm">Roster</button>
-                    <button id="button_bosses" class="btn btn-light btn-sm">Bosses</button>
-                    <button id="button_items" class="btn btn-light btn-sm">Items</button>
-                    <button id="button_raids" class="btn btn-light btn-sm">Raids</button>
-                    <button id="button_events" class="btn btn-light btn-sm">Events</button>
-                    <?php if ($this->session->type < 2) {
+                    <div class="btn-group">
+                        <button id="button_points" class="btn btn-light btn-sm">Points</button>
+                        <button id="button_loot" class="btn btn-light btn-sm">Loot</button>
+                        <button id="button_roster" class="btn btn-light btn-sm">Roster</button>
+                        <button id="button_bosses" class="btn btn-light btn-sm">Bosses</button>
+                        <button id="button_items" class="btn btn-light btn-sm">Items</button>
+                        <button id="button_raids" class="btn btn-light btn-sm">Raids</button>
+                        <button id="button_events" class="btn btn-light btn-sm">Events</button>
+                        <?php if ($this->session->type < 2) {
                         echo anchor('admins', 'Admin Panel', "class='btn btn-success btn-sm'");
                     } ?>
-                    <?php if ($this->session->type < 3) {
+                        <?php if ($this->session->type < 3) {
                         echo anchor('officers', 'Officer Panel', "class='btn btn-success btn-sm'");
                     } ?>
-                    <a href="<?php echo site_url()?>"
-                        class="btn btn-danger btn-sm">Logout</a>
-                    <br /><br />
+                        <a href="<?php echo site_url()?>"
+                            class="btn btn-danger btn-sm">Logout</a>
+                    </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mt-5">
                 <div class="col-4 offset-4 d-none" id="compare">
                     <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
                         id="table_compare">

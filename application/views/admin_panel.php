@@ -1,8 +1,4 @@
-            <link rel="stylesheet" type="text/css"
-                href="<?php echo base_url()?>assets/css/custom.css">
-            <link rel="stylesheet" type="text/css"
-                href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-            <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+            <?php include 'assets/datatables.php';?>
             <script src="<?php echo base_url()?>assets/js/admin_panel.js">
             </script>
             <h1 class="text-center text-white">Admin Panel</h1>
@@ -14,24 +10,25 @@
                             echo $this->session->msg;
                         } ?>
                     <br /><br />
-                    <button id="button_users" class="btn btn-light btn-sm">Users</button>
-                    <button id="button_players" class="btn btn-light btn-sm">Players</button>
-                    <button id="button_characters" class="btn btn-light btn-sm">Characters</button>
-                    <button id="button_bosses" class="btn btn-light btn-sm">Bosses</button>
-                    <button id="button_items" class="btn btn-light btn-sm">Items</button>
-                    <button id="button_raids" class="btn btn-light btn-sm">Raids</button>
-                    <button id="button_events" class="btn btn-light btn-sm">Events</button>
-                    <button id="button_drops" class="btn btn-light btn-sm">Drops</button>
-                    <button id="button_attendance" class="btn btn-light btn-sm">Attendance</button>
-                    <button id="button_loot" class="btn btn-light btn-sm">Loot</button>
-                    <?php echo anchor('officers', 'Officer Panel', "class='btn btn-success btn-sm'");?>
-                    <?php echo anchor('members', 'Member Panel', "class='btn btn-success btn-sm'");?>
-                    <a href="<?php echo site_url()?>"
-                        class="btn btn-danger btn-sm">Logout</a>
-                    <br /><br />
+                    <div class="btn-group">
+                        <button id="button_users" class="btn btn-light btn-sm">Users</button>
+                        <button id="button_players" class="btn btn-light btn-sm">Players</button>
+                        <button id="button_characters" class="btn btn-light btn-sm">Characters</button>
+                        <button id="button_bosses" class="btn btn-light btn-sm">Bosses</button>
+                        <button id="button_items" class="btn btn-light btn-sm">Items</button>
+                        <button id="button_raids" class="btn btn-light btn-sm">Raids</button>
+                        <button id="button_events" class="btn btn-light btn-sm">Events</button>
+                        <button id="button_drops" class="btn btn-light btn-sm">Drops</button>
+                        <button id="button_attendance" class="btn btn-light btn-sm">Attendance</button>
+                        <button id="button_loot" class="btn btn-light btn-sm">Loot</button>
+                        <?php echo anchor('officers', 'Officer Panel', "class='btn btn-success btn-sm'");?>
+                        <?php echo anchor('members', 'Member Panel', "class='btn btn-success btn-sm'");?>
+                        <a href="<?php echo site_url()?>"
+                            class="btn btn-danger btn-sm">Logout</a>
+                    </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mt-5">
                 <div class="col-8 offset-2" id="tables">
                     <?php include 'tables/users.php'?>
                     <?php include 'tables/players.php'?>
@@ -41,8 +38,8 @@
                     <?php include 'tables/raids.php'?>
                     <?php include 'tables/events.php'?>
                     <?php include 'tables/drops.php'?>
-                    <?php include 'tables/attendance.php'?>
-                    <?php include 'tables/loot.php'?>
+                    <?php include 'tables/attendance_entries.php'?>
+                    <?php include 'tables/loot_entries.php'?>
                 </div>
             </div>
             <?php include 'modals/delete_confirmation.php';?>
