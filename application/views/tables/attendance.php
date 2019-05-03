@@ -3,31 +3,40 @@
                             id="table_attendance">
                             <thead>
                                 <tr>
-                                    <th scope="col">Id</th>
                                     <th scope="col">Event</th>
-                                    <th scope="col">Character</th>
-                                    <th scope="col">Played By</th>
-                                    <th scope="col">&nbsp;</th>
+                                    <th scope="col">Characters</th>
                                     <th scope="col">&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                    for ($i = 0; $i < count($attendance_list); $i++) {
-                                        $attendance_entry = $attendance_list[$i];
-                                        $played_entry = $played_list[$i];
-                                        echo "<tr><th scope='row' class='align-middle'>" . $attendance_entry['id'] . '</th>';
-                                        echo "<td class='align-middle'>" . $attendance_entry['name_event'] . '</td>';
-                                        echo "<td class='align-middle'>" . $attendance_entry['name_character'] . '</td>';
-                                        echo "<td class='align-middle'>" . $played_entry['name_character'] . '</td>';
-                                        echo "<td class='align-middle'><button data-env='Attendance Entry' data-title='" . $attendance_entry['id'] . "' data-href='" . site_url() . 'attendance/delete/' . $attendance_entry['id'] . "' data-toggle='modal' data-target='#modal_delete_confirmation' class='btn btn-danger btn-sm'>Delete</button></td>";
-                                        echo "<td class='align-middle'><a href='" . site_url() . 'attendance/show_modify/' . $attendance_entry['id'] . "' class='btn btn-warning btn-sm'>Modify</a></td></tr>";
+                                    foreach ($events as $i => $value) {
+                                        echo "<tr><td class='align-middle'>" . $value . '</td>';
+                                        echo "<td class='align-middle'>";
+                                        $found = false;
+                                        for ($j = 0; $j < count($attendance_list); $j++) {
+                                            $attendance_entry = $attendance_list[$j];
+                                            $played_entry = $played_list[$j];
+                                            if ($attendance_entry['id_event'] == $i) {
+                                                if ($attendance_entry['name_character'] !== $played_entry['name_character']) {
+                                                    echo "<div class='badge badge-secondary m-1'>" . $attendance_entry['name_character'] . ' ';
+                                                    echo "<div class='badge badge-primary'>" . $played_entry['name_character'] . '</div></div>';
+                                                } else {
+                                                    echo "<div class='badge badge-primary m-1'>" . $attendance_entry['name_character'] . '</div>';
+                                                }
+                                                $found = true;
+                                            }
+                                        }
+                                        echo '</td>';
+                                        if ($found == true) {
+                                            echo "<td class='align-middle'><a href='" . site_url() . 'attendance/show_officer_modify/' . $i . "' class='btn btn-warning btn-sm'>Modify List</a></td>";
+                                        } else {
+                                            echo "<td class='align-middle'><a href='" . site_url() . 'attendance/show_officer_insert/' . $i . "' class='btn btn-success btn-sm'>Create List</a></td>";
+                                        }
+                                        echo '</tr>';
                                     }
                                 ?>
                             </tbody>
                         </table>
-                        <br />
-                        <a href="<?php echo site_url()?>attendance/show_insert/"
-                            class="btn btn-success btn-sm">New Attendance Entry</a>
                         <br /><br />
                     </div>
