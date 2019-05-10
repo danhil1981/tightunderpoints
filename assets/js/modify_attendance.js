@@ -42,6 +42,7 @@ $(document).ready(function () {
         $(".manual_input").addClass("d-none");
         $("#label_characters").html("Logfile<br/><br/>");
         $("#characters").removeClass("d-block").addClass("d-none");
+        $("#upload-file-info").html(this.files[0].name).removeClass("d-none").addClass("d-block");
         $("#submit").removeAttr("disabled");
     });
 
