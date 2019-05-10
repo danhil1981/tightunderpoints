@@ -28,8 +28,10 @@
                             </tbody>
                         </table>
                         <?php echo form_hidden('id_event', $id_event);?>
-                        <?php echo form_submit('submit', 'Confirm', "class='btn btn-success btn-sm'");?>
-                        <?php echo anchor('officers', 'Cancel', "class='btn btn-danger btn-sm'");?>
+                        <div class="text-center mt-5">
+                            <?php echo form_submit('submit', 'Confirm', "class='btn btn-success btn-sm'");?>
+                            <?php echo anchor('officers', 'Cancel', "class='btn btn-danger btn-sm'");?>
+                        </div>
                         <?php echo form_close();?>
                     </form>
                 </div>
