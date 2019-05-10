@@ -1,7 +1,6 @@
             <script src="<?php echo base_url()?>assets/js/confirm_attendance.js"></script>
             <h1 class="text-center text-white">Attendance</h1>
-            <br/><br/>
-            <div class="row">
+            <div class="row my-5">
                 <div class="col-8 offset-2" id="tables">
                     <?php echo form_open('/attendance/officer_modify');?>
                         <table class="table table-dark table-striped table-bordered table-hover table-sm text-center" id="table_users">
