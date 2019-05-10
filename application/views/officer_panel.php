@@ -2,59 +2,33 @@
             <script src="<?php echo base_url()?>assets/js/officer_panel.js">
             </script>
             <h1 class="text-center text-white">Officer Panel</h1>
-            <br /><br />
-            <div class="row" id="menu_buttons">
+            <?php include 'messages/message.php';?>
+            <div class="row my-5" id="menu_buttons">
                 <div class="col-10 offset-1 text-center">
-                    <?php
-                        if (isset($this->session->msg)) {
-                            echo $this->session->msg;
-                        }
-                    ?>
-                    <br /><br />
                     <div class="btn-group">
                         <button id="button_points" class="btn btn-light btn-sm">Points</button>
                         <button id="button_timers" class="btn btn-light btn-sm">Timers</button>
                         <button id="button_attendance" class="btn btn-light btn-sm">Attendance</button>
                         <button id="button_players" class="btn btn-light btn-sm">Players</button>
                         <button id="button_characters" class="btn btn-light btn-sm">Characters</button>
-                        <?php if ($this->session->type < 2) {
-                        echo anchor('admins', 'Admin Panel', "class='btn btn-success btn-sm'");
-                    }?>
+                        <?php
+                            if ($this->session->type < 2) {
+                                echo anchor('admins', 'Admin Panel', "class='btn btn-success btn-sm'");
+                            }
+                        ?>
                         <?php echo anchor('members', 'Member Panel', "class='btn btn-success btn-sm'");?>
                         <a href="<?php echo site_url()?>"
                             class="btn btn-danger btn-sm">Logout</a>
                     </div>
                 </div>
             </div>
-            <div class="row mt-5">
-                <div class="col-4 offset-4 d-none" id="compare">
-                    <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
-                        id="table_compare">
-                        <thead>
-                            <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Type</th>
-                                <th scope="col">Points</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody id="compare_tbody">
-                        </tbody>
-                    </table>
-                </div>
-                <br />
-                <div class="col-4 offset-4 d-none" id="winner">
-                    <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
-                        id="table_winner">
-                        <tbody id="winner_tbody">
-                        </tbody>
-                    </table>
-                </div>
-                <br />
+            <div class="row my-5">
                 <div class="col-8 offset-2" id="tables">
+                    <?php include 'tables/compare.php';?>
+                    <?php include 'tables/winner.php';?>
                     <?php include 'tables/points.php';?>
-                    <?php include 'tables/timers.php';?>
-                    <?php include 'tables/attendance.php';?>
+                    <?php include 'tables/officers/timers.php';?>
+                    <?php include 'tables/officers/attendance.php';?>
                     <?php include 'tables/players.php'?>
                     <?php include 'tables/characters.php'?>
                 </div>
