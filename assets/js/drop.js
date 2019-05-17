@@ -16,7 +16,7 @@ $(document).ready(function () {
                 })
             },
             error: function () {
-                $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
+                $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div>");
             }
         });
         return false;

@@ -14,9 +14,9 @@ $(document).ready(function () {
             type: "post",
             success: function (output) {
                 if (parseInt(output) < 1) {
-                    $("#messages").html("<br><br><div class='badge badge-success'>Database Error</div><br/>");
+                    $("#messages").html("<br><br><div class='badge badge-success'>Database Error</div>");
                 } else {
-                    $("#messages").html("<br><br><div class='badge badge-success'>Raid successfully created</div><br/>");
+                    $("#messages").html("<br><br><div class='badge badge-success'>Raid successfully created</div>");
                     var id_raid = output;
                     var description_raid = date + " - " + description;
                     $("#raid_dropdown").append(new Option(description_raid, id_raid));
@@ -24,7 +24,7 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
+                $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div>");
             }
         });
         $("#modal_raid").modal("hide");

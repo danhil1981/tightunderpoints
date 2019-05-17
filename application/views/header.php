@@ -18,7 +18,6 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="mx-auto">
-                    <br/>
                     <?php
                         if (isset($this->session->logged_in)) {
                             echo "<a href='" . site_url();

@@ -16,9 +16,9 @@ $(document).ready(function () {
             type: "post",
             success: function (output) {
                 if (parseInt(output) < 1) {
-                    $("#messages").html("<br><br><div class='badge badge-success'>Database Error</div><br/>");
+                    $("#messages").html("<div class='badge badge-success'>Database Error</div>");
                 } else {
-                    $("#messages").html("<br><br><div class='badge badge-success'>Raid successfully created</div><br/>");
+                    $("#messages").html("<div class='badge badge-success'>Raid successfully created</div>");
                     var id_raid = output;
                     var description_raid = date + " - " + description;
                     $("#raid_dropdown").append(new Option(description_raid, id_raid));
@@ -26,7 +26,7 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
+                $("#messages").html("<div class='badge badge-danger'>Ajax request failed</div>");
             }
         });
         $("#modal_raid").modal("hide");
@@ -53,7 +53,7 @@ $(document).ready(function () {
                 })
             },
             error: function () {
-                $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
+                $("#messages").html("<div class='badge badge-danger'>Ajax request failed</div>");
             }
         });
         return false;
@@ -82,19 +82,19 @@ $(document).ready(function () {
             type: "post",
             success: function (output) {
                 if (parseInt(output) == 0) {
-                    $("#messages").html("<br><br><div class='badge badge-success'>Database Error</div><br/>");
+                    $("#messages").html("<div class='badge badge-success'>Database Error</div>");
                 } else {
                     var data = JSON.parse(output);
                     var id_event = data["id_event"];
                     var timestamp = data["timestamp"];
                     var name_boss = data["name_boss"];
-                    $("#messages").html("<br><br><div class='badge badge-success'>Event successfully created</div><br/>");
+                    $("#messages").html("<div class='badge badge-success'>Event successfully created</div>");
                     $("#event_dropdown").append(new Option(timestamp + " - " + name_boss, id_event));
                     $("#event_dropdown option:last").attr("selected", "selected");
                 }
             },
             error: function () {
-                $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
+                $("#messages").html("<div class='badge badge-danger'>Ajax request failed</div>");
             }
         });
         $("#modal_event").modal("hide");
@@ -119,7 +119,7 @@ $(document).ready(function () {
                 $("#item_dropdown").trigger("change");
             },
             error: function () {
-                $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
+                $("#messages").html("<div class='badge badge-danger'>Ajax request failed</div>");
             }
         });
         return false;
@@ -139,7 +139,7 @@ $(document).ready(function () {
                     $("#boss_dropdown").val(output);
                 },
                 error: function () {
-                    $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
+                    $("#messages").html("<div class='badge badge-danger'>Ajax request failed</div>");
                 }
             });
         }
@@ -161,13 +161,13 @@ $(document).ready(function () {
             type: "post",
             success: function (output) {
                 if (parseInt(output) == 0) {
-                    $("#messages").html("<br><br><div class='badge badge-success'>Database Error</div><br/>");
+                    $("#messages").html("<div class='badge badge-success'>Database Error</div>");
                 } else {
-                    $("#messages").html("<br><br><div class='badge badge-success'>Item successfully created</div><br/>");
+                    $("#messages").html("<div class='badge badge-success'>Item successfully created</div>");
                 }
             },
             error: function () {
-                $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div><br/>");
+                $("#messages").html("<div class='badge badge-danger'>Ajax request failed</div>");
             }
         });
         $("#modal_item").modal("hide");
