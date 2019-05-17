@@ -37,9 +37,9 @@
                     $id_player = $this->input->post('id_player');
                     $result_insert = $this->model_characters->insert($name, $level, $class, $type, $id_player);
                     if ($result_insert == 0) {
-                        $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div><br/>");
+                        $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div>");
                     } else {
-                        $this->session->set_flashdata('msg', "<div class='badge badge-success'>Character successfully created</div><br/>");
+                        $this->session->set_flashdata('msg', "<div class='badge badge-success'>Character successfully created</div>");
                     }
                     $this->session->set_flashdata('table', 'characters');
                     if ($source == 'officers') {
@@ -55,9 +55,9 @@
             if ($this->check_permission(2)) {
                 $result = $this->model_characters->delete($id);
                 if ($result == 0) {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div><br/>");
+                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div>");
                 } else {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-success'>Character successfully deleted</div><br/>");
+                    $this->session->set_flashdata('msg', "<div class='badge badge-success'>Character successfully deleted</div>");
                 }
                 $this->session->set_flashdata('table', 'characters');
                 if ($source == 'officers') {
@@ -103,9 +103,9 @@
                     $id_player = $this->input->post('id_player');
                     $result = $this->model_characters->modify($id, $name, $level, $class, $type, $id_player);
                     if ($result == 0) {
-                        $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div><br/>");
+                        $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div>");
                     } else {
-                        $this->session->set_flashdata('msg', "<div class='badge badge-success'>Character successfully modified</div><br/>");
+                        $this->session->set_flashdata('msg', "<div class='badge badge-success'>Character successfully modified</div>");
                     }
                     $this->session->set_flashdata('table', 'characters');
                     if ($source == 'officers') {

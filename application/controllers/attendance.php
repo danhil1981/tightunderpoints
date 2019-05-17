@@ -23,9 +23,9 @@
                 $id_points = $this->input->post('id_points');
                 $result_insert = $this->model_attendance->insert($id_event, $id_character, $id_points);
                 if ($result_insert == 0) {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div><br/>");
+                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div>");
                 } else {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-success'>Attendance Entry successfully created</div><br/>");
+                    $this->session->set_flashdata('msg', "<div class='badge badge-success'>Attendance Entry successfully created</div>");
                 }
                 $this->session->set_flashdata('table', 'attendance');
                 redirect('admins');
@@ -37,9 +37,9 @@
             if ($this->check_permission(1)) {
                 $result = $this->model_attendance->delete($id);
                 if ($result == 0) {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div><br/>");
+                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div>");
                 } else {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-success'>Attendance Entry successfully deleted</div><br/>");
+                    $this->session->set_flashdata('msg', "<div class='badge badge-success'>Attendance Entry successfully deleted</div>");
                 }
                 $this->session->set_flashdata('table', 'attendance');
                 redirect('admins');
@@ -67,9 +67,9 @@
                 $id_points = $this->input->post('id_points');
                 $result = $this->model_attendance->modify($id, $id_event, $id_character, $id_points);
                 if ($result == 0) {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div><br/>");
+                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div>");
                 } else {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-success'>Attendance Entry successfully modified</div><br/>");
+                    $this->session->set_flashdata('msg', "<div class='badge badge-success'>Attendance Entry successfully modified</div>");
                 }
                 $this->session->set_flashdata('table', 'attendance');
                 redirect('admins');
@@ -101,13 +101,13 @@
                 } else {
                     $result_upload = $this->model_raid_dump->upload($this->input->post('id_event'));
                     if (!$result_upload) {
-                        $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Error on upload</div><br/>");
+                        $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Error on upload</div>");
                         $this->session->set_flashdata('table', 'attendance');
                         redirect('officers');
                     } else {
                         $validated_raid_dump = $this->model_raid_dump->validate(file_get_contents('./assets/uploads/raid_dumps/' . $this->upload->data('file_name')));
                         if (!$validated_raid_dump) {
-                            $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Incorrect file format</div><br/>");
+                            $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Incorrect file format</div>");
                             $this->session->set_flashdata('table', 'attendance');
                             redirect('officers');
                         } else {
@@ -131,11 +131,11 @@
                 $id_event = $this->input->post('id_event');
                 $result_insert = $this->model_attendance->officer_insert($id_event);
                 switch ($result_insert) {
-                    case '0': $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Error: Missing data</div><br/>");
+                    case '0': $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Error: Missing data</div>");
                     break;
-                    case '1': $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error(s)</div><br/>");
+                    case '1': $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error(s)</div>");
                     break;
-                    default: $this->session->set_flashdata('msg', "<div class='badge badge-success'>Attendance Entries successfully created</div><br/>");
+                    default: $this->session->set_flashdata('msg', "<div class='badge badge-success'>Attendance Entries successfully created</div>");
                 }
                 $this->session->set_flashdata('table', 'attendance');
                 redirect('officers');
@@ -170,13 +170,13 @@
                 } else {
                     $result_upload = $this->model_raid_dump->upload($this->input->post('id_event'));
                     if (!$result_upload) {
-                        $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Error on upload</div><br/>");
+                        $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Error on upload</div>");
                         $this->session->set_flashdata('table', 'attendance');
                         redirect('officers');
                     } else {
                         $validated_raid_dump = $this->model_raid_dump->validate(file_get_contents('./assets/uploads/raid_dumps/' . $this->upload->data('file_name')));
                         if (!$validated_raid_dump) {
-                            $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Incorrect file format</div><br/>");
+                            $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Incorrect file format</div>");
                             $this->session->set_flashdata('table', 'attendance');
                             redirect('officers');
                         } else {
@@ -200,11 +200,11 @@
                 $id_event = $this->input->post('id_event');
                 $result_modify = $this->model_attendance->officer_modify($id_event);
                 switch ($result_modify) {
-                    case '0': $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Error: Missing data</div><br/>");
+                    case '0': $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Error: Missing data</div>");
                     break;
-                    case '1': $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error(s)</div><br/>");
+                    case '1': $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error(s)</div>");
                     break;
-                    default: $this->session->set_flashdata('msg', "<div class='badge badge-success'>Attendance Entries successfully modified</div><br/>");
+                    default: $this->session->set_flashdata('msg', "<div class='badge badge-success'>Attendance Entries successfully modified</div>");
                 }
                 $this->session->set_flashdata('table', 'attendance');
                 redirect('officers');

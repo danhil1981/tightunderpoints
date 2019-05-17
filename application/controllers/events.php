@@ -29,9 +29,9 @@
                 $id_raid = $this->input->post('id_raid');
                 $result_insert = $this->model_events->insert($timestamp, $id_boss, $id_raid);
                 if ($result_insert == 0) {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div><br/>");
+                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div>");
                 } else {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-success'>Event successfully created</div><br/>");
+                    $this->session->set_flashdata('msg', "<div class='badge badge-success'>Event successfully created</div>");
                 }
 
                 if ($source == 'officers') {
@@ -48,9 +48,9 @@
             if ($this->check_permission(1)) {
                 $result = $this->model_events->delete($id);
                 if ($result == 0) {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div><br/>");
+                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div>");
                 } else {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-success'>Event successfully deleted</div><br/>");
+                    $this->session->set_flashdata('msg', "<div class='badge badge-success'>Event successfully deleted</div>");
                 }
                 $this->session->set_flashdata('table', 'events');
                 redirect('admins');
@@ -79,9 +79,9 @@
                 $id_raid = $this->input->post('id_raid');
                 $result = $this->model_events->modify($id, $timestamp, $id_boss, $id_raid);
                 if ($result == 0) {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div><br/>");
+                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div>");
                 } else {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-success'>Event successfully modified</div><br/>");
+                    $this->session->set_flashdata('msg', "<div class='badge badge-success'>Event successfully modified</div>");
                 }
                 $this->session->set_flashdata('table', 'events');
                 redirect('admins');

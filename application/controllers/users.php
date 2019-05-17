@@ -37,9 +37,9 @@
                     $type = $this->input->post('type');
                     $result_insert = $this->model_users->insert($name, $password, $type);
                     if ($result_insert == 0) {
-                        $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div><br/>");
+                        $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div>");
                     } else {
-                        $this->session->set_flashdata('msg', "<div class='badge badge-success'>User successfully created</div><br/>");
+                        $this->session->set_flashdata('msg', "<div class='badge badge-success'>User successfully created</div>");
                     }
                     $this->session->set_flashdata('table', 'users');
                     redirect('admins');
@@ -52,9 +52,9 @@
             if ($this->check_permission(1)) {
                 $result = $this->model_users->delete($id);
                 if ($result == 0) {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div><br/>");
+                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div>");
                 } else {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-success'>User successfully deleted</div><br/>");
+                    $this->session->set_flashdata('msg', "<div class='badge badge-success'>User successfully deleted</div>");
                 }
                 $this->session->set_flashdata('table', 'users');
                 redirect('admins');
@@ -88,9 +88,9 @@
                     $type = $this->input->post('type');
                     $result = $this->model_users->modify($id, $name, $password, $type);
                     if ($result == 0) {
-                        $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div><br/>");
+                        $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div>");
                     } else {
-                        $this->session->set_flashdata('msg', "<div class='badge badge-success'>User successfully modified</div><br/>");
+                        $this->session->set_flashdata('msg', "<div class='badge badge-success'>User successfully modified</div>");
                     }
                     $this->session->set_flashdata('table', 'users');
                     redirect('admins');

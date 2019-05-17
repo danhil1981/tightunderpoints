@@ -30,9 +30,9 @@
                     $value = $this->input->post('value');
                     $result_insert = $this->model_items->insert($id, $name, $id_boss, $value);
                     if ($result_insert == 0) {
-                        $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div><br/>");
+                        $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div>");
                     } else {
-                        $this->session->set_flashdata('msg', "<div class='badge badge-success'>Item successfully created</div><br/>");
+                        $this->session->set_flashdata('msg', "<div class='badge badge-success'>Item successfully created</div>");
                     }
                     $this->session->set_flashdata('table', 'items');
                     redirect('admins');
@@ -45,9 +45,9 @@
             if ($this->check_permission(1)) {
                 $result = $this->model_items->delete($id);
                 if ($result == 0) {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div><br/>");
+                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div>");
                 } else {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-success'>Item successfully deleted</div><br/>");
+                    $this->session->set_flashdata('msg', "<div class='badge badge-success'>Item successfully deleted</div>");
                 }
                 $this->session->set_flashdata('table', 'items');
                 redirect('admins');
@@ -84,9 +84,9 @@
                     $value = $this->input->post('value');
                     $result = $this->model_items->modify($id_new, $id, $name, $id_boss, $value);
                     if ($result == 0) {
-                        $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div><br/>");
+                        $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div>");
                     } else {
-                        $this->session->set_flashdata('msg', "<div class='badge badge-success'>Item successfully modified</div><br/>");
+                        $this->session->set_flashdata('msg', "<div class='badge badge-success'>Item successfully modified</div>");
                     }
                     $this->session->set_flashdata('table', 'items');
                     redirect('admins');

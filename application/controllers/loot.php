@@ -21,9 +21,9 @@
                 $id_character = $this->input->post('id_character');
                 $result_insert = $this->model_loot->insert($id_drop, $id_character);
                 if ($result_insert == 0) {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div><br/>");
+                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div>");
                 } else {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-success'>Loot Entry successfully created</div><br/>");
+                    $this->session->set_flashdata('msg', "<div class='badge badge-success'>Loot Entry successfully created</div>");
                 }
                 $this->session->set_flashdata('table', 'loot');
                 redirect('admins');
@@ -35,9 +35,9 @@
             if ($this->check_permission(1)) {
                 $result = $this->model_loot->delete($id);
                 if ($result == 0) {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div><br/>");
+                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div>");
                 } else {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-success'>Loot Entry successfully deleted</div><br/>");
+                    $this->session->set_flashdata('msg', "<div class='badge badge-success'>Loot Entry successfully deleted</div>");
                 }
                 $this->session->set_flashdata('table', 'loot');
                 redirect('admins');
@@ -63,9 +63,9 @@
                 $id_character = $this->input->post('id_character');
                 $result = $this->model_loot->modify($id, $id_drop, $id_character);
                 if ($result == 0) {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div><br/>");
+                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div>");
                 } else {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-success'>Loot Entry successfully modified</div><br/>");
+                    $this->session->set_flashdata('msg', "<div class='badge badge-success'>Loot Entry successfully modified</div>");
                 }
                 $this->session->set_flashdata('table', 'loot');
                 redirect('admins');
@@ -93,11 +93,11 @@
                 $id_character = $this->input->post('id_character');
                 $result_insert = $this->model_loot->officer_insert($id_item, $id_event, $id_character);
                 switch ($result_insert) {
-                    case '0': $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error (drop)</div><br/>");
+                    case '0': $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error (drop)</div>");
                     break;
-                    case '1': $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error (loot)</div><br/>");
+                    case '1': $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error (loot)</div>");
                     break;
-                    default: $this->session->set_flashdata('msg', "<div class='badge badge-success'>Drop and Loot Entries successfully created</div><br/>");
+                    default: $this->session->set_flashdata('msg', "<div class='badge badge-success'>Drop and Loot Entries successfully created</div>");
                     $discord_webhook_url = $this->config->item('discord_webhook_url');
                     if (isset($discord_webhook_url)) {
                         $this->model_discord->loot_notification($discord_webhook_url);

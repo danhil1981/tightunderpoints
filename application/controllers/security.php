@@ -26,9 +26,9 @@
             $password = $this->input->post('password');
             $result = $this->model_security->validate_user($username, $password);
             if (!$result) {
-                $this->index("<div class='badge badge-danger'>User/password incorrect</div><br/>");
+                $this->index("<div class='badge badge-danger'>User/password incorrect</div>");
             } else {
-                $this->session->set_flashdata('msg', "<div class='badge badge-success'>Welcome, " . $this->session->username . ' !</div><br/>');
+                $this->session->set_flashdata('msg', "<div class='badge badge-success'>Welcome, " . $this->session->username . ' !</div>');
                 switch ($this->session->type) {
                     case '1': {
                         redirect('admins');
@@ -50,11 +50,11 @@
             $allowed = false;
             if (!isset($this->session->logged_in)) {
                 $data['view_name'] = 'form_login';
-                $data['msg'] = "<div class='badge badge-danger mx-auto'>You need to be logged in to access this page</div><br/>";
+                $data['msg'] = "<div class='badge badge-danger mx-auto'>You need to be logged in to access this page</div>";
                 $this->load->view('template', $data);
             } else {
                 if ($type < $this->session->type) {
-                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>You do not have permissions to access this page</div><br/>");
+                    $this->session->set_flashdata('msg', "<div class='badge badge-danger'>You do not have permissions to access this page</div>");
                     switch ($this->session->type) {
                         case '2': {
                             redirect('officers');
