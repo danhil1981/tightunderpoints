@@ -1,4 +1,8 @@
                     <div id="attendance" class="d-none">
+                        <div class="text-center mb-5">
+                            <a href="<?php echo site_url()?>attendance/show_insert/"
+                                class="btn btn-success btn-sm">New Attendance Entry</a>
+                        </div>
                         <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
                             id="table_attendance">
                             <thead>
@@ -26,8 +30,8 @@
                                 ?>
                             </tbody>
                         </table>
-                        <br />
-                        <a href="<?php echo site_url()?>attendance/show_insert/"
-                            class="btn btn-success btn-sm">New Attendance Entry</a>
-                        <br /><br />
+                        <div class="text-center mt-5">
+                            <a href="<?php echo site_url()?>attendance/show_insert/"
+                                class="btn btn-success btn-sm">New Attendance Entry</a>
+                        </div>
                     </div>

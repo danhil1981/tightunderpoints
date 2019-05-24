@@ -1,4 +1,8 @@
                     <div id="raids" class="d-none">
+                        <div class="text-center mb-5">
+                            <a href="<?php echo site_url()?>raids/show_insert/"
+                                class="btn btn-success btn-sm">New Raid</a>
+                        </div>
                         <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
                             id="table_raids">
                             <thead>
@@ -23,8 +27,8 @@
                                 ?>
                             </tbody>
                         </table>
-                        <br />
-                        <a href="<?php echo site_url()?>raids/show_insert/"
-                            class="btn btn-success btn-sm">New Raid</a>
-                        <br /><br />
+                        <div class="text-center mt-5">
+                            <a href="<?php echo site_url()?>raids/show_insert/"
+                                class="btn btn-success btn-sm">New Raid</a>
+                        </div>
                     </div>

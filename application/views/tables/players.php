@@ -1,4 +1,8 @@
                     <div id="players" class="d-none">
+                        <div class="text-center mb-5">
+                            <a href="<?php echo site_url()?>players/show_insert/"
+                                class="btn btn-success btn-sm">New Player</a>
+                        </div>
                         <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
                             id="table_players">
                             <thead>
@@ -21,8 +25,8 @@
                                 ?>
                             </tbody>
                         </table>
-                        <br />
-                        <a href="<?php echo site_url()?>players/show_insert/"
-                            class="btn btn-success btn-sm">New Player</a>
-                        <br /><br />
+                        <div class="text-center mt-5">
+                            <a href="<?php echo site_url()?>players/show_insert/"
+                                class="btn btn-success btn-sm">New Player</a>
+                        </div>
                     </div>

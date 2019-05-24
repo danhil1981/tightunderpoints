@@ -38,5 +38,4 @@
                                 ?>
                             </tbody>
                         </table>
-                        <br /><br />
                     </div>

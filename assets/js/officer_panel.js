@@ -209,7 +209,7 @@ $(document).ready(function () {
         $(this).find('.modal-body').html(
             'Are you sure you want to delete the ' +
             $(e.relatedTarget).data('env') +
-            '<br /><strong>' + $(e.relatedTarget).data('title') + '</strong> ?'
+            '<div><strong>' + $(e.relatedTarget).data('title') + '</strong>?</div>'
         );
     });
 

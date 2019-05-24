@@ -8,22 +8,22 @@
                     ?>
                 </div>
             </div>
-            <div class="row">
+            <div class="row my-5">
                 <div class="col-6 offset-3">
                     <h1 class="text-center text-white">Login</h1>
                     <?php echo form_open('users/process_login');?>
                     <div class="form-group">
-                        <div class="text-center text-white">
-                            User<br />
+                        <div class="text-center text-white mt-5 mb-2">
+                            User
                         </div>
                         <?php echo form_input('user', '', "autofocus required class='form-control'")?>
                     </div>
                     <div class="form-group">
-                        <div class="text-center text-white">
-                            Password<br />
+                        <div class="text-center text-white mt-5 mb-2">
+                            Password
                         </div>
-                        <?php echo form_password('password', '', "required class='form-control'")?><br />
-                        <div class="text-center">
+                        <?php echo form_password('password', '', "required class='form-control'")?>
+                        <div class="text-center mt-5">
                             <?php echo form_submit('submit', 'Log In', "class='btn btn-success btn-sm'");?>
                         </div>
                     </div>

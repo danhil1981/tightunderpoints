@@ -1,4 +1,8 @@
                     <div id="timers" class="d-none">
+                        <div class="text-center mb-5">
+                            <a href="<?php echo site_url()?>events/show_insert/officers"
+                                class="btn btn-success btn-sm">New Event</a>
+                        </div>
                         <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
                             id="table_timers">
                             <thead>
@@ -34,8 +38,8 @@
                                 ?>
                             </tbody>
                         </table>
-                        <br />
-                        <a href="<?php echo site_url()?>events/show_insert/officers"
-                            class="btn btn-success btn-sm">New Event</a>
-                        <br /><br />
+                        <div class="text-center mt-5">
+                            <a href="<?php echo site_url()?>events/show_insert/officers"
+                                class="btn btn-success btn-sm">New Event</a>
+                        </div>
                     </div>

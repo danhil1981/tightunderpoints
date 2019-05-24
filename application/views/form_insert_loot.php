@@ -4,16 +4,16 @@
                     <h1 class="text-center text-white">New Loot Entry</h1>
                     <div id="messages" class="text-center"></div>
                     <?php echo form_open('/loot/officer_insert');?>
-                    <div class="form-group">
-                        <div class="text-white pt-5 pb-2">
+                    <div class="form-group my-5">
+                        <div class="text-white pb-2">
                             Character
                         </div>
                         <div class="form-inline-block">
                             <?php echo form_dropdown('id_character', $character_names, $id_character, "disabled class='form-control float-left'");?>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="text-white pt-5 pb-2">
+                    <div class="form-group my-5">
+                        <div class="text-white pb-2">
                             Raid
                         </div>
                         <div class="form-inline d-block">
@@ -21,8 +21,8 @@
                             <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#modal_raid">New Raid</button>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="text-white pt-5 pb-2">
+                    <div class="form-group my-5">
+                        <div class="text-white pb-2">
                             Event
                         </div>
                         <div class="form-inline d-block">
@@ -30,8 +30,8 @@
                             <button type="button" class="btn btn-primary float-right" id="new_event" data-toggle="modal" data-target="#modal_event">New Event</button>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="text-white pt-5 pb-2">
+                    <div class="form-group my-5">
+                        <div class="text-white pb-2">
                             Item
                         </div>
                         <div class="form-inline d-block">
