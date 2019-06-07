@@ -5,7 +5,7 @@ $(document).ready(function () {
         ],
         "lengthMenu": [10, 50, 100, 500],
         "columnDefs": [{
-            "targets": [3, 4],
+            "targets": [3],
             "orderable": false
         }]
     });
@@ -16,7 +16,7 @@ $(document).ready(function () {
         ],
         "lengthMenu": [10, 50, 100, 500],
         "columnDefs": [{
-            "targets": [2, 3],
+            "targets": [2],
             "orderable": false
         }]
     });
@@ -27,7 +27,7 @@ $(document).ready(function () {
         ],
         "lengthMenu": [10, 50, 100, 500],
         "columnDefs": [{
-            "targets": [6, 7],
+            "targets": [6],
             "orderable": false
         }]
     });
@@ -38,7 +38,7 @@ $(document).ready(function () {
         ],
         "lengthMenu": [10, 50, 100, 500],
         "columnDefs": [{
-            "targets": [5, 6],
+            "targets": [5],
             "orderable": false
         }]
     });
@@ -49,7 +49,7 @@ $(document).ready(function () {
         ],
         "lengthMenu": [10, 50, 100, 500],
         "columnDefs": [{
-            "targets": [4, 5, 6],
+            "targets": [4, 5],
             "orderable": false
         }]
     });
@@ -60,7 +60,7 @@ $(document).ready(function () {
         ],
         "lengthMenu": [10, 50, 100, 500],
         "columnDefs": [{
-            "targets": [4, 5],
+            "targets": [4],
             "orderable": false
         }]
     });
