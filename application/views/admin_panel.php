@@ -16,6 +16,8 @@
                         <button id="button_drops" class="btn btn-light btn-sm">Drops</button>
                         <button id="button_attendance" class="btn btn-light btn-sm">Attendance</button>
                         <button id="button_loot" class="btn btn-light btn-sm">Loot</button>
+                    </div>
+                    <div class="btn-group">
                         <?php echo anchor('officers', 'Officer Panel', "class='btn btn-success btn-sm'");?>
                         <?php echo anchor('members', 'Member Panel', "class='btn btn-success btn-sm'");?>
                         <a href="<?php echo site_url()?>"
