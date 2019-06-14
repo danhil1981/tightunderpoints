@@ -83,7 +83,7 @@ $(document).ready(function () {
         }
         comparing.push(id, points, type);
         $("#compare_tbody").append("<tr id='row_" + id + "'><td class='align-middle'>" + $("#name_" + id).html() + "</td><td class='align-middle'>" + $("#type_" + id).html() + "</td><td class='align-middle'>" + $("#points_" + id).html() +
-            "</td><td class='align-middle'><button id='remove_" + id + "' class='btn btn-warning btn-sm font-weight-bold'>&times;</button></td></tr>");
+            "</td><td class='align-middle'><button id='remove_" + id + "' class='btn btn-warning btn-sm font-weight-bold'><i class='material-icons align-middle'>cancel</i></button></td></tr>");
         get_max();
     });
 
@@ -157,7 +157,7 @@ $(document).ready(function () {
                 }
 
                 $("#title_character").text(data["name_character"] + " " + data["level_character"] + " " + data["class_character"]);
-                $("#content_character").html("Type: " + type + "Player: " + data["name_player"] + "Earned all time: " + data["total_earned"] + "Spent all time: " + data["total_spent"] + "</br>Earned last 50 days: " + data["last50_earned"] + "Spent last 50 days: " + data["last50_spent"] + "Current Points: " + (data["last50_earned"] - data["last50_spent"]) + "Last Event: " + timestamp_last_event + " " + boss_last_event + "Last Loot: " + timestamp_last_loot + " " + item_last_loot);
+                $("#content_character").html("Type: " + type + "<br/>Player: " + data["name_player"] + "<br/><br/>Earned all time: " + data["total_earned"] + "<br/>Spent all time: " + data["total_spent"] + "<br/>Earned last 50 days: " + data["last50_earned"] + "<br/>Spent last 50 days: " + data["last50_spent"] + "<br/>Current Points: " + (data["last50_earned"] - data["last50_spent"]) + "<br/><br/>Last Event: " + timestamp_last_event + " " + boss_last_event + "<br/>Last Loot: " + timestamp_last_loot + " " + item_last_loot);
                 $("#modal_character").modal();
             },
             error: function () {
@@ -183,7 +183,7 @@ $(document).ready(function () {
                     data["first_killed"] = "n/a";
                 }
                 $("#title_boss").text(data["name_boss"]);
-                $("#content_boss").html("Tracked kills: " + data["total_kills"] + "First killed: " + data["first_killed"] + "Last killed: " + data["last_killed"] + "");
+                $("#content_boss").html("Tracked kills: " + data["total_kills"] + "<br/><br/>First killed: " + data["first_killed"] + "<br/>Last killed: " + data["last_killed"] + "");
                 $.ajax({
                     url: "ajax/get_list_items/",
                     data: {
@@ -193,7 +193,7 @@ $(document).ready(function () {
                     success: function (output) {
                         var data2 = JSON.parse(output);
                         if (data2.length != 0) {
-                            $("#content_boss").append("List of drops:");
+                            $("#content_boss").append("<br/><br/>List of drops:<br/>");
                             for (i in data2) {
                                 let percentage = 0;
                                 let drops = " drops ";
@@ -203,7 +203,7 @@ $(document).ready(function () {
                                 if (data2[i]["number_drops"] == 1) {
                                     drops = " drop ";
                                 }
-                                $("#content_boss").append("" + data2[i]["name_item"] + " (" + data2[i]["number_drops"] + drops + "- " + percentage + " %)");
+                                $("#content_boss").append("<br/>" + data2[i]["name_item"] + " (" + data2[i]["number_drops"] + drops + "- " + percentage + " %)");
                             }
                         }
                         $("#modal_boss").modal();
@@ -232,12 +232,12 @@ $(document).ready(function () {
                 $("#title_item").text(decodeHtml(data["name_item"]));
                 $("#content_item").html("Number of drops: " + data["number_drops"] + "");
                 if (data["name_first_looter"] != undefined) {
-                    $("#content_item").append("First looted by: " + data["name_first_looter"] + " (" + data["timestamp_first_loot"] + ")");
+                    $("#content_item").append("<br/><br/>First looted by: " + data["name_first_looter"] + " (" + data["timestamp_first_loot"] + ")");
                 }
                 if (data["name_last_looter"] != undefined) {
-                    $("#content_item").append("Last looted by: " + data["name_last_looter"] + " (" + data["timestamp_last_loot"] + ")");
+                    $("#content_item").append("<br/>Last looted by: " + data["name_last_looter"] + " (" + data["timestamp_last_loot"] + ")");
                 }
-                $("#content_item").append("<a href='http://allaclone.p2002.com/item.php?id=" + id_item + "' target='_blank' class='btn btn-primary btn-sm'>Allaclone</a>")
+                $("#content_item").append("<br/><br/><a href='http://allaclone.p2002.com/item.php?id=" + id_item + "' target='_blank' class='btn btn-primary btn-sm'>View on Allaclone</a>")
                 $("#modal_item").modal();
             },
             error: function () {
