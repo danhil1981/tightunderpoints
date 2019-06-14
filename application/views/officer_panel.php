@@ -11,6 +11,8 @@
                         <button id="button_attendance" class="btn btn-light btn-sm">Attendance</button>
                         <button id="button_players" class="btn btn-light btn-sm">Players</button>
                         <button id="button_characters" class="btn btn-light btn-sm">Characters</button>
+                    </div>
+                    <div class="btn-group">
                         <?php
                             if ($this->session->type < 2) {
                                 echo anchor('admins', 'Admin Panel', "class='btn btn-success btn-sm'");
