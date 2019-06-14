@@ -49,7 +49,7 @@ $(document).ready(function () {
         ],
         "lengthMenu": [10, 50, 100, 500],
         "columnDefs": [{
-            "targets": [4, 5],
+            "targets": [4],
             "orderable": false
         }]
     });
