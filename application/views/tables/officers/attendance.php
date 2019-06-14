@@ -29,9 +29,9 @@
                                         }
                                         echo '</td>';
                                         if ($found == true) {
-                                            echo "<td class='align-middle'><a href='" . site_url() . 'attendance/show_officer_modify/' . $i . "' class='btn btn-warning btn-sm'>Modify List</a></td>";
+                                            echo "<td class='align-middle'><a title='Modify Attendance List' href='" . site_url() . 'attendance/show_officer_modify/' . $i . "' class='btn btn-primary btn-sm'><i class='material-icons align-middle'>settings</i></a></td>";
                                         } else {
-                                            echo "<td class='align-middle'><a href='" . site_url() . 'attendance/show_officer_insert/' . $i . "' class='btn btn-success btn-sm'>Create List</a></td>";
+                                            echo "<td class='align-middle'><a title='Create Attendance List' href='" . site_url() . 'attendance/show_officer_insert/' . $i . "' class='btn btn-success btn-sm'><i class='material-icons align-middle'>group_add</i></a></td>";
                                         }
                                         echo '</tr>';
                                     }

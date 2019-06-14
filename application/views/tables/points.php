@@ -3,14 +3,14 @@
                             id="table_points">
                             <thead>
                                 <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Type</th>
-                                    <th scope="col">All Time Earned</th>
-                                    <th scope="col">All Time Spent</th>
-                                    <th scope="col">Earned last 50 days</th>
-                                    <th scope="col">Spent last 50 days</th>
-                                    <th scope="col">Available Points</th>
-                                    <th scope="col">&nbsp;</th>
+                                    <th scope="col" class="align-middle">Name</th>
+                                    <th scope="col" class="align-middle">Type</th>
+                                    <th scope="col" class="align-middle">All Time Earned</th>
+                                    <th scope="col" class="align-middle">All Time Spent</th>
+                                    <th scope="col" class="align-middle">Earned last 50 days</th>
+                                    <th scope="col" class="align-middle">Spent last 50 days</th>
+                                    <th scope="col" class="align-middle">Available Points</th>
+                                    <th scope="col" class="align-middle">Compare</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -31,7 +31,7 @@
                                         echo "<td class='align-middle'>" . $list_last50_earned[$i] . '</td>';
                                         echo "<td class='align-middle'>" . $list_last50_spent[$i] . '</td>';
                                         echo "<td id='points_$i' class='align-middle'>" . ($list_last50_earned[$i] - $list_last50_spent[$i]) . '</td>';
-                                        echo "<td class='align-middle'><button class='btn btn-sm btn-primary' id='compare_" . $i . "'>Compare</button></td></tr>";
+                                        echo "<td class='align-middle'><button title='Compare' class='btn btn-sm btn-primary' id='compare_" . $i . "'><i class='material-icons align-middle'>compare_arrows</i></button></td></tr>";
                                     }
                                 ?>
                             </tbody>
