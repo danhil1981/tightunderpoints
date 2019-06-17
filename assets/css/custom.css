@@ -1,3 +1,8 @@
+html {
+  background-image: url(../img/pattern.png);
+  background-repeat: cover; 
+}
+
 label {
     color: white;
     float: left;
@@ -14,7 +19,16 @@ label input, label select {
 }
 
 .dataTables_info {
+    padding-top: 0 !important;
     color: white;
+    display: inline;
+    float: left;
+}
+
+.dataTables_paginate {
+    padding-top: 0.1rem;
+    display: inline;
+    float: right;
 }
 
 .dataTables_filter {
@@ -37,8 +51,8 @@ label input, label select {
     font-size: .875rem;
     line-height: 1.5;
     border-radius: .2rem;
-    background-color: white;
-    color: black;
+    background-color: #212529;
+    color: white;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
@@ -46,17 +60,27 @@ label input, label select {
     outline: 0;
     box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
     text-decoration: none;
-    color: black;
-    background-color: #f8f9fa;
+    color: white;
+    background-color: #5F7A88;
 }
 
 .paginate_button:hover {
     cursor: pointer;
     text-decoration: none;
-    color: black;
-    background-color: #E2E6EA;
+    color: white;
+    background-color: #5F7A88;
+}
+
+.current {
+    background-color: #718D9C;
+}
+
+.disabled {
+    color: grey;
 }
 
 .disabled:hover {
     cursor: auto;
+    color: grey;
+    background-color: #212529;
 }
