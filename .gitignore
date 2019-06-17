@@ -20,3 +20,9 @@ database.sql
 ## Raid Logs
 
 /assets/uploads/raid_dumps/*
+
+
+## Node Modules
+
+/node_modules
+package-lock.json
