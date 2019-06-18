@@ -50,7 +50,7 @@
             }
         }
 
-        public function delete($id, $source = 'admins')
+        public function delete($id)
         {
             if ($this->check_permission(2)) {
                 $result = $this->model_characters->delete($id);
@@ -60,7 +60,7 @@
                     $this->session->set_flashdata('msg', "<div class='badge badge-success'>Character successfully deleted</div>");
                 }
                 $this->session->set_flashdata('table', 'characters');
-                if ($source == 'officers') {
+                if ($this->session->type === '2') {
                     redirect('officers');
                 }
                 redirect('admins');
