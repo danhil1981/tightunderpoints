@@ -31,7 +31,7 @@
                                         echo "<td class='align-middle'>" . $list_last50_earned[$i] . '</td>';
                                         echo "<td class='align-middle'>" . $list_last50_spent[$i] . '</td>';
                                         echo "<td id='points_$i' class='align-middle'>" . ($list_last50_earned[$i] - $list_last50_spent[$i]) . '</td>';
-                                        echo "<td class='align-middle'><button title='Compare' class='btn btn-sm btn-primary' id='compare_" . $i . "'><i class='material-icons align-middle'>compare_arrows</i></button></td></tr>";
+                                        echo "<td class='align-middle'><button title='Compare' class='btn btn-sm btn-success' id='compare_" . $i . "'><i class='material-icons align-middle'>compare_arrows</i></button></td></tr>";
                                     }
                                 ?>
                             </tbody>
