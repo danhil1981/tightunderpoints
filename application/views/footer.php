@@ -1,5 +1,5 @@
-            <div class="text-center">
-                <a href="https://github.com/danhil1981/tightunderpoints"  target="_blank" class="badge badge-primary">&copy; Daniel Hilbrand 2018-2019</a>
+            <div class="col-10 offset-1 text-right">
+                <a href="https://github.com/danhil1981/tightunderpoints" target="_blank" class="text-success">Report bugs here  <img height="30px" src="<?php echo base_url()?>assets/img/github.png" alt="Github Logo"></a>
             </div>
         </div>
     </body>
