@@ -2,7 +2,6 @@
             <script src="<?php echo base_url()?>assets/js/admin_panel.js">
             </script>
             <h1 class="text-center text-white">Admin Panel</h1>
-            <?php include 'messages/message.php'?>
             <div class="row my-5" id="menu_buttons">
                 <div class="col-10 offset-1 text-center">
                     <div class="btn-group">
@@ -21,10 +20,11 @@
                         <?php echo anchor('officers', 'Officer Panel', "class='btn btn-success btn-sm'");?>
                         <?php echo anchor('members', 'Member Panel', "class='btn btn-success btn-sm'");?>
                         <a href="<?php echo site_url()?>"
-                            class="btn btn-danger btn-sm">Logout</a>
+                                class="btn btn-danger btn-sm">Logout</a>
                     </div>
                 </div>
             </div>
+            <?php include 'messages/message.php'?>
             <div class="row my-5">
                 <div class="col-10 offset-1" id="tables">
                     <?php include 'tables/admins/users.php'?>
