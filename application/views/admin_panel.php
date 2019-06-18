@@ -1,7 +1,6 @@
             <?php include 'assets/datatables.php';?>
             <script src="<?php echo base_url()?>assets/js/admin_panel.js">
             </script>
-            <h1 class="text-center text-white">Admin Panel</h1>
             <div class="row my-5" id="menu_buttons">
                 <div class="col-10 offset-1 text-center">
                     <div class="btn-group">
