@@ -23,7 +23,7 @@
                     </div>
                     <div class="text-center mt-5">
                     <?php
-                        echo form_submit('submit', 'Create', "class='btn btn-success btn-sm'");
+                        echo form_submit('submit', 'Create', "class='btn btn-primary btn-sm'");
                         echo anchor('admins', 'Cancel', "class='btn btn-danger btn-sm'");
                         echo form_close();
                     ?>

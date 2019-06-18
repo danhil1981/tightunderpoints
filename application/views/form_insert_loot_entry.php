@@ -17,7 +17,7 @@
                         <?php echo form_dropdown('id_character', $options, '', "required class='form-control'");?>
                     </div>
                     <div class="text-center mt-5">
-                        <?php echo form_submit('submit', 'Create', "class='btn btn-success btn-sm'");?>
+                        <?php echo form_submit('submit', 'Create', "class='btn btn-primary btn-sm'");?>
                         <?php echo anchor('admins', 'Cancel', "class='btn btn-danger btn-sm'");?>
                     </div>
                     <?php echo form_close();?>

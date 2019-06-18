@@ -18,17 +18,17 @@
                             <?php echo form_dropdown('id_character', $options, '', "required id='character_dropdown' class='manual_input form-control'");?>
                             <button id="add_character" class="manual_input btn btn-sm btn-secondary form-control">Add to List</button>
                             <div class="form-control text-white text-center btn-secondary d-none" id="upload-file-info"></div>
-                            <label class="btn btn-sm btn-primary form-control" for="upload_input">
+                            <label class="btn btn-sm btn-success form-control" for="upload_input">
                                 <span class="align-middle">Upload Log</span>
                                 <?php echo form_upload('upload_characters', '', "id='upload_input' class='d-none'");?>
                             </label>
                         </div>
                     </div>
                     <div id="characters" class="d-none my-5">
-                        <table class="table table-dark table-striped table-bordered table-hover table-sm text-center" id="table_characters">
+                        <table class="table-sm text-center" id="table_characters">
                             <tbody>
                                 <tr>
-                                    <td id="tcell_characters"><?php
+                                    <td id="tcell_characters""><?php
                                         foreach ($list_characters_array as $i => $value) {
                                             echo "<div class='btn btn-sm btn-secondary m-1' id='" . $i . "'>" . $character_names[$i] . "<button class='close text-white' id='" . $i . $character_names[$i] . "'><div class='small ml-1'>&times;</div></button></div>";
                                         }

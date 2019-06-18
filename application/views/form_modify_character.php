@@ -46,7 +46,7 @@
                     <?php echo form_hidden('source', $source);?>
                     <?php echo form_hidden('id', $character['id']);?>
                     <div class="text-center mt-5">
-                        <?php echo form_submit('submit', 'Modify', "class='btn btn-primary btn-sm'");?>
+                        <?php echo form_submit('submit', 'Modify', "class='btn btn-success btn-sm'");?>
                         <?php echo anchor($source, 'Cancel', "class='btn btn-danger btn-sm'");?>
                     </div>
                     <?php echo form_close();?>

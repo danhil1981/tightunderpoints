@@ -66,7 +66,7 @@
                                 Date:
                                 <?php echo form_date('date', gmdate('Y-m-d'), "id='raid_date' required class='form-control my-3'")?>
                                 <div class="text-center mt-5">
-                                    <button id="insert_raid" class="btn btn-success">Create</button>
+                                    <button id="insert_raid" class="btn btn-primary">Create</button>
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                                 </div>
                             </form>
