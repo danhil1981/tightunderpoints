@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="row my-5">
-                <div class="col-8 offset-2" id="tables">
+                <div class="col-10 offset-1" id="tables">
                     <?php include 'tables/compare.php';?>
                     <?php include 'tables/winner.php';?>
                     <?php include 'tables/points.php';?>

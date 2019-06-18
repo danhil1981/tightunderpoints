@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="row my-5">
-                <div class="col-8 offset-2" id="tables">
+                <div class="col-10 offset-1" id="tables">
                     <?php include 'tables/admins/users.php'?>
                     <?php include 'tables/players.php'?>
                     <?php include 'tables/characters.php'?>
