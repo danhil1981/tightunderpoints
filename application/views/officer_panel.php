@@ -2,7 +2,6 @@
             <script src="<?php echo base_url()?>assets/js/officer_panel.js">
             </script>
             <h1 class="text-center text-white">Officer Panel</h1>
-            <?php include 'messages/message.php';?>
             <div class="row my-5" id="menu_buttons">
                 <div class="col-10 offset-1 text-center">
                     <div class="btn-group">
@@ -24,6 +23,7 @@
                     </div>
                 </div>
             </div>
+            <?php include 'messages/message.php';?>
             <div class="row my-5">
                 <div class="col-10 offset-1" id="tables">
                     <?php include 'tables/compare.php';?>
@@ -38,9 +38,9 @@
             <div class="modal fade" id="modal_character" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <div class="modal-content bg-dark text-white">
+                    <div class="modal-content bg-light text-white">
                         <div class="modal-header">
-                            <h5 class="modal-title text-primary" id="title_character"></h5>
+                            <h5 class="modal-title text-danger" id="title_character"></h5>
                             <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -53,9 +53,9 @@
             <div class="modal fade" id="modal_boss" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <div class="modal-content bg-dark text-white">
+                    <div class="modal-content bg-light text-white">
                         <div class="modal-header">
-                            <h5 class="modal-title text-primary" id="title_boss"></h5>
+                            <h5 class="modal-title text-danger" id="title_boss"></h5>
                             <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
