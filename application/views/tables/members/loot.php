@@ -1,4 +1,4 @@
-                    <div id="loot" class="d-none">
+                    <div id="loot" class="d-none table-responsive">
                         <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
                             id="table_loot">
                             <thead>

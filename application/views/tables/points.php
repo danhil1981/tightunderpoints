@@ -1,4 +1,4 @@
-                    <div id="points" class="d-none">
+                    <div id="points" class="d-none table-responsive">
                         <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
                             id="table_points">
                             <thead>
@@ -10,7 +10,7 @@
                                     <th scope="col" class="align-middle">Earned last 50 days</th>
                                     <th scope="col" class="align-middle">Spent last 50 days</th>
                                     <th scope="col" class="align-middle">Available Points</th>
-                                    <th scope="col" class="align-middle">Compare</th>
+                                    <th scope="col" class="align-middle"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -31,7 +31,7 @@
                                         echo "<td class='align-middle'>" . $list_last50_earned[$i] . '</td>';
                                         echo "<td class='align-middle'>" . $list_last50_spent[$i] . '</td>';
                                         echo "<td id='points_$i' class='align-middle'>" . ($list_last50_earned[$i] - $list_last50_spent[$i]) . '</td>';
-                                        echo "<td class='align-middle'><button title='Compare' class='btn btn-sm btn-success' id='compare_" . $i . "'><i class='material-icons align-middle'>compare_arrows</i></button></td></tr>";
+                                        echo "<td class='fit align-middle'><button title='Compare' class='btn btn-sm btn-success' id='compare_" . $i . "'><i class='material-icons align-middle'>compare_arrows</i></button></td></tr>";
                                     }
                                 ?>
                             </tbody>

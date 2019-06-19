@@ -1,4 +1,4 @@
-                <div class="col-4 offset-4 d-none" id="compare">
+                <div class="col-4 offset-4 d-none table-responsive" id="compare">
                     <table class="table table-dark table-striped table-bordered table-hover table-sm text-center"
                         id="table_compare">
                         <thead>
