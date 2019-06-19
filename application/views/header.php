@@ -20,15 +20,16 @@
                 background-repeat: repeat;
             }
             .logo-text {
-                color: #286d67;
+                color: #D74B27;
+                font-size: 50px;
                 font-weight: bold;
-                text-shadow: #D74B27 2px 2px 4px;
+                text-shadow: #286d67 6px 6px 8px;
                 -webkit-text-stroke: 1px black;
             }
         </style>
     </head>
     <body>
-        <div class="container-fluid">
+        <div class="container-fluid p-3">
             <div class="row">
                 <div class="mx-auto">
                     <?php
@@ -46,7 +47,7 @@
                                 }
                         }
                     ?>
-                    <img src="<?php echo base_url()?>assets/img/logo.PNG" alt="Responsive Logo" height="150px"><h1 class="logo-text d-inline-block ml-3 pt-5">Tight Underpoints</h1>
+                    <img src="<?php echo base_url()?>assets/img/logo.PNG" alt="Responsive Logo" height="150px"><h1 class="logo-text d-inline-block ml-3">Tight Underpoints</h1>
                     <?php
                         if (isset($this->session->logged_in)) {
                             echo '</a>';
