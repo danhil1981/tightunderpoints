@@ -237,7 +237,7 @@ $(document).ready(function () {
                 if (data["name_last_looter"] != undefined) {
                     $("#content_item").append("<br/>Last looted by: " + data["name_last_looter"] + " (" + data["timestamp_last_loot"] + ")");
                 }
-                $("#content_item").append("<br/><br/><a href='http://allaclone.p2002.com/item.php?id=" + id_item + "' target='_blank' class='btn btn-primary btn-sm'>View on Allaclone</a>")
+                $("#content_item").append("<br/><br/><a href='http://allaclone.p2002.com/item.php?id=" + id_item + "' target='_blank' class='btn btn-success btn-sm'>View on Allaclone</a>")
                 $("#modal_item").modal();
             },
             error: function () {
