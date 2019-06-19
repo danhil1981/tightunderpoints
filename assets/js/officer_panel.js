@@ -23,7 +23,7 @@ $(document).ready(function () {
 
     $("#table_attendance").DataTable({
         "lengthMenu": [50, 100, 500],
-        "order": [0, "asc"],
+        "order": [0, "desc"],
         "columnDefs": [{
             "targets": [2],
             "orderable": false
