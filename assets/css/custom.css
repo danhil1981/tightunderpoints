@@ -84,3 +84,8 @@ label input, label select {
     color: grey;
     background-color: #212529;
 }
+
+.fit {
+    white-space: nowrap;
+    width: 5%;
+}
