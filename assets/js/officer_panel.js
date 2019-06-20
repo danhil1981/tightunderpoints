@@ -23,7 +23,7 @@ $(document).ready(function () {
             },
             {
                 "targets": [6],
-                "visible": false,
+                "visible": true,
                 "searchable": false
             },
             {
@@ -32,7 +32,7 @@ $(document).ready(function () {
             },
             {
                 "targets": [7],
-                "visible": false,
+                "visible": true,
                 "searchable": false
             },
             {
@@ -41,7 +41,7 @@ $(document).ready(function () {
             },
             {
                 "targets": [8],
-                "visible": false,
+                "visible": true,
                 "searchable": false
             }
         ],
