@@ -14,33 +14,33 @@ $(document).ready(function () {
         "order": [3, "asc"],
         "columnDefs": [
             {
-                "targets": [4, 5],
+                "targets": [7, 8],
                 "orderable": false
             },
             {
                 "orderData": [1],
-                "targets": [6]
+                "targets": [4]
             },
             {
-                "targets": [6],
+                "targets": [4],
                 "visible": false,
                 "searchable": false
             },
             {
                 "orderData": [2],
-                "targets": [7]
+                "targets": [5]
             },
             {
-                "targets": [7],
+                "targets": [5],
                 "visible": false,
                 "searchable": false
             },
             {
                 "orderData": [3],
-                "targets": [8]
+                "targets": [6]
             },
             {
-                "targets": [8],
+                "targets": [6],
                 "visible": false,
                 "searchable": false
             }
