@@ -37,9 +37,9 @@
                                             }
                                         }
                                         echo '</td>';
-                                        echo "<td class='align-middle'>" . $value['last_killed'] . '</td>';
-                                        echo "<td class='align-middle'>" . $value['start_window'] . '</td>';
-                                        echo "<td class='align-middle'>" . $value['end_window'] . '</td>';
+                                        echo "<td>" . $value['last_killed'] . '</td>';
+                                        echo "<td>" . $value['start_window'] . '</td>';
+                                        echo "<td>" . $value['end_window'] . '</td>';
                                         echo '</tr>';
                                     }
                                 ?>
