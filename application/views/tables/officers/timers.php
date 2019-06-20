@@ -13,6 +13,9 @@
                                     <th scope="col">End Window</th>
                                     <th scope="col"></th>
                                     <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -33,7 +36,11 @@
                                                 echo "<div title='In Window' class='btn btn-sm btn-primary'><i class='material-icons align-middle'>indeterminate_check_box</i></div></td><td class='fit align-middle'><a title='Track " . $value['name_boss'] . "' href='" . site_url() . 'events/show_insert/officers/' . $value['id_boss'] . "' class='btn btn-sm btn-primary'><i class='material-icons align-middle'>alarm_add</i></a>";
                                             }
                                         }
-                                        echo '</td></tr>';
+                                        echo '</td>';
+                                        echo "<td class='align-middle'>" . $value['last_killed'] . '</td>';
+                                        echo "<td class='align-middle'>" . $value['start_window'] . '</td>';
+                                        echo "<td class='align-middle'>" . $value['end_window'] . '</td>';
+                                        echo '</tr>';
                                     }
                                 ?>
                             </tbody>

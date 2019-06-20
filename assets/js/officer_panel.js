@@ -12,10 +12,39 @@ $(document).ready(function () {
     $("#table_timers").DataTable({
         "lengthMenu": [50, 100, 500],
         "order": [3, "asc"],
-        "columnDefs": [{
-            "targets": [4, 5],
-            "orderable": false
-        }],
+        "columnDefs": [
+            {
+                "targets": [4, 5],
+                "orderable": false
+            },
+            {
+                "orderData": [1],
+                "targets": [6]
+            },
+            {
+                "targets": [1],
+                "visible": false,
+                "searchable": false
+            },
+            {
+                "orderData": [2],
+                "targets": [7]
+            },
+            {
+                "targets": [2],
+                "visible": false,
+                "searchable": false
+            },
+            {
+                "orderData": [3],
+                "targets": [8]
+            },
+            {
+                "targets": [3],
+                "visible": false,
+                "searchable": false
+            }
+        ],
         "language": {
             "emptyTable": "No tracked events within the last 50 days"
         }
