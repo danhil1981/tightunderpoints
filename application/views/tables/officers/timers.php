@@ -21,8 +21,8 @@
                                     foreach ($timers as $value) {
                                         echo "<tr><td class='align-middle'><div class='btn boss boss_" . $value['id_boss'] . "'>" . $value['name_boss'] . '</div></td>';
                                         echo "<td class='align-middle'>" . date('D j M, H:i', strtotime($value['last_killed'])) . '</td>';
-                                        echo "<td class='align-middle'>" . $value['start_window'] . '</td>';
-                                        echo "<td class='align-middle'>" . $value['end_window'] . '</td>';
+                                        echo "<td class='align-middle'>" . date('D j M, H:i', strtotime($value['start_window'])) . '</td>';
+                                        echo "<td class='align-middle'>" . date('D j M, H:i', strtotime($value['end_window'])) . '</td>';
                                         echo "<td class='fit align-middle'>";
                                         if (gmdate('Y-m-d H:i:s', time() + 3600 * ($timezone + date('I'))) > $value['end_window']) {
                                             echo "<div title='Up' class='btn btn-sm btn-success'><i class='material-icons align-middle'>event_available</i></div></td><td class='fit align-middle'><a title='Track " . $value['name_boss'] . "' href='" . site_url() . 'events/show_insert/officers/' . $value['id_boss'] . "' class='btn btn-sm btn-primary'><i class='material-icons align-middle'>alarm_add</i></a>";
