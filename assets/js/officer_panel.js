@@ -10,6 +10,7 @@ $(document).ready(function () {
     });
 
     $("#table_timers").DataTable({
+        "bAutoWidth": false,
         "lengthMenu": [50, 100, 500],
         "order": [3, "asc"],
         "columnDefs": [
