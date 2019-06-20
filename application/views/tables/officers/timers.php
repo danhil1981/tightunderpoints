@@ -37,9 +37,9 @@
                                             }
                                         }
                                         echo '</td>';
-                                        echo "<td>" . $value['last_killed'] . '</td>';
-                                        echo "<td>" . $value['start_window'] . '</td>';
-                                        echo "<td>" . $value['end_window'] . '</td>';
+                                        echo "<td class='d-none'>" . $value['last_killed'] . '</td>';
+                                        echo "<td class='d-none'>" . $value['start_window'] . '</td>';
+                                        echo "<td class='d-none'>" . $value['end_window'] . '</td>';
                                         echo '</tr>';
                                     }
                                 ?>
