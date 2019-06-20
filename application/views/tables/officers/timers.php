@@ -20,7 +20,7 @@
                                     $timezone = +1;
                                     foreach ($timers as $value) {
                                         echo "<tr><td class='align-middle'><div class='btn boss boss_" . $value['id_boss'] . "'>" . $value['name_boss'] . '</div></td>';
-                                        echo "<td class='align-middle'>" . date('D j M, H:i', strtotime($value['last_killed']) . '</td>';
+                                        echo "<td class='align-middle'>" . date('D j M, H:i', strtotime($value['last_killed'])) . '</td>';
                                         echo "<td class='align-middle'>" . $value['start_window'] . '</td>';
                                         echo "<td class='align-middle'>" . $value['end_window'] . '</td>';
                                         echo "<td class='fit align-middle'>";
