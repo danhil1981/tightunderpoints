@@ -19,8 +19,8 @@ $(document).ready(function () {
                 "orderable": false
             },
             {
-                "orderData": [1],
-                "targets": [4]
+                "orderData": [4],
+                "targets": [1]
             },
             {
                 "targets": [4],
@@ -28,8 +28,8 @@ $(document).ready(function () {
                 "searchable": false
             },
             {
-                "orderData": [2],
-                "targets": [5]
+                "orderData": [5],
+                "targets": [2]
             },
             {
                 "targets": [5],
@@ -37,8 +37,8 @@ $(document).ready(function () {
                 "searchable": false
             },
             {
-                "orderData": [3],
-                "targets": [6]
+                "orderData": [6],
+                "targets": [3]
             },
             {
                 "targets": [6],
