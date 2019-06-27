@@ -24,10 +24,11 @@
                 $source = $this->input->post('source');
                 $time = $this->input->post('time');
                 $date = $this->input->post('date');
+                $url_parse = $this->input->post('url_parse');
                 $timestamp = $date . ' ' . $time;
                 $id_boss = $this->input->post('id_boss');
                 $id_raid = $this->input->post('id_raid');
-                $result_insert = $this->model_events->insert($timestamp, $id_boss, $id_raid);
+                $result_insert = $this->model_events->insert($timestamp, $id_boss, $id_raid, $url_parse);
                 if ($result_insert == 0) {
                     $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div>");
                 } else {
@@ -74,10 +75,11 @@
                 $id = $this->input->post('id');
                 $time = $this->input->post('time');
                 $date = $this->input->post('date');
+                $url_parse = $this->input->post('url_parse');
                 $timestamp = $date . ' ' . $time;
                 $id_boss = $this->input->post('id_boss');
                 $id_raid = $this->input->post('id_raid');
-                $result = $this->model_events->modify($id, $timestamp, $id_boss, $id_raid);
+                $result = $this->model_events->modify($id, $timestamp, $id_boss, $id_raid, $url_parse);
                 if ($result == 0) {
                     $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div>");
                 } else {

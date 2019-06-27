@@ -41,6 +41,12 @@
                         </div>
                         <?php echo form_date('date', gmdate('Y-m-d'), "required class='form-control'")?>
                     </div>
+                    <div class="form-group">
+                        <div class="text-white mt-5 mb-2">
+                            Parse URL (optional)
+                        </div>
+                        <?php echo form_input('url_parse', '', "maxlength='512' class='form-control'")?>
+                    </div>
                     <?php echo form_hidden('source', $source);?>
                     <div class="text-center">
                         <?php echo form_submit('submit', 'Create', "class='btn btn-success btn-sm'");?>
