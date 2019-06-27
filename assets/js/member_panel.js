@@ -3,7 +3,7 @@ $(document).ready(function () {
     $("#table_events, #table_loot, #table_raids").DataTable({
         "lengthMenu": [25, 50, 100, 500],
         "autoWidth": false,
-        "order": [1, "asc"],
+        "order": [1, "desc"],
         "columnDefs": [{
             "orderData": [0],
             "targets": [1]
@@ -18,7 +18,7 @@ $(document).ready(function () {
 
     $("#table_points").DataTable({
         "lengthMenu": [50, 100, 500],
-        "order": [0, "asc"],
+        "order": [6, "desc"],
         "columnDefs": [{
             "targets": [7],
             "orderable": false
