@@ -22,8 +22,16 @@
                                         echo "<td class='align-middle'>" . $event['timestamp'] . '</td>';
                                         echo "<td class='align-middle'>" . $event['name_boss'] . '</td>';
                                         echo "<td class='align-middle'>" . $event['description_raid'] . '</td>';
-                                        echo "<td class='fit align-middle'><div class='btn-group'><a title='Modify " . $event['timestamp'] . ' - ' . $event['name_boss'] . "' href='" . site_url() . 'events/show_modify/' . $event['id'] . "' class='btn btn-success btn-sm'><i class='material-icons align-middle'>settings</i></a>";
-                                        echo "<button title='Delete " . $event['timestamp'] . ' - ' . $event['name_boss'] . "' data-env='Event' data-title='" . $event['timestamp'] . ' - ' . $event['name_boss'] . "' data-href='" . site_url() . 'events/delete/' . $event['id'] . "' data-toggle='modal' data-target='#modal_delete_confirmation' class='btn btn-danger btn-sm'><i class='material-icons align-middle'>delete</i></button></div></td></tr>";
+                                        echo "<td class='fit align-middle'><div class='btn-group'>";
+                                        echo "<a title='Modify " . $event['timestamp'] . ' - ' . $event['name_boss'] . "' href='" . site_url() . 'events/show_modify/' . $event['id'] . "' class='btn btn-success btn-sm'><i class='material-icons align-middle'>settings</i></a>";
+                                        echo "<button title='Delete " . $event['timestamp'] . ' - ' . $event['name_boss'] . "' data-env='Event' data-title='" . $event['timestamp'] . ' - ' . $event['name_boss'] . "' data-href='" . site_url() . 'events/delete/' . $event['id'] . "' data-toggle='modal' data-target='#modal_delete_confirmation' class='btn btn-danger btn-sm'><i class='material-icons align-middle'>delete</i></button></div>";
+                                        if ($event['url_parse'] != null) {
+                                            echo "<a title='DPS Parse for " . $event['timestamp'] . ' - ' . $event['name_boss'] . "' href='".$event['url_parse'] . "' target='_blank' class='btn btn-primary btn-sm'><i class='material-icons align-middle'>web</i></a>";
+                                        }
+                                        else {
+                                            echo "<button title='No Parse Available' href='' class='btn btn-light btn-sm' disabled><i class='material-icons align-middle'>web</i></button>";
+                                        }
+                                        echo "</td></tr>";
                                     }
                                 ?>
                             </tbody>
