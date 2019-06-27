@@ -28,6 +28,12 @@
                         </div>
                         <?php echo form_date('date', substr($event['timestamp'], 0, 10), "required class='form-control'")?>
                     </div>
+                    <div class="form-group">
+                        <div class="text-white mt-5 mb-2">
+                            Parse URL (optional)
+                        </div>
+                        <?php echo form_input('url_parse', $event['url_parse'], "maxlength='512' class='form-control'")?>
+                    </div>
                     <div class="text-center mt-5">
                         <?php
                             echo form_hidden('id', $event['id']);

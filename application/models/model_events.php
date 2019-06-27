@@ -16,7 +16,8 @@
             $query = $this->db->query('SELECT
                 events.id, events.timestamp, events.id_boss, events.id_raid,
                 bosses.name AS name_boss,
-                raids.description AS description_raid
+                raids.description AS description_raid,
+                events.url_parse AS url_parse
                 FROM events
                 LEFT JOIN bosses ON events.id_boss = bosses.id
                 LEFT JOIN raids ON events.id_raid = raids.id
@@ -93,11 +94,11 @@
             return implode($query->result_array()[0]);
         }
 
-        public function insert($timestamp, $id_boss, $id_raid)
+        public function insert($timestamp, $id_boss, $id_raid, $url_parse)
         {
             $this->db->query("INSERT
-                INTO events (timestamp, id_boss, id_raid)
-                VALUES ('$timestamp', '$id_boss', '$id_raid')
+                INTO events (timestamp, id_boss, id_raid, url_parse)
+                VALUES ('$timestamp', '$id_boss', '$id_raid', '$url_parse')
             ;");
             return $this->db->affected_rows();
         }
@@ -126,13 +127,14 @@
             return $this->db->affected_rows();
         }
 
-        public function modify($id, $timestamp, $id_boss, $id_raid)
+        public function modify($id, $timestamp, $id_boss, $id_raid, $url_parse)
         {
             $this->db->query("UPDATE
                 events SET
                 timestamp = '$timestamp',
                 id_boss = '$id_boss',
-                id_raid = '$id_raid'
+                id_raid = '$id_raid',
+                url_parse = '$url_parse'
                 WHERE id = '$id'
             ;");
             return $this->db->affected_rows();
