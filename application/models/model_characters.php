@@ -426,6 +426,7 @@
                 name = '$name',
                 level = '$level',
                 type = '$type',
+                class = '$class',
                 id_player = '$id_player'
                 WHERE id = '$id'
             ;");
