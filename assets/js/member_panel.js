@@ -18,9 +18,9 @@ $(document).ready(function () {
 
     $("#table_points").DataTable({
         "lengthMenu": [50, 100, 500],
-        "order": [6, "desc"],
+        "order": [7, "desc"],
         "columnDefs": [{
-            "targets": [7],
+            "targets": [8],
             "orderable": false
         }]
     });

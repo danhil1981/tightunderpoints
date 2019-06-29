@@ -54,6 +54,23 @@
             return array_column($characters, 'name_character', 'id_character');
         }
 
+        public function get_list_names_with_class()
+        {
+            $query = $this->db->query('SELECT
+                id AS id_character,
+                name AS name_character,
+                class AS class_character
+                FROM characters
+            ;');
+            $characters = [];
+            if ($query->num_rows() > 0) {
+                foreach ($query->result_array() as $row) {
+                    $characters[] = $row;
+                }
+            }
+            return $characters;
+        }
+
         public function get_list_mains()
         {
             $query = $this->db->query('SELECT
