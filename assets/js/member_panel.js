@@ -20,7 +20,7 @@ $(document).ready(function () {
         "lengthMenu": [50, 100, 500],
         "order": [6, "desc"],
         "columnDefs": [{
-            "targets": [7],
+            "targets": [8],
             "orderable": false
         }]
     });
