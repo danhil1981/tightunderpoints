@@ -13,7 +13,7 @@
                         <div class="text-white mt-5 mb-2">
                             Description
                         </div>
-                        <?php echo form_input('description', $raid['description'], "required maxlength='32' class='form-control'")?>
+                        <?php echo form_input('description', $raid['description'], "required maxlength='512' class='form-control'")?>
                     </div>
                     <div class="form-group">
                         <div class="text-white mt-5 mb-2">
