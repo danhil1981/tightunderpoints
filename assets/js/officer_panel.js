@@ -47,7 +47,7 @@ $(document).ready(function () {
             }
         ],
         "language": {
-            "emptyTable": "No tracked events within the last 50 days"
+            "emptyTable": "No tracked events within the last 2 weeks"
         }
     });
 
