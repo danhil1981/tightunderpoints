@@ -17,7 +17,7 @@
                             <tbody>
                                 <?php
                                     foreach ($list_names_with_class as $character) {
-                                        if ($list_last50_earned[$character['id_character']] > 0 && $this->session->type == 1) {
+                                        if ($list_last50_earned[$character['id_character']] > 0) {
                                             echo "<tr><td id='name_" . $character['id_character'] . "' class='align-middle'><div class='btn character character_" . $character['id_character'] . "'>" . $character['name_character'] . '</div></td>';
                                             echo "<td id='type_" . $character['id_character'] . "' class='align-middle'>";
                                             switch ($list_types[$character['id_character']]) {
