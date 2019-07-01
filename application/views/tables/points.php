@@ -17,25 +17,25 @@
                             <tbody>
                                 <?php
                                     foreach ($list_names_with_class as $character) {
-                                        // if ($list_last50_earned[$character['id_character']] > 0) {
-                                        echo "<tr><td id='name_" . $character['id_character'] . "' class='align-middle'><div class='btn character character_" . $character['id_character'] . "'>" . $character['name_character'] . '</div></td>';
-                                        echo "<td id='type_" . $character['id_character'] . "' class='align-middle'>";
-                                        switch ($list_types[$character['id_character']]) {
+                                        if ($list_last50_earned[$character['id_character']] > 0 && $this->session->type == 1) {
+                                            echo "<tr><td id='name_" . $character['id_character'] . "' class='align-middle'><div class='btn character character_" . $character['id_character'] . "'>" . $character['name_character'] . '</div></td>';
+                                            echo "<td id='type_" . $character['id_character'] . "' class='align-middle'>";
+                                            switch ($list_types[$character['id_character']]) {
                                                     case '1': echo 'Main';
                                                     break;
                                                     case '2': echo 'Alt';
                                                     break;
                                                     default: echo 'Bot';
                                                 }
-                                        echo '</td>';
-                                        echo "<td class='align-middle'>" . $character['class_character'] . '</td>';
-                                        echo "<td class='align-middle'>" . $list_total_earned[$character['id_character']] . '</td>';
-                                        echo "<td class='align-middle'>" . $list_total_spent[$character['id_character']] . '</td>';
-                                        echo "<td class='align-middle'>" . $list_last50_earned[$character['id_character']] . '</td>';
-                                        echo "<td class='align-middle'>" . $list_last50_spent[$character['id_character']] . '</td>';
-                                        echo "<td id='points_" . $character['id_character'] . "' class='align-middle'>" . ($list_last50_earned[$character['id_character']] - $list_last50_spent[$character['id_character']]) . '</td>';
-                                        echo "<td class='fit align-middle'><button title='Compare' class='btn btn-sm btn-success' id='compare_" . $character['id_character'] . "'><i class='material-icons align-middle'>compare_arrows</i></button></td></tr>";
-                                        // }
+                                            echo '</td>';
+                                            echo "<td class='align-middle'>" . $character['class_character'] . '</td>';
+                                            echo "<td class='align-middle'>" . $list_total_earned[$character['id_character']] . '</td>';
+                                            echo "<td class='align-middle'>" . $list_total_spent[$character['id_character']] . '</td>';
+                                            echo "<td class='align-middle'>" . $list_last50_earned[$character['id_character']] . '</td>';
+                                            echo "<td class='align-middle'>" . $list_last50_spent[$character['id_character']] . '</td>';
+                                            echo "<td id='points_" . $character['id_character'] . "' class='align-middle'>" . ($list_last50_earned[$character['id_character']] - $list_last50_spent[$character['id_character']]) . '</td>';
+                                            echo "<td class='fit align-middle'><button title='Compare' class='btn btn-sm btn-success' id='compare_" . $character['id_character'] . "'><i class='material-icons align-middle'>compare_arrows</i></button></td></tr>";
+                                        }
                                     }
                                 ?>
                             </tbody>
