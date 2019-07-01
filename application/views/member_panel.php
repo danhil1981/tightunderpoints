@@ -34,7 +34,7 @@
                     <?php
                         include 'tables/compare.php';
                         include 'tables/winner.php';
-                        include 'tables/points.php';
+                        include 'tables/members/points.php';
                         include 'tables/members/loot.php';
                         include 'tables/members/roster.php';
                         include 'tables/members/bosses.php';

@@ -27,7 +27,7 @@
                 <div class="col-10 offset-1" id="tables">
                     <?php include 'tables/compare.php';?>
                     <?php include 'tables/winner.php';?>
-                    <?php include 'tables/points.php';?>
+                    <?php include 'tables/officers/points.php';?>
                     <?php include 'tables/officers/timers.php';?>
                     <?php include 'tables/officers/attendance.php';?>
                     <?php include 'tables/players.php'?>
