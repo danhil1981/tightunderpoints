@@ -14,7 +14,7 @@
         public function get_all()
         {
             $query = $this->db->query('SELECT
-                items.id, items.name, items.id_boss, items.value,
+                items.id, items.name, items.id_boss, items.value, items.id_item,
                 bosses.name AS name_boss
                 FROM items
                 LEFT JOIN bosses ON items.id_boss = bosses.id
@@ -107,11 +107,11 @@
             return $item;
         }
 
-        public function insert($id, $name, $id_boss, $value)
+        public function insert($id_item, $name, $id_boss, $value)
         {
             $this->db->query("INSERT
-                INTO items (id, name, id_boss, value)
-                VALUES ('$id', '$name', '$id_boss', '$value')
+                INTO items (id_item, name, id_boss, value)
+                VALUES ('$id_item', '$name', '$id_boss', '$value')
             ;");
             return $this->db->affected_rows();
         }
@@ -138,11 +138,11 @@
             return $this->db->affected_rows();
         }
 
-        public function modify($id_new, $id, $name, $id_boss, $value)
+        public function modify($id_item, $id, $name, $id_boss, $value)
         {
             $this->db->query("UPDATE
                 items SET
-                id = '$id_new',
+                id_item = '$id_item',
                 name = '$name',
                 id_boss = '$id_boss',
                 value = '$value'
