@@ -24,11 +24,11 @@
                     $data['item']['name'] = $this->input->post('name');
                     $this->load->view('template', $data);
                 } else {
-                    $id = $this->input->post('id');
+                    $id_item = $this->input->post('id');
                     $name = quotes_to_entities($this->input->post('name'));
                     $id_boss = $this->input->post('id_boss');
                     $value = $this->input->post('value');
-                    $result_insert = $this->model_items->insert($id, $name, $id_boss, $value);
+                    $result_insert = $this->model_items->insert($id_item, $name, $id_boss, $value);
                     if ($result_insert == 0) {
                         $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div>");
                     } else {
@@ -78,11 +78,11 @@
                     $this->load->view('template', $data);
                 } else {
                     $id = $this->input->post('id');
-                    $id_new = $this->input->post('id_new');
+                    $id_item = $this->input->post('id_new');
                     $name = quotes_to_entities($this->input->post('name'));
                     $id_boss = $this->input->post('id_boss');
                     $value = $this->input->post('value');
-                    $result = $this->model_items->modify($id_new, $id, $name, $id_boss, $value);
+                    $result = $this->model_items->modify($id_item, $id, $name, $id_boss, $value);
                     if ($result == 0) {
                         $this->session->set_flashdata('msg', "<div class='badge badge-danger'>Database Error</div>");
                     } else {
