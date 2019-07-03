@@ -7,7 +7,7 @@
                             id="table_items">
                             <thead>
                                 <tr>
-                                    <th scope="col">Item-Id</th>
+                                    <th scope="col">Id</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Drops From</th>
                                     <th scope="col">Points</th>
