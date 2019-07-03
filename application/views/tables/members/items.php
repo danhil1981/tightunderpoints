@@ -13,10 +13,10 @@
                                 <?php
                                         for ($i = 0; $i < count($items_list); $i++) {
                                             $item = $items_list[$i];
-                                            echo "<tr><td class='fit align-middle'><div class='btn item item_" . $item['id'] . "'>" . $item['name'] . '</div></td>';
+                                            echo "<tr><td class='fit align-middle'><div class='btn item item_" . $item['id_item'] . "'>" . $item['name'] . '</div></td>';
                                             echo "<td class='align-middle'><div class='btn boss boss_" . $item['id_boss'] . "'>" . $item['name_boss'] . '</div></td>';
                                             echo "<td class='align-middle'>" . $item['value'] . '</td>';
-                                            echo "<td class='fit align-middle'><a title='View " . $item['name'] . " on AllaClone' href='http://allaclone.p2002.com/item.php?id=" . $item['id'] . "' target='_blank' class='btn btn-light btn-sm'><i class='material-icons align-middle'>web</i></a></td>";
+                                            echo "<td class='fit align-middle'><a title='View " . $item['name'] . " on AllaClone' href='http://allaclone.p2002.com/item.php?id=" . $item['id_item'] . "' target='_blank' class='btn btn-light btn-sm'><i class='material-icons align-middle'>web</i></a></td>";
                                             echo '</tr>';
                                         }
                                     ?>
