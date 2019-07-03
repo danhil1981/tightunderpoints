@@ -13,7 +13,7 @@
                         <div class="text-white mt-5 mb-2">
                             Id
                         </div>
-                        <?php echo form_number('id_new', $item['id'], "required class='form-control'")?>
+                        <?php echo form_number('id_new', $item['id_item'], "min='1' max='64000' required class='form-control'")?>
                     </div>
                     <div class="form-group">
                         <div class="text-white mt-5 mb-2">
