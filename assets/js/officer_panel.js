@@ -276,8 +276,7 @@ function get_winner() {
     });
 }
 
-$("#clipboard").on("click", function() {
-    alert("clicked");
+function clipboard() {
     var id = $(this).attr('id');
     var el = document.getElementById(id);
     var range = document.createRange();
@@ -288,7 +287,7 @@ $("#clipboard").on("click", function() {
     document.execCommand('copy');
     alert("Contents copied to clipboard.");
     return false;
-});
+}
 
 function get_list() {
     let max_points = -32000;
@@ -313,5 +312,5 @@ function get_list() {
         list += i+1 + " - " +character_names[i] +", ";
     }
     list = list.slice(0, -1);
-    $("#winner_tbody").html("<tr><td id='random_list' class='align-middle'>List of eligible characters: "+list+"</td><td><a id='clipboard' title='Copy to Clipboard' href='#' class='btn btn-sm btn-success mr-0'><i class='material-icons align-middle'>file_copy</i></a></td></tr>");
+    $("#winner_tbody").html("<tr><td id='random_list' class='align-middle'>List of eligible characters: "+list+"</td><td><a onclick='clipboard()' title='Copy to Clipboard' class='btn btn-sm btn-success mr-0'><i class='material-icons align-middle'>file_copy</i></a></td></tr>");
 }
