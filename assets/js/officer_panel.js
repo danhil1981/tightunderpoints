@@ -120,7 +120,10 @@ $(document).ready(function () {
             if (comparing[i].id == id);
             found_key = i;
         }
+        console.log(comparing);
+        console.log("removing from array");
         comparing.splice(found_key, 1);
+        console.log(comparing);
         if (comparing.length > 1) {
             get_list();
         } else {
