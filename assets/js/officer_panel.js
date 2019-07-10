@@ -105,7 +105,7 @@ $(document).ready(function () {
         };
         comparing.push(object);
 
-        $("#compare_tbody").append("<tr id='row_" + id + "'><td class='align-middle'>" + $("#name_" + id).html() + "</td><td class='align-middle'>" + $("#type_" + id).html() + "</td><td class='align-middle'>" + $("#points_" + id).html() +"</td><td><div class='btn-group'><button id='remove_" + id + "' class='btn btn-danger btn-sm font-weight-bold'><i class='material-icons align-middle'>cancel</i></button><a title='Loot' href='loot/show_officer_insert/" + id + "' class='btn btn-sm btn-success mr-0'><i class='material-icons align-middle'>shopping_cart</i></a></div></td></tr>");
+        $("#compare_tbody").append("<tr id='row_" + id + "'><td class='align-middle'>" + $("#name_" + id).html() + "</td><td class='align-middle'>" + $("#type_" + id).html() + "</td><td class='align-middle'>" + $("#points_" + id).html() +"</td><td><div class='btn-group'><a title='Loot' href='loot/show_officer_insert/" + id + "' class='btn btn-sm btn-success mr-0'><i class='material-icons align-middle'>shopping_cart</i></a><button id='remove_" + id + "' class='btn btn-danger btn-sm font-weight-bold'><i class='material-icons align-middle'>cancel</i></button></div></td></tr>");
         get_list();
 
 
