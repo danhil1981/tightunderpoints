@@ -116,7 +116,8 @@ $(document).ready(function () {
         $("#row_" + id).remove();
         $("#compare_" + id).removeClass("d-none");
         console.log(comparing);
-        console.log(_.reject(comparing, function(character){return character.id != id}));
+        comparing = comparing.slice(comparing.indexOf(id));
+        console.log(comparing);
         if (comparing.length > 1) {
             get_list();
         } else {
