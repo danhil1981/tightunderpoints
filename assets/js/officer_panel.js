@@ -296,7 +296,7 @@ function get_list() {
     }
 
     for (let i = 0; i < character_names.length; i++) {
-        list += i+1 + " - " +character_names[i] + "\n";
+        list += i+1 + " -> " +character_names[i];
     }
         
     $("#winner_tbody").html("<tr><th class='align-middle'>List of eligible characters: </th><td class='align-middle'>"+list+"</td></tr>");
