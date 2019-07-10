@@ -277,6 +277,7 @@ function get_winner() {
 }
 
 $("#clipboard").click(function() {
+    alert("clicked");
     var id = $(this).attr('id');
     var el = document.getElementById(id);
     var range = document.createRange();
