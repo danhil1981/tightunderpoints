@@ -122,7 +122,7 @@ $(document).ready(function () {
             found_key = i;
         }
         console.log("removing from array");
-        comparing = comparing.splice(found_key, 1);
+        comparing.splice(found_key, 1);
         console.log(comparing);
         if (comparing.length > 1) {
             get_list();
