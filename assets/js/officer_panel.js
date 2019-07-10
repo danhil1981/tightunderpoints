@@ -301,9 +301,9 @@ function get_list() {
         }
     }
 
-    for (let i = 0; i < character_names.length; i++) {
-        list += i+1 + " -> " +character_names[i] +" ";
+    for (let i = 0; i < character_names.length-1; i++) {
+        list += i+1 + " -> " +character_names[i] +", ";
     }
-        
+    list += character_names.length+1 + " -> " +character_names[character_names.length];
     $("#winner_tbody").html("<tr><td id='random_list' class='align-middle'>List of eligible characters: "+list+"</td><td><a title='Copy to Clipboard' onclick='clipboard()' class='btn btn-sm btn-success mr-0'><i class='material-icons align-middle'>file_copyt</i></a></td></tr>");
 }
