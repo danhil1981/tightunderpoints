@@ -115,10 +115,9 @@ $(document).ready(function () {
         var id = parseInt(this.id.slice(7));
         $("#row_" + id).remove();
         $("#compare_" + id).removeClass("d-none");
-        let found_key = -1;
         for (let i = 1; i < comparing.length; i++) {
             if (comparing[i].id == id) {
-                comparing.splice(found_key, 1);
+                comparing.splice(i, 1);
                 console.log("removing from array");
             }
         }
