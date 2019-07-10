@@ -288,9 +288,8 @@ function get_list() {
             min_type = comparing[i].type;
         }
     }
-    alert("Max Points/Min Type: "+max_points +" " +min_type);
     for (let i = 1; i < comparing.length; i++) {
-        if (comparing[i].points > max_points + 2 && comparing[i].type) {
+        if (comparing[i].points > max_points - 2 && comparing[i].type) {
             character_names.push(comparing[i].name);
         }
     }
