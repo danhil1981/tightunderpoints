@@ -105,7 +105,7 @@ $(document).ready(function () {
         };
         comparing.push(object);
 
-        $("#compare_tbody").append("<tr id='row_" + id + "'><td class='align-middle'>" + $("#name_" + id).html() + "</td><td class='align-middle'>" + $("#type_" + id).html() + "</td><td class='align-middle'>" + $("#points_" + id).html() +"</td><td><button id='remove_" + id + "' class='btn btn-danger btn-sm font-weight-bold'><i class='material-icons align-middle'>cancel</i></button><a title='Loot' href='loot/show_officer_insert/" + id + "' class='btn btn-sm btn-success mr-0'><i class='material-icons align-middle'>shopping_cart</i></a></td></tr>");
+        $("#compare_tbody").append("<tr id='row_" + id + "'><td class='align-middle'>" + $("#name_" + id).html() + "</td><td class='align-middle'>" + $("#type_" + id).html() + "</td><td class='align-middle'>" + $("#points_" + id).html() +"</td><td><div class='btn-group'><button id='remove_" + id + "' class='btn btn-danger btn-sm font-weight-bold'><i class='material-icons align-middle'>cancel</i></button><a title='Loot' href='loot/show_officer_insert/" + id + "' class='btn btn-sm btn-success mr-0'><i class='material-icons align-middle'>shopping_cart</i></a></div></td></tr>");
         get_list();
 
 
@@ -276,6 +276,12 @@ function get_winner() {
     });
 }
 
+function clipboard() {
+    let clipboard = $("#random_list").html;
+    clipboard.select();
+    document.execCommand(copy);
+}
+
 function get_list() {
     let max_points = -32000;
     let min_type = 3;
@@ -299,5 +305,5 @@ function get_list() {
         list += i+1 + " -> " +character_names[i] +" ";
     }
         
-    $("#winner_tbody").html("<tr><th class='align-middle'>List of eligible characters: </th><td class='align-middle'>"+list+"</td><td>bla</td></tr>");
+    $("#winner_tbody").html("<tr><td id='random_list' class='align-middle'>List of eligible characters: "+list+"</td><td><a title='Copy to Clipboard' onclick='clipboard()' class='btn btn-sm btn-success mr-0'><i class='material-icons align-middle'>file_copyt</i></a></td></tr>");
 }
