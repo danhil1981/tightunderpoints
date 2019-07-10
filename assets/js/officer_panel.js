@@ -280,6 +280,7 @@ function get_list() {
     let max_points = -32000;
     let min_type = 3;
     let character_names = [];
+    let list = "";
     for (let i = 1; i < comparing.length; i++) {
         if (comparing[i].points > max_points) {
             max_points = comparing[i].points;
@@ -289,10 +290,14 @@ function get_list() {
         }
     }
     for (let i = 1; i < comparing.length; i++) {
-        if (comparing[i].points > max_points - 2 && comparing[i].type) {
+        if (comparing[i].points > max_points - 2 && comparing[i].type == min_type) {
             character_names.push(comparing[i].name);
         }
     }
+
+    for (let i = 0; i <= character_names.length; i++) {
+        list += i+1 + " - " +character_names[i] + "\n";
+    }
         
-    $("#winner_tbody").html("<tr><th class='align-middle'>List of eligible characters: </th><td class='align-middle'>"+character_names+"</td></tr>");
+    $("#winner_tbody").html("<tr><th class='align-middle'>List of eligible characters: </th><td class='align-middle'>"+list+"</td></tr>");
 }
