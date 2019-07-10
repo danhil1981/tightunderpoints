@@ -112,12 +112,18 @@ $(document).ready(function () {
     });
 
     $("#compare").on("click", "button", function () {
+        console.log(comparing);
         var id = parseInt(this.id.slice(7));
         $("#row_" + id).remove();
         $("#compare_" + id).removeClass("d-none");
+        let found_key = -1;
+        for (let i = 1; i < comparing.length; i++) {
+            if (comparing[i].id == id);
+            found_key = i;
+        }
+        comparing.splice(found_key, 1);
         console.log(comparing);
-        comparing = comparing.slice(comparing.indexOf(id), 1);
-        console.log(comparing);
+
         if (comparing.length > 1) {
             get_list();
         } else {
