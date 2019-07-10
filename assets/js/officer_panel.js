@@ -312,5 +312,5 @@ function get_list() {
         list += i+1 + " - " +character_names[i] +", ";
     }
     list = list.slice(0, -1);
-    $("#winner_tbody").html("<tr><td id='random_list' class='align-middle'>List of eligible characters: "+list+"</td><td><a onclick='clipboard()' title='Copy to Clipboard' class='btn btn-sm btn-success mr-0'><i class='material-icons align-middle'>file_copy</i></a></td></tr>");
+    $("#winner_tbody").html("<tr><td id='random_list' class='align-middle'>List of eligible characters: "+list+"</td><td><a id='clipboard' onclick='clipboard()' title='Copy to Clipboard' class='btn btn-sm btn-success mr-0'><i class='material-icons align-middle'>file_copy</i></a></td></tr>");
 }
