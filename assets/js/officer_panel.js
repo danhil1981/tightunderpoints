@@ -116,7 +116,7 @@ $(document).ready(function () {
         $("#row_" + id).remove();
         $("#compare_" + id).removeClass("d-none");
         console.log(comparing);
-        comparing = comparing.slice(comparing.indexOf(id));
+        comparing = comparing.slice(comparing.indexOf(id), 1);
         console.log(comparing);
         if (comparing.length > 1) {
             get_list();
