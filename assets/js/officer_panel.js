@@ -115,8 +115,8 @@ $(document).ready(function () {
         var id = parseInt(this.id.slice(7));
         $("#row_" + id).remove();
         $("#compare_" + id).removeClass("d-none");
-        console.log(comparing);
         comparing.splice(comparing.indexOf(id), 3);
+        console.log(comparing);
         if (comparing.length > 1) {
             get_list();
         } else {
