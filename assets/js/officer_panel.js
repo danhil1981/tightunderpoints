@@ -113,6 +113,7 @@ $(document).ready(function () {
 
     $("#compare").on("click", "button", function () {
         var id = parseInt(this.id.slice(7));
+        console.log(comparing);
         $("#row_" + id).remove();
         $("#compare_" + id).removeClass("d-none");
         let found_key = 0;
@@ -120,7 +121,6 @@ $(document).ready(function () {
             if (comparing[i].id == id);
             found_key = i;
         }
-        console.log(comparing);
         console.log("removing from array");
         comparing = comparing.splice(found_key, 1);
         console.log(comparing);
