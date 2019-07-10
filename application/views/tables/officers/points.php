@@ -33,7 +33,7 @@
                                         echo "<td class='align-middle'>" . $list_last50_earned[$character['id_character']] . '</td>';
                                         echo "<td class='align-middle'>" . $list_last50_spent[$character['id_character']] . '</td>';
                                         echo "<td id='points_" . $character['id_character'] . "' class='align-middle'>" . ($list_last50_earned[$character['id_character']] - $list_last50_spent[$character['id_character']]) . '</td>';
-                                        echo "<td class='fit align-middle'><button title='Compare' class='btn btn-sm btn-success' id='compare_" . $character['id_character'] . "'><i class='material-icons align-middle'>compare_arrows</i></button></td></tr>";
+                                        echo "<td class='fit align-middle'><button title='Compare' class='btn btn-sm btn-success' id='compare_" . $character['name_character'] . "'><i class='material-icons align-middle'>compare_arrows</i></button></td></tr>";
                                     }
                                 ?>
                             </tbody>
