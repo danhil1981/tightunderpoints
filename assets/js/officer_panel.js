@@ -84,8 +84,8 @@ $(document).ready(function () {
         $("#winner").addClass("d-block");
         var name = parseInt(this.id.slice(8));
         $(this).addClass("d-none");
-        var points = parseInt($("#points_" + id).html());
-        var type = $("#type_" + id).html();
+        var points = parseInt($("#points_" + name).html());
+        var type = $("#type_" + name).html();
         switch (type) {
             case "Main":
                 type = 1;

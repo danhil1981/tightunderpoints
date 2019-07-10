@@ -18,7 +18,7 @@
                                 <?php
                                     foreach ($list_names_with_class as $character) {
                                         echo "<tr><td id='name_" . $character['id_character'] . "' class='align-middle'><div class='btn character character_" . $character['id_character'] . "'>" . $character['name_character'] . '</div></td>';
-                                        echo "<td id='type_" . $character['id_character'] . "' class='align-middle'>";
+                                        echo "<td id='type_" . $character['name_character'] . "' class='align-middle'>";
                                         switch ($list_types[$character['id_character']]) {
                                                     case '1': echo 'Main';
                                                     break;
@@ -32,7 +32,7 @@
                                         echo "<td class='align-middle'>" . $list_total_spent[$character['id_character']] . '</td>';
                                         echo "<td class='align-middle'>" . $list_last50_earned[$character['id_character']] . '</td>';
                                         echo "<td class='align-middle'>" . $list_last50_spent[$character['id_character']] . '</td>';
-                                        echo "<td id='points_" . $character['id_character'] . "' class='align-middle'>" . ($list_last50_earned[$character['id_character']] - $list_last50_spent[$character['id_character']]) . '</td>';
+                                        echo "<td id='points_" . $character['name_character'] . "' class='align-middle'>" . ($list_last50_earned[$character['id_character']] - $list_last50_spent[$character['id_character']]) . '</td>';
                                         echo "<td class='fit align-middle'><button title='Compare' class='btn btn-sm btn-success' id='compare_" . $character['name_character'] . "'><i class='material-icons align-middle'>compare_arrows</i></button></td></tr>";
                                     }
                                 ?>
