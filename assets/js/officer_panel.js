@@ -105,7 +105,7 @@ $(document).ready(function () {
         };
         comparing.push(object);
 
-        $("#compare_tbody").append("<tr id='row_" + id + "'><td class='align-middle'>" + $("#name_" + id).html() + "</td><td class='align-middle'>" + $("#type_" + id).html() + "</td><td class='align-middle'>" + $("#points_" + id).html() +"</td><td><button id='remove_" + id + "' class='btn btn-danger btn-sm font-weight-bold'><i class='material-icons align-middle'>cancel</i></button></td></tr>");
+        $("#compare_tbody").append("<tr id='row_" + id + "'><td class='align-middle'>" + $("#name_" + id).html() + "</td><td class='align-middle'>" + $("#type_" + id).html() + "</td><td class='align-middle'>" + $("#points_" + id).html() +"</td><td><button id='remove_" + id + "' class='btn btn-danger btn-sm font-weight-bold'><i class='material-icons align-middle'>cancel</i></button><a title='Loot' href='loot/show_officer_insert/" + id + "' class='btn btn-sm btn-success mr-0'><i class='material-icons align-middle'>shopping_cart</i></a></td></tr>");
         get_list();
 
 
@@ -296,8 +296,8 @@ function get_list() {
     }
 
     for (let i = 0; i < character_names.length; i++) {
-        list += i+1 + " -> " +character_names[i];
+        list += i+1 + " -> " +character_names[i] +" ";
     }
         
-    $("#winner_tbody").html("<tr><th class='align-middle'>List of eligible characters: </th><td class='align-middle'>"+list+"</td></tr>");
+    $("#winner_tbody").html("<tr><th class='align-middle'>List of eligible characters: </th><td class='align-middle'>"+list+"</td><td>bla</td></tr>");
 }
