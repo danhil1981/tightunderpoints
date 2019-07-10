@@ -83,7 +83,7 @@ $(document).ready(function () {
         $("#compare").addClass("d-block");
         $("#winner").addClass("d-block");
         var id = parseInt(this.id.slice(8));
-        var name = $("character_"+id).html();
+        var name = $(".character_"+id).html();
         $(this).addClass("d-none");
         var points = parseInt($("#points_" + id).html());
         var type = $("#type_" + id).html();
