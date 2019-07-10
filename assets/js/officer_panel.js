@@ -276,7 +276,7 @@ function get_winner() {
     });
 }
 
-$("#clipboard").click(function() {
+$("#clipboard").on("click", function() {
     alert("clicked");
     var id = $(this).attr('id');
     var el = document.getElementById(id);
