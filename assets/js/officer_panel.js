@@ -116,7 +116,7 @@ $(document).ready(function () {
         console.log(comparing);
         $("#row_" + id).remove();
         $("#compare_" + id).removeClass("d-none");
-        let found_key = 0;
+        let found_key = -1;
         for (let i = 1; i < comparing.length; i++) {
             if (comparing[i].id == id);
             found_key = i;
