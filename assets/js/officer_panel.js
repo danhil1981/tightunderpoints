@@ -277,8 +277,7 @@ function get_winner() {
 }
 
 function clipboard() {
-    var id = $(this).attr('id');
-    var el = document.getElementById(id);
+    var el = document.getElementById("clipboard");
     var range = document.createRange();
     range.selectNodeContents(el);
     var sel = window.getSelection();
