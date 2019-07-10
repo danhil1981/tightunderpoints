@@ -82,10 +82,11 @@ $(document).ready(function () {
     $("#points").on("click", "button", function () {
         $("#compare").addClass("d-block");
         $("#winner").addClass("d-block");
-        var name = parseInt(this.id.slice(8));
+        var id = parseInt(this.id.slice(8));
+        var name = parseInt($("character_"+id).html());
         $(this).addClass("d-none");
-        var points = parseInt($("#points_" + name).html());
-        var type = $("#type_" + name).html();
+        var points = parseInt($("#points_" + id).html());
+        var type = $("#type_" + id).html();
         switch (type) {
             case "Main":
                 type = 1;
@@ -96,12 +97,13 @@ $(document).ready(function () {
             default:
                 type = 3;
         }
-        character_data = {
+        object = {
+            "id": id,
             "name": name,
             "points": points,
             "type": type
         };
-        comparing.push(character_data);
+        comparing.push(object);
 
         $("#compare_tbody").append("<tr id='row_" + id + "'><td class='align-middle'>" + $("#name_" + id).html() + "</td><td class='align-middle'>" + $("#type_" + id).html() + "</td><td class='align-middle'>" + $("#points_" + id).html() +"</td><td><button id='remove_" + id + "' class='btn btn-danger btn-sm font-weight-bold'><i class='material-icons align-middle'>cancel</i></button></td></tr>");
         get_list();
@@ -258,21 +260,21 @@ function show(table) {
     $("#" + table).removeClass("d-none").addClass("d-block");
 }
 
-// function get_winner() {
-//     $.ajax({
-//         url: "ajax/get_winner/",
-//         data: {
-//             "comparing": comparing
-//         },
-//         type: "post",
-//         success: function (output) {
-//             $("#winner_tbody").html("<tr><th class='align-middle'>Winner:</th><td class='align-middle'>" + output.substring(parseInt(output).toString().length) + "</td><td><a title='Loot' href='loot/show_officer_insert/" + parseInt(output) + "' class='btn btn-sm btn-success mr-0'><i class='material-icons align-middle'>shopping_cart</i></a></td></tr>");
-//         },
-//         error: function () {
-//             $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div>");
-//         }
-//     });
-// }
+function get_winner() {
+    $.ajax({
+        url: "ajax/get_winner/",
+        data: {
+            "comparing": comparing
+        },
+        type: "post",
+        success: function (output) {
+            $("#winner_tbody").html("<tr><th class='align-middle'>Winner:</th><td class='align-middle'>" + output.substring(parseInt(output).toString().length) + "</td><td><a title='Loot' href='loot/show_officer_insert/" + parseInt(output) + "' class='btn btn-sm btn-success mr-0'><i class='material-icons align-middle'>shopping_cart</i></a></td></tr>");
+        },
+        error: function () {
+            $("#messages").html("<br><br><div class='badge badge-danger'>Ajax request failed</div>");
+        }
+    });
+}
 
 function get_list() {
     let max_points = -32000;
@@ -287,7 +289,7 @@ function get_list() {
         }
     }
     for (let i = 1; i < comparing.length; i++) {
-        if (comparing[i].points > max_points + 2 && comparing[i].type == min_type) {
+        if (comparing[i].points > max_points + 2 && comparing[i].type) {
             character_names.push(comparing[i].name);
         }
     }
