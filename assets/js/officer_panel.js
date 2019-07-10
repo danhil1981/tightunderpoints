@@ -277,8 +277,7 @@ function get_winner() {
 }
 
 function clipboard() {
-    let clipboard = $("#random_list").html;
-    clipboard.select();
+    $("#random_list").html().select();
     document.execCommand("copy");
 }
 
