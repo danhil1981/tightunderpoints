@@ -104,7 +104,6 @@ $(document).ready(function () {
             "type": type
         };
         comparing.push(object);
-        console.log(comparing);
         $("#compare_tbody").append("<tr id='row_" + id + "'><td class='align-middle'>" + $("#name_" + id).html() + "</td><td class='align-middle'>" + $("#type_" + id).html() + "</td><td class='align-middle'>" + $("#points_" + id).html() +"</td><td><div class='btn-group'><a title='Loot' href='loot/show_officer_insert/" + id + "' class='btn btn-sm btn-success mr-0'><i class='material-icons align-middle'>shopping_cart</i></a><button id='remove_" + id + "' class='btn btn-danger btn-sm font-weight-bold'><i class='material-icons align-middle'>cancel</i></button></div></td></tr>");
         get_list();
 
@@ -118,10 +117,8 @@ $(document).ready(function () {
         for (let i = 1; i < comparing.length; i++) {
             if (comparing[i].id == id) {
                 comparing.splice(i, 1);
-                console.log("removing from array");
             }
         }
-        console.log(comparing);
         if (comparing.length > 1) {
             get_list();
         } else {
