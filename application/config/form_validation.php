@@ -50,7 +50,7 @@
             [
                 'field' => 'id_new',
                 'label' => 'ID',
-                'rules' => 'required|integer|greater_than[0]|less_than[32769]',
+                'rules' => 'required|integer|greater_than[0]|less_than[64000]',
             ],
             [
                 'field' => 'name',
