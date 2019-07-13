@@ -7,7 +7,8 @@
         public function index()
         {
             if ($this->check_permission(2)) {
-                $this->load->view('dkp');
+                $data['view_name'] = 'dkp';
+                $this->load->view('template', $data);
             }
         }
     }
