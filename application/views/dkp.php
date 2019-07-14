@@ -52,6 +52,10 @@
         This system was built with simplicity as a consideration.  While we tried to address them, we're sure there are ways to game the system.  Trying to abuse the system is a dick move.  Don't do it.  If you're too successful at it we'll just change the rules to close whatever loophole you're abusing anyway.
         That said, if you feel like the system is not achieving the goals we've laid out don't hesitate to raise any concerns.  Often there are trade-offs and a judgement call has to be made, but we're trying to make it as understandable, fast and fair as possible.
     </p>
+    <h2 class="h2_text">Rewards and Cost</h2>
+    <p class="text-white text-justify">
+        All costs and rewards are posted to the members section of the website. You can find them in the Bosses and Items tables.
+    </p>
 </div>
 
 
