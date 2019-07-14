@@ -30,6 +30,7 @@
             </div>
             <?php include 'messages/message.php';?>
             <div class="row my-5">
+                <a href="<?php echo site_url()?>/dkp" class="mx-auto btn btn-primary btn-sm">How does the DKP System work?</a>
                 <div class="col-10 offset-1" id="tables">
                     <?php
                         include 'tables/compare.php';
