@@ -45,13 +45,11 @@
                                     default:
                                         echo "members'>";
                                 }
+                        } else {
+                            echo "<a href='" . site_url() . "'>";
                         }
                     ?>
                     <img src="<?php echo base_url()?>assets/img/logo.PNG" alt="Responsive Logo" height="150px"><h1 class="logo-text d-inline-block ml-3">Tight Underpoints</h1>
-                    <?php
-                        if (isset($this->session->logged_in)) {
-                            echo '</a>';
-                        }
-                    ?>
+                    </a>
                 </div>
             </div>
