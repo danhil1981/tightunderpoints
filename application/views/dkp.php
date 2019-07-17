@@ -19,7 +19,7 @@
     <h1 class="text-center h1_text my-5">DKP System</h1>
     <p class="text-white text-justify">
         The goal of the DKP system is to make loot distribution understandable, fast and fair. 
-        All costs and rewards are posted to the members section of the website (Bosses and Items sections).
+        All costs and rewards are posted to the member panel of the website (Bosses and Items sections).
         The points section of the website shows you the current standing of points and also lets you compare individual members.
     </p>  
 
