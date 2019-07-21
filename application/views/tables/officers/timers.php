@@ -22,7 +22,7 @@
                                 <?php
                                     $timezone = +1;
                                     foreach ($timers as $value) {
-                                        if (strpos($value['name_boss'], 'Bonus') !== false) {
+                                        if (strpos($value['name_boss'], 'Bonus') === false) {
                                             echo "<tr><td class='align-middle'><div class='btn boss boss_" . $value['id_boss'] . "'>" . $value['name_boss'] . '</div></td>';
                                             echo "<td class='align-middle'>" . date('D j M, H:i', strtotime($value['last_killed'])) . '</td>';
                                             echo "<td class='align-middle'>" . date('D j M, H:i', strtotime($value['start_window'])) . '</td>';
