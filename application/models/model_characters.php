@@ -432,7 +432,16 @@
                 FROM characters
                 WHERE id = '$id'
             ;");
-            return $this->db->affected_rows();
+            $deleted = $this->db->affected_rows();
+            $this->db->query("DELETE
+                FROM attendance
+                WHERE id_character = '$id'
+            ;");
+            $this->db->query("DELETE
+                FROM attendance
+                WHERE id_points = '$id'
+            ;");
+            return $deleted;
         }
 
         public function modify($id, $name, $level, $class, $type, $id_player)
