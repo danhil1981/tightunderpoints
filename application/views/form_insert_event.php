@@ -23,7 +23,7 @@
                             Raid
                         </div>
                         <div class="form-inline d-block">
-                            <?php $options = $options = [0 => '-- Not part of a raid --'] + $raid_descriptions;?>
+                            <?php $options = [0 => '-- Not part of a raid --'] + $raid_descriptions;?>
                             <?php echo form_dropdown('id_raid', $options, '', "required id='raid_dropdown' class='form-control float-left'");?>
                             <button type="button" class="btn btn-primary float-right" data-toggle="modal"
                                 data-target="#modal_raid">New Raid</button>
