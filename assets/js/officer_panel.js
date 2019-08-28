@@ -305,7 +305,7 @@ function get_list() {
         }
     }
     for (let i = 1; i < comparing.length; i++) {
-        if (comparing[i].points >= max_points - 2 && comparing[i].type == min_type) {
+        if (comparing[i].points >= max_points - 6 && comparing[i].type == min_type) {
             character_names.push(comparing[i].name);
         }
     }
