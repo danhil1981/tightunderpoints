@@ -31,6 +31,7 @@
                 id AS id_boss,
                 name AS name_boss
                 FROM bosses
+                ORDER BY name
             ;');
             $bosses = [];
             if ($query->num_rows() > 0) {
