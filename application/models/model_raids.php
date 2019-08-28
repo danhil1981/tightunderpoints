@@ -31,6 +31,7 @@
                 id AS id_raid,
                 CONCAT(date, ' - ',description) AS description_raid
                 FROM raids
+                ORDER BY date DESC
             ;");
             $raids = [];
             if ($query->num_rows() > 0) {
